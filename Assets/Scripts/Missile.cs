@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SoundSystem;
+using SoundSystem;							//サウンド追加分1/3
 
 public class Missile : MonoBehaviour
 {
@@ -12,7 +12,8 @@ public class Missile : MonoBehaviour
 	private GameObject player;
 	float period = 2f;
 
-	public GameSEPlayer missileHit;
+	//SoundSystem
+	public GameSEPlayer missileHit;			//サウンド追加分2/3
 
 	//ポジションの取得と初速を与えている。
 	void Start()
@@ -47,9 +48,12 @@ public class Missile : MonoBehaviour
 		rigid.MovePosition(transform.position + velocity * Time.deltaTime);
 	}
 
+	//サウンド追加分3/3
+	//プレイヤーに衝突したら音が鳴る
 	void OnTriggerEnter(Collider other){
 		if(other.name.Equals("TenporaryPlayer")){
 			missileHit.PlaySEOneShot3D(0);
 		}
 	}
+	//サウンド追加分3/3 以上
 }

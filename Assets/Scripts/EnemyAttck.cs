@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SoundSystem;							//サウンド追加分1
+using SoundSystem;							//サウンド追加分1/3
 
 public class EnemyAttck : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class EnemyAttck : MonoBehaviour
 	private int attackCount = 0;
 
 	//SoundSystem
-	public GameSEPlayer bulletShotSE;		//サウンド追加分2
+	public GameSEPlayer bulletShotSE;		//サウンド追加分2/3
 
     // Update is called once per frame
     void Update()
@@ -36,7 +36,7 @@ public class EnemyAttck : MonoBehaviour
 			bulletRd.velocity = enemyBullet.transform.forward.normalized * bulletSpeed;
 
 			//マシンガン発射音再生
-			bulletShotSE.PlaySEOneShot3D(0);	//サウンド追加分3
+			bulletShotSE.PlaySEOneShot3D(0);	//サウンド追加分3/3
 
 			Destroy(enemyBullet, 5.0f);
 	}
