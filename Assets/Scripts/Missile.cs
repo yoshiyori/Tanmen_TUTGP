@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
 
 public class Missile : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Missile : MonoBehaviour
 	private Vector3 acceleration;
 	private GameObject player;
 	float period = 2f;
+
+	public GameSEPlayer missileHit;
 
 	//ポジションの取得と初速を与えている。
 	void Start()
@@ -44,5 +47,9 @@ public class Missile : MonoBehaviour
 		rigid.MovePosition(transform.position + velocity * Time.deltaTime);
 	}
 
-
+	void OnTriggerEnter(Collider other){
+		if(other.name.Equals("TenporaryPlayer")){
+			missileHit.PlaySEOneShot3D(0);
+		}
+	}
 }
