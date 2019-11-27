@@ -150,7 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293ff329d9f299141baf987e94f8ed18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  Missile: {fileID: 7557872383736812535, guid: 22f767fbad8b4424c94d5c6777139b66, type: 3}
-  speed: 6
-  rotSpeed: 180
+  Missile: {fileID: 8388336137524774588, guid: 22f767fbad8b4424c94d5c6777139b66, type: 3}

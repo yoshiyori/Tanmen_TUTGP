@@ -21,11 +21,11 @@ public class Missile : MonoBehaviour
 
 	}
 
-	//ここで加速度などを計算しているhttps://youtu.be/t_4MbV2zIwg　ここ見た。
+	//ここで加速度などを計算している
 	void Update()
 	{
 		
-		player = GameObject.Find("TenporaryPlayer");
+		player = GameObject.Find("Player");
 		acceleration = Vector3.zero;
 		var diff = player.transform.position - transform.position;
 		acceleration += (diff - velocity * period) * 2f	/ (period * period);
@@ -44,5 +44,12 @@ public class Missile : MonoBehaviour
 		rigid.MovePosition(transform.position + velocity * Time.deltaTime);
 	}
 
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			Destroy(this.gameObject);
+		}
+	}
 
 }
