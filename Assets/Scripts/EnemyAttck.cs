@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;							//サウンド追加分1
 
 public class EnemyAttck : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class EnemyAttck : MonoBehaviour
 	public GameObject player;
 	[SerializeField] float bulletSpeed;
 	private int attackCount = 0;
+
+	//SoundSystem
+	public GameSEPlayer bulletShotSE;		//サウンド追加分2
 
     // Update is called once per frame
     void Update()
@@ -30,6 +34,9 @@ public class EnemyAttck : MonoBehaviour
 			Rigidbody bulletRd = enemyBullet.GetComponent<Rigidbody>();
 			enemyBullet.transform.LookAt(player.transform); 
 			bulletRd.velocity = enemyBullet.transform.forward.normalized * bulletSpeed;
+
+			//マシンガン発射音再生
+			bulletShotSE.PlaySEOneShot3D(0);	//サウンド追加分3
 
 			Destroy(enemyBullet, 5.0f);
 	}
