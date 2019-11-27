@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3180978265879223529}
   m_Layer: 0
   m_Name: EnemyHund
-  m_TagString: Untagged
+  m_TagString: EnemyHund
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3126633319554237818}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 12.5, y: 0.5, z: -2.09375}
   m_LocalScale: {x: 3, y: 2, z: 1}
   m_Children:
@@ -125,7 +125,7 @@ Transform:
   - {fileID: 6835564912953097159}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5079204796260007417
 MeshFilter:
   m_ObjectHideFlags: 0

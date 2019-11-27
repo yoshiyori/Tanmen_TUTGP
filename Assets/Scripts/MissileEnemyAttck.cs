@@ -20,7 +20,7 @@ public class MissileEnemyAttck : MonoBehaviour
 		if (attackCount % 50 == 0)
 		{
 			GameObject enemyMissile = Instantiate(Missile, transform.position, Quaternion.identity);
-			Debug.Log("発射");
+			//Debug.Log("発射");
 
 			Destroy(enemyMissile, 5.0f);
 			//残骸だから気にしたら負け
