@@ -17,7 +17,7 @@ public class Missile : MonoBehaviour
 
 		position = transform.position;
 		rigid = this.GetComponent<Rigidbody>();
-		velocity = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);
+		velocity = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
 
 	}
 

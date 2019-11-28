@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     {
 		if (catchSwitch == false)
 		{
-			float x = Input.GetAxis("Horizontal");
+			float z = Input.GetAxis("Horizontal");
+			float x = Input.GetAxis("Vertical");
 			float y = 0f;
 			float oldSpeed = speed;
 
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
 			{
 				speed = kasokuSpeed;
 			}
-			rB.AddForce(x * speed, y * jumpSpeed, 0, ForceMode.Impulse);
+			rB.AddForce(x * speed, y * jumpSpeed, z * -speed, ForceMode.Impulse);
 
 			if (speed == kasokuSpeed)
 			{
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour
 			}
 			
 		}
-
 		else if (catchSwitch == true)
 		{
 			catchCount += 1;
