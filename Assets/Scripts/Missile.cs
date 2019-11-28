@@ -29,7 +29,7 @@ public class Missile : MonoBehaviour
 	void Update()
 	{
 		
-		player = GameObject.Find("TenporaryPlayer");
+		player = GameObject.Find("Player");
 		acceleration = Vector3.zero;
 		var diff = player.transform.position - transform.position;
 		acceleration += (diff - velocity * period) * 2f	/ (period * period);
@@ -51,8 +51,9 @@ public class Missile : MonoBehaviour
 	//サウンド追加分3/3
 	//プレイヤーに衝突したら音が鳴る
 	void OnTriggerEnter(Collider other){
-		if(other.name.Equals("TenporaryPlayer")){
+		if(other.gameObject.tag == "Player"){
 			missileHit.PlaySEOneShot3D(0);
+			Destroy(this.gameObject);
 		}
 	}
 	//サウンド追加分3/3 以上
