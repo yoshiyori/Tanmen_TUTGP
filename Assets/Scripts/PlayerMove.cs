@@ -23,14 +23,16 @@ public class PlayerMove : MonoBehaviour
                 //targetsに各レールのガイドのtransformを入れる
                 targets[i] = Rail.GetComponentsInChildrenWithoutSelf<Transform> ();
                 i++;
-            }
 
+            }
+		
             for (int k = 0; k < targets.Length; k++)
             {
                 //初期化処理
-                targetVectors[k] = new Vector3[targets[k].Length];
-                paths = new LTSpline[targets[k].Length];
+                targetVectors[k] = new Vector3[targets.Length];
+                paths = new LTSpline[targets.Length];
             }
+		
 
             for (int j = 0; j < targets.Length; j++)
             {
@@ -40,13 +42,15 @@ public class PlayerMove : MonoBehaviour
                     targetVectors[j][l] = targets[j][l].position;
                 }
             }
-            pathSetUp ();
+
+			pathSetUp ();
         }
     }
 
     // Update is called once per frame
     void Update ()
     {
+		//Debug.Log(paths.Length);
         //前進
         paths[0].place (PlayerInternal[0].transform, trackPosition);
         paths[1].place (PlayerInternal[1].transform, trackPosition);
