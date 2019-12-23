@@ -15,6 +15,6 @@ public class CameraMove : MonoBehaviour
     }
     void LateUpdate ()
     {
-        cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 1.0f * Time.deltaTime);
+        cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
     }
 }
