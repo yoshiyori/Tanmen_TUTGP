@@ -12,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     private List<LTSpline> paths = new List<LTSpline> (); //レール配列から生成したSpline曲線のリスト
     private List<Vector3[]> targetVectors = new List<Vector3[]> (); //レール配列のリストVec3ver.
     private float trackPosition;
-    private int activeRailNum = 1;
+    private int activeRailNum = 2;
     void Start ()
     {
         if (Rails != null)
@@ -31,8 +31,9 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        //前進
-        for (int i = 0; i < paths.Count; i++)
+		RailChange(activeRailNum);
+		//前進
+		for (int i = 0; i < paths.Count; i++)
         {
             GoForward (i); //前に進むやつ
         }

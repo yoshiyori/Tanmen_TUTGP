@@ -227,6 +227,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!4 &1083200399 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7797600488247022757, guid: 257c6099b646b8844ac1400182e4c233,
+    type: 3}
+  m_PrefabInstance: {fileID: 7063612012806863722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194845629 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 83269164036679607, guid: 8a82c12ef0d3e4e4694a30d757b8e421,
@@ -328,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd8262b5206b744e9731073150169a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTrans: {fileID: 0}
+  playerTrans: {fileID: 1083200399}
   cameraVec: {x: 3, y: 2, z: 0}
   cameraRot: {x: 30, y: 270, z: 0}
 --- !u!1 &1520340567
@@ -623,5 +629,10 @@ PrefabInstance:
       propertyPath: PlayerInternal.Array.data[4]
       value: 
       objectReference: {fileID: 1809517432}
+    - target: {fileID: 3928609835155597399, guid: 257c6099b646b8844ac1400182e4c233,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 257c6099b646b8844ac1400182e4c233, type: 3}
