@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class ConeAttck : MonoBehaviour
 {
     public bool triggerObsFlag;
     private Rigidbody rigid;
@@ -24,26 +24,10 @@ public class Obstacle : MonoBehaviour
             triggerObsFlag = true;
             nowSpeed = rigid.velocity;
 
-            if (nowSpeed.x < 0)
-            {
-                rigid.AddForce(downSpeed, 0, 0);
-            }
-            else if (nowSpeed.x > 0)
-            {
-                rigid.AddForce(-downSpeed, 0, 0);
-            }
-       
-           
-
+            rigid.velocity = Vector3.zero;
+            Destroy(this.gameObject);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player" && triggerTypeKakunin == false)
-        {
-            triggerObsFlag = false;
-        }
-    }
-
+ 
 }
