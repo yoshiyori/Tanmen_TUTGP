@@ -34,19 +34,6 @@ public class InertiaPlayer2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		/*	気にしたら負け
-		 *	if (OneTime == true)
-			{
-				Direction = Quaternion.Euler(Pold) * Vector3.right;
-				OneTime = false;
-			}
-			else if (OneTime == false)
-			{
-				Direction = Quaternion.Euler(Direction) * Vector3.right;
-			}
-			*/
-
-		//ここで慣性計算してるである。（渡辺先生のパクった）
 
 		Direction = Quaternion.Euler(Vnew) * Vector3.right;
 		if (cnScr.coneFlag == true) Direction = Quaternion.Euler(Vnew)
