@@ -16,9 +16,12 @@ public class InertiaPlayer : MonoBehaviour
 	//private bool OneTime = true;
 
 	private Rigidbody rigid;
-	[SerializeField] float speed;
+	[SerializeField] float accelSpeed;
+	[SerializeField] float maxSpeed;
+	[SerializeField] float rotaSpeed;
 	public GameObject mud;
 	public bool mudTrigger;
+
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
 
@@ -80,20 +83,41 @@ public class InertiaPlayer : MonoBehaviour
 			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		nowSpeed = rigid.velocity;
-		if (mudTrigger == false)
-		{
 
-			float z = Input.GetAxis("Horizontal") * speed;
-			float x = Input.GetAxis("Vertical") * speed;
-			rigid.AddForce(-x, 0, z);
+		if (mudTrigger == false && maxSpeed > -nowSpeed.x)
+		{
+			rigid.AddRelativeForce(-accelSpeed, 0, 0);
 		}
 		else if (mudTrigger == true)
 		{
-
-			float z = Input.GetAxis("Horizontal") * speed/10;
-			float x = Input.GetAxis("Vertical") * speed/10;
-			rigid.AddForce(-x, 0, z);
+			oldSpeed.x = nowSpeed.x;
 		}
+		else if (maxSpeed < -nowSpeed.x)
+		{
+			nowSpeed.x = oldSpeed.x - 10;
+			
+		}
+
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+			nowSpeed = Quaternion.Euler(0, rotaSpeed, 0)*nowSpeed;
+			
+		}
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+			nowSpeed = Quaternion.Euler(0, -rotaSpeed, 0) * nowSpeed;
+		}
+
+		this.transform.Translate(nowSpeed);
+
+		if (Input.GetKey(KeyCode.Z))
+		{
+			Debug.Log(nowSpeed);
+
+		}
+		
 		oldSpeed = nowSpeed;
 
 	}
