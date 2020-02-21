@@ -200,6 +200,26 @@ PrefabInstance:
       propertyPath: mud
       value: 
       objectReference: {fileID: 337423203}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: accelSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: rotaSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: brakeSpeed
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 134768173899057519, guid: 6712621d8f236104db1eaa44f0f4c159,
         type: 3}
       propertyPath: m_IsTrigger
@@ -283,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: downSpeed
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -311,7 +331,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879233086}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -370,11 +390,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 879233086}
     - target: {fileID: 0}
       propertyPath: playerObject
       value: 
@@ -384,6 +399,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 879233086}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x

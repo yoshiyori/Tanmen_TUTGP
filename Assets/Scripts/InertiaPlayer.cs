@@ -14,22 +14,28 @@ public class InertiaPlayer : MonoBehaviour
 	//private float DeltaT = 0.05f;
 	//private float Accel = 0.0f;
 	//private bool OneTime = true;
-
+	//変数
 	private Rigidbody rigid;
 	[SerializeField] float accelSpeed;
 	[SerializeField] float maxSpeed;
 	[SerializeField] float rotaSpeed;
+	[SerializeField] float brakeSpeed;
 	public GameObject mud;
 	public bool mudTrigger;
 
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
+	void Awake()
+	{
+		//FPSを手動で固定
+		Application.targetFrameRate = 60;
+	}
 
 	private void Start()
 	{
+		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
 	
-
 	}
 
 	// Update is called once per frame
@@ -84,7 +90,9 @@ public class InertiaPlayer : MonoBehaviour
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		nowSpeed = rigid.velocity;
 
-		if (mudTrigger == false && maxSpeed > -nowSpeed.x)
+		//ここで速度とかの制御
+
+		if (mudTrigger == false && rigid.velocity.magnitude < maxSpeed)
 		{
 			rigid.AddRelativeForce(-accelSpeed, 0, 0);
 		}
@@ -95,26 +103,35 @@ public class InertiaPlayer : MonoBehaviour
 		else if (maxSpeed < -nowSpeed.x)
 		{
 			nowSpeed.x = oldSpeed.x - 10;
-			
+
 		}
+		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
+		{
+			rigid.AddRelativeForce(brakeSpeed,0, 0);
+		}
+		if (rigid.velocity.x > 0)
+		{
+			rigid.velocity = Vector3.zero;
+		}
+
+		//回転
 
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
 			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-			nowSpeed = Quaternion.Euler(0, rotaSpeed, 0)*nowSpeed;
+			rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0)* rigid.velocity;
 			
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-			nowSpeed = Quaternion.Euler(0, -rotaSpeed, 0) * nowSpeed;
+			rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 		}
 
-		this.transform.Translate(nowSpeed);
-
+		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
-			Debug.Log(nowSpeed);
+			Debug.Log(rigid.velocity.magnitude);
 
 		}
 		
