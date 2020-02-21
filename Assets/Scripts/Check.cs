@@ -89,6 +89,7 @@ public class Check : MonoBehaviour
             //Debug.Log(m_joyconR.GetAccel());
             var accel = joycon.GetAccel();
             var orientation = joycon.GetVector();
+            var eulerAngles = joycon.GetVector().eulerAngles;
 
             GUILayout.BeginVertical(GUILayout.Width(480));
             GUILayout.Label(name);
@@ -98,6 +99,7 @@ public class Check : MonoBehaviour
             GUILayout.Label("ジャイロ：" + gyro);
             GUILayout.Label("加速度：" + accel);
             GUILayout.Label("傾き：" + orientation);
+            GUILayout.Label("オイラー角" + eulerAngles);
             GUILayout.EndVertical();
         }
 
