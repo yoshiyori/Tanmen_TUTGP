@@ -20,9 +20,12 @@ public class InertiaPlayer : MonoBehaviour
 	[SerializeField] float maxSpeed;
 	[SerializeField] float rotaSpeed;
 	[SerializeField] float brakeSpeed;
-	public GameObject mud;
-	public bool mudTrigger;
+	
 
+	public GameObject mud;
+	public GameObject junpFlag;
+	private bool mudTrigger;
+	public bool junp;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
 	void Awake()
@@ -35,7 +38,7 @@ public class InertiaPlayer : MonoBehaviour
 	{
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
-	
+		
 	}
 
 	// Update is called once per frame
@@ -88,6 +91,7 @@ public class InertiaPlayer : MonoBehaviour
 			}
 			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
+		junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;
 		nowSpeed = rigid.velocity;
 
 		//ここで速度とかの制御
@@ -98,7 +102,8 @@ public class InertiaPlayer : MonoBehaviour
 		}
 		else if (mudTrigger == true)
 		{
-			oldSpeed.x = nowSpeed.x;
+			rigid.velocity = new Vector3(-1, 0, 0);
+
 		}
 		else if (maxSpeed < -nowSpeed.x)
 		{
@@ -128,6 +133,8 @@ public class InertiaPlayer : MonoBehaviour
 			rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 		}
 
+		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
+
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
@@ -138,5 +145,7 @@ public class InertiaPlayer : MonoBehaviour
 		oldSpeed = nowSpeed;
 
 	}
+	
+
 	
 }
