@@ -487,12 +487,12 @@ PrefabInstance:
     - target: {fileID: 2694547430904912213, guid: 6712621d8f236104db1eaa44f0f4c159,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 2694547430904912213, guid: 6712621d8f236104db1eaa44f0f4c159,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 2694547430904912213, guid: 6712621d8f236104db1eaa44f0f4c159,
         type: 3}
@@ -840,6 +840,8 @@ MonoBehaviour:
   - {fileID: 1955819089}
   - {fileID: 1097849608}
   mudFlag: 0
+  flagCtrlNum: 0
+  flagCheckNum: 0
 --- !u!4 &1571065567
 Transform:
   m_ObjectHideFlags: 0

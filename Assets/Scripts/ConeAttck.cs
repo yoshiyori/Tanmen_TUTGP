@@ -9,7 +9,6 @@ public class ConeAttck : MonoBehaviour
     public GameObject playerObject;
     public float downSpeed;
     private Vector3 nowSpeed;
-    [SerializeField] private bool triggerTypeKakunin;//mud:false, cone:true
 
     private void Start()
     {
