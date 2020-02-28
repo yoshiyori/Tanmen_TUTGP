@@ -13,6 +13,8 @@ public class JunpJudg : MonoBehaviour
     private Vector3 nowSpeed;
     private Vector3 playerPosition;
 
+    public Handle hd;
+
     private void Start()
     {
         triggerObsFlag = false;
@@ -22,7 +24,7 @@ public class JunpJudg : MonoBehaviour
 
     private void Update()
     {
-        if (triggerObsFlag == true && Input.GetKey(KeyCode.S))//ここのInputを振り上げ
+        if (triggerObsFlag == true && hd.GetControllerSwing() >= 10)//ここのInputを振り上げ
         {
             rigid.AddForce(0, junpSpeed, 0);
             triggerObsFlag = false;
@@ -46,7 +48,7 @@ public class JunpJudg : MonoBehaviour
     public void JunpPlayer()
     {
 
-        if (nowJunpFlag == true && Input.GetKey(KeyCode.A))//ここのInputを振り下ろしにして
+        if (nowJunpFlag == true && hd.GetControllerSwing() <= -10)//ここのInputを振り下ろしにして
         {
             rigid.AddRelativeForce(-junpAccelSpeed, 0, 0);
             nowJunpFlag = false;
