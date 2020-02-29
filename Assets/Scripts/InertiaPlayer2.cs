@@ -4,116 +4,106 @@ using UnityEngine;
 
 public class InertiaPlayer2 : MonoBehaviour
 {
-	// 初期化とか必要な変数をそろえてる
-	Vector3 Pold = new Vector3(0.0f, 0.0f, 0.0f);
-	Vector3 Pnew = new Vector3(0.0f, 0.0f, 0.0f);
-	Vector3 Vold = new Vector3(0.0f, 0.0f, 0.0f);
-	Vector3 Vnew = new Vector3(0.0f, 0.0f, 0.0f);
-	Vector3 A;
-	Vector3 Direction;
-	private float DeltaT = 0.05f;
-	private float Accel = 0.0f;
-	private bool OneTime = true;
+	//変数
+	private Rigidbody rigid;
+	[SerializeField] float accelSpeed;
+	[SerializeField] float maxSpeed;
+	[SerializeField] float rotaSpeed;
+	[SerializeField] float brakeSpeed;
 
 
-	GameObject coneCtrl;
-	GameObject mudCtrl;
-	Cone cnScr;     //Cone.cs参照
-	Mud mdScr;      //Mud.cs参照
-	private int slipTime; //泥踏んで回転する処理のループ回数
+	public GameObject mud;
+	public GameObject junpFlag;
+	private bool mudTrigger;
+	public bool junp;
+	private Vector3 nowSpeed;
+	private Vector3 oldSpeed;
 
-	void Start()
+	public Handle hd;
+	//private float oldRotY;
+
+	void Awake()
 	{
-		coneCtrl = GameObject.Find("ConeCtrl");
-		mudCtrl = GameObject.Find("MudCtrl");
-		cnScr = coneCtrl.GetComponent<Cone>();
-		mdScr = mudCtrl.GetComponent<Mud>();
-		slipTime = 0;
+		//FPSを手動で固定
+		Application.targetFrameRate = 60;
+	}
+
+	private void Start()
+	{
+		//rigidbodyの取得
+		rigid = GetComponent<Rigidbody>();
+		//oldRotY = 0.0f;
+
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		/*	気にしたら負け
-		 *	if (OneTime == true)
-			{
-				Direction = Quaternion.Euler(Pold) * Vector3.right;
-				OneTime = false;
-			}
-			else if (OneTime == false)
-			{
-				Direction = Quaternion.Euler(Direction) * Vector3.right;
-			}
-			*/
+		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
+		junp = junpFlag.GetComponent<JunpJudg2>().nowJunpFlag;
+		nowSpeed = rigid.velocity;
 
-		//ここで慣性計算してるである。（渡辺先生のパクった）
+		//ここで速度とかの制御
 
-		Direction = Quaternion.Euler(Vnew) * Vector3.right;
-		if (cnScr.coneFlag == true) Direction = Quaternion.Euler(Vnew)
-				 * new Vector3(Mathf.Cos(slipTime * Mathf.PI / 12), 0.0f, Mathf.Cos(slipTime * Mathf.PI / 12));
-		A = Direction * Accel;
-
-		if (cnScr.coneFlag == true)
+		if (mudTrigger == false && rigid.velocity.magnitude < maxSpeed)
 		{
-			Vnew *= 0;
-			A = Vnew * 0;
+			rigid.AddRelativeForce(-accelSpeed, 0, 0);
+		}
+		else if (mudTrigger == true)
+		{
+			rigid.velocity = new Vector3(-1, 0, 0);
+
+		}
+		else if (maxSpeed < -nowSpeed.x)
+		{
+			nowSpeed.x = oldSpeed.x - 10;
+
+		}
+		if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+		{
+			rigid.AddRelativeForce(brakeSpeed*2/3, 0, 0);
+		}
+		if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+		{
+			rigid.AddRelativeForce(brakeSpeed, 0, 0);
+		}
+		if (rigid.velocity.x > 0)
+		{
+			rigid.velocity = Vector3.zero;
 		}
 
-		Pold = Pnew;
-		Vold = Vnew;
+		//回転
 
-		Vnew = Vold + A * DeltaT;
-		Pnew = Pold + Vold * DeltaT;
-
-		if (mdScr.mudFlag == true)
+		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			Vnew = Vold / 10;
-			Pnew = Pold + Vold * DeltaT;
+			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+			rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+		}
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+			rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 		}
 
-		this.gameObject.transform.Translate(Pnew);
-		//加速度の初期化
-		Accel = 0.0f;
+		junpFlag.GetComponent<JunpJudg2>().JunpPlayer();
 
-		if (cnScr.coneFlag == false)
+		//確認用
+		if (Input.GetKey(KeyCode.Z))
 		{
-			//押し続けたら加速し続ける、逆もしかり。
-			if (Input.GetKey(KeyCode.RightArrow))
-			{
-				transform.Rotate(new Vector3(0, 15, 0) * Time.deltaTime);
-
-			}
-			else if (Input.GetKey(KeyCode.LeftArrow))
-			{
-				transform.Rotate(new Vector3(0, -15, 0) * Time.deltaTime);
-			}
-			if (Input.GetKey(KeyCode.UpArrow))
-			{
-				Accel = Accel - 0.001f;
-			}
-			else if (Input.GetKey(KeyCode.DownArrow))
-			{
-				Accel = Accel + 0.03f;
-			}
+			Debug.Log(rigid.velocity.magnitude);
 
 		}
 
+		oldSpeed = nowSpeed;
 
-
-		if (cnScr.coneFlag == true)
-		{
-
-			transform.Rotate(new Vector3(0, 15, 0));//30にすると2周廻る
-			slipTime++;
-			if (slipTime > 23)
-			{
-				cnScr.coneFlag = false;
-				slipTime = 0;
-			}
-		}
-
-
+		var rot = transform.rotation.eulerAngles;
+		rot.y = hd.GetControlllerAccel();
+		transform.rotation = Quaternion.Euler(rot);
+		//if (Mathf.Abs(rot.y) > Mathf.Abs(oldRotY)) rigid.velocity = Quaternion.Euler(0, (rot.y - oldRotY)/10, 0) * rigid.velocity;
+		//else rigid.velocity = Quaternion.Euler(0, (oldRotY - rot.y)/10, 0) * rigid.velocity;
+		//oldRotY = rot.y;
 	}
+
 
 
 
