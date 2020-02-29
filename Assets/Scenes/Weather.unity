@@ -143,10 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87592b279ddb976439a2d03cc0805c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorite: {fileID: 2381765201319096913, guid: 52669a8213fb01546a4e02917a59b3c1,
+  meteorite: {fileID: 5121784108546249597, guid: 52669a8213fb01546a4e02917a59b3c1,
     type: 3}
-  triggerPos: {fileID: 75526086}
-  shotForce: 50
+  shotForce: 3000
 --- !u!65 &75526085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -615,6 +614,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024855404485840997, guid: f310e8300762964478ffc3b60761d27d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f310e8300762964478ffc3b60761d27d, type: 3}
