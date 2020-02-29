@@ -20,6 +20,7 @@ public class InertiaPlayer2 : MonoBehaviour
 	private Vector3 oldSpeed;
 
 	public Handle hd;
+	//private float oldRotY;
 
 	void Awake()
 	{
@@ -31,6 +32,7 @@ public class InertiaPlayer2 : MonoBehaviour
 	{
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
+		//oldRotY = 0.0f;
 
 	}
 
@@ -38,7 +40,7 @@ public class InertiaPlayer2 : MonoBehaviour
 	void Update()
 	{
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
-		junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;
+		junp = junpFlag.GetComponent<JunpJudg2>().nowJunpFlag;
 		nowSpeed = rigid.velocity;
 
 		//ここで速度とかの制御
@@ -59,6 +61,10 @@ public class InertiaPlayer2 : MonoBehaviour
 		}
 		if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 		{
+			rigid.AddRelativeForce(brakeSpeed*2/3, 0, 0);
+		}
+		if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+		{
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
 		}
 		if (rigid.velocity.x > 0)
@@ -72,7 +78,6 @@ public class InertiaPlayer2 : MonoBehaviour
 		{
 			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
 			rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
-
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -80,7 +85,7 @@ public class InertiaPlayer2 : MonoBehaviour
 			rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 		}
 
-		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
+		junpFlag.GetComponent<JunpJudg2>().JunpPlayer();
 
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
@@ -91,6 +96,12 @@ public class InertiaPlayer2 : MonoBehaviour
 
 		oldSpeed = nowSpeed;
 
+		var rot = transform.rotation.eulerAngles;
+		rot.y = hd.GetControlllerAccel();
+		transform.rotation = Quaternion.Euler(rot);
+		//if (Mathf.Abs(rot.y) > Mathf.Abs(oldRotY)) rigid.velocity = Quaternion.Euler(0, (rot.y - oldRotY)/10, 0) * rigid.velocity;
+		//else rigid.velocity = Quaternion.Euler(0, (oldRotY - rot.y)/10, 0) * rigid.velocity;
+		//oldRotY = rot.y;
 	}
 
 

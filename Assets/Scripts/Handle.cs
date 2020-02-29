@@ -60,7 +60,12 @@ public class Handle : MonoBehaviour
 
     public float GetControlllerAccel()
     {
-        return Mathf.Round(accel.x * -150);
+        float handleValue = 10;
+        if (Mathf.Abs(accel.x) < 0.1 || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;
+        else handleValue = Mathf.Round(accel.x * -100);
+
+
+        return handleValue;
     }
 
     public float GetControllerSwing()
