@@ -20,14 +20,18 @@ public class InertiaPlayer : MonoBehaviour
 	[SerializeField] float maxSpeed;
 	[SerializeField] float rotaSpeed;
 	[SerializeField] float brakeSpeed;
-	
-
+	[SerializeField] float willieSpeed;
+	[SerializeField] float willieTime;
+	private float startDetaTime;
+	private float willieSTime;
 	public GameObject mud;
 	public GameObject junpFlag;
 	private bool mudTrigger;
 	public bool junp;
+	public bool willieFlg;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
+	private Vector3 pos;
 	void Awake()
 	{
 		//FPSを手動で固定
@@ -38,7 +42,7 @@ public class InertiaPlayer : MonoBehaviour
 	{
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
-		
+		willieFlg = false;
 	}
 
 	// Update is called once per frame
@@ -92,7 +96,9 @@ public class InertiaPlayer : MonoBehaviour
 			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;
+		startDetaTime = Time.time;
 		nowSpeed = rigid.velocity;
+		pos = this.gameObject.transform.localEulerAngles;
 
 		//ここで速度とかの制御
 
@@ -100,14 +106,23 @@ public class InertiaPlayer : MonoBehaviour
 		{
 			rigid.AddRelativeForce(-accelSpeed, 0, 0);
 		}
-		else if (mudTrigger == true)
+		else if (willieFlg == false)
 		{
-			rigid.velocity = new Vector3(-1, 0, 0);
+			if (mudTrigger == true)
+			{
+				rigid.velocity = new Vector3(-1, 0, 0);
 
+			}
 		}
 		else if (maxSpeed < -nowSpeed.x)
 		{
 			nowSpeed.x = oldSpeed.x - 10;
+
+		}
+		if (willieFlg == true)
+		{
+			rigid.AddRelativeForce(-willieSpeed, 0, 0);
+			
 
 		}
 		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
@@ -119,21 +134,43 @@ public class InertiaPlayer : MonoBehaviour
 			rigid.velocity = Vector3.zero;
 		}
 
+
 		//回転
 
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
 			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-			rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0)* rigid.velocity;
+			//rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0)* rigid.velocity;
 			
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-			rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
+			//rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 		}
 
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
+
+		//ウィリー
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			willieFlg = true;
+			willieSTime = startDetaTime;
+			this.gameObject.transform.Rotate(new Vector3(0,0, -20));
+
+		}
+		
+		if (startDetaTime > willieTime + willieSTime)
+		{
+			if (willieFlg == true)
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, 0, 20));
+			}
+			willieFlg = false;
+			willieSTime = 0;
+		}
+			
+			
 
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
@@ -144,8 +181,9 @@ public class InertiaPlayer : MonoBehaviour
 		
 		oldSpeed = nowSpeed;
 
+
 	}
 	
-
+	
 	
 }
