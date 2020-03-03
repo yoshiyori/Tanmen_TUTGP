@@ -36,3 +36,23 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#CRI ADX LE ver TUT
+CriWare/
+libcri_ware_unity.so
+libcri_ware_unity.so.bininfo.json
+cri_ware_unity.bundle
+cri_ware_unity.bundle.bininfo.json
+libcri_ware_unity.a
+libcri_ware_unity.a.bininfo.json
+cri_ware_unity.dll
+cri_ware_unity.dll.bininfo.json
+CriWare.meta
+libcri_ware_unity.so.meta
+libcri_ware_unity.so.bininfo.json.meta
+cri_ware_unity.bundle.meta
+cri_ware_unity.bundle.bininfo.json.meta
+libcri_ware_unity.a.meta
+libcri_ware_unity.a.bininfo.json.meta
+cri_ware_unity.dll.meta
+cri_ware_unity.dll.bininfo.json.meta
