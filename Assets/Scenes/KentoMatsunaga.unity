@@ -235,6 +235,21 @@ PrefabInstance:
       propertyPath: junpFlag
       value: 
       objectReference: {fileID: 1148790016}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: willieSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: willieTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 85689070628886961, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: willieAnim
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 134768173899057519, guid: 6712621d8f236104db1eaa44f0f4c159,
         type: 3}
       propertyPath: m_IsTrigger
@@ -266,7 +281,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4994794669339876832, guid: 6712621d8f236104db1eaa44f0f4c159, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6712621d8f236104db1eaa44f0f4c159, type: 3}
 --- !u!1 &337423203 stripped
 GameObject:
@@ -299,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.08
+      value: -5.09
       objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
