@@ -28,15 +28,18 @@ public class JunpJudg : MonoBehaviour
             triggerObsFlag = false;
             nowJunpFlag = true;
         }
+        triggerObsFlag = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            triggerObsFlag = true;         
+            triggerObsFlag = true;
             nowSpeed = rigid.velocity;
         }
+      
+
         if (playerPosition.y < 1.3)
         {
             nowJunpFlag = false;
