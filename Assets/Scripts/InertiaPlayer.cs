@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InertiaPlayer : MonoBehaviour
 {
+	
+
 	// 初期化とか必要な変数をそろえてる
 	//Vector3 Pold = new Vector3(0.0f,0.0f,0.0f);
 	//Vector3 Pnew = new Vector3(0.0f, 0.0f, 0.0f);
@@ -18,17 +20,14 @@ public class InertiaPlayer : MonoBehaviour
 	private Rigidbody rigid;
 	[SerializeField] float accelSpeed;
 	[SerializeField] float maxSpeed;
-	[SerializeField] float rotaSpeed;
+	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
-	[SerializeField] float willieSpeed;
-	[SerializeField] float willieTime;
-	private float startDetaTime;
-	private float willieSTime;
 	public GameObject mud;
 	public GameObject junpFlag;
+	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
-	public bool willieFlg;
+	private bool willieFlg;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
 	private Vector3 pos;
@@ -42,7 +41,7 @@ public class InertiaPlayer : MonoBehaviour
 	{
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
-		willieFlg = false;
+	
 	}
 
 	// Update is called once per frame
@@ -96,7 +95,8 @@ public class InertiaPlayer : MonoBehaviour
 			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;
-		startDetaTime = Time.time;
+		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
+		
 		nowSpeed = rigid.velocity;
 		pos = this.gameObject.transform.localEulerAngles;
 
@@ -119,12 +119,7 @@ public class InertiaPlayer : MonoBehaviour
 			nowSpeed.x = oldSpeed.x - 10;
 
 		}
-		if (willieFlg == true)
-		{
-			rigid.AddRelativeForce(-willieSpeed, 0, 0);
-			
-
-		}
+		
 		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed,0, 0);
@@ -151,24 +146,7 @@ public class InertiaPlayer : MonoBehaviour
 
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
 
-		//ウィリー
-		if (Input.GetKeyDown(KeyCode.S))
-		{
-			willieFlg = true;
-			willieSTime = startDetaTime;
-			this.gameObject.transform.Rotate(new Vector3(0,0, -20));
-
-		}
 		
-		if (startDetaTime > willieTime + willieSTime)
-		{
-			if (willieFlg == true)
-			{
-				this.gameObject.transform.Rotate(new Vector3(0, 0, 20));
-			}
-			willieFlg = false;
-			willieSTime = 0;
-		}
 			
 			
 
