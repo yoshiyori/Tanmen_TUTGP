@@ -40,7 +40,7 @@ public class JunpJudg : MonoBehaviour
         }
       
 
-        if (playerPosition.y < 1.3)
+        if (other.gameObject.tag == "Lode")
         {
             nowJunpFlag = false;
         }

@@ -28,7 +28,7 @@ public class Obstacle : MonoBehaviour
             triggerObsFlag = true;
             nowSpeed = rigid.velocity;
 
-            if (nowSpeed.x < 0)
+        /*    if (nowSpeed.x < 0)
             {
                 rigid.AddForce(downSpeed, 0, 0);
             }
@@ -36,6 +36,8 @@ public class Obstacle : MonoBehaviour
             {
                 rigid.AddForce(-downSpeed, 0, 0);
             }
+       
+           */
 
            //mud_CueBank.play("Mud");
         }
