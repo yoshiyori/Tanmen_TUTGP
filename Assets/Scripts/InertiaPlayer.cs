@@ -128,7 +128,7 @@ public class InertiaPlayer : MonoBehaviour
 		{
 			rigid.velocity = Vector3.zero;
 		}
-
+		
 
 		//回転
 
