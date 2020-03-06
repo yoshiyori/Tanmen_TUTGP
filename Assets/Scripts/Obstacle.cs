@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;                                      //サウンド追加分
 
 public class Obstacle : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Obstacle : MonoBehaviour
     public float downSpeed;
     private Vector3 nowSpeed;
     [SerializeField] private bool triggerTypeKakunin;//mud:false, cone:true
+
+    //SoundSystem
+    //[SerializeField] private ADX_CueBank mud_CueBank;
 
     private void Start()
     {
@@ -35,6 +39,7 @@ public class Obstacle : MonoBehaviour
        
            */
 
+           //mud_CueBank.play("Mud");
         }
     }
 
