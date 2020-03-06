@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1270299577}
   - component: {fileID: 1270299576}
   - component: {fileID: 1270299575}
-  - component: {fileID: 1270299578}
+  - component: {fileID: 1270299579}
   m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
@@ -470,7 +470,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1270299578
+--- !u!114 &1270299579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1270299574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a641c09d801057449355b68da5a9367, type: 3}
+  m_Script: {fileID: 11500000, guid: d7e92132341c5f3429eb18243aa76fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cuePlayer: {fileID: 1270299575}
