@@ -6,28 +6,25 @@ using UnityEngine;
 namespace SoundSystem{
     //このスクリプトをゲームオブジェクトに適用すると、CriAtomSourceも適用される
     [RequireComponent(typeof(CriAtomSource))]
-    public class ADX_CueBank : MonoBehaviour{
+    public class CuePlayer : MonoBehaviour{
         //コンポーネント
         public CriAtomSource criAtomSource;
-        //キューシート名
-        public string cueSheetName;
+        public CueNameList cueInfo;
+
+        //キュー名
         public List<string> cueNameList = new List<string>();
 
-        public void play(string cueName){
-            if(cueNameList.FirstOrDefault(cue => cue == cueName) == null){
-                Debug.Log(cueName + " Not Found");
-            }
-            else{
-                criAtomSource.cueSheet = cueSheetName;
-                criAtomSource.cueName = cueName;
-                criAtomSource.Play();
-            }
+        public void Play(string cueName){
+            criAtomSource.cueSheet = cueInfo.GetCueNameInfo(cueName).CueSheetName;
+            criAtomSource.Play(cueName);
         }
 
         //ADX_CueBank初期化時のCriAtomSource初期化処理
         public void Reset(){
             criAtomSource = GetComponent<CriAtomSource>();
             criAtomSource.playOnStart = false;
+
+            cueInfo = GameObject.FindObjectOfType<CueNameList>().GetComponent<CueNameList>();
         }
     }
 }

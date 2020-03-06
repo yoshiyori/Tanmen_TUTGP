@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -179,6 +179,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5524917922335328465, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1548546870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
 --- !u!1001 &199694717
@@ -263,6 +268,11 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 1548546870}
+    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: mud_CueBank
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_IsTrigger
@@ -869,6 +879,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5524917922335328465, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1548546870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
 --- !u!1 &1464862732
@@ -1101,6 +1116,21 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 3005607547466677943, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: cueNameList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005607547466677943, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005607547466677943, guid: 6712621d8f236104db1eaa44f0f4c159,
+        type: 3}
+      propertyPath: cueSheetName
+      value: Game_SE
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6712621d8f236104db1eaa44f0f4c159, type: 3}
 --- !u!1 &1548546870 stripped
@@ -1259,5 +1289,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5524917922335328465, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1548546870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
