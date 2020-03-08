@@ -7,12 +7,31 @@ using SoundSystem;
 
 [CustomEditor(typeof(CuePlayer))]
 public class CuePlayerEditor : Editor{
+    //コンポーネント
     private CuePlayer cuePlayer = null;
     private CriAtomSource criAtomSource = null;
     private CueNameList cueNameList = null;
     
-    //折り畳みUIの状態
+    //パラメーター
     private bool isOpen = true;
+    private int selectedCueIndex = 0;
+    bool isCueNameListInitialized = false;
+    int lastSelectedCueIndex = -1;
+
+    //SelectedCueIndexに負の数が入ることを防止
+    private int SelectedCueIndex{
+        set{
+            if(value < 0){
+                selectedCueIndex = 0;
+            }
+            else{
+                selectedCueIndex = value;
+            }
+        }
+        get{
+            return selectedCueIndex;
+        }
+    }
 
     private void OnEnable(){
         cuePlayer = (CuePlayer)base.target;
@@ -31,11 +50,40 @@ public class CuePlayerEditor : Editor{
         {
             EditorGUI.indentLevel++;
             GUI.enabled = false;
-                criAtomSource = (CriAtomSource)EditorGUILayout.ObjectField("Cri Atom Source", cuePlayer.criAtomSource, typeof(CriAtomSource), true);
-                cueNameList = (CueNameList)EditorGUILayout.ObjectField("Cue Name List", cuePlayer.cueInfo, typeof(CueNameList), true);
+            criAtomSource = (CriAtomSource)EditorGUILayout.ObjectField("Cri Atom Source", cuePlayer.criAtomSource, typeof(CriAtomSource), true);
             GUI.enabled = true;
+            cueNameList = (CueNameList)EditorGUILayout.ObjectField("Cue Name List", cuePlayer.cueInfo, typeof(CueNameList), false);
+
+            EditorGUILayout.BeginHorizontal();
+                if(cuePlayer.cueNameList.Count <= 0){
+                    GUI.enabled = false;
+                }
+                cuePlayer.playOnStart = EditorGUILayout.Toggle("Play On Start", cuePlayer.playOnStart);
+
+                //シーン開始時に鳴らすキューを選択するプルダウンメニュー
+                if(cuePlayer.playOnStart){
+                    GUI.enabled = true;
+                }
+                if(isCueNameListInitialized){
+                    lastSelectedCueIndex = SelectedCueIndex;
+                }
+                else{
+                   isCueNameListInitialized = true;
+                }
+                SelectedCueIndex = EditorGUILayout.Popup(SelectedCueIndex, cuePlayer.cueNameList.ToArray());
+                if(SelectedCueIndex >= cuePlayer.cueNameList.Count){
+                        SelectedCueIndex = cuePlayer.cueNameList.Count - 1;
+                }
+                if(cuePlayer.playOnStart){
+                    cuePlayer.playCueOnStart = cuePlayer.cueNameList[SelectedCueIndex];
+                }
+                else{
+                    cuePlayer.playCueOnStart = "";
+                }
+            EditorGUILayout.EndHorizontal();
 
             //CueNameList
+            GUI.enabled = true;
             isOpen = EditorGUILayout.Foldout(isOpen, "CueName");
             if(isOpen){
                 EditorGUI.indentLevel++;
@@ -44,6 +92,9 @@ public class CuePlayerEditor : Editor{
                         cuePlayer.cueNameList[i] = EditorGUILayout.TextField(i.ToString(), cuePlayer.cueNameList[i]);
                         if(GUILayout.Button("Delete", GUILayout.MaxWidth(60))){
                             cuePlayer.cueNameList.RemoveAt(i);
+                            if(cuePlayer.cueNameList.Count <= 0){
+                                cuePlayer.playOnStart = false;
+                            }
                         }
                     EditorGUILayout.EndHorizontal();
                 }

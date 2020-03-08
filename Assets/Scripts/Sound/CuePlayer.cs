@@ -14,6 +14,15 @@ namespace SoundSystem{
         //キュー名
         public List<string> cueNameList = new List<string>();
 
+        //パラメーター
+        public bool playOnStart = false;
+        public string playCueOnStart;
+
+        public void Start(){
+            if(playOnStart){
+                Play(playCueOnStart);
+            }
+        }
         public void Play(string cueName){
             criAtomSource.cueSheet = cueInfo.GetCueNameInfo(cueName).CueSheetName;
             criAtomSource.Play(cueName);
