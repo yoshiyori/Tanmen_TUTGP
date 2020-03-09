@@ -6,31 +6,12 @@ public class MudDumplingA : MonoBehaviour
 {
     //サウンド追加分 1/2
     [SerializeField] private CrayBallDebriesSound crayBallDebriesSound;
-    [SerializeField, NonEditable] private bool destroyFlag;
-    private bool recentDestroy = false;
-
-    private bool destroy{
-        get{
-            return destroyFlag;
-        }
-        set{
-            Debug.Log("set destroy : " + value.ToString());
-            destroyFlag = value;
-        }
-    }
-
-    void Setup(){
-        destroy = false;
-    }
+    private bool destroy = false;
 
     void Update(){
         if(destroy){
             Destroy(this.gameObject);
         }
-        /*if(recentDestroy && !destroy){
-            Debug.Log("unti");
-        }
-        recentDestroy = destroy;*/
     }
     //サウンド追加分 1/2終了
 
@@ -48,8 +29,6 @@ public class MudDumplingA : MonoBehaviour
             }
             //Destroy(this.gameObject);                     //サウンド変更部分
             destroy = true;
-            //recentDestroy = true;
-            //Debug.Log(destroy);
         }
     }
 }
