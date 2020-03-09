@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 3496990733355522240}
+  destroyFlag: 0
 --- !u!1 &5121784108546249587
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 2974946342151045943}
+  destroyFlag: 0
 --- !u!1 &5121784108546249589
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 4340219120956726630}
+  destroyFlag: 0
 --- !u!1 &5121784108546249591
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 2974946342151045943}
+  destroyFlag: 0
 --- !u!1 &5121784108546249597
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiuce: 5
   force: 15
-  CrayBallDebriesSound: {fileID: 7474822275366663708}
+  crayBallSound: {fileID: 7474822275366663708}
 --- !u!114 &7474822275366663708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +602,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249591}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
 --- !u!4 &4674116312981275043 stripped
@@ -685,6 +694,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249585}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
 --- !u!4 &5503834998997599237 stripped
@@ -772,6 +786,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249587}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
 --- !u!4 &6174263159438876658 stripped
@@ -859,6 +878,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249589}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
 --- !u!4 &1615798881330200424 stripped
