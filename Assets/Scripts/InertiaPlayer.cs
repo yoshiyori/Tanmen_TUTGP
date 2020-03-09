@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InertiaPlayer : MonoBehaviour
 {
+	
+
 	// 初期化とか必要な変数をそろえてる
 	//Vector3 Pold = new Vector3(0.0f,0.0f,0.0f);
 	//Vector3 Pnew = new Vector3(0.0f, 0.0f, 0.0f);
@@ -18,20 +20,23 @@ public class InertiaPlayer : MonoBehaviour
 	private Rigidbody rigid;
 	[SerializeField] float accelSpeed;
 	[SerializeField] float maxSpeed;
-	[SerializeField] float rotaSpeed;
+	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
-	[SerializeField] float willieSpeed;
-	[SerializeField] float willieTime;
-	private float startDetaTime;
-	private float willieSTime;
 	public GameObject mud;
 	public GameObject junpFlag;
+	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
-	public bool willieFlg;
+	private bool willieFlg;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
 	private Vector3 pos;
+
+	//サウンド追加分 1/5
+	[SerializeField] private CriAtomSource playerSound;
+	[SerializeField] private CriAtomSource runningSound;
+	public bool succesRollingJump = false;
+
 	void Awake()
 	{
 		//FPSを手動で固定
@@ -42,7 +47,7 @@ public class InertiaPlayer : MonoBehaviour
 	{
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
-		willieFlg = false;
+	
 	}
 
 	// Update is called once per frame
@@ -95,8 +100,9 @@ public class InertiaPlayer : MonoBehaviour
 			}
 			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
-		junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;
-		startDetaTime = Time.time;
+		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分 2/5
+		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
+		
 		nowSpeed = rigid.velocity;
 		pos = this.gameObject.transform.localEulerAngles;
 
@@ -119,21 +125,16 @@ public class InertiaPlayer : MonoBehaviour
 			nowSpeed.x = oldSpeed.x - 10;
 
 		}
-		if (willieFlg == true)
-		{
-			rigid.AddRelativeForce(-willieSpeed, 0, 0);
-			
-
-		}
+		
 		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed,0, 0);
+			playerSound.Play("Break");														//サウンド追加分 3/5
 		}
 		if (rigid.velocity.x > 0)
 		{
 			rigid.velocity = Vector3.zero;
-		}
-
+		}		
 
 		//回転
 
@@ -151,25 +152,19 @@ public class InertiaPlayer : MonoBehaviour
 
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
 
-		//ウィリー
-		if (Input.GetKeyDown(KeyCode.S))
-		{
-			willieFlg = true;
-			willieSTime = startDetaTime;
-			this.gameObject.transform.Rotate(new Vector3(0,0, -20));
+		//サウンド追加分 4/5
+		if(succesRollingJump){
+			playerSound.Play("Rolling");
+			succesRollingJump = false;
+		}
 
+		if((nowSpeed.magnitude > 1f) && !runningSound.status.ToString().Equals("Playing")){
+			runningSound.Play();
 		}
-		
-		if (startDetaTime > willieTime + willieSTime)
-		{
-			if (willieFlg == true)
-			{
-				this.gameObject.transform.Rotate(new Vector3(0, 0, 20));
-			}
-			willieFlg = false;
-			willieSTime = 0;
+		if(nowSpeed.magnitude <= 1f){
+			runningSound.Stop();
 		}
-			
+		//サウンド追加分 4/5 終了	
 			
 
 		//確認用
@@ -184,6 +179,15 @@ public class InertiaPlayer : MonoBehaviour
 
 	}
 	
-	
+	//サウンド追加分 5/5
+	void OnCollisionEnter(Collision other)
+	{
+		//Debug.Log(other.gameObject.name);
+		if(other.gameObject.tag.Equals("Lode") && junp)
+		{
+			playerSound.Play("Landing");
+			junp = false;
+		}
+	}
 	
 }

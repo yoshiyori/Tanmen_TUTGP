@@ -10,6 +10,7 @@ public class Obstacle : MonoBehaviour
     public float downSpeed;
     private Vector3 nowSpeed;
     [SerializeField] private bool triggerTypeKakunin;//mud:false, cone:true
+    [SerializeField] private CriAtomSource mudSound;                                //サウンド追加分1/3
 
     private void Start()
     {
@@ -23,8 +24,9 @@ public class Obstacle : MonoBehaviour
         {
             triggerObsFlag = true;
             nowSpeed = rigid.velocity;
+            mudSound.Play();                                                        //サウンド追加分2/3
 
-            if (nowSpeed.x < 0)
+        /*    if (nowSpeed.x < 0)
             {
                 rigid.AddForce(downSpeed, 0, 0);
             }
@@ -33,8 +35,9 @@ public class Obstacle : MonoBehaviour
                 rigid.AddForce(-downSpeed, 0, 0);
             }
        
-           
+           */
 
+           //mud_CueBank.play("Mud");
         }
     }
 
@@ -43,6 +46,7 @@ public class Obstacle : MonoBehaviour
         if (other.gameObject.tag == "Player" && triggerTypeKakunin == false)
         {
             triggerObsFlag = false;
+            mudSound.Stop();                                                        //サウンド追加分3/3
         }
     }
 
