@@ -139,7 +139,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817872339841544376}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414e99c57093dbe498e34354cbb58ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  willieSpeed: 0
-  willieTime: 0
+  willieSpeed: -20
+  willieTime: 2
   player: {fileID: 0}
   willieFlg: 0
 --- !u!1 &8817872341665952523
@@ -276,6 +276,7 @@ MonoBehaviour:
   junpFlag: {fileID: 0}
   objectPlayer: {fileID: 0}
   junp: 0
+  turnTipe: 0
   playerSound: {fileID: 3246577481327701010}
   runningSound: {fileID: 4765289483863727201}
   succesRollingJump: 0
