@@ -22,6 +22,11 @@ public class InertiaPlayer2 : MonoBehaviour
 	public Handle hd;
 	//private float oldRotY;
 
+	//サウンド追加分 1/5
+	[SerializeField] private CriAtomSource playerSound;
+	[SerializeField] private CriAtomSource runningSound;
+	public bool succesRollingJump = false;
+
 	void Awake()
 	{
 		//FPSを手動で固定
@@ -40,7 +45,7 @@ public class InertiaPlayer2 : MonoBehaviour
 	void Update()
 	{
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
-		junp = junpFlag.GetComponent<JunpJudg2>().nowJunpFlag;
+		//junp = junpFlag.GetComponent<JunpJudg2>().nowJunpFlag;
 		nowSpeed = rigid.velocity;
 
 		//ここで速度とかの制御
@@ -62,10 +67,12 @@ public class InertiaPlayer2 : MonoBehaviour
 		if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed*2/3, 0, 0);
+			playerSound.Play("Break");														//サウンド追加分 2/4
 		}
 		if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
+			playerSound.Play("Break");														//サウンド追加分 2/4
 		}
 		if (rigid.velocity.x > 0)
 		{
@@ -87,6 +94,20 @@ public class InertiaPlayer2 : MonoBehaviour
 
 		junpFlag.GetComponent<JunpJudg2>().JunpPlayer();
 
+		//サウンド追加分 3/4
+		if(succesRollingJump){
+			playerSound.Play("Rolling");
+			succesRollingJump = false;
+		}
+
+		if((nowSpeed.magnitude > 1f) && !runningSound.status.ToString().Equals("Playing")){
+			runningSound.Play();
+		}
+		if(nowSpeed.magnitude <= 1f){
+			runningSound.Stop();
+		}
+		//サウンド追加分 3/4 終了	
+
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
@@ -102,6 +123,17 @@ public class InertiaPlayer2 : MonoBehaviour
 		//if (Mathf.Abs(rot.y) > Mathf.Abs(oldRotY)) rigid.velocity = Quaternion.Euler(0, (rot.y - oldRotY)/10, 0) * rigid.velocity;
 		//else rigid.velocity = Quaternion.Euler(0, (oldRotY - rot.y)/10, 0) * rigid.velocity;
 		//oldRotY = rot.y;
+	}
+	
+	//サウンド追加分 4/4
+	void OnCollisionEnter(Collision other)
+	{
+		//Debug.Log(other.gameObject.name);
+		if(other.gameObject.tag.Equals("Lode") && junp)
+		{
+			playerSound.Play("Landing");
+			junp = false;
+		}
 	}
 
 
