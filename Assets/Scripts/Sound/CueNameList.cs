@@ -9,7 +9,7 @@ namespace SoundSystem{
     [RequireComponent(typeof(CriAtom))]
     public class CueNameList : MonoBehaviour{
         //コンポーネント
-        [SerializeField] private CriAtom criAtom;
+        [SerializeField, NonEditable] private CriAtom criAtom;
         [SerializeField] private CuePlayer[] audioSourceObject;
 
         //データ
@@ -30,6 +30,7 @@ namespace SoundSystem{
 
             criAtom.acfFile = Path.GetFileName(acfInfo.acfFilePath);
             criAtom.dontDestroyOnLoad = false;
+            //criAtom.dontRemoveExistsCueSheet = true;
             SetCueNameList(false);
         }
 
@@ -74,13 +75,14 @@ namespace SoundSystem{
             }
         }
 
-        //インスペクターから登録したCuePlayerから使用するキューの名前を取得し、それに併せてCriAtomにキューシートを登録する
+        //CuePlayerから使用するキューの名前を取得し、それに併せてCriAtomにキューシートを登録する
         public void SetCueSheet(){
             List<string> usedCueSheetList = new List<string>();
 
             Array.Clear(criAtom.cueSheets, 0, criAtom.cueSheets.Length);
             Array.Resize(ref criAtom.cueSheets, 0);
 
+            LoadCuePlayer();
             foreach(var cuePlayer in audioSourceObject){
                 foreach(var cueName in cuePlayer.cueNameList){
                     var usedCueSheet = GetCueNameInfo(cueName).CueSheetName;
@@ -91,8 +93,10 @@ namespace SoundSystem{
             }
 
             foreach(var usedCueSheet in usedCueSheetList){
+                //CriAtom.AddCueSheet(usedCueSheet, usedCueSheet + ".acb", "");
                 criAtom.AddCueSheetInternal(usedCueSheet, usedCueSheet + ".acb", "", null);
             }
+            Debug.Log("Set Cue Sheet");
         }
 
         //シーン内にあるCuePlayerが適用されたオブジェクトを取得する

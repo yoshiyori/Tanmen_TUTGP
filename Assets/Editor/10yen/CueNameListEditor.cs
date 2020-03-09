@@ -15,9 +15,9 @@ public class CueNameListEditor : Editor{
         base.OnInspectorGUI();
 
         GUILayout.BeginHorizontal();
-            if(GUILayout.Button("Get Audio Source Object")){
+            /*if(GUILayout.Button("Get Audio Source Object")){
                 cueNameList.LoadCuePlayer();
-            }
+            }*/
             if(GUILayout.Button("Set Cue Sheet")){
                 cueNameList.SetCueSheet();
             }

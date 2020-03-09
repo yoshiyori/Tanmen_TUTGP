@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5191431109388962125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9016734025630869368}
+  - component: {fileID: 4765289483863727201}
+  m_Layer: 0
+  m_Name: Running(CriAtomSource)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9016734025630869368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191431109388962125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.17, y: -1, z: 7.45}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8817872341665952533}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4765289483863727201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191431109388962125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _cueName: Running
+  _cueSheet: Game_SE
+  _use3dPositioning: 1
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
 --- !u!1 &8817872339841544376
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414e99c57093dbe498e34354cbb58ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  willieSpeed: 0
+  willieTime: 0
+  player: {fileID: 0}
+  willieFlg: 0
 --- !u!1 &8817872341665952523
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +174,7 @@ GameObject:
   - component: {fileID: 8817872341665952534}
   - component: {fileID: 8817872341665952521}
   - component: {fileID: 8817872341665952520}
+  - component: {fileID: 3246577481327701010}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -137,6 +194,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 8817872340530268425}
+  - {fileID: 9016734025630869368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -214,12 +272,13 @@ MonoBehaviour:
   maxSpeed: 20
   rotaSpeed: 1
   brakeSpeed: 200
-  willieSpeed: 200
-  willieTime: 1
   mud: {fileID: 0}
   junpFlag: {fileID: 0}
+  objectPlayer: {fileID: 0}
   junp: 0
-  willieFlg: 0
+  playerSound: {fileID: 3246577481327701010}
+  runningSound: {fileID: 4765289483863727201}
+  succesRollingJump: 0
 --- !u!54 &8817872341665952520
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -236,13 +295,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3246577481327701010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817872341665952523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _cueName: Break
+  _cueSheet: Game_SE
+  _use3dPositioning: 1
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+--- !u!114 &3005607547466677943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criAtomSource: {fileID: 4135598417692658813}
+  cueInfo: {fileID: 0}
+  cueNameList: []
+  playOnStart: 0
+  playCueOnStart: 
 --- !u!114 &4135598417692658813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9165804879231479175}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
@@ -257,18 +354,3 @@ MonoBehaviour:
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
---- !u!114 &3005607547466677943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9165804879231479175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSource: {fileID: 4135598417692658813}
-  cueSheetName: 
-  cueNameList: []
