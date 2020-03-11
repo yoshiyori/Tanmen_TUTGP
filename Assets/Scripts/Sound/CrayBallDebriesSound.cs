@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CrayBallDebriesSound : MonoBehaviour{
-    private bool coneDestroyed = false;
+    //private bool crayBallDebriesDestroyed = false;
     [SerializeField] private CriAtomSource crayBallDebriesSound;
+    [SerializeField] private GameObject parent;
 
     void Update(){
-        if(coneDestroyed && crayBallDebriesSound.status.ToString().Equals("PlayEnd")){
-            //Debug.Log(coneSound.status);
+        if(/*crayBallDebriesDestroyed && */crayBallDebriesSound.status.ToString().Equals("PlayEnd") && parent == null){
+            //Debug.Log("Destroy" + this.gameObject.name);
             Destroy(this.gameObject);
         }
     }
@@ -16,6 +17,6 @@ public class CrayBallDebriesSound : MonoBehaviour{
     public void PlayAndDestroyed(){
         this.transform.parent = null;
         crayBallDebriesSound.Play();
-        coneDestroyed = true;
+        //crayBallDebriesDestroyed = true;
     }
 }

@@ -15,11 +15,16 @@ public class JunpJudg2 : MonoBehaviour
 
     public Handle hd;
 
+    //サウンド追加分 1/4
+    [SerializeField] private CriAtomSource jumpSound;
+    private InertiaPlayer inertiaPlayer;
+
     private void Start()
     {
         triggerObsFlag = false;
         rigid = playerObject.GetComponent<Rigidbody>();
         playerPosition = playerObject.transform.position;
+        inertiaPlayer = playerObject.GetComponent<InertiaPlayer>();                         //サウンド追加分 2/4
     }
 
     private void Update()
@@ -29,6 +34,10 @@ public class JunpJudg2 : MonoBehaviour
             rigid.AddForce(0, junpSpeed, 0);
             triggerObsFlag = false;
             nowJunpFlag = true;
+
+            //サウンド追加分 3/4
+            inertiaPlayer.junp = true;
+            jumpSound.Play();
         }
     }
 
@@ -53,6 +62,7 @@ public class JunpJudg2 : MonoBehaviour
             rigid.AddRelativeForce(-junpAccelSpeed, 0, 0);
             nowJunpFlag = false;
             Debug.Log("JunpAcccel");
+            inertiaPlayer.succesRollingJump = true;                                         //サウンド追加分 4/4
         }
 
     }

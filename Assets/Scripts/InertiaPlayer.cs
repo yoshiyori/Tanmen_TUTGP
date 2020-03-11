@@ -32,7 +32,7 @@ public class InertiaPlayer : MonoBehaviour
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 
-	//サウンド追加分 1/5
+	//サウンド追加分 1/4
 	[SerializeField] private CriAtomSource playerSound;
 	[SerializeField] private CriAtomSource runningSound;
 	public bool succesRollingJump = false;
@@ -100,7 +100,7 @@ public class InertiaPlayer : MonoBehaviour
 			}
 			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
-		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分 2/5
+		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
 		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
 		
 		nowSpeed = rigid.velocity;
@@ -129,7 +129,7 @@ public class InertiaPlayer : MonoBehaviour
 		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed,0, 0);
-			playerSound.Play("Break");														//サウンド追加分 3/5
+			playerSound.Play("Break");														//サウンド追加分 2/4
 		}
 		if (rigid.velocity.x > 0)
 		{
@@ -152,7 +152,7 @@ public class InertiaPlayer : MonoBehaviour
 
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
 
-		//サウンド追加分 4/5
+		//サウンド追加分 3/4
 		if(succesRollingJump){
 			playerSound.Play("Rolling");
 			succesRollingJump = false;
@@ -164,9 +164,8 @@ public class InertiaPlayer : MonoBehaviour
 		if(nowSpeed.magnitude <= 1f){
 			runningSound.Stop();
 		}
-		//サウンド追加分 4/5 終了	
+		//サウンド追加分 3/4 終了	
 			
-
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
@@ -179,7 +178,7 @@ public class InertiaPlayer : MonoBehaviour
 
 	}
 	
-	//サウンド追加分 5/5
+	//サウンド追加分 4/4
 	void OnCollisionEnter(Collision other)
 	{
 		//Debug.Log(other.gameObject.name);
