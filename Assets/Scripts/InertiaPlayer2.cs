@@ -118,7 +118,7 @@ public class InertiaPlayer2 : MonoBehaviour
 		oldSpeed = nowSpeed;
 
 		var rot = transform.rotation.eulerAngles;
-		rot.y = hd.GetControlllerAccel();
+		rot.y = hd.GetControlllerAccel(10);
 		transform.rotation = Quaternion.Euler(rot);
 		//if (Mathf.Abs(rot.y) > Mathf.Abs(oldRotY)) rigid.velocity = Quaternion.Euler(0, (rot.y - oldRotY)/10, 0) * rigid.velocity;
 		//else rigid.velocity = Quaternion.Euler(0, (oldRotY - rot.y)/10, 0) * rigid.velocity;

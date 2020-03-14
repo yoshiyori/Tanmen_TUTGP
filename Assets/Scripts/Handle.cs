@@ -58,11 +58,11 @@ public class Handle : MonoBehaviour
     }
 
 
-    public float GetControlllerAccel()
+    public float GetControlllerAccel(float magunification)
     {
         float handleValue = 10;
         if (Mathf.Abs(accel.x) < 0.1 || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;
-        else handleValue = Mathf.Round(accel.x * -100);
+        else handleValue = Mathf.Round(accel.x * magunification);
 
 
         return handleValue;

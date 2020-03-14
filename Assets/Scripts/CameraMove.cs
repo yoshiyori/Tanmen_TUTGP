@@ -12,12 +12,15 @@ public class CameraMove : MonoBehaviour
     public GameObject player;
     private float rotaSpeed;
 
+    private bool joyconFlag;
+    public Handle hd;
+
     void Start ()
     {
         rotaSpeed = player.GetComponent<InertiaPlayer>().rotaSpeed;
         cameraTrans = transform;  
         cameraTrans.rotation = Quaternion.Euler (cameraRot);
-        
+        joyconFlag = player.GetComponent<InertiaPlayer>().joyconFlag;
     }
     
     private void Update()
@@ -42,6 +45,26 @@ public class CameraMove : MonoBehaviour
             queue(cameraVec, rotaSpeed);
             cameraTrans.LookAt(playerTrans.position);
         }
+
+        if (joyconFlag == true && hd.GetControlllerAccel(10) != 0.0f)
+        {
+            queue(cameraVec, hd.GetControlllerAccel(5));
+            cameraTrans.LookAt(playerTrans.position);
+            /*
+            if (leftRightNum > 0)
+            {
+                queue(cameraVec, leftRightNum);
+                cameraTrans.LookAt(playerTrans.position);
+            }
+            else if (leftRightNum < 0)
+            {
+                queue(cameraVec, leftRightNum);
+                cameraTrans.LookAt(playerTrans.position);
+            }
+            */
+        }
+
+
         cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
       
       
