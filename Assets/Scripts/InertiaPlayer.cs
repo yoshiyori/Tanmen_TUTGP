@@ -37,6 +37,10 @@ public class InertiaPlayer : MonoBehaviour
 	[SerializeField] private CriAtomSource runningSound;
 	public bool succesRollingJump = false;
 
+
+	public Handle hd;//JoyConから数値受け取る時とかに使う
+	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
+
 	void Awake()
 	{
 		//FPSを手動で固定
@@ -136,6 +140,20 @@ public class InertiaPlayer : MonoBehaviour
 			rigid.velocity = Vector3.zero;
 		}		
 
+		if (joyconFlag == true)
+		{
+			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+			{
+				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
+				playerSound.Play("Break");                                                      //サウンド追加分 2/4
+			}
+			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+			{
+				rigid.AddRelativeForce(brakeSpeed, 0, 0);
+				playerSound.Play("Break");                                                      //サウンド追加分 2/4
+			}
+		}
+
 		//回転
 
 		if (Input.GetKey(KeyCode.RightArrow))
@@ -165,7 +183,15 @@ public class InertiaPlayer : MonoBehaviour
 			runningSound.Stop();
 		}
 		//サウンド追加分 3/4 終了	
-			
+		
+		if (joyconFlag == true)
+		{
+			//var rot = transform.rotation.eulerAngles;
+			//rot.y = hd.GetControlllerAccel(-100);
+			//transform.rotation = Quaternion.Euler(rot);
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
+		}
+
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{

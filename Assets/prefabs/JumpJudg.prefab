@@ -142,6 +142,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   junpSpeed: 2500
   jumpSound: {fileID: 173160352821273847}
+  hd: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30, type: 3}
 --- !u!114 &173160352821273847
 MonoBehaviour:
   m_ObjectHideFlags: 0
