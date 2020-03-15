@@ -17,6 +17,9 @@ public class JunpJudg : MonoBehaviour
     [SerializeField] private CriAtomSource jumpSound;
     private InertiaPlayer inertiaPlayer;
 
+    public Handle hd;//JoyConから数値受け取る時とかに使う
+    //[SerializeField] bool joyconFlag;//JoyCon使うかどうかのフラグ
+
     private void Start()
     {
         triggerObsFlag = false;
@@ -27,7 +30,9 @@ public class JunpJudg : MonoBehaviour
 
     private void Update()
     {
-        if (triggerObsFlag == true && Input.GetKey(KeyCode.S))//ここのInputを振り上げ
+        if (triggerObsFlag == true && ( Input.GetKey(KeyCode.S) || 
+            (hd.GetControllerSwing() >= 10 && inertiaPlayer.joyconFlag == true) )
+            )//ここのInputを振り上げ
         {
             rigid.AddForce(0, junpSpeed, 0);
             triggerObsFlag = false;
@@ -55,8 +60,9 @@ public class JunpJudg : MonoBehaviour
     }
     public void JunpPlayer()
     {
-
-        if (nowJunpFlag == true && Input.GetKey(KeyCode.A))//ここのInputを振り下ろしにして
+        if (nowJunpFlag == true && ( Input.GetKey(KeyCode.A) || 
+            (hd.GetControllerSwing() <= -10 && inertiaPlayer.joyconFlag == true) )
+            )//ここのInputを振り下ろしにして
         {
             rigid.AddRelativeForce(-junpAccelSpeed, 0, 0);
             nowJunpFlag = false;
