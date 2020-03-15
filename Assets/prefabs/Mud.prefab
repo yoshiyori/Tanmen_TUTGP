@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9722cc9dd40f0a44cadcd9f3959a783c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerObsFlag: 0
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 8817872341665952523, guid: b85e2f067f50d90488413664a0af0f6f,
+    type: 3}
   downSpeed: 0
   triggerTypeKakunin: 0
   mudSound: {fileID: 2577088496698012213}
