@@ -27,6 +27,7 @@ public class InertiaPlayer : MonoBehaviour
 	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
+	public bool turnTipe;
 	private bool willieFlg;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
@@ -137,7 +138,8 @@ public class InertiaPlayer : MonoBehaviour
 		}
 		if (rigid.velocity.x > 0)
 		{
-			rigid.velocity = Vector3.zero;
+			//rigid.velocity = Vector3.zero;
+			Debug.Log("逆向き");
 		}		
 
 		if (joyconFlag == true)
@@ -156,17 +158,7 @@ public class InertiaPlayer : MonoBehaviour
 
 		//回転
 
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-			//rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0)* rigid.velocity;
-			
-		}
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-			//rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
-		}
+		turnPlayer();
 
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
 
@@ -203,7 +195,28 @@ public class InertiaPlayer : MonoBehaviour
 
 
 	}
-	
+	void turnPlayer()
+	{
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+			if (turnTipe == true)
+			{
+				rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+			}
+		}
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+			if (turnTipe == true)
+			{
+				rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
+			}
+		}
+
+	}
+
+
 	//サウンド追加分 4/4
 	void OnCollisionEnter(Collision other)
 	{
