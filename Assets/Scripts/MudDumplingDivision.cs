@@ -10,7 +10,7 @@ public class MudDumplingDivision : MonoBehaviour
     [SerializeField] float force = 15.0f;　//爆発の力
 
     //サウンド追加分 1
-    [SerializeField] private CriAtomSource CrayBallDebriesSound;
+    [SerializeField] private CriAtomSource crayBallSound;
     private bool broken = false;
     private List<CriAtomEx.GameVariableInfo> gameVariableInfoList = new List<CriAtomEx.GameVariableInfo>();
 
@@ -23,7 +23,14 @@ public class MudDumplingDivision : MonoBehaviour
         }
 
         ChangeGameVariable("CrayBallState", 0f);
-        CrayBallDebriesSound.Play();
+        crayBallSound.Play();
+    }
+
+    void Update(){
+        if(broken && crayBallSound.status.ToString().Equals("PlayEnd")){
+            Destroy(this.gameObject);
+            //Debug.Log(crayBallSound.status.ToString());
+        }
     }
     //サウンド追加分 1 終了
 
@@ -39,11 +46,11 @@ public class MudDumplingDivision : MonoBehaviour
         }
 
         //サウンド追加分 2
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if(!broken){
-            CrayBallDebriesSound.Stop();
+            crayBallSound.Stop();
             ChangeGameVariable("CrayBallState", 1f);
-            CrayBallDebriesSound.Play();
+            crayBallSound.Play();
             broken = true;
         }
     }

@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class MudDumplingA : MonoBehaviour
 {
-    [SerializeField] private CrayBallDebriesSound crayBallDebriesSound;     //サウンド追加分 1/2
+    //サウンド追加分 1/2
+    [SerializeField] private CrayBallDebriesSound crayBallDebriesSound;
+    private bool destroy = false;
+
+    void Update(){
+        if(destroy){
+            Destroy(this.gameObject);
+        }
+    }
+    //サウンド追加分 1/2終了
 
     private void OnCollisionEnter(Collision other)
     {
@@ -12,8 +21,14 @@ public class MudDumplingA : MonoBehaviour
         {
             //スピードを0にしてオブジェクトを消す
             other.rigidbody.velocity = Vector3.zero;
-            crayBallDebriesSound.PlayAndDestroyed();                        //サウンド追加分 2/2
-            Destroy(this.gameObject);
+
+            //サウンド追加分 2/2
+            if(crayBallDebriesSound != null)
+            {
+                crayBallDebriesSound.PlayAndDestroyed();
+            }
+            //Destroy(this.gameObject);                     //サウンド変更部分
+            destroy = true;
         }
     }
 }

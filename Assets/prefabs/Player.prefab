@@ -279,6 +279,8 @@ MonoBehaviour:
   playerSound: {fileID: 3246577481327701010}
   runningSound: {fileID: 4765289483863727201}
   succesRollingJump: 0
+  hd: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30, type: 3}
+  joyconFlag: 0
 --- !u!54 &8817872341665952520
 Rigidbody:
   m_ObjectHideFlags: 0
