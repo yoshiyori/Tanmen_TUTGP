@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
     public bool triggerObsFlag;
     private Rigidbody rigid;
     public GameObject playerObject;
-    public float downSpeed;
+    //public float downSpeed;
     private Vector3 nowSpeed;
     [SerializeField] private bool triggerTypeKakunin;//mud:false, cone:true
     [SerializeField] private CriAtomSource mudSound;                                //サウンド追加分1/3
@@ -23,7 +23,7 @@ public class Obstacle : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             triggerObsFlag = true;
-            nowSpeed = rigid.velocity;
+           // nowSpeed = rigid.velocity;
             mudSound.Play();                                                        //サウンド追加分2/3
 
         /*    if (nowSpeed.x < 0)
