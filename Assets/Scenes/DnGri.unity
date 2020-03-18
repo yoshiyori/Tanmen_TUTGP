@@ -5526,7 +5526,7 @@ MonoBehaviour:
     acbFile: Game_SE.acb
     awbFile: 
     loaderStatus: 0
-  dspBusSetting: Tanmen.acf
+  dspBusSetting: 
   dontDestroyOnLoad: 0
   dontRemoveExistsCueSheet: 0
 --- !u!4 &1367208687
