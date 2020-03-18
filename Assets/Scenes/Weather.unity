@@ -538,6 +538,7 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 1204398588}
   target: {fileID: 217262850}
+  mudDumplingQuantity: 3
   mudDumplingB: 0
 --- !u!65 &75526085
 BoxCollider:
@@ -560,7 +561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75526083}
   m_LocalRotation: {x: 0, y: 0.3420201, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -118.5, y: 3, z: 12.2}
+  m_LocalPosition: {x: -118.88, y: 83.67, z: 11.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -854,17 +855,17 @@ PrefabInstance:
     - target: {fileID: 8817872341665952533, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.34
+      value: -28.5
       objectReference: {fileID: 0}
     - target: {fileID: 8817872341665952533, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.17
+      value: 94.2
       objectReference: {fileID: 0}
     - target: {fileID: 8817872341665952533, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.78
+      value: -11.4
       objectReference: {fileID: 0}
     - target: {fileID: 8817872341665952533, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
@@ -1526,7 +1527,7 @@ GameObject:
   - component: {fileID: 208165517}
   m_Layer: 0
   m_Name: SRoad
-  m_TagString: Untagged
+  m_TagString: Lode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1538,7 +1539,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208165516}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
   m_LocalPosition: {x: -1030.77, y: 7.3662415, z: -57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1570,7 +1571,7 @@ Transform:
   - {fileID: 1005708807}
   m_Father: {fileID: 0}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
 --- !u!1001 &209245190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1675,7 +1676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217262850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -668, y: 0, z: -31.7}
+  m_LocalPosition: {x: -359.4, y: 62.8, z: -112.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4677,7 +4678,7 @@ GameObject:
   - component: {fileID: 782842509}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Lode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7392,6 +7393,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: playerObject
@@ -7401,11 +7407,6 @@ PrefabInstance:
         type: 3}
       propertyPath: downSpeed
       value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}

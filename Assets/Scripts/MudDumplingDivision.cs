@@ -34,9 +34,10 @@ public class MudDumplingDivision : MonoBehaviour
     }
     //サウンド追加分 1 終了
 
+
     private void OnCollisionEnter(Collision other)
     {
-        foreach(Transform debris in GetComponentInChildren<Transform>())
+        foreach (Transform debris in GetComponentInChildren<Transform>())
         {
             debris.transform.parent = null;
             debris.GetComponent<MeshCollider>().enabled = true;
@@ -47,7 +48,8 @@ public class MudDumplingDivision : MonoBehaviour
 
         //サウンド追加分 2
         //Debug.Log(other.gameObject.name);
-        if(!broken){
+        if (!broken)
+        {
             crayBallSound.Stop();
             ChangeGameVariable("CrayBallState", 1f);
             crayBallSound.Play();
