@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   willieSpeed: 0
   willieTime: 0
-  player: {fileID: 0}
+  player: {fileID: 8817872341665952523}
   willieFlg: 0
 --- !u!1 &8817872341665952523
 GameObject:
@@ -225,7 +225,6 @@ MonoBehaviour:
   maxSpeed: 20
   rotaSpeed: 1
   brakeSpeed: 200
-  mudSpeed: 4
   mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
   junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
     type: 3}
