@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87592b279ddb976439a2d03cc0805c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorite: {fileID: 5121784108546249597, guid: 52669a8213fb01546a4e02917a59b3c1,
+  meteorite: {fileID: 533749438543113446, guid: 5f874a5f3cb686949a9f2c4370a5f765,
     type: 3}
   player: {fileID: 0}
   target: {fileID: 0}
