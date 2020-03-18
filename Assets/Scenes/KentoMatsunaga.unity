@@ -326,7 +326,7 @@ PrefabInstance:
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: downSpeed
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025408272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -470,6 +470,11 @@ PrefabInstance:
     - target: {fileID: 7183567254700146803, guid: f310e8300762964478ffc3b60761d27d,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024855404485840997, guid: f310e8300762964478ffc3b60761d27d,
+        type: 3}
+      propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -904,6 +909,16 @@ PrefabInstance:
       propertyPath: objectPlayer
       value: 
       objectReference: {fileID: 879233086}
+    - target: {fileID: 8817872341665952521, guid: b85e2f067f50d90488413664a0af0f6f,
+        type: 3}
+      propertyPath: mudSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817872341665952521, guid: b85e2f067f50d90488413664a0af0f6f,
+        type: 3}
+      propertyPath: turnTipe
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8181739887830848630, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: m_IsTrigger
@@ -924,6 +939,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1227541389}
+    - target: {fileID: 8817872341665952520, guid: b85e2f067f50d90488413664a0af0f6f,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 48
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8817872341665952532, guid: b85e2f067f50d90488413664a0af0f6f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b85e2f067f50d90488413664a0af0f6f, type: 3}
