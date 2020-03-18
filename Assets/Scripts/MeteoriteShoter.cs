@@ -7,6 +7,7 @@ public class MeteoriteShoter : MonoBehaviour
     public GameObject meteorite;  //打ち出す隕石を入れる変数
     public GameObject player; //Playerオブジェクトを入れる変数
     public GameObject target; //狙うエリアを入れる変数
+    [SerializeField] int mudDumplingQuantity = 1; //打ち出す泥団子の数を入れる変数
     public bool mudDumplingB = false; //泥団子B用の仕様に変更するときに使う（要相談）
     private Vector3 targetPosition; //ターゲットの座標取得用変数
 
@@ -20,35 +21,39 @@ public class MeteoriteShoter : MonoBehaviour
             float z = Random.Range(-15.0f, 15.0f);　//横の位置はランダム（現在は直線の道幅いっぱい）
             Vector3 shotPosition = new Vector3(x, y, z);*/
 
-            //オブジェクトの位置ベクトルを参照して泥団子の打ち出す位置を決める
-            Vector3 shotPosition = transform.position + transform.right * 1.0f + transform.up * 20.0f + transform.forward * Random.Range(-15.0f, 15.0f);
-
-            if(mudDumplingB == true)
+            for (int i = 0;i < mudDumplingQuantity; i++)
             {
-                //泥団子B用の動作。ターゲットの中心に向かって飛ぶ
-                //ターゲットの座標取得
-                targetPosition = target.transform.position;
+
+                //オブジェクトの位置ベクトルを参照して泥団子の打ち出す位置を決める
+                Vector3 shotPosition = transform.position + transform.right * 1.0f + transform.up * 20.0f + transform.forward * Random.Range(-15.0f, 15.0f);
+
+                if (mudDumplingB == true)
+                {
+                    //泥団子B用の動作。ターゲットの中心に向かって飛ぶ
+                    //ターゲットの座標取得
+                    targetPosition = target.transform.position;
+                }
+                else
+                {
+                    //泥団子A用の動作。エリア（BoxCollider）の中のいずれかの場所に飛ぶ
+                    //注意：BoxColliderの中心は原点（0,0,0）から動かさないようにすること
+                    BoxCollider targetArea = target.GetComponent<BoxCollider>();
+                    float xRange = targetArea.size.x / 2.0f;
+                    float zRange = targetArea.size.z / 2.0f;
+                    Vector3 targetCenter = target.transform.position;
+                    targetPosition = new Vector3(targetCenter.x + Random.Range(-xRange, xRange), targetCenter.y, targetCenter.z + Random.Range(-zRange, zRange));
+                }
+
+                //初速度の計算
+                Vector3 velocity = CalculateVelocity(shotPosition, targetPosition);
+
+                //泥団子生成
+                GameObject createMeteorite = Instantiate(meteorite) as GameObject;
+                createMeteorite.transform.position = shotPosition;
+
+                //泥団子発射
+                createMeteorite.GetComponent<Rigidbody>().AddForce(velocity, ForceMode.Impulse);
             }
-            else
-            {
-                //泥団子A用の動作。エリア（BoxCollider）の中のいずれかの場所に飛ぶ
-                //注意：BoxColliderの中心は原点（0,0,0）から動かさないようにすること
-                BoxCollider targetArea = target.GetComponent<BoxCollider>();
-                float xRange = targetArea.size.x / 2.0f;
-                float zRange = targetArea.size.z / 2.0f;
-                Vector3 targetCenter = target.transform.position;
-                targetPosition = new Vector3(targetCenter.x + Random.Range(-xRange, xRange), 0, targetCenter.z + Random.Range(-zRange, zRange));
-            }
-
-            //初速度の計算
-            Vector3 velocity = CalculateVelocity(shotPosition, targetPosition);
-
-            //泥団子生成
-            GameObject createMeteorite = Instantiate(meteorite) as GameObject;
-            createMeteorite.transform.position = shotPosition;
-
-            //泥団子発射
-            createMeteorite.GetComponent<Rigidbody>().AddForce(velocity, ForceMode.Impulse);
 
         }
     }
