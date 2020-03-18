@@ -272,10 +272,13 @@ MonoBehaviour:
   maxSpeed: 20
   rotaSpeed: 1
   brakeSpeed: 200
-  mud: {fileID: 0}
-  junpFlag: {fileID: 0}
+  mudSpeed: 4
+  mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
+  junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+    type: 3}
   objectPlayer: {fileID: 0}
   junp: 0
+  turnTipe: 0
   playerSound: {fileID: 3246577481327701010}
   runningSound: {fileID: 4765289483863727201}
   succesRollingJump: 0
