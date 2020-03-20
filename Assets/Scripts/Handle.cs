@@ -83,4 +83,16 @@ public class Handle : MonoBehaviour
         return lBrake;
     }
 
+    public void JoyconRumble(int checkLRNum, float lowFleq, float highFleq, float amp, int time)
+    {
+        if (checkLRNum == 0)
+        {
+            m_joyconL.SetRumble(lowFleq, highFleq, amp, time);
+        }
+        else
+        {
+            m_joyconR.SetRumble(lowFleq, highFleq, amp, time);
+        }
+    }
+
 }
