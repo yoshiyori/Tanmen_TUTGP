@@ -230,7 +230,7 @@ MonoBehaviour:
     type: 3}
   objectPlayer: {fileID: 0}
   junp: 0
-  turnTipe: 0
+  turnTipe: 1
   playerSound: {fileID: 3246577481327701010}
   runningSound: {fileID: 4765289483863727201}
   succesRollingJump: 0
