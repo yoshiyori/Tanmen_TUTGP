@@ -27,9 +27,19 @@ public class MudDumplingDivision : MonoBehaviour
     }
 
     void Update(){
-        if(broken && crayBallSound.status.ToString().Equals("PlayEnd")){
-            Destroy(this.gameObject);
-            //Debug.Log(crayBallSound.status.ToString());
+        if (Mathf.Approximately(Time.timeScale, 0f)) //ポーズ状態の時は動かさない
+        {
+            crayBallSound.Pause(true);
+            return;
+        }
+        else
+        {
+            crayBallSound.Pause(false);
+            if (broken && crayBallSound.status.ToString().Equals("PlayEnd"))
+            {
+                Destroy(this.gameObject);
+                //Debug.Log(crayBallSound.status.ToString());
+            }
         }
     }
     //サウンド追加分 1 終了

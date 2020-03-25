@@ -59,92 +59,102 @@ public class InertiaPlayer : MonoBehaviour
 
 		//ここで速度とかの制御
 
+        if(Mathf.Approximately(Time.timeScale, 0f)) //ポーズ状態の時は動かさない
+        {
+            runningSound.Pause(true);
+            return;
+        }
+        else
+        {
+            runningSound.Pause(false);
+            if (mudTrigger == true)
+            {
+                maxSpeed = mudSpeed;
+            }
+            else
+            {
+                maxSpeed = TureMaxSpeed;
+            }
 
+            if (rigid.velocity.magnitude < maxSpeed)
+            {
+                rigid.AddRelativeForce(-accelSpeed, 0, 0);
+            }
+            else if (maxSpeed < -nowSpeed.x)
+            {
+                if (mudTrigger == false)
+                {
+                    nowSpeed.x = oldSpeed.x - 10;
+                }
+                else
+                {
+                    nowSpeed.x = oldSpeed.x - 100000000;
+                }
+            }
+            if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x < 0.1)
+            {
+                rigid.AddRelativeForce(brakeSpeed, 0, 0);
+                playerSound.Play("Break");                                                      //サウンド追加分 2/4
+            }
+            if (rigid.velocity.x > 0)
+            {
+                //rigid.velocity = Vector3.zero;
+            }
 
-		if (mudTrigger == true)
-		{
-			maxSpeed = mudSpeed;
-		}
-		else
-		{
-			maxSpeed = TureMaxSpeed;
-		}
+            if (joyconFlag == true)
+            {
+                if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+                {
+                    rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
+                    playerSound.Play("Break");                                                      //サウンド追加分 2/4
+                }
+                if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+                {
+                    rigid.AddRelativeForce(brakeSpeed, 0, 0);
+                    playerSound.Play("Break");                                                      //サウンド追加分 2/4
+                }
+            }
 
-		if (rigid.velocity.magnitude < maxSpeed)
-		{
-			rigid.AddRelativeForce(-accelSpeed, 0, 0);
-		}
-		else if (maxSpeed < -nowSpeed.x)
-		{
-			if (mudTrigger == false)
-			{
-				nowSpeed.x = oldSpeed.x - 10;
-			}
-			else
-			{
-				nowSpeed.x = oldSpeed.x - 100000000;
-			}
-		}	
-		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
-		{
-			rigid.AddRelativeForce(brakeSpeed,0, 0);
-			playerSound.Play("Break");														//サウンド追加分 2/4
-		}
-		if (rigid.velocity.x > 0)
-		{
-			//rigid.velocity = Vector3.zero;
-		}		
+            //回転
 
-		if (joyconFlag == true)
-		{
-			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
-			{
-				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-				playerSound.Play("Break");                                                      //サウンド追加分 2/4
-			}
-			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
-			{
-				rigid.AddRelativeForce(brakeSpeed, 0, 0);
-				playerSound.Play("Break");                                                      //サウンド追加分 2/4
-			}
-		}
+            turnPlayer();
 
-		//回転
+            junpFlag.GetComponent<JunpJudg>().JunpPlayer();
 
-		turnPlayer();
+            //サウンド追加分 3/4
+            if (succesRollingJump)
+            {
+                playerSound.Play("Rolling");
+                succesRollingJump = false;
+            }
 
-		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
+            if ((nowSpeed.magnitude > 1f) && !runningSound.status.ToString().Equals("Playing"))
+            {
+                runningSound.Play();
+            }
+            if (nowSpeed.magnitude <= 1f)
+            {
+                runningSound.Stop();
+            }
+            //サウンド追加分 3/4 終了	
 
-		//サウンド追加分 3/4
-		if(succesRollingJump){
-			playerSound.Play("Rolling");
-			succesRollingJump = false;
-		}
+            if (joyconFlag == true)
+            {
+                //var rot = transform.rotation.eulerAngles;
+                //rot.y = hd.GetControlllerAccel(-100);
+                //transform.rotation = Quaternion.Euler(rot);
+                this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
+            }
 
-		if((nowSpeed.magnitude > 1f) && !runningSound.status.ToString().Equals("Playing")){
-			runningSound.Play();
-		}
-		if(nowSpeed.magnitude <= 1f){
-			runningSound.Stop();
-		}
-		//サウンド追加分 3/4 終了	
-		
-		if (joyconFlag == true)
-		{
-			//var rot = transform.rotation.eulerAngles;
-			//rot.y = hd.GetControlllerAccel(-100);
-			//transform.rotation = Quaternion.Euler(rot);
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
-		}
+            //確認用
+            if (Input.GetKey(KeyCode.Z))
+            {
+                Debug.Log(maxSpeed);
 
-		//確認用
-		if (Input.GetKey(KeyCode.Z))
-		{
-			Debug.Log(maxSpeed);
+            }
 
-		}
-		
-		oldSpeed = nowSpeed;
+            oldSpeed = nowSpeed;
+        }
 
 
 	}
