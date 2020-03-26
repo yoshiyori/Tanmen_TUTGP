@@ -24,7 +24,7 @@ namespace SoundSystem{
             }
         }
         public void Play(string cueName){
-            criAtomSource.cueSheet = cueInfo.GetCueNameInfo(cueName).CueSheetName;
+            criAtomSource.cueSheet = cueInfo.GetCueNameInfo(cueName).cueSheetName;
             criAtomSource.Play(cueName);
         }
 

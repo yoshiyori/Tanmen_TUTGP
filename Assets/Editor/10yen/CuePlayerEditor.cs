@@ -61,8 +61,8 @@ public class CuePlayerEditor : Editor{
                 cuePlayer.playOnStart = EditorGUILayout.Toggle("Play On Start", cuePlayer.playOnStart);
 
                 //シーン開始時に鳴らすキューを選択するプルダウンメニュー
-                if(cuePlayer.playOnStart){
-                    GUI.enabled = true;
+                if(!cuePlayer.playOnStart){
+                    GUI.enabled = false;
                 }
                 if(isCueNameListInitialized){
                     lastSelectedCueIndex = SelectedCueIndex;
@@ -90,6 +90,15 @@ public class CuePlayerEditor : Editor{
                 for(int i = 0; i < cuePlayer.cueNameList.Count; i++){
                     EditorGUILayout.BeginHorizontal();
                         cuePlayer.cueNameList[i] = EditorGUILayout.TextField(i.ToString(), cuePlayer.cueNameList[i]);
+
+                        if(cuePlayer.cueNameList[i].Equals("")){
+                            GUI.enabled = false;
+                        }
+                        if(GUILayout.Button("Play", GUILayout.MaxWidth(60))){
+                            cuePlayer.Play(cuePlayer.cueNameList[i]);
+                        }
+
+                        GUI.enabled = true;
                         if(GUILayout.Button("Delete", GUILayout.MaxWidth(60))){
                             cuePlayer.cueNameList.RemoveAt(i);
                             if(cuePlayer.cueNameList.Count <= 0){
