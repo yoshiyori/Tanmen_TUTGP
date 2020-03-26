@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371eca84cc7eb904aa1698171f833436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopTime: 1
+  stopTime: 0.6
   buttons:
   - {fileID: 1803675992}
   - {fileID: 515086892}
