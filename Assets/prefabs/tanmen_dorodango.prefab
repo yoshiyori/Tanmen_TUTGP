@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 3496990733355522240}
-  destroyFlag: 0
 --- !u!1 &5121784108546249587
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 2974946342151045943}
-  destroyFlag: 0
 --- !u!1 &5121784108546249589
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 7677013161107039149}
-  destroyFlag: 0
 --- !u!1 &5121784108546249591
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +428,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crayBallDebriesSound: {fileID: 4340219120956726630}
-  destroyFlag: 0
 --- !u!1 &5121784108546249597
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +441,7 @@ GameObject:
   - component: {fileID: 6816274596103444362}
   - component: {fileID: 2420331112756517845}
   - component: {fileID: 7474822275366663708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tanmen_dorodango
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121784108546249597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.059296, y: 1.4999999, z: 10.02475}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 5121784108546281301}
