@@ -16,7 +16,7 @@ namespace SoundSystem{
 
         //パラメーター
         public bool playOnStart = false;
-        public string playCueOnStart;
+        public string playCueOnStart = "";
 
         public void Start(){
             if(playOnStart){

@@ -48,26 +48,29 @@ public class CueNameListEditor : Editor{
         GUI.enabled = true;
 
         GUILayout.BeginHorizontal();
-            if(GUILayout.Button("Get Audio Source Object")){
+            /*if(GUILayout.Button("Get Audio Source Object")){
                 cueNameList.LoadCuePlayer();
-            }
+            }*/
             if(GUILayout.Button("Set Cue Sheet")){
+                cueNameList.LoadCuePlayer();
                 cueNameList.SetCueSheet();
             }
-        GUILayout.EndHorizontal();
-        GUILayout.BeginHorizontal();
+        //GUILayout.EndHorizontal();
+        //GUILayout.BeginHorizontal();
             if(GUILayout.Button("Set Cue Name List")){
                 cueNameList.SetCueNameList();
                 //var criAtomEditor = (CriAtomEditor)ScriptableObject.FindObjectOfType(typeof(CriAtomEditor));
                 //criAtomEditor. = true;
             }
-            if(GUILayout.Button("Set Acf")){
+            /*if(GUILayout.Button("Set Acf")){
                 cueNameList.SetAcf();
-            }
+            }*/
         GUILayout.EndHorizontal();
 
-        cueNameList.acfName = EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData.name;
-        cueNameList.acbInfos = EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData.GetAcbInfoList(false, Application.streamingAssetsPath);
+        //cueNameList.acfName = EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData.name;
+        if(EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData != null){
+            cueNameList.acbInfos = EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData.GetAcbInfoList(false, Application.streamingAssetsPath);
+        }
 
 		if (GUI.changed) {
 			EditorUtility.SetDirty(cueNameList);

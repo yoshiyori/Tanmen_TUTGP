@@ -14,16 +14,24 @@ namespace SoundSystem{
 
         //データ
         [HideInInspector] public List<CueNameInfo> cueNameInfos = new List<CueNameInfo>();
-        //private CriAtomAcfInfo.AcfInfo acfInfo;
+        //[SerializeField, HideInInspector] private List<string> cueNames = new List<string>();
         [HideInInspector] public string acfName;
         [HideInInspector] public CriAtomAcfInfo.AcbInfo[] acbInfos;
 
         //定数
         private const string dataFilePath = "Assets/Editor/10yen/CueNameInfo.txt";
 
+        //プロパティ
+        /*public List<string> CueNames{
+            get{
+                return cueNames;
+            }
+        }*/
+
         //CueNameList初期化時のCriAtom初期化処理
         public void Reset(){
             criAtom = GetComponent<CriAtom>();
+            criAtom.acfFile = SearchExtention(Application.streamingAssetsPath, true, "acf")[0];
         }
 
         //CriAtomにacfファイルの名前を登録
@@ -34,10 +42,12 @@ namespace SoundSystem{
         //CriAtomAcfInfoクラスからキューシートとキューの名前を取得
         public void SetCueNameList(bool checkCueNames = false){
             cueNameInfos.Clear();
+            //cueNames.Clear();
 
             foreach(var acbInfo in acbInfos){
                 foreach(var cueInfo in acbInfo.cueInfoList){
                     cueNameInfos.Add(new CueNameInfo(acbInfo.name, cueInfo.name));
+                    //cueNames.Add(cueInfo.name);
                 }
             }
 
@@ -71,6 +81,12 @@ namespace SoundSystem{
             foreach(var cuePlayer in audioSourceObject){
                 foreach(var cueName in cuePlayer.cueNameList){
                     var usedCueSheet = GetCueNameInfo(cueName).cueSheetName;
+                    if(!usedCueSheetList.Contains(usedCueSheet)){
+                        usedCueSheetList.Add(usedCueSheet);
+                    }
+                }
+                if(!cuePlayer.playCueOnStart.Equals("")){
+                    var usedCueSheet = GetCueNameInfo(cuePlayer.playCueOnStart).cueSheetName;
                     if(!usedCueSheetList.Contains(usedCueSheet)){
                         usedCueSheetList.Add(usedCueSheet);
                     }
@@ -124,7 +140,7 @@ namespace SoundSystem{
     		}
         }*/
 
-        private void WriteCueNameInfoFile(){
+        /*private void WriteCueNameInfoFile(){
             string contents = "";
 
             for(int i = 0; i < cueNameInfos.Count; i++){
@@ -149,7 +165,7 @@ namespace SoundSystem{
             else{
                 Debug.Log(dataFilePath + " Not Found");
             }
-        }
+        }*/
         
         //指定のフォルダから目当ての拡張子のファイルを探す
         //第二引数の拡張子に「.」や「*.」は書いても書かなくても良い
@@ -180,6 +196,10 @@ namespace SoundSystem{
                     }
                 }
             }
+
+            if((fileNames == null) || (fileNames.Count <= 0)){
+                Debug.Log("File not found.");
+            }
             return fileNames;
         }
     }
@@ -188,23 +208,6 @@ namespace SoundSystem{
     [Serializable] public class CueNameInfo{
         public string cueSheetName;
         public string cueName;
-
-        /*public string CueSheetName{
-            get{
-                return cueSheetName;
-            }
-            set{
-                cueSheetName = value;
-            }
-        }
-        public string CueName{
-            get{
-                return cueName;
-            }
-            set{
-                cueName = value;
-            }
-        }*/
 
         public CueNameInfo(string cueSheet, string cue){
             cueSheetName = cueSheet;
