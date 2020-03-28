@@ -16,7 +16,7 @@ namespace SoundSystem{
 
         //パラメーター
         public bool playOnStart = false;
-        public string playCueOnStart;
+        public string playCueOnStart = "";
 
         public void Start(){
             if(playOnStart){
@@ -24,7 +24,7 @@ namespace SoundSystem{
             }
         }
         public void Play(string cueName){
-            criAtomSource.cueSheet = cueInfo.GetCueNameInfo(cueName).CueSheetName;
+            criAtomSource.cueSheet = cueInfo.GetCueNameInfo(cueName).cueSheetName;
             criAtomSource.Play(cueName);
         }
 
