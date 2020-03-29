@@ -33,13 +33,23 @@ public class CameraMove : MonoBehaviour
             joyconFlag = player.GetComponent<MovePlayer>().joyconFlag;
            
         }
+        if (tipe == 2)
+        {
+            rotaSpeed = 2;
+            cameraTrans = transform;
+            cameraTrans.rotation = Quaternion.Euler(cameraRot);
+            joyconFlag = false;
+
+        }
 
     }
-    
+
     private void Update()
     {
-        stop = player.GetComponent<MovePlayer>().cameraStop;
-
+        if (tipe == 1)
+        {
+            stop = player.GetComponent<MovePlayer>().cameraStop;
+        }
     }
     void LateUpdate()
     {

@@ -25,6 +25,7 @@ public class MovePlayer : MonoBehaviour
 	private Vector3 pos;
 	public bool cameraStop;
 
+
 	//サウンド追加分 1/4
 	[SerializeField] private CriAtomSource playerSound;
 	[SerializeField] private CriAtomSource runningSound;
@@ -160,6 +161,7 @@ public class MovePlayer : MonoBehaviour
 	void turnPlayer()
 	{
 		bool check = false;
+
 		if (rigid.velocity.magnitude < maxSpeed / 3)
 		{
 			if (Input.GetKey(KeyCode.RightArrow))
@@ -180,13 +182,13 @@ public class MovePlayer : MonoBehaviour
 					rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 				}
 			}
-			Debug.Log("1");
+			
 		}
-		else if (rigid.velocity.magnitude > maxSpeed / 3 )
+		else if (rigid.velocity.magnitude > maxSpeed / 3 && rigid.velocity.magnitude <= maxSpeed * 2 / 3)
 		{
 
 
-			if (count < 120)
+			if (count <60)
 			{
 				if (Input.GetKey(KeyCode.RightArrow))
 				{
@@ -196,6 +198,7 @@ public class MovePlayer : MonoBehaviour
 					{
 						rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
 					}
+					count++;
 				}
 				if (Input.GetKey(KeyCode.LeftArrow))
 				{
@@ -205,52 +208,65 @@ public class MovePlayer : MonoBehaviour
 					{
 						rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 					}
+					count++;
 				}
-				count++;
-			}
-			else
-			{
-				cameraStop = true; 
-			}
-			Debug.Log("2");
-		}
-	/*	else if (rigid.velocity.magnitude >= maxSpeed * 2 / 3)
-		{
-			if (count < 60)
-			{
-				if (Input.GetKey(KeyCode.RightArrow))
-				{
-					check = true;
-					this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-					if (turnTipe == true)
-					{
-						rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
-					}
-				}
-				if (Input.GetKey(KeyCode.LeftArrow))
-				{
-
-					this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-					if (turnTipe == true)
-					{
-						rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
-					}
-				}
-				count++;
+				
 			}
 			else
 			{
 				cameraStop = true;
+				if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+				{
+					check = true;
+				}
 			}
 			
 		}
-		*/
-		if (check == false)
+		else if (rigid.velocity.magnitude >= maxSpeed * 2 / 3)
 		{
-			count = 0;		
-		}
+			if (count < 20)
+			{
+				if (Input.GetKey(KeyCode.RightArrow))
+				{
+					check = true;
+					this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+					if (turnTipe == true)
+					{
+						rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+					}
+					count++;
+				}
+				if (Input.GetKey(KeyCode.LeftArrow))
+				{
+					check = true;
+					this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+					if (turnTipe == true)
+					{
+						rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
+					}
+					count++;
+				}
+				
+			}
+			else
+			{
+				cameraStop = true;
+				if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+				{
+					check = true;
+				}
+			}
 			
+		}	
+		
+		if(check == false)
+		{
+			count = 0;	
+			Debug.Log("動いた");
+		}
 
+		Debug.Log(check);
+		Debug.Log(count);
 	}
 	//サウンド追加分 4/4
 	void OnCollisionEnter(Collision other)
