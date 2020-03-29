@@ -53,7 +53,8 @@ public class CameraMove : MonoBehaviour
     }
     void LateUpdate()
     {
-      
+        if (tipe != 2)
+        {
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 // this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
@@ -87,7 +88,7 @@ public class CameraMove : MonoBehaviour
                 }
                 */
             }
-
+        }
 
             cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
         
