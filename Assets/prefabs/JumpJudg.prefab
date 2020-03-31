@@ -139,7 +139,8 @@ MonoBehaviour:
   junpAccelSpeed: 0
   triggerObsFlag: 0
   nowJunpFlag: 0
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 8817872341665952523, guid: b85e2f067f50d90488413664a0af0f6f,
+    type: 3}
   junpSpeed: 2500
   jumpSound: {fileID: 173160352821273847}
   hd: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30, type: 3}

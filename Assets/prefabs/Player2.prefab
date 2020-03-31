@@ -281,6 +281,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelSpeed: 200
+  maxSpeed: 30
+  rotaSpeed: 1
+  brakeSpeed: 200
+  mudSpeed: 10
+  mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
+  junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+    type: 3}
+  objectPlayer: {fileID: 8794778561346177512}
+  junp: 0
+  turnTipe: 1
+  cameraStop: 0
+  playerSound: {fileID: 4788312820580607281}
+  runningSound: {fileID: 0}
+  succesRollingJump: 0
+  hd: {fileID: 0}
+  joyconFlag: 0
   criAtomSourceList:
   - {fileID: 6828467337965593797}
   cueInfo: {fileID: 0}

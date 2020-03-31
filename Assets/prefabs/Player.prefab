@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   willieSpeed: 0
   willieTime: 0
-  player: {fileID: 0}
+  player: {fileID: 8817872341665952523}
   willieFlg: 0
 --- !u!1 &8817872341665952523
 GameObject:
@@ -117,8 +117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8817872341665952533}
-  - component: {fileID: 8817872341665952532}
-  - component: {fileID: 8817872341665952535}
   - component: {fileID: 8817872341665952534}
   - component: {fileID: 8817872341665952521}
   - component: {fileID: 8817872341665952520}
@@ -146,51 +144,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8817872341665952532
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817872341665952523}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8817872341665952535
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817872341665952523}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ddd9fc3f2f3d4a94f9e5cfd022d63231, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!65 &8817872341665952534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -220,14 +173,14 @@ MonoBehaviour:
   maxSpeed: 20
   rotaSpeed: 1
   brakeSpeed: 200
-  mudSpeed: 4
   mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
   junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
     type: 3}
   objectPlayer: {fileID: 0}
   junp: 0
-  turnTipe: 0
-  actionSound: {fileID: 6380993592543183309}
+  turnTipe: 1
+  playerSound: {fileID: 3246577481327701010}
+  runningSound: {fileID: 4765289483863727201}
   succesRollingJump: 0
   hd: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30, type: 3}
   joyconFlag: 0

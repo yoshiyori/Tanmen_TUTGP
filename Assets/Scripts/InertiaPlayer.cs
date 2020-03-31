@@ -5,22 +5,31 @@ using SoundSystem;
 
 public class InertiaPlayer : MonoBehaviour
 {
+	
 
+	// 初期化とか必要な変数をそろえてる
+	//Vector3 Pold = new Vector3(0.0f,0.0f,0.0f);
+	//Vector3 Pnew = new Vector3(0.0f, 0.0f, 0.0f);
+	//Vector3 Vold = new Vector3(0.0f, 0.0f, 0.0f);
+	//Vector3 Vnew = new Vector3(0.0f, 0.0f, 0.0f);
+	//Vector3 A;
+	//Vector3 Direction;
+	//private float DeltaT = 0.05f;
+	//private float Accel = 0.0f;
+	//private bool OneTime = true;
 	//変数
 	private Rigidbody rigid;
 	[SerializeField] float accelSpeed;
 	[SerializeField] float maxSpeed;
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
-	[SerializeField] float mudSpeed;
-	private float TureMaxSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
-	private bool willieFlg;
 	public bool turnTipe;
+	private bool willieFlg;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
 	private Vector3 pos;
@@ -44,13 +53,58 @@ public class InertiaPlayer : MonoBehaviour
 	{
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
-		TureMaxSpeed = maxSpeed;
+	
 	}
 
 	// Update is called once per frame
 	void Update()
     {
-	
+		/*	気にしたら負け
+		 	if (OneTime == true)
+			{
+				Direction = Quaternion.Euler(Pold) * Vector3.right;
+				OneTime = false;
+			}
+			else if (OneTime == false)
+			{
+				Direction = Quaternion.Euler(Direction) * Vector3.right;
+			}
+			
+
+		//ここで慣性計算してるである。（渡辺先生のパクった）
+
+			Direction = Quaternion.Euler(Vnew) * Vector3.right;
+			A = Direction * Accel;	
+
+			Pold = Pnew;
+			Vold = Vnew;
+
+			Vnew = Vold + A * DeltaT;
+			Pnew = Pold + Vold * DeltaT;
+
+			this.gameObject.transform.Translate(Pnew);
+			//加速度の初期化
+			Accel = 0.0f;
+
+			//押し続けたら加速し続ける、逆もしかり。
+			if (Input.GetKey(KeyCode.RightArrow))
+			{
+				transform.Rotate(new Vector3(0, 15, 0) * Time.deltaTime);
+
+			}
+			else if (Input.GetKey(KeyCode.LeftArrow))
+			{
+				transform.Rotate(new Vector3(0, -15, 0) * Time.deltaTime);
+			}
+			if (Input.GetKey(KeyCode.UpArrow))
+			{
+				Accel = Accel - 0.01f;
+			}
+			else if (Input.GetKey(KeyCode.DownArrow))
+			{
+				Accel = Accel + 0.03f;
+			}
+			*/
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
 		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
@@ -60,32 +114,24 @@ public class InertiaPlayer : MonoBehaviour
 
 		//ここで速度とかの制御
 
-
-
-		if (mudTrigger == true)
-		{
-			maxSpeed = mudSpeed;
-		}
-		else
-		{
-			maxSpeed = TureMaxSpeed;
-		}
-
-		if (rigid.velocity.magnitude < maxSpeed)
+		if (mudTrigger == false && rigid.velocity.magnitude < maxSpeed)
 		{
 			rigid.AddRelativeForce(-accelSpeed, 0, 0);
 		}
+		else if (willieFlg == false)
+		{
+			if (mudTrigger == true)
+			{
+				rigid.velocity = new Vector3(-1, 0, 0);
+
+			}
+		}
 		else if (maxSpeed < -nowSpeed.x)
 		{
-			if (mudTrigger == false)
-			{
-				nowSpeed.x = oldSpeed.x - 10;
-			}
-			else
-			{
-				nowSpeed.x = oldSpeed.x - 100000000;
-			}
-		}	
+			nowSpeed.x = oldSpeed.x - 10;
+
+		}
+		
 		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed,0, 0);
@@ -94,6 +140,7 @@ public class InertiaPlayer : MonoBehaviour
 		if (rigid.velocity.x > 0)
 		{
 			//rigid.velocity = Vector3.zero;
+			Debug.Log("逆向き");
 		}		
 
 		if (joyconFlag == true)
@@ -127,7 +174,7 @@ public class InertiaPlayer : MonoBehaviour
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
-			Debug.Log(maxSpeed);
+			Debug.Log(rigid.velocity.magnitude);
 
 		}
 		
@@ -145,7 +192,6 @@ public class InertiaPlayer : MonoBehaviour
 		}
 		//サウンド追加分 5/6 終了
 	}
-
 	void turnPlayer()
 	{
 		if (Input.GetKey(KeyCode.RightArrow))
@@ -193,61 +239,3 @@ public class InertiaPlayer : MonoBehaviour
 		}
 	}
 }
-
-
-// 初期化とか必要な変数をそろえてる
-//Vector3 Pold = new Vector3(0.0f,0.0f,0.0f);
-//Vector3 Pnew = new Vector3(0.0f, 0.0f, 0.0f);
-//Vector3 Vold = new Vector3(0.0f, 0.0f, 0.0f);
-//Vector3 Vnew = new Vector3(0.0f, 0.0f, 0.0f);
-//Vector3 A;
-//Vector3 Direction;
-//private float DeltaT = 0.05f;
-//private float Accel = 0.0f;
-//private bool OneTime = true;
-/*	気にしたら負け
-		if (OneTime == true)
-		{
-			Direction = Quaternion.Euler(Pold) * Vector3.right;
-			OneTime = false;
-		}
-		else if (OneTime == false)
-		{
-			Direction = Quaternion.Euler(Direction) * Vector3.right;
-		}
-
-
-	//ここで慣性計算してるである。（渡辺先生のパクった）
-
-		Direction = Quaternion.Euler(Vnew) * Vector3.right;
-		A = Direction * Accel;	
-
-		Pold = Pnew;
-		Vold = Vnew;
-
-		Vnew = Vold + A * DeltaT;
-		Pnew = Pold + Vold * DeltaT;
-
-		this.gameObject.transform.Translate(Pnew);
-		//加速度の初期化
-		Accel = 0.0f;
-
-		//押し続けたら加速し続ける、逆もしかり。
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			transform.Rotate(new Vector3(0, 15, 0) * Time.deltaTime);
-
-		}
-		else if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			transform.Rotate(new Vector3(0, -15, 0) * Time.deltaTime);
-		}
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			Accel = Accel - 0.01f;
-		}
-		else if (Input.GetKey(KeyCode.DownArrow))
-		{
-			Accel = Accel + 0.03f;
-		}
-		*/
