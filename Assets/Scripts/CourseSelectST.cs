@@ -70,11 +70,11 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
         if (isTransition == true && fc.isFadeOut == false)
         {
-            if (selectNum > 0) SceneManager.LoadScene(sceneName[selectNum]);
+            if (selectNum >= 0) SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
             else if (selectNum < 0)
             {
-                if (selectNum == -2) SceneManager.LoadScene(sceneName[3]);
-                else SceneManager.LoadScene(sceneName[4]);
+                if (selectNum == -2) SceneManager.LoadScene(sceneName[3], LoadSceneMode.Single);
+                else SceneManager.LoadScene(sceneName[4], LoadSceneMode.Single);
             }
         }
 

@@ -37,7 +37,7 @@ public class TitleST : MonoBehaviour
             isTransition = true;
         }
 
-        if (isTransition == true && fc.isFadeOut == false) SceneManager.LoadScene("CourceSelect");
+        if (isTransition == true && fc.isFadeOut == false) SceneManager.LoadScene("CourceSelect",LoadSceneMode.Single);
         if (isTransition == true && fc.isFadeOut == false && isGoRanking == true) SceneManager.LoadScene("Ranking");
 
     }
