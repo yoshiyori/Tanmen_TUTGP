@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
 
 public class InertiaPlayer : MonoBehaviour
 {
@@ -33,10 +34,10 @@ public class InertiaPlayer : MonoBehaviour
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 
-	//サウンド追加分 1/4
-	[SerializeField] private CriAtomSource playerSound;
-	[SerializeField] private CriAtomSource runningSound;
+	//サウンド追加分 1/6
+	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
+	//サウンド追加分 1/6 終了
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -134,7 +135,7 @@ public class InertiaPlayer : MonoBehaviour
 		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x<0.1)
 		{
 			rigid.AddRelativeForce(brakeSpeed,0, 0);
-			playerSound.Play("Break");														//サウンド追加分 2/4
+			actionSound.Play("Break");														//サウンド追加分 2/6
 		}
 		if (rigid.velocity.x > 0)
 		{
@@ -147,12 +148,12 @@ public class InertiaPlayer : MonoBehaviour
 			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-				playerSound.Play("Break");                                                      //サウンド追加分 2/4
+				actionSound.Play("Break");                                                      //サウンド追加分 3/6
 			}
 			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed, 0, 0);
-				playerSound.Play("Break");                                                      //サウンド追加分 2/4
+				actionSound.Play("Break");                                                      //サウンド追加分 4/6
 			}
 		}
 
@@ -161,20 +162,6 @@ public class InertiaPlayer : MonoBehaviour
 		turnPlayer();
 
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
-
-		//サウンド追加分 3/4
-		if(succesRollingJump){
-			playerSound.Play("Rolling");
-			succesRollingJump = false;
-		}
-
-		if((nowSpeed.magnitude > 1f) && !runningSound.status.ToString().Equals("Playing")){
-			runningSound.Play();
-		}
-		if(nowSpeed.magnitude <= 1f){
-			runningSound.Stop();
-		}
-		//サウンド追加分 3/4 終了	
 		
 		if (joyconFlag == true)
 		{
@@ -193,7 +180,17 @@ public class InertiaPlayer : MonoBehaviour
 		
 		oldSpeed = nowSpeed;
 
-
+		//サウンド追加分 5/6
+		if(succesRollingJump)
+		{
+			actionSound.Play("Rolling");
+			succesRollingJump = false;
+		}
+		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			actionSound.Stop(1);
+		}
+		//サウンド追加分 5/6 終了
 	}
 	void turnPlayer()
 	{
@@ -215,17 +212,30 @@ public class InertiaPlayer : MonoBehaviour
 		}
 
 	}
-
-
-	//サウンド追加分 4/4
+	//サウンド追加分 6/6
 	void OnCollisionEnter(Collision other)
 	{
-		//Debug.Log(other.gameObject.name);
-		if(other.gameObject.tag.Equals("Lode") && junp)
+		if(other.gameObject.tag.Equals("Road"))
 		{
-			playerSound.Play("Landing");
-			junp = false;
+			if(junp){
+				actionSound.Play("Landing");
+				junp = false;
+			}
+
+			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
+			{
+				//Debug.Log("Running");
+				actionSound.Play("Running", 1);
+			}
 		}
 	}
 	
+	void OnCollisionExit(Collision other)
+	{
+		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			//Debug.Log("Exit");
+			actionSound.Stop(1);
+		}
+	}
 }
