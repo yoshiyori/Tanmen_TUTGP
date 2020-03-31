@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -27,9 +28,9 @@ public class MovePlayer : MonoBehaviour
 
 
 	//サウンド追加分 1/4
-	[SerializeField] private CriAtomSource playerSound;
-	[SerializeField] private CriAtomSource runningSound;
+	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
+	//サウンド追加分 1/6 終了
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -92,7 +93,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
 			cameraStop = true;
-			playerSound.Play("Break"); 
+			actionSound.Play("Break"); 
 			//サウンド追加分 2/4
 		}
 		if (rigid.velocity.x > 0)
@@ -105,12 +106,12 @@ public class MovePlayer : MonoBehaviour
 			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-				playerSound.Play("Break");                                                      //サウンド追加分 2/4
+				actionSound.Play("Break");                                                      //サウンド追加分 2/4
 			}
 			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed, 0, 0);
-				playerSound.Play("Break");                                                      //サウンド追加分 2/4
+				actionSound.Play("Break");                                                      //サウンド追加分 2/4
 			}
 		}
 
@@ -121,22 +122,17 @@ public class MovePlayer : MonoBehaviour
 		
 		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
 
-		//サウンド追加分 3/4
-		if (succesRollingJump)
+		//サウンド追加分 5/6
+		if(succesRollingJump)
 		{
-			playerSound.Play("Rolling");
+			actionSound.Play("Rolling");
 			succesRollingJump = false;
 		}
-
-		if ((nowSpeed.magnitude > 1f) && !runningSound.status.ToString().Equals("Playing"))
+		if((nowSpeed.magnitude <= 1f) && actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
 		{
-			runningSound.Play();
+			actionSound.Stop(1);
 		}
-		if (nowSpeed.magnitude <= 1f)
-		{
-			runningSound.Stop();
-		}
-		//サウンド追加分 3/4 終了	
+		//サウンド追加分 5/6 終了
 
 		if (joyconFlag == true)
 		{
@@ -271,11 +267,27 @@ public class MovePlayer : MonoBehaviour
 	//サウンド追加分 4/4
 	void OnCollisionEnter(Collision other)
 	{
-		//Debug.Log(other.gameObject.name);
-		if (other.gameObject.tag.Equals("Lode") && junp)
+		if(other.gameObject.tag.Equals("Road"))
 		{
-			playerSound.Play("Landing");
-			junp = false;
+			if(junp){
+				actionSound.Play("Landing");
+				junp = false;
+			}
+
+			if((nowSpeed.magnitude > 1f) && !actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+			{
+				//Debug.Log("Running");
+				actionSound.Play("Running", 1);
+			}
+		}
+	}
+	
+	void OnCollisionExit(Collision other)
+	{
+		if((other.gameObject.tag.Equals("Road")) && actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+		{
+			//Debug.Log("Exit");
+			actionSound.Stop(1);
 		}
 	}
 }
