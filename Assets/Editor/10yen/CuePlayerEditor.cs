@@ -44,9 +44,9 @@ public class CuePlayerEditor : Editor{
         cueNameList = (CueNameList)FindObjectOfType(typeof(CueNameList));        
         criAtomSourceEditor = (CriAtomSourceEditor)Resources.FindObjectsOfTypeAll(typeof(CriAtomSourceEditor))[0];
 
-        if(cuePlayer.cueInfo == null){
+        /*if(cuePlayer.cueInfo == null){
             cuePlayer.cueInfo = GameObject.FindObjectOfType<CueNameList>().GetComponent<CueNameList>();
-        }
+        }*/
         
         foreach(var cueName in cuePlayer.cueNameList){
             selectedCueIndex_CueName.Add(0);
@@ -87,8 +87,10 @@ public class CuePlayerEditor : Editor{
 
             EditorGUILayout.BeginHorizontal();
                 List<string> cueNames = new List<string>();
-                foreach(var cueNameInfo in cueNameList.cueNameInfos){
-                    cueNames.Add(cueNameInfo.cueName);
+                if(cueNameList != null){
+                    foreach(var cueNameInfo in cueNameList.cueNameInfos){
+                        cueNames.Add(cueNameInfo.cueName);
+                    }
                 }
 
                 //PlayOnStartの可否
@@ -121,7 +123,7 @@ public class CuePlayerEditor : Editor{
 
             GUI.enabled = true;
             isOpen_CueName = EditorGUILayout.Foldout(isOpen_CueName, "CueName");
-            if(isOpen_CueName){
+            if(isOpen_CueName && cueNameList != null){
                 EditorGUI.indentLevel++;
                 for(int i = 0; i < cuePlayer.cueNameList.Count; i++){
                     EditorGUILayout.BeginHorizontal();

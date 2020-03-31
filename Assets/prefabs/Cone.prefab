@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2093367331561262135}
   - component: {fileID: 2093367331561262131}
   - component: {fileID: 114656160276089836}
+  - component: {fileID: 2480866922827475880}
+  - component: {fileID: 1473413173530166536}
   m_Layer: 0
   m_Name: Cone
   m_TagString: Untagged
@@ -31,8 +33,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.9240313, y: -3.9106193, z: -0.9304287}
   m_LocalScale: {x: 2.6342628, y: 2.3605535, z: 2.6169257}
-  m_Children:
-  - {fileID: 8260115268406110140}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -126,71 +127,46 @@ MonoBehaviour:
   playerObject: {fileID: 8817872341665952523, guid: b85e2f067f50d90488413664a0af0f6f,
     type: 3}
   downSpeed: 0
-  coneSound: {fileID: 3791976950847376543}
---- !u!1 &5220723434291156878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8260115268406110140}
-  - component: {fileID: 5853255111382677961}
-  - component: {fileID: 3791976950847376543}
-  m_Layer: 0
-  m_Name: ConeSound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8260115268406110140
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5220723434291156878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2093367331561262130}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5853255111382677961
+  cornSound: {fileID: 1473413173530166536}
+  cornMesh: {fileID: 2093367331561262129}
+  cornCollider: {fileID: 2093367331561262135}
+--- !u!114 &2480866922827475880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5220723434291156878}
+  m_GameObject: {fileID: 2093367331561262133}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playOnStart: 0
-  _cueName: Corn
-  _cueSheet: Game_SE
+  _cueName: 
+  _cueSheet: 
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
---- !u!114 &3791976950847376543
+--- !u!114 &1473413173530166536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5220723434291156878}
+  m_GameObject: {fileID: 2093367331561262133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cfa9a7d1574cd9478051838a56bf56a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coneSound: {fileID: 5853255111382677961}
-  parent: {fileID: 0}
+  criAtomSourceList:
+  - {fileID: 2480866922827475880}
+  cueInfo: {fileID: 0}
+  cueNameList:
+  - Corn
+  playOnStart: 0
+  playCueOnStart: 

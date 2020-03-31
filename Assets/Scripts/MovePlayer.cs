@@ -128,7 +128,7 @@ public class MovePlayer : MonoBehaviour
 			actionSound.Play("Rolling");
 			succesRollingJump = false;
 		}
-		if((nowSpeed.magnitude <= 1f) && actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			actionSound.Stop(1);
 		}
@@ -258,11 +258,11 @@ public class MovePlayer : MonoBehaviour
 		if(check == false)
 		{
 			count = 0;	
-			Debug.Log("動いた");
+			//Debug.Log("動いた");
 		}
 
-		Debug.Log(check);
-		Debug.Log(count);
+		//Debug.Log(check);
+		//Debug.Log(count);
 	}
 	//サウンド追加分 4/4
 	void OnCollisionEnter(Collision other)
@@ -274,7 +274,7 @@ public class MovePlayer : MonoBehaviour
 				junp = false;
 			}
 
-			if((nowSpeed.magnitude > 1f) && !actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
 			{
 				//Debug.Log("Running");
 				actionSound.Play("Running", 1);
@@ -284,7 +284,7 @@ public class MovePlayer : MonoBehaviour
 	
 	void OnCollisionExit(Collision other)
 	{
-		if((other.gameObject.tag.Equals("Road")) && actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			//Debug.Log("Exit");
 			actionSound.Stop(1);

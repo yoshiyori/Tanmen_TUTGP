@@ -186,7 +186,7 @@ public class InertiaPlayer : MonoBehaviour
 			actionSound.Play("Rolling");
 			succesRollingJump = false;
 		}
-		if((nowSpeed.magnitude <= 1f) && actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			actionSound.Stop(1);
 		}
@@ -222,7 +222,7 @@ public class InertiaPlayer : MonoBehaviour
 				junp = false;
 			}
 
-			if((nowSpeed.magnitude > 1f) && !actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
 			{
 				//Debug.Log("Running");
 				actionSound.Play("Running", 1);
@@ -232,7 +232,7 @@ public class InertiaPlayer : MonoBehaviour
 	
 	void OnCollisionExit(Collision other)
 	{
-		if((other.gameObject.tag.Equals("Road")) && actionSound.GetAtomSourceStatus(1).ToString().Equals("Playing"))
+		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			//Debug.Log("Exit");
 			actionSound.Stop(1);

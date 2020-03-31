@@ -18,15 +18,45 @@ namespace SoundSystem{
         public bool playOnStart = false;
         public string playCueOnStart = "";
 
+        //コルーチン
+        private IEnumerator destroyAfterPlay;
+        private IEnumerator DestroyAfterPlay(GameObject gameObject, int atomSourceNum = 0){
+            while(!JudgeAtomSourceStatus("PlayEnd", atomSourceNum)){
+                yield return null;
+            }
+            Destroy(gameObject);
+        }
+
         //キューの再生
         //複数種類の音を鳴らすオブジェクトで、一部のみを止めたりといった処理をする際はCriAtomSourceが複数必要
-        public void Play(string cueName, int atomSourceNum = 0){
+        public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
             if(criAtomSourceList.Count <= atomSourceNum){
                 criAtomSourceList.Add(InitializeAtomSource());
             }
 
-            criAtomSourceList[atomSourceNum].cueSheet = cueInfo.GetCueNameInfo(cueName).cueSheetName;
+            var cue = cueInfo.GetCueNameInfo(cueName);
+
+            if(!cue.gameVariableName.Equals("")){
+                CriAtomEx.SetGameVariable(cue.gameVariableName, gameVariable);
+            }
+
+            criAtomSourceList[atomSourceNum].cueSheet = cue.cueSheetName;
             criAtomSourceList[atomSourceNum].Play(cueName);
+        }
+
+        //破壊されるオブジェクトの音を最後まで再生する
+        public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f){
+            Play(cueName, atomSourceNum, gameVariable);
+
+            if(mesh != null){
+                Destroy(mesh);
+            }
+            if(collider != null){
+                Destroy(collider);
+            }
+
+            destroyAfterPlay = DestroyAfterPlay(this.gameObject);
+            StartCoroutine(destroyAfterPlay);
         }
 
         //再生しているキューの停止
@@ -45,7 +75,10 @@ namespace SoundSystem{
             return criAtomSourceList[atomSourceNum].status;
         }
 
-        //public void Play(string cueName){}
+        //キューの再生状態の判別
+        public bool JudgeAtomSourceStatus(string status, int atomSourceNum = 0){
+            return GetAtomSourceStatus(atomSourceNum).ToString().Equals(status);
+        }
 
         //CriAtomSourceの追加
         private CriAtomSource InitializeAtomSource(bool use3dPositioning = true, bool playOnStart = false){
@@ -55,15 +88,6 @@ namespace SoundSystem{
             atomSource.playOnStart = playOnStart;
 
             return atomSource;
-        }
-
-        //PlayOnStartの実行
-        private void Start(){
-            if(playOnStart){
-                //Play(playCueOnStart);
-                criAtomSourceList[0].cueSheet = cueInfo.GetCueNameInfo(playCueOnStart).cueSheetName;
-                criAtomSourceList[0].Play(playCueOnStart);
-            }
         }
 
         //ADX_CueBank初期化時のCriAtomSource初期化処理
@@ -76,6 +100,21 @@ namespace SoundSystem{
             criAtomSourceList[0].playOnStart = false;
 
             cueInfo = GameObject.FindObjectOfType<CueNameList>().GetComponent<CueNameList>();
+        }
+
+        private void Awake(){
+            if(cueInfo == null){
+                cueInfo = (CueNameList)FindObjectOfType(typeof(CueNameList));
+            }
+        }
+
+        //PlayOnStartの実行
+        private void Start(){
+            if(playOnStart){
+                //Play(playCueOnStart);
+                criAtomSourceList[0].cueSheet = cueInfo.GetCueNameInfo(playCueOnStart).cueSheetName;
+                criAtomSourceList[0].Play(playCueOnStart);
+            }
         }
     }
 }
