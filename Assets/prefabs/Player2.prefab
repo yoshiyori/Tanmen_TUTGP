@@ -317,7 +317,7 @@ MonoBehaviour:
   junp: 0
   turnTipe: 1
   cameraStop: 0
-  playerSound: {fileID: 0}
+  playerSound: {fileID: 4788312820580607281}
   runningSound: {fileID: 0}
   succesRollingJump: 0
   hd: {fileID: 0}
