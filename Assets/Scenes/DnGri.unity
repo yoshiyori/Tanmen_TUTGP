@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,11 +183,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -277,6 +277,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -332,11 +337,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &68756726
@@ -350,6 +350,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -405,11 +410,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -471,6 +471,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (79)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -525,11 +530,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -634,6 +634,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (74)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -689,11 +694,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &145476166
@@ -707,6 +707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (78)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -763,11 +768,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &181262876
@@ -781,6 +781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (69)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -837,11 +842,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &182722206
@@ -855,6 +855,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -910,11 +915,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -995,6 +995,12 @@ PrefabInstance:
 --- !u!1 &190088342 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8794778561526385243, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 963025826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &190088343 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8794778561526385221, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
     type: 3}
   m_PrefabInstance: {fileID: 963025826}
   m_PrefabAsset: {fileID: 0}
@@ -1277,6 +1283,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (89)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1347,11 +1358,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &263555455
@@ -1365,6 +1371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -1421,11 +1432,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &290844684
@@ -1439,6 +1445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -1509,11 +1520,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -1624,6 +1630,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1678,11 +1689,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -1782,6 +1788,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (66)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1837,11 +1848,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &342024108
@@ -1855,6 +1861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -1910,11 +1921,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -2014,6 +2020,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2068,11 +2079,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -2524,6 +2530,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2579,11 +2590,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &458092702
@@ -2597,6 +2603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (81)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -2667,11 +2678,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -2777,6 +2783,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20.501148
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: downSpeed
@@ -2791,11 +2802,6 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerTypeKakunin
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -2895,6 +2901,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (62)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2949,11 +2960,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -3048,6 +3054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3118,11 +3129,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &531719357
@@ -3136,6 +3142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -3192,11 +3203,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &538889735
@@ -3210,6 +3216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -3280,11 +3291,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -3548,6 +3554,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.45455378
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: playerObject
@@ -3567,11 +3578,6 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerTypeKakunin
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -3676,6 +3682,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3746,16 +3762,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &640454189
@@ -3769,6 +3775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (75)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -3824,11 +3835,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -4007,6 +4013,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4061,11 +4072,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -4175,6 +4181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (73)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4229,11 +4240,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -4333,6 +4339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4402,11 +4413,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -4601,6 +4607,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4656,11 +4667,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &770021934
@@ -4674,6 +4680,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (93)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -4744,16 +4760,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -4843,6 +4849,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4898,11 +4909,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &825812701
@@ -4916,6 +4922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -4971,11 +4982,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -5080,6 +5086,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5134,11 +5145,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -5233,6 +5239,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5303,11 +5314,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &860151051
@@ -5321,6 +5327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (84)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -5377,11 +5388,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &877917448
@@ -5395,6 +5401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -5450,11 +5461,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -5549,6 +5555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5603,11 +5614,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -5781,6 +5787,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5850,11 +5861,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -5929,7 +5935,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTrans
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 190088343}
     - target: {fileID: 976970601789590474, guid: 3f316a32f4a99d945a060048df1c569a,
         type: 3}
       propertyPath: player
@@ -5939,6 +5945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraVec.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 976970601789590474, guid: 3f316a32f4a99d945a060048df1c569a,
+        type: 3}
+      propertyPath: tipe
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f316a32f4a99d945a060048df1c569a, type: 3}
@@ -5953,6 +5964,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (82)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6009,11 +6025,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &978477631
@@ -6027,6 +6038,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6082,11 +6098,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -6206,6 +6217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6276,11 +6292,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1025825422
@@ -6294,6 +6305,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6365,16 +6386,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1038293210
@@ -6388,6 +6399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (77)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6444,11 +6460,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1047158501
@@ -6462,6 +6473,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (70)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6518,11 +6534,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1057331650
@@ -6536,6 +6547,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (65)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6591,11 +6607,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -6700,6 +6711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (80)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6755,11 +6771,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1074998679
@@ -6773,6 +6784,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6829,11 +6845,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1078126952
@@ -6847,6 +6858,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -6918,11 +6934,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1089758909
@@ -6936,6 +6947,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -7006,16 +7027,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -7110,6 +7121,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7164,11 +7180,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -7254,6 +7265,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20.501148
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: downSpeed
@@ -7268,11 +7284,6 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerTypeKakunin
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -7292,6 +7303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (91)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -7347,11 +7363,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -7437,6 +7448,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.8603647
       objectReference: {fileID: 0}
+    - target: {fileID: 5524917922335328466, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328465, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: playerObject
@@ -7458,11 +7474,6 @@ PrefabInstance:
       propertyPath: junpSpeed
       value: 10000
       objectReference: {fileID: 0}
-    - target: {fileID: 5524917922335328466, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
 --- !u!1001 &1178681733
@@ -7476,6 +7487,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -7546,11 +7562,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -7937,6 +7948,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8006,11 +8022,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -8268,6 +8279,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8338,16 +8359,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1292725063
@@ -8361,6 +8372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (58)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -8417,11 +8433,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1318356091
@@ -8435,6 +8446,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (90)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -8491,11 +8507,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1340174679
@@ -8509,6 +8520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (85)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -8580,11 +8596,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1350065081
@@ -8598,6 +8609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (56)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -8653,11 +8669,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -8757,6 +8768,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8827,11 +8843,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1 &1367208685
@@ -8898,6 +8909,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8953,11 +8969,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1383300051
@@ -8971,6 +8982,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -9042,11 +9058,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1386895585
@@ -9060,6 +9071,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -9130,16 +9151,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -9268,6 +9279,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9323,11 +9339,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1445490613
@@ -9341,6 +9352,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (94)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -9411,11 +9427,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -9520,6 +9531,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9589,11 +9605,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -9693,6 +9704,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (97)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9747,11 +9763,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -9935,6 +9946,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10004,16 +10025,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -10108,6 +10119,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10178,11 +10194,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1571081310
@@ -10196,6 +10207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -10267,11 +10283,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1580708543
@@ -10285,6 +10296,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (92)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -10341,11 +10357,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1583866346
@@ -10359,6 +10370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -10429,11 +10445,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -10538,6 +10549,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (86)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10592,11 +10608,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -10682,6 +10693,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.8065603
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: playerObject
@@ -10701,11 +10717,6 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerTypeKakunin
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -10730,6 +10741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (96)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -10786,11 +10802,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.272001
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1618853690
@@ -10804,6 +10815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (87)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -10874,11 +10890,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -10964,6 +10975,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20.501148
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: downSpeed
@@ -10978,11 +10994,6 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerTypeKakunin
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -11099,6 +11110,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (59)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11154,11 +11170,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1678785755
@@ -11172,6 +11183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -11228,11 +11244,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1707262369
@@ -11246,6 +11257,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -11316,16 +11337,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -11886,6 +11897,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (88)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11956,11 +11972,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1906257244
@@ -11974,6 +11985,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (67)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -12030,11 +12046,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &1906930336
@@ -12048,6 +12059,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -12118,11 +12134,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -12212,6 +12223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12281,11 +12297,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -12853,6 +12864,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.45455378
       objectReference: {fileID: 0}
+    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: playerObject
@@ -12873,11 +12889,6 @@ PrefabInstance:
       propertyPath: triggerTypeKakunin
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7771083237031854715, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_Constraints
@@ -12896,6 +12907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -12966,11 +12982,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -13065,6 +13076,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (71)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13120,11 +13136,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &2085455621
@@ -13138,6 +13149,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (83)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -13208,16 +13229,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.9029474
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
@@ -13317,6 +13328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone (76)
       objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13372,11 +13388,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &2102136815
@@ -13390,6 +13401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -13461,11 +13477,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &2102789257
@@ -13479,6 +13490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -13535,11 +13551,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &2104623159
@@ -13553,6 +13564,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -13624,11 +13640,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9029474
       objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!1001 &2124109618
@@ -13642,6 +13653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: downSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2093367331561262130, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
@@ -13697,11 +13713,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 114656160276089836, guid: 57bd0f70d0479944789082754fd09cfb,
-        type: 3}
-      propertyPath: downSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
