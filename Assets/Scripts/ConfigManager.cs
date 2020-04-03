@@ -79,6 +79,7 @@ public class ConfigManager : MonoBehaviour
         if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
+            if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false); ;
             isTransition = true;
             //fc.isFadeOut = true;
         }
@@ -105,10 +106,12 @@ public class ConfigManager : MonoBehaviour
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
+                    if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+                    selectNum = 0;
                     break;
                 case 4:
                     //スライダーで変更した値を反映させる処理書く
-
+                    
                     if (isIngame == true)
                     {
                         //Pauseから来た時戻る処理書く
@@ -119,11 +122,14 @@ public class ConfigManager : MonoBehaviour
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
+                    
+                    selectNum = 0;
                     break;
                 default:
                     break;
             }
-            selectNum = 0;
+            
+            
         }
 
         if ((hd.GetControllerSwing() <= -8 && selectStopFlag == false) 
