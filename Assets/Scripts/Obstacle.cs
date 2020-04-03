@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SoundSystem;
 
 public class Obstacle : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class Obstacle : MonoBehaviour
     //public float downSpeed;
     private Vector3 nowSpeed;
     [SerializeField] private bool triggerTypeKakunin;//mud:false, cone:true
-    [SerializeField] private CuePlayer mudSound;                                //サウンド追加分1/3
+    [SerializeField] private CriAtomSource mudSound;                                //サウンド追加分1/3
 
     private void Start()
     {
@@ -25,7 +24,7 @@ public class Obstacle : MonoBehaviour
         {
             triggerObsFlag = true;
            // nowSpeed = rigid.velocity;
-            mudSound.Play("Mud");                                                        //サウンド追加分2/3
+            mudSound.Play();                                                        //サウンド追加分2/3
 
         /*    if (nowSpeed.x < 0)
             {

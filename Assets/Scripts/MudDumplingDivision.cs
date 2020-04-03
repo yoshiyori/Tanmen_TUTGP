@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using SoundSystem;
 
 public class MudDumplingDivision : MonoBehaviour
 {
@@ -10,16 +9,22 @@ public class MudDumplingDivision : MonoBehaviour
     [SerializeField] float radiuce = 5.0f; //爆発の影響範囲（円の半径）
     [SerializeField] float force = 15.0f;　//爆発の力
 
-    //サウンド追加分 1/2
-    [SerializeField] private CuePlayer crayBallSound;
-    [SerializeField] private Collider crayBallCollider;
-    private MeshFilter crayBallMesh = null;
+    //サウンド追加分 1
+    [SerializeField] private CriAtomSource crayBallSound;
     private bool broken = false;
+    private List<CriAtomEx.GameVariableInfo> gameVariableInfoList = new List<CriAtomEx.GameVariableInfo>();
 
     void Start(){
-        crayBallSound.Play("CrayBall");
+        int gameVariableCount = CriAtomEx.GetNumGameVariables();
+        for(int i = 0; i < gameVariableCount; i++){
+            CriAtomEx.GameVariableInfo gameVariableInfo;
+            CriAtomEx.GetGameVariableInfo((ushort)i, out gameVariableInfo);
+            gameVariableInfoList.Add(gameVariableInfo);
+        }
+
+        ChangeGameVariable("CrayBallState", 0f);
+        crayBallSound.Play();
     }
-    //サウンド追加分 1/2 終了
 
     void Update(){
         if (Mathf.Approximately(Time.timeScale, 0f)) //ポーズ状態の時は動かさない
@@ -51,15 +56,23 @@ public class MudDumplingDivision : MonoBehaviour
             rb.AddExplosionForce(force, debris.transform.position, radiuce, 0f);
         }
 
-        //サウンド追加分 2/2
+        //サウンド追加分 2
         //Debug.Log(other.gameObject.name);
         if (!broken)
         {
             crayBallSound.Stop();
-            //crayBallSound.Play("CrayBall", 0, 1f);
-            crayBallSound.PlayAndDestroy("CrayBall", ref crayBallMesh, ref crayBallCollider, 0, 1f);
+            ChangeGameVariable("CrayBallState", 1f);
+            crayBallSound.Play();
             broken = true;
         }
-        //サウンド追加分 2/2 終了
+    }
+
+    //サウンド追加分 3
+    //指定の名前のゲーム変数を探し、その値を変更する
+    private void ChangeGameVariable(string gameVariableName, float value){
+        if(gameVariableInfoList.Any(gameVariableInfoList => gameVariableInfoList.name == gameVariableName)){
+            var id = gameVariableInfoList.FirstOrDefault(gv => gv.name == gameVariableName).id;
+            CriAtomEx.SetGameVariable(id, value);
+        }
     }
 }

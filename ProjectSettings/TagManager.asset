@@ -6,8 +6,8 @@ TagManager:
   tags:
   - EneemyBullet
   - player
+  - Lode
   - Jump
-  - Road
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SoundSystem;
 
 public class JunpJudg : MonoBehaviour
 {
@@ -15,8 +14,8 @@ public class JunpJudg : MonoBehaviour
     private Vector3 playerPosition;
 
     //サウンド追加分 1/4
-    [SerializeField] private CuePlayer jumpSound;
-    [SerializeField] private MovePlayer movePlayer;
+    [SerializeField] private CriAtomSource jumpSound;
+    private InertiaPlayer inertiaPlayer;
 
     public Handle hd;//JoyConから数値受け取る時とかに使う
     //[SerializeField] bool joyconFlag;//JoyCon使うかどうかのフラグ
@@ -26,13 +25,13 @@ public class JunpJudg : MonoBehaviour
         triggerObsFlag = false;
         rigid = playerObject.GetComponent<Rigidbody>();
         playerPosition = playerObject.transform.position;
-        //inertiaPlayer = playerObject.GetComponent<InertiaPlayer>();                         //サウンド追加分 2/4
+        inertiaPlayer = playerObject.GetComponent<InertiaPlayer>();                         //サウンド追加分 2/4
     }
 
     private void Update()
     {
         if (triggerObsFlag == true && ( Input.GetKey(KeyCode.S) || 
-            (hd.GetControllerSwing() >= 10 && movePlayer.joyconFlag == true) )
+            (hd.GetControllerSwing() >= 10 && inertiaPlayer.joyconFlag == true) )
             )//ここのInputを振り上げ
         {
             rigid.AddForce(0, junpSpeed, 0);
@@ -40,8 +39,8 @@ public class JunpJudg : MonoBehaviour
             nowJunpFlag = true;
 
             //サウンド追加分 3/4
-            movePlayer.junp = true;
-            jumpSound.Play("Jump");
+            inertiaPlayer.junp = true;
+            jumpSound.Play();
         }
         triggerObsFlag = false;
     }
@@ -61,15 +60,14 @@ public class JunpJudg : MonoBehaviour
     }
     public void JunpPlayer()
     {
-        /*if (nowJunpFlag == true && ( Input.GetKey(KeyCode.A) || 
-            (hd.GetControllerSwing() <= -10 && movePlayer.joyconFlag == true) )
-            )//ここのInputを振り下ろしにして*/
-        if(nowJunpFlag)
+        if (nowJunpFlag == true && ( Input.GetKey(KeyCode.A) || 
+            (hd.GetControllerSwing() <= -10 && inertiaPlayer.joyconFlag == true) )
+            )//ここのInputを振り下ろしにして
         {
             rigid.AddRelativeForce(-junpAccelSpeed, 0, 0);
             nowJunpFlag = false;
             Debug.Log("JunpAcccel");
-            movePlayer.succesRollingJump = true;                                         //サウンド追加分 4/4
+            inertiaPlayer.succesRollingJump = true;                                         //サウンド追加分 4/4
         }
 
     }

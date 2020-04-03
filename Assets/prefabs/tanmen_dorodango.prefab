@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 5121784108543987121}
   - component: {fileID: 2194587324680292492}
   - component: {fileID: 6648113597263639774}
-  - component: {fileID: 6426319581275456672}
-  - component: {fileID: 1126761151610539913}
   m_Layer: 0
   m_Name: Sphere.002
   m_TagString: Untagged
@@ -32,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
+  m_Children:
+  - {fileID: 5503834998997599237}
   m_Father: {fileID: 5121784108546281309}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,49 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aee65a4da858f44b460024bcd54223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crayBallDebrySound: {fileID: 1126761151610539913}
-  crayBallDebryMesh: {fileID: 5121784108544954225}
-  crayBallDebryCollider: {fileID: 2194587324680292492}
---- !u!114 &6426319581275456672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
-  _use3dPositioning: 1
-  _loop: 0
-  _volume: 1
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
---- !u!114 &1126761151610539913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 6426319581275456672}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - CrayBallDebries
-  playOnStart: 0
-  playCueOnStart: 
+  crayBallDebriesSound: {fileID: 3496990733355522240}
 --- !u!1 &5121784108546249587
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,8 +120,6 @@ GameObject:
   - component: {fileID: 5121784108543987123}
   - component: {fileID: 1648824983747397829}
   - component: {fileID: 5878150810119832751}
-  - component: {fileID: 5657425894205732562}
-  - component: {fileID: 1387862268512911922}
   m_Layer: 0
   m_Name: Sphere.003
   m_TagString: Untagged
@@ -182,7 +137,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
+  m_Children:
+  - {fileID: 6174263159438876658}
   m_Father: {fileID: 5121784108546281309}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,49 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aee65a4da858f44b460024bcd54223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crayBallDebrySound: {fileID: 1387862268512911922}
-  crayBallDebryMesh: {fileID: 5121784108544954227}
-  crayBallDebryCollider: {fileID: 1648824983747397829}
---- !u!114 &5657425894205732562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
-  _use3dPositioning: 1
-  _loop: 0
-  _volume: 1
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
---- !u!114 &1387862268512911922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 5657425894205732562}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - CrayBallDebries
-  playOnStart: 0
-  playCueOnStart: 
+  crayBallDebriesSound: {fileID: 2974946342151045943}
 --- !u!1 &5121784108546249589
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,8 +227,6 @@ GameObject:
   - component: {fileID: 5121784108543987125}
   - component: {fileID: 6929155857816165437}
   - component: {fileID: 3362194161675164264}
-  - component: {fileID: 3285290418864923396}
-  - component: {fileID: 19391159552102205}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -332,7 +244,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
+  m_Children:
+  - {fileID: 1615798881330200424}
   m_Father: {fileID: 5121784108546281309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -407,49 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aee65a4da858f44b460024bcd54223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crayBallDebrySound: {fileID: 19391159552102205}
-  crayBallDebryMesh: {fileID: 5121784108544954229}
-  crayBallDebryCollider: {fileID: 6929155857816165437}
---- !u!114 &3285290418864923396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
-  _use3dPositioning: 1
-  _loop: 0
-  _volume: 1
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
---- !u!114 &19391159552102205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 3285290418864923396}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - CrayBallDebries
-  playOnStart: 0
-  playCueOnStart: 
+  crayBallDebriesSound: {fileID: 7677013161107039149}
 --- !u!1 &5121784108546249591
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,8 +334,6 @@ GameObject:
   - component: {fileID: 5121784108543987127}
   - component: {fileID: 6180057577997723807}
   - component: {fileID: 5868633316693650876}
-  - component: {fileID: 3114677373905033445}
-  - component: {fileID: 3802120834132743661}
   m_Layer: 0
   m_Name: Sphere.001
   m_TagString: Untagged
@@ -482,7 +351,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
+  m_Children:
+  - {fileID: 4674116312981275043}
   m_Father: {fileID: 5121784108546281309}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -557,49 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aee65a4da858f44b460024bcd54223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crayBallDebrySound: {fileID: 3802120834132743661}
-  crayBallDebryMesh: {fileID: 5121784108544954231}
-  crayBallDebryCollider: {fileID: 6180057577997723807}
---- !u!114 &3114677373905033445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
-  _use3dPositioning: 1
-  _loop: 0
-  _volume: 1
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
---- !u!114 &3802120834132743661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 3114677373905033445}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - CrayBallDebries
-  playOnStart: 0
-  playCueOnStart: 
+  crayBallDebriesSound: {fileID: 4340219120956726630}
 --- !u!1 &5121784108546249597
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,8 +440,7 @@ GameObject:
   - component: {fileID: 4128220352527878612}
   - component: {fileID: 6816274596103444362}
   - component: {fileID: 2420331112756517845}
-  - component: {fileID: 1355720931002867345}
-  - component: {fileID: 3193683525435661144}
+  - component: {fileID: 7474822275366663708}
   m_Layer: 9
   m_Name: tanmen_dorodango
   m_TagString: Untagged
@@ -682,9 +509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiuce: 5
   force: 15
-  crayBallSound: {fileID: 3193683525435661144}
-  crayBallCollider: {fileID: 6816274596103444362}
---- !u!114 &1355720931002867345
+  crayBallSound: {fileID: 7474822275366663708}
+--- !u!114 &7474822275366663708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -697,30 +523,379 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
+  _cueName: CrayBall
+  _cueSheet: Game_SE
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
---- !u!114 &3193683525435661144
-MonoBehaviour:
+--- !u!1001 &2604367100754772215
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5121784108546281303}
+    m_Modifications:
+    - target: {fileID: 8560734516798417816, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_Name
+      value: CayBallDebriesSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249591}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
+--- !u!114 &4340219120956726630 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2604367100754772215}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5121784108546249597}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d828177175fd9c42a71a8490a56d8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 1355720931002867345}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - CrayBall
-  playOnStart: 0
-  playCueOnStart: 
+--- !u!4 &4674116312981275043 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2604367100754772215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2925319768816026961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5121784108546281297}
+    m_Modifications:
+    - target: {fileID: 8560734516798417816, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_Name
+      value: CayBallDebriesSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249585}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
+--- !u!4 &5503834998997599237 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2925319768816026961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3496990733355522240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2925319768816026961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d828177175fd9c42a71a8490a56d8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &3555096783238127270
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5121784108546281299}
+    m_Modifications:
+    - target: {fileID: 8560734516798417816, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_Name
+      value: CayBallDebriesSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249587}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
+--- !u!114 &2974946342151045943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3555096783238127270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d828177175fd9c42a71a8490a56d8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6174263159438876658 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3555096783238127270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8256547910108364348
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5121784108546281301}
+    m_Modifications:
+    - target: {fileID: 8560734516798417816, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_Name
+      value: CayBallDebriesSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 5121784108546249589}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e344d9c401ec5e644820a7807c7ffec8, type: 3}
+--- !u!114 &7677013161107039149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1738139179407646097, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8256547910108364348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d828177175fd9c42a71a8490a56d8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1615798881330200424 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7275950103509614932, guid: e344d9c401ec5e644820a7807c7ffec8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8256547910108364348}
+  m_PrefabAsset: {fileID: 0}
