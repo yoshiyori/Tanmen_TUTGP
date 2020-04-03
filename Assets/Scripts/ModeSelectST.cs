@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
+public class ModeSelectST : MonoBehaviour
 {
-    [SerializeField] private string[] sceneName;
+    [SerializeField] private string[] modeName;
     private int selectNum;
     private int frameNum;
     private float time = 0f;
@@ -13,6 +13,10 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
     [SerializeField] private float stopTime;        //コントローラーを傾けっぱなしの場合、一気に端までいかないために一つ一つの選択項目に留めておく時間
     [SerializeField] private GameObject[] frames;   //selectNum == -2はsceneName[3]、selectNum == -1はsceneName[4]に該当
     [SerializeField] private float katamukiNum;     //コントローラーをどこまで傾けたら横入力判定されるか
+
+    [SerializeField] private GameObject modeSelectCanvas;
+    [SerializeField] private GameObject courseSelectCanvas;
+    [SerializeField] private GameObject configCanvas;
 
     [SerializeField] Handle hd;
     //[SerializeField] FadeController fc;
@@ -22,15 +26,16 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
     void Start()
     {
-        if (sceneName == null)
+        if (modeName == null)
         {
-            sceneName[0] = "KbAndJcTestScene";//コース１
-            sceneName[1] = "KbAndJcTestScene";//コース２
-            sceneName[2] = "KbAndJcTestScene";//コース３
+            modeName[0] = "KbAndJcTestScene";//コース１
+            modeName[1] = "KbAndJcTestScene";//コース２
+            modeName[2] = "KbAndJcTestScene";//コース３
         }
         selectNum = 0;
         selectStopFlag = false;
         isTransition = false;
+        //if (modeSelectCanvas.activeInHierarchy == false) modeSelectCanvas.SetActive(true);
         if (stopTime == 0) stopTime = 0.6f;
         if (katamukiNum == 0) katamukiNum = 0.5f;
     }
@@ -65,16 +70,26 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
         if (isTransition == true/* && fc.isFadeOut == false*/)
         {
-           SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
-            isTransition = false;
+            if (selectNum == 1)
+            {
+                modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
+                courseSelectCanvas.SetActive(!courseSelectCanvas.activeInHierarchy);
+            }
+            else if (selectNum == 2)
+            {
+                modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
+                configCanvas.SetActive(!configCanvas.activeInHierarchy);
+            }
+            else SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
             selectNum = 0;
+            isTransition = false;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) ||
             (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
             )
         {
-            if(selectNum > 0)
+            if (selectNum > 0)
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
@@ -83,7 +98,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             selectStopFlag = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || 
+        if (Input.GetKeyDown(KeyCode.RightArrow) ||
             (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
             )
         {
@@ -98,5 +113,4 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
 
     }
-
 }
