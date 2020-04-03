@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.IO;
-using System.Linq;
 using System;
 
 namespace SoundSystem{
@@ -13,58 +13,65 @@ namespace SoundSystem{
         [SerializeField] private CuePlayer[] audioSourceObject;
 
         //データ
-        public static List<CueNameInfo> cueNameInfos = new List<CueNameInfo>();
-        private CriAtomAcfInfo.AcfInfo acfInfo;
-
-        //定数
-        private const string acfJsonPath = "Assets/Editor/CriWare/CriAtom/saveAcfData.json";
-
-        void Awake(){
-            Reset();
-        }
+        [HideInInspector] public List<CueNameInfo> cueNameInfos = new List<CueNameInfo>();
+        //[SerializeField, HideInInspector] private List<string> cueNames = new List<string>();
+        [HideInInspector] public string acfName;
+        [HideInInspector] public CriAtomAcfInfo.AcbInfo[] acbInfos;
 
         //CueNameList初期化時のCriAtom初期化処理
-        public void Reset(){
+        private void Reset(){
             criAtom = GetComponent<CriAtom>();
-            acfInfo = LoadAcfJson();
-
-            criAtom.acfFile = Path.GetFileName(acfInfo.acfFilePath);
-            criAtom.dontDestroyOnLoad = false;
-            //criAtom.dontRemoveExistsCueSheet = true;
-            SetCueNameList(false);
+            criAtom.acfFile = SearchExtention(Application.streamingAssetsPath, true, "acf")[0];
         }
 
-        //CriAtomクラスからキューの名前と、そのキューが属するキューシートの名前を取得
+        private void Awake(){
+            SetGameVariableName();
+        }
+
+        private void Start(){
+        }
+
+        //CriAtomにacfファイルの名前を登録
+        public void SetAcf(){
+            criAtom.acfFile = acfName + ".acf";
+        }
+
+        //CriAtomAcfInfoクラスからキューシートとキューの名前を取得
         public void SetCueNameList(bool checkCueNames = false){
-            //古いCueNameListの破棄
             cueNameInfos.Clear();
+            //cueNames.Clear();
 
-            //キューシート情報の読みだし
-            var acbInfos = acfInfo.GetAcbInfoList(false, Application.streamingAssetsPath);
-
-            //CriAtomにキューシート情報を送り、そこからキュー情報を取得
-            for(int i = 0; i<acbInfos.Length; i++){
-                var acbInfo = acbInfos[i];
-                criAtom.AddCueSheetInternal(acbInfo.name, acbInfo.name + ".acb", "", null);
-                criAtom.Setup();
-                for(int j = 0; j < criAtom.cueSheets[0].acb.GetCueInfoList().Length; j++){
-                    cueNameInfos.Add(new CueNameInfo(in criAtom, 0, j));
+            foreach(var acbInfo in acbInfos){
+                foreach(var cueName in acbInfo.cueInfoList){
+                    cueNameInfos.Add(new CueNameInfo(acbInfo.name, cueName.name));
+                    //cueNames.Add(cueInfo.name);
                 }
-                //キュー情報を読みだしたらCriAtom上のキューシート情報を破棄
-                criAtom.RemoveCueSheetInternal(acbInfo.name);
             }
-            
+
             if(checkCueNames){
                 CheckCueNameInfos();
             }
-            else{
-                Debug.Log("Set Cue Name List");
+            Debug.Log("Set Cue Name List");
+        }
+
+        //各キューのゲーム変数名を取得
+        private void SetGameVariableName(){
+            int j = 0;
+            for(int i = 0; i < cueNameInfos.Count; i++){
+                if(!cueNameInfos[i].cueSheetName.Equals(criAtom.cueSheets[j].name)){
+                    j++;
+                }
+
+                bool succes = criAtom.cueSheets[j].acb.GetCueInfo(cueNameInfos[i].cueName, out var cueInfo);
+                if(succes){
+                    cueNameInfos[i].gameVariableName = cueInfo.gameVariableInfo.name;
+                }
             }
         }
 
         //指定のキューのCueNameInfoを返す
         public CueNameInfo GetCueNameInfo(string cueName){
-            var index = cueNameInfos.FindIndex(cueNameInfo => cueNameInfo.CueName.Equals(cueName));
+            var index = cueNameInfos.FindIndex(cueNameInfo => cueNameInfo.cueName.Equals(cueName));
 
             if(index == -1){
                 Debug.LogWarning("Cue \"" + cueName + "\" Not Found");
@@ -82,10 +89,16 @@ namespace SoundSystem{
             Array.Clear(criAtom.cueSheets, 0, criAtom.cueSheets.Length);
             Array.Resize(ref criAtom.cueSheets, 0);
 
-            LoadCuePlayer();
+            //LoadCuePlayer();
             foreach(var cuePlayer in audioSourceObject){
                 foreach(var cueName in cuePlayer.cueNameList){
-                    var usedCueSheet = GetCueNameInfo(cueName).CueSheetName;
+                    var usedCueSheet = GetCueNameInfo(cueName).cueSheetName;
+                    if(!usedCueSheetList.Contains(usedCueSheet)){
+                        usedCueSheetList.Add(usedCueSheet);
+                    }
+                }
+                if(!cuePlayer.playCueOnStart.Equals("")){
+                    var usedCueSheet = GetCueNameInfo(cuePlayer.playCueOnStart).cueSheetName;
                     if(!usedCueSheetList.Contains(usedCueSheet)){
                         usedCueSheetList.Add(usedCueSheet);
                     }
@@ -96,14 +109,18 @@ namespace SoundSystem{
                 //CriAtom.AddCueSheet(usedCueSheet, usedCueSheet + ".acb", "");
                 criAtom.AddCueSheetInternal(usedCueSheet, usedCueSheet + ".acb", "", null);
             }
+
+            EditorUtility.SetDirty(criAtom);
             Debug.Log("Set Cue Sheet");
         }
 
         //シーン内にあるCuePlayerが適用されたオブジェクトを取得する
         public void LoadCuePlayer(){
             //古いデータの削除
-            Array.Clear(audioSourceObject, 0, audioSourceObject.Length);
-            Array.Resize(ref audioSourceObject, 0);
+            if((audioSourceObject != null) && (audioSourceObject.Length > 0)){
+                Array.Clear(audioSourceObject, 0, audioSourceObject.Length);
+                Array.Resize(ref audioSourceObject, 0);
+            }
             
             audioSourceObject = FindObjectsOfType<CuePlayer>();
         }
@@ -124,7 +141,7 @@ namespace SoundSystem{
 
         //Jsonファイルからacfファイルの情報を読み出す
         //CriAtomWindow.csの丸パクリ
-        private CriAtomAcfInfo.AcfInfo LoadAcfJson(){
+        /*private CriAtomAcfInfo.AcfInfo LoadAcfJson(){
 		    string tmp_json;
 
 		    if(File.Exists(acfJsonPath)) {
@@ -135,7 +152,34 @@ namespace SoundSystem{
 		    	tmp_json = null;
                 return null;
     		}
+        }*/
+
+        /*private void WriteCueNameInfoFile(){
+            string contents = "";
+
+            for(int i = 0; i < cueNameInfos.Count; i++){
+                contents += i.ToString() + "\t" + cueNameInfos[i].cueSheetName + "\t" + cueNameInfos[i].cueName + "\n";
+            }
+            File.WriteAllText(dataFilePath, contents);
+            Debug.Log("Edit CueNameInfo.txt");
+            //Debug.Log(contents);
         }
+
+        private void LoadCueNameInfoFile(){
+            if(File.Exists(dataFilePath)){
+                char[] spliter = {'\n', '\t'};
+                string[] contents = File.ReadAllText(dataFilePath).Split(spliter);
+
+                Debug.Log("Read CueNameInfo.txt");
+                cueNameInfos.Clear();
+                for(int i = 0; i < contents.Length - 2; i += 3){
+                    cueNameInfos.Add(new CueNameInfo(contents[i + 1], contents[i+2]));
+                }
+            }
+            else{
+                Debug.Log(dataFilePath + " Not Found");
+            }
+        }*/
         
         //指定のフォルダから目当ての拡張子のファイルを探す
         //第二引数の拡張子に「.」や「*.」は書いても書かなくても良い
@@ -166,38 +210,33 @@ namespace SoundSystem{
                     }
                 }
             }
+
+            if((fileNames == null) || (fileNames.Count <= 0)){
+                Debug.Log("File not found.");
+            }
             return fileNames;
         }
     }
 
     //キューの名前と、そのキューが属するキューシートの名前を保存
-    public class CueNameInfo{
-        private string cueSheetName;
-        private string cueName;
+    [Serializable] public class CueNameInfo{
+        public string cueSheetName;
+        public string cueName;
+        public string gameVariableName;
 
-        public string CueSheetName{
-            get{
-                return cueSheetName;
-            }
-        }
-        public string CueName{
-            get{
-                return cueName;
-            }
-        }
-
-        public CueNameInfo(string cueSheet, string cue){
+        public CueNameInfo(string cueSheet, string cue, string gameVariable= ""){
             cueSheetName = cueSheet;
             cueName = cue;
+            gameVariableName = gameVariable;
         }
 
-        public CueNameInfo(in CriAtom criAtom, int cueSheetID, int cueID){
+        /*public CueNameInfo(in CriAtom criAtom, int cueSheetID, int cueID){
             cueSheetName = criAtom.cueSheets[cueSheetID].name;
             cueName = criAtom.cueSheets[cueSheetID].acb.GetCueInfoList()[cueID].name;
-        }
+        }*/
 
         public void CheckCueNameInfo(){
-            Debug.Log("CueSheet:" + CueSheetName + " Cue:" + CueName);
+            Debug.Log("CueSheet:" + cueSheetName + " Cue:" + cueName);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
 
 public class ConeAttck : MonoBehaviour
 {
@@ -9,7 +10,12 @@ public class ConeAttck : MonoBehaviour
     public GameObject playerObject;
     public float downSpeed;
     private Vector3 nowSpeed;
-    [SerializeField] private ConeBreakSound coneSound;       //サウンド追加分 1/2
+
+    //サウンド追加分 1/2
+    [SerializeField] private CuePlayer cornSound;
+    [SerializeField] private MeshFilter cornMesh;
+    [SerializeField] private Collider cornCollider;
+    //サウンド追加分 1/2 終了
 
     private void Start()
     {
@@ -25,8 +31,8 @@ public class ConeAttck : MonoBehaviour
             nowSpeed = rigid.velocity;
 
             rigid.velocity = Vector3.zero;
-            coneSound.PlayAndDestroyed();                               //サウンド追加分 2/2
-            Destroy(this.gameObject);
+            cornSound.PlayAndDestroy("Corn", ref cornMesh, ref cornCollider);                               //サウンド追加分 2/2
+            //Destroy(this.gameObject);                                                                     //サウンド変更分 1/1
         }
     }
 
