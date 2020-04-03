@@ -18,20 +18,17 @@ namespace SoundSystem{
         [HideInInspector] public string acfName;
         [HideInInspector] public CriAtomAcfInfo.AcbInfo[] acbInfos;
 
-        //定数
-        private const string dataFilePath = "Assets/Editor/10yen/CueNameInfo.txt";
-
-        //プロパティ
-        /*public List<string> CueNames{
-            get{
-                return cueNames;
-            }
-        }*/
-
         //CueNameList初期化時のCriAtom初期化処理
-        public void Reset(){
+        private void Reset(){
             criAtom = GetComponent<CriAtom>();
             criAtom.acfFile = SearchExtention(Application.streamingAssetsPath, true, "acf")[0];
+        }
+
+        private void Awake(){
+            SetGameVariableName();
+        }
+
+        private void Start(){
         }
 
         //CriAtomにacfファイルの名前を登録
@@ -45,8 +42,8 @@ namespace SoundSystem{
             //cueNames.Clear();
 
             foreach(var acbInfo in acbInfos){
-                foreach(var cueInfo in acbInfo.cueInfoList){
-                    cueNameInfos.Add(new CueNameInfo(acbInfo.name, cueInfo.name));
+                foreach(var cueName in acbInfo.cueInfoList){
+                    cueNameInfos.Add(new CueNameInfo(acbInfo.name, cueName.name));
                     //cueNames.Add(cueInfo.name);
                 }
             }
@@ -55,6 +52,21 @@ namespace SoundSystem{
                 CheckCueNameInfos();
             }
             Debug.Log("Set Cue Name List");
+        }
+
+        //各キューのゲーム変数名を取得
+        private void SetGameVariableName(){
+            int j = 0;
+            for(int i = 0; i < cueNameInfos.Count; i++){
+                if(!cueNameInfos[i].cueSheetName.Equals(criAtom.cueSheets[j].name)){
+                    j++;
+                }
+
+                bool succes = criAtom.cueSheets[j].acb.GetCueInfo(cueNameInfos[i].cueName, out var cueInfo);
+                if(succes){
+                    cueNameInfos[i].gameVariableName = cueInfo.gameVariableInfo.name;
+                }
+            }
         }
 
         //指定のキューのCueNameInfoを返す
@@ -105,8 +117,10 @@ namespace SoundSystem{
         //シーン内にあるCuePlayerが適用されたオブジェクトを取得する
         public void LoadCuePlayer(){
             //古いデータの削除
-            Array.Clear(audioSourceObject, 0, audioSourceObject.Length);
-            Array.Resize(ref audioSourceObject, 0);
+            if((audioSourceObject != null) && (audioSourceObject.Length > 0)){
+                Array.Clear(audioSourceObject, 0, audioSourceObject.Length);
+                Array.Resize(ref audioSourceObject, 0);
+            }
             
             audioSourceObject = FindObjectsOfType<CuePlayer>();
         }
@@ -208,16 +222,18 @@ namespace SoundSystem{
     [Serializable] public class CueNameInfo{
         public string cueSheetName;
         public string cueName;
+        public string gameVariableName;
 
-        public CueNameInfo(string cueSheet, string cue){
+        public CueNameInfo(string cueSheet, string cue, string gameVariable= ""){
             cueSheetName = cueSheet;
             cueName = cue;
+            gameVariableName = gameVariable;
         }
 
-        public CueNameInfo(in CriAtom criAtom, int cueSheetID, int cueID){
+        /*public CueNameInfo(in CriAtom criAtom, int cueSheetID, int cueID){
             cueSheetName = criAtom.cueSheets[cueSheetID].name;
             cueName = criAtom.cueSheets[cueSheetID].acb.GetCueInfoList()[cueID].name;
-        }
+        }*/
 
         public void CheckCueNameInfo(){
             Debug.Log("CueSheet:" + cueSheetName + " Cue:" + cueName);
