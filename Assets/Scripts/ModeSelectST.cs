@@ -72,11 +72,13 @@ public class ModeSelectST : MonoBehaviour
         {
             if (selectNum == 1)
             {
+                if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 courseSelectCanvas.SetActive(!courseSelectCanvas.activeInHierarchy);
             }
             else if (selectNum == 2)
             {
+                if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 configCanvas.SetActive(!configCanvas.activeInHierarchy);
             }
