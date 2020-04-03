@@ -88,7 +88,8 @@ GameObject:
   - component: {fileID: 5524917922335328467}
   - component: {fileID: 5524917922335328466}
   - component: {fileID: 5524917922335328465}
-  - component: {fileID: 173160352821273847}
+  - component: {fileID: 4075735018066651264}
+  - component: {fileID: 1004533117820851386}
   m_Layer: 0
   m_Name: JumpJudg
   m_TagString: Jump
@@ -142,9 +143,10 @@ MonoBehaviour:
   playerObject: {fileID: 8817872341665952523, guid: b85e2f067f50d90488413664a0af0f6f,
     type: 3}
   junpSpeed: 2500
-  jumpSound: {fileID: 173160352821273847}
+  jumpSound: {fileID: 1004533117820851386}
+  movePlayer: {fileID: 0}
   hd: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30, type: 3}
---- !u!114 &173160352821273847
+--- !u!114 &4075735018066651264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,11 +159,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playOnStart: 0
-  _cueName: Jump
-  _cueSheet: Game_SE
+  _cueName: 
+  _cueSheet: 
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
+--- !u!114 &1004533117820851386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524917922335328464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criAtomSourceList:
+  - {fileID: 4075735018066651264}
+  cueInfo: {fileID: 0}
+  cueNameList:
+  - Jump
+  playOnStart: 0
+  playCueOnStart: 
