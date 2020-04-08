@@ -150,30 +150,43 @@ MonoBehaviour:
   cueNameInfos:
   - cueSheetName: Game_SE
     cueName: Turn
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Rolling
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Landing
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Willy
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Break
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Jump
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Mud
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Corn
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: CrayBallDebries
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Slip
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Running
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: Falling
+    gameVariableName: 
   - cueSheetName: Game_SE
     cueName: CrayBall
+    gameVariableName: 
   acfName: Tanmen
   acbInfos:
   - name: Game_SE
@@ -445,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criAtomSource: {fileID: 1189040509}
+  criAtomSourceList: []
   cueInfo: {fileID: 722271156}
   cueNameList: []
   playOnStart: 1
