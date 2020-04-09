@@ -1134,13 +1134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criAtom: {fileID: 196767842}
-  audioSourceObject:
-  - {fileID: 199694719}
-  - {fileID: 421653072}
-  - {fileID: 745725192}
-  - {fileID: 1192161578}
-  - {fileID: 1963363933}
-  cueNameInfos:
+  cuePlayers: []
+  exCueInfoList:
   - cueSheetName: Game_SE
     cueName: Turn
     gameVariableName: 
@@ -1180,7 +1175,6 @@ MonoBehaviour:
   - cueSheetName: Game_SE
     cueName: CrayBall
     gameVariableName: 
-  acfName: 
   acbInfos:
   - name: Game_SE
     id: 0
@@ -1444,6 +1438,11 @@ PrefabInstance:
       propertyPath: cueNameList.Array.data[0]
       value: Mud
       objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 196767841}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
 --- !u!1 &199694718 stripped
@@ -1452,18 +1451,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 199694717}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &199694719 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-    type: 3}
-  m_PrefabInstance: {fileID: 199694717}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199694718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &201391801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3628,18 +3615,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411633125}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &421653072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1277616007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &436899070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 468591459109490927, guid: eda07247204e8c949b4062ac516324a6,
@@ -5386,6 +5361,11 @@ PrefabInstance:
       propertyPath: cueNameList.Array.data[4]
       value: Running
       objectReference: {fileID: 0}
+    - target: {fileID: 4278479767375078780, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 196767841}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca, type: 3}
 --- !u!1 &745725190 stripped
@@ -5400,18 +5380,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 745725189}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &745725192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4278479767375078780, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
-    type: 3}
-  m_PrefabInstance: {fileID: 745725189}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745725190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &745725194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8794778561526385242, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
@@ -6477,6 +6445,11 @@ PrefabInstance:
       propertyPath: cueNameList.Array.data[0]
       value: Corn
       objectReference: {fileID: 0}
+    - target: {fileID: 1473413173530166536, guid: 57bd0f70d0479944789082754fd09cfb,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 196767841}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
 --- !u!4 &998950675 stripped
@@ -6503,6 +6476,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpJudg
       objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueInfo
+      value: 
+      objectReference: {fileID: 196767841}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 196767841}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6573,21 +6566,6 @@ PrefabInstance:
       propertyPath: movePlayer
       value: 
       objectReference: {fileID: 745725194}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueNameList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueInfo
-      value: 
-      objectReference: {fileID: 196767841}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: Jump
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 173160352821273847, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
@@ -7026,18 +7004,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1016989750}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1192161578 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1016989750}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192161574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1203083731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7439,6 +7405,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpJudg (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueInfo
+      value: 
+      objectReference: {fileID: 196767841}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 196767841}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7514,21 +7500,6 @@ PrefabInstance:
       propertyPath: movePlayer
       value: 
       objectReference: {fileID: 745725194}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueNameList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueInfo
-      value: 
-      objectReference: {fileID: 196767841}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: Jump
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
 --- !u!4 &1279151652 stripped
@@ -10737,18 +10708,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 979839242}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1963363933 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1473413173530166536, guid: 57bd0f70d0479944789082754fd09cfb,
-    type: 3}
-  m_PrefabInstance: {fileID: 979839242}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963363926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1971733219
 PrefabInstance:
   m_ObjectHideFlags: 0
