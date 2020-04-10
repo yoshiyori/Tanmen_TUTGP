@@ -15,6 +15,12 @@ public class carPlayer : MonoBehaviour
     private bool check;
     public WheelCollider[] FrontWheel;
     public WheelCollider[] RearWheel;
+
+    // カメラの注視点
+    public GameObject CameraLookAt;
+
+    // カメラの位置の配列
+    public GameObject[] CameraPositions;
     // Start is called before the first frame update
     void Start()
     {
