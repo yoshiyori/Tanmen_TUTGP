@@ -11,8 +11,6 @@ public class MudDumplingDivision : MonoBehaviour
 
     //サウンド追加分 1/2
     [SerializeField] private CuePlayer crayBallSound;
-    [SerializeField] private Collider crayBallCollider;
-    private MeshFilter crayBallMesh = null;
     private bool broken = false;
 
     void Start(){
@@ -32,12 +30,10 @@ public class MudDumplingDivision : MonoBehaviour
         }
 
         //サウンド追加分 2/2
-        //Debug.Log(other.gameObject.name);
         if (!broken)
         {
             crayBallSound.Stop();
-            //crayBallSound.Play("CrayBall", 0, 1f);
-            crayBallSound.PlayAndDestroy("CrayBall", ref crayBallMesh, ref crayBallCollider, 0, 1f);
+            crayBallSound.PlayAndDestroy("CrayBall", 0, 1f);
             broken = true;
         }
         //サウンド追加分 2/2 終了

@@ -13,8 +13,7 @@ public class JunpJudg : MonoBehaviour
     private Vector3 nowSpeed;
     private Vector3 playerPosition;
 
-    //サウンド追加分 1/4
-    [SerializeField] private CuePlayer jumpSound;
+    [SerializeField] private CuePlayer jumpSound;                                              //サウンド追加分 1/4
     [SerializeField] private MovePlayer movePlayer;
 
     public Handle hd;//JoyConから数値受け取る時とかに使う

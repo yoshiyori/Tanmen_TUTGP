@@ -65,7 +65,23 @@ public class CuePlayerEditor : Editor{
             if(cueManager != null){
                 GUI.enabled = false;
             }
-            cueManager = (CueManager)EditorGUILayout.ObjectField("Sound Manager", cuePlayer.CueManager, typeof(CueManager), false);
+            cueManager = (CueManager)EditorGUILayout.ObjectField("Sound Manager", cuePlayer.CueManager, typeof(CueManager), true);
+            GUI.enabled = true;
+
+            //自身のMeshFilter
+            //基本的には自動で取得
+            if(cuePlayer.MeshFilter != null){
+                GUI.enabled = false;
+            }
+            cuePlayer.MeshFilter = (MeshFilter)EditorGUILayout.ObjectField("Mesh Filter", cuePlayer.MeshFilter, typeof(MeshFilter), true);
+            GUI.enabled = true;
+
+            //シーン内のCollider
+            //基本的には自動で取得
+            if(cuePlayer.ObjectCollider != null){
+                GUI.enabled = false;
+            }
+            cuePlayer.ObjectCollider = (Collider)EditorGUILayout.ObjectField("Collider", cuePlayer.ObjectCollider, typeof(Collider), true);
             GUI.enabled = true;
 
             EditorGUILayout.BeginHorizontal();

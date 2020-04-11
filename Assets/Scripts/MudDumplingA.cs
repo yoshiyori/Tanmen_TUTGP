@@ -6,20 +6,9 @@ public class MudDumplingA : MonoBehaviour
 {
     //サウンド追加分 1/2
     [SerializeField] private CuePlayer crayBallDebrySound;
-    [SerializeField] private MeshFilter crayBallDebryMesh;
-    [SerializeField] private Collider crayBallDebryCollider;
-    private bool destroy = false;
 
     void Reset(){
         crayBallDebrySound = GetComponent<CuePlayer>();
-        crayBallDebryMesh = GetComponent<MeshFilter>();
-        crayBallDebryCollider = GetComponent<Collider>();
-    }
-
-    void Update(){
-        if(destroy){
-            Destroy(this.gameObject);
-        }
     }
     //サウンド追加分 1/2終了
 
@@ -31,9 +20,8 @@ public class MudDumplingA : MonoBehaviour
             other.rigidbody.velocity = Vector3.zero;
 
             //サウンド追加分 2/2
-            crayBallDebrySound.PlayAndDestroy("CrayBallDebries", ref crayBallDebryMesh, ref crayBallDebryCollider);
-            //Destroy(this.gameObject);                     //サウンド変更部分
-            //destroy = true;
+            crayBallDebrySound.PlayAndDestroy("CrayBallDebries");
+            //Destroy(this.gameObject);                             //サウンド変更部分
         }
     }
 }
