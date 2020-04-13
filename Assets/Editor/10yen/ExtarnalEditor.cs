@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using SoundSystem;
 
 public class ExtarnalEditor : Editor{
     [MenuItem("GameObject/Sound Manager", false, 149)]
     public static void CreateSoundManager(){
-        CueNameList[] cueNameLists = FindObjectsOfType(typeof(CueNameList)) as CueNameList[];
+        CueManager[] cueNameLists = FindObjectsOfType(typeof(CueManager)) as CueManager[];
         if(cueNameLists.Length > 0){
             Debug.LogError("SoundManager already exists.");
 
@@ -16,15 +15,12 @@ public class ExtarnalEditor : Editor{
         }
         else{
             GameObject soundManager = new GameObject("SoundManager");
-            soundManager.AddComponent<CueNameList>();
+            soundManager.AddComponent<CueManager>();
             soundManager.AddComponent<CriWareInitializer>();
             soundManager.AddComponent<CriWareErrorHandler>();
 
             //ヒエラルキー上でSoundManagerを選択
             Selection.activeGameObject = soundManager;
         }
-
-        //CriWareEditor.CreateCriwareLibraryInitalizer();
-        //CriWareEditor.CreateCriwareErrorHandler();
     }
 }
