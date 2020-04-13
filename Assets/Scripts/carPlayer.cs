@@ -7,6 +7,7 @@ public class carPlayer : MonoBehaviour
 
     [Range(-2.0f, +2.0f)]
     public float steering = 0.0f;
+
     public float engineTorqu;
     public float breakTorqu;
     public float maxAngle;
@@ -61,6 +62,18 @@ public class carPlayer : MonoBehaviour
           
         }
 
+        
+        
+
+        Tire();
+
+        TorqueOperation();
+    }
+
+    void Tire()
+    {
+
+
         if (Input.GetKey(KeyCode.RightArrow) && steering < 2.0)
         {
             steering = steering + 0.1f;
@@ -75,10 +88,25 @@ public class carPlayer : MonoBehaviour
         {
             check = true;
         }
-        else if(check == false)
+        else if (check == false)
         {
             steering = 0;
-    
+
         }
+    }
+    void TorqueOperation()
+    {
+
+
+        if (Input.GetKey(KeyCode.DownArrow) && engineTorqu < 100)
+        {
+            breakTorqu = 1.0f;
+
+        }
+        else if(engineTorqu >-100)
+        {
+            engineTorqu -= 40;
+        }
+
     }
 }

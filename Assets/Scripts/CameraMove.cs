@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
 
-    public GameObject AimLookAt;
+    GameObject AimLookAt;
     GameObject AimPosition;
 
     Camera currentCamera;

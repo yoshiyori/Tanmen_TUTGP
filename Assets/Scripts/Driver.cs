@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Driver : MonoBehaviour
 {
-    public carPlayer myCar;
-
+	public carPlayer myCar;
 }
