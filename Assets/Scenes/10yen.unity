@@ -145,9 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criAtom: {fileID: 722271157}
-  audioSourceObject:
+  cuePlayers:
   - {fileID: 1189040508}
-  cueNameInfos:
+  exCueInfoList:
   - cueSheetName: Game_SE
     cueName: Turn
     gameVariableName: 
@@ -187,7 +187,6 @@ MonoBehaviour:
   - cueSheetName: Game_SE
     cueName: CrayBall
     gameVariableName: 
-  acfName: Tanmen
   acbInfos:
   - name: Game_SE
     id: 0
@@ -248,11 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acfFile: Tanmen.acf
-  cueSheets:
-  - name: Game_SE
-    acbFile: Game_SE.acb
-    awbFile: 
-    loaderStatus: 0
+  cueSheets: []
   dspBusSetting: 
   dontDestroyOnLoad: 0
   dontRemoveExistsCueSheet: 0
@@ -288,7 +283,7 @@ MonoBehaviour:
     numberOfLoaders: 16
     numberOfBinders: 8
     numberOfInstallers: 2
-    installBufferSize: 0
+    installBufferSize: 32
     maxPath: 256
     userAgentString: 
     minimizeFileDescriptorUsage: 0
@@ -458,11 +453,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criAtomSourceList: []
-  cueInfo: {fileID: 722271156}
+  criAtomSourceList:
+  - {fileID: 1189040509}
+  cueManager: {fileID: 722271156}
   cueNameList: []
-  playOnStart: 1
-  playCueOnStart: Jump
+  playOnStart: 0
+  playCueNameOnStart: 
 --- !u!114 &1189040509
 MonoBehaviour:
   m_ObjectHideFlags: 0
