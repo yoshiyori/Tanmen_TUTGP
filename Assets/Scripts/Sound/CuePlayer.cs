@@ -177,6 +177,7 @@ public class CuePlayer : MonoBehaviour{
     public bool JudgeAtomSourceStatus(string status, int atomSourceNum = 0){
         return GetAtomSourceStatus(atomSourceNum).ToString().Equals(status);
     }
+    
     //CriAtomSourceの追加
     private CriAtomSource InitializeAtomSource(bool use3dPositioning = true, bool playOnStart = false){
         var atomSource = this.gameObject.AddComponent<CriAtomSource>();
