@@ -19,6 +19,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
     private bool selectStopFlag;
     private bool isTransition;
 
+    [SerializeField] private CuePlayer2D soundManager;                                                  //サウンド追加分
 
     void Start()
     {
@@ -65,7 +66,8 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
         if (isTransition == true/* && fc.isFadeOut == false*/)
         {
-           SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
+            soundManager.PlayOnSceneSwitch("Decision");                                                 //サウンド追加分
+            SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
             isTransition = false;
             selectNum = 0;
         }
@@ -78,6 +80,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
+                soundManager.Play("Select");                                                            //サウンド追加分
                 hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
@@ -91,6 +94,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
+                soundManager.Play("Select");                                                            //サウンド追加分
                 hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;

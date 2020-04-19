@@ -23,6 +23,7 @@ public class ModeSelectST : MonoBehaviour
     private bool selectStopFlag;
     private bool isTransition;
 
+    [SerializeField]　private CuePlayer2D soundManager;         //サウンド追加分
 
     void Start()
     {
@@ -75,14 +76,20 @@ public class ModeSelectST : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 courseSelectCanvas.SetActive(!courseSelectCanvas.activeInHierarchy);
+                soundManager.Play("Decision");                                                          //サウンド追加分
             }
             else if (selectNum == 2)
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 configCanvas.SetActive(!configCanvas.activeInHierarchy);
+                soundManager.Play("Decision");                                                          //サウンド追加分
             }
-            else SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
+            else 
+            {
+                soundManager.PlayOnSceneSwitch("Decision");                                             //サウンド追加分
+                SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
+            }
             selectNum = 0;
             isTransition = false;
         }
@@ -95,6 +102,7 @@ public class ModeSelectST : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
+                soundManager.Play("Select");                                                            //サウンド追加分
                 hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
@@ -108,6 +116,7 @@ public class ModeSelectST : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
+                soundManager.Play("Select");                                                            //サウンド追加分
                 hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;

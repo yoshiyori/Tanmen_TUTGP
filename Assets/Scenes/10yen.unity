@@ -255,50 +255,74 @@ MonoBehaviour:
   cuePlayers:
   - {fileID: 559934608}
   exCueInfoList:
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Turn
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Rolling
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Landing
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Willy
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Break
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Jump
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Mud
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Corn
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: CrayBallDebries
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Slip
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Running
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: Falling
     gameVariableName: 
-  - cueSheetName: Game_SE
+  - cueSheetName: GameSE
     cueName: CrayBall
     gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Decision
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: MenuBack
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Alart
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Select
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Increase
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Decrease
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Pause
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: BackToGame
+    gameVariableName: 
   acbInfos:
-  - name: Game_SE
+  - name: GameSE
     id: 0
     comment: 
-    acbPath: Game_SE.acb
+    acbPath: GameSE.acb
     awbPath: 
     atomGuid: 
     cueInfoList:
@@ -341,6 +365,37 @@ MonoBehaviour:
     - name: CrayBall
       id: 12
       comment: 
+  - name: MenuSE
+    id: 1
+    comment: 
+    acbPath: MenuSE.acb
+    awbPath: 
+    atomGuid: 
+    cueInfoList:
+    - name: Decision
+      id: 0
+      comment: 
+    - name: MenuBack
+      id: 1
+      comment: 
+    - name: Alart
+      id: 2
+      comment: 
+    - name: Select
+      id: 3
+      comment: 
+    - name: Increase
+      id: 4
+      comment: 
+    - name: Decrease
+      id: 5
+      comment: 
+    - name: Pause
+      id: 6
+      comment: 
+    - name: BackToGame
+      id: 7
+      comment: 
 --- !u!114 &722271157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,8 +410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acfFile: Tanmen.acf
   cueSheets:
-  - name: Game_SE
-    acbFile: Game_SE.acb
+  - name: GameSE
+    acbFile: GameSE.acb
     awbFile: 
     loaderStatus: 0
   dspBusSetting: 

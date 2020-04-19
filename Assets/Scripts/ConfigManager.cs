@@ -36,6 +36,7 @@ public class ConfigManager : MonoBehaviour
     private bool selectStopFlag;
     private bool isTransition;
 
+    [SerializeField] private CuePlayer2D soundManager;                          //サウンド追加分
 
     void Start()
     {
@@ -103,6 +104,7 @@ public class ConfigManager : MonoBehaviour
                     else
                     {
                         //モード選択から来た時戻る処理書く
+                        soundManager.Play("MenuBack");                              //サウンド追加分
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
@@ -119,6 +121,7 @@ public class ConfigManager : MonoBehaviour
                     else
                     {
                         //モード選択から来た時戻る処理書く
+                        soundManager.Play("MenuBack");                              //サウンド追加分
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
@@ -139,6 +142,7 @@ public class ConfigManager : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
+                soundManager.Play("Select");                                        //サウンド追加分
                 hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
                 hd.JoyconRumble(1, 160, 320, 0.1f, 100);
             }
@@ -152,6 +156,7 @@ public class ConfigManager : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
+                soundManager.Play("Select");                                        //サウンド追加分
                 hd.JoyconRumble(0, 160, 320, 0.2f, 100);
                 hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
@@ -170,14 +175,17 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum == 0 && bgmSlider.value > 0)
                 {
                     bgmSlider.value -= 1.0f / bgmSliderDivisionNum;
+                    soundManager.Play("Decrease");                                  //サウンド追加分
                 }
                 else if (selectNum == 1 && seSlider.value > 0)
                 {
                     seSlider.value -= 1.0f / seSliderDivisionNum;
+                    soundManager.Play("Decrease");                                  //サウンド追加分
                 }
                 else if (selectNum == 2 && handleSlider.value > 0)
                 {
                     handleSlider.value -= 1.0f / handleSliderDivisionNum;
+                    soundManager.Play("Decrease");                                  //サウンド追加分
                 }
                 else if (selectNum == 4)
                 {
@@ -195,9 +203,21 @@ public class ConfigManager : MonoBehaviour
         {
             if (selectNum < 4)
             {
-                if (selectNum == 0 && bgmSlider.value < 1) bgmSlider.value += 1.0f / bgmSliderDivisionNum;
-                if (selectNum == 1 && seSlider.value < 1) seSlider.value += 1.0f / seSliderDivisionNum;
-                if (selectNum == 2 && handleSlider.value < 1) handleSlider.value += 1.0f / handleSliderDivisionNum;
+                if (selectNum == 0 && bgmSlider.value < 1)
+                {
+                    soundManager.Play("Increase");                                  //サウンド追加分
+                    bgmSlider.value += 1.0f / bgmSliderDivisionNum;
+                }
+                if (selectNum == 1 && seSlider.value < 1)
+                {
+                    soundManager.Play("Increase");                                  //サウンド追加分
+                    seSlider.value += 1.0f / seSliderDivisionNum;
+                }
+                if (selectNum == 2 && handleSlider.value < 1)
+                {
+                    soundManager.Play("Increase");                                  //サウンド追加分
+                    handleSlider.value += 1.0f / handleSliderDivisionNum;
+                }
                 if (selectNum == 3)
                 {
                     if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);

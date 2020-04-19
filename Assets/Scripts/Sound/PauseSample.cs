@@ -17,12 +17,12 @@ public class PauseSample : MonoBehaviour{
         if(Input.GetKeyDown(KeyCode.P) && !pauseNow){
             //キューシート「Game_SE」に属するキューの再生を全て一時停止する
             //一時停止中に再度、再生要求があると再生を再開するため注意 (後々修正するかも)
-            cueManager.PauseCueSheet("Game_SE");
+            cueManager.PauseCueSheet("GameSE");
             pauseNow = true;
         }
         else if(Input.GetKeyDown(KeyCode.P) && pauseNow){
             //キューシート「Game_SE」に属するキューの再生を全て再開するする
-            cueManager.RestartCueSheet("Game_SE");
+            cueManager.RestartCueSheet("GameSE");
             pauseNow = false;
         }
     }

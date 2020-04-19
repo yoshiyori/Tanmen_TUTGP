@@ -16,6 +16,7 @@ public class ExtarnalEditor : Editor{
         else{
             GameObject soundManager = new GameObject("SoundManager");
             soundManager.AddComponent<CueManager>();
+            soundManager.AddComponent<CuePlayer2D>();
             soundManager.AddComponent<CriWareInitializer>();
             soundManager.AddComponent<CriWareErrorHandler>();
 

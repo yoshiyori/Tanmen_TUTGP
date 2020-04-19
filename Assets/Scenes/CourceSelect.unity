@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -480,6 +480,7 @@ MonoBehaviour:
   courseSelectCanvas: {fileID: 241983662}
   configCanvas: {fileID: 1479476799}
   hd: {fileID: 1024871943}
+  soundManager: {fileID: 797366523}
 --- !u!4 &163919221
 Transform:
   m_ObjectHideFlags: 0
@@ -735,7 +736,7 @@ RectTransform:
   - {fileID: 1895327008}
   - {fileID: 1477460701}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1481,7 +1482,7 @@ RectTransform:
   - {fileID: 66259526}
   - {fileID: 163919221}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1990,6 +1991,317 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767839395}
   m_CullTransparentMesh: 0
+--- !u!1 &797366517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797366522}
+  - component: {fileID: 797366521}
+  - component: {fileID: 797366520}
+  - component: {fileID: 797366523}
+  - component: {fileID: 797366519}
+  - component: {fileID: 797366518}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &797366518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797366517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f154ff0ac54c142928b46e94a4ee0790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDebugPrintOnTerminal: 0
+  enableForceCrashOnError: 0
+  dontDestroyOnLoad: 1
+--- !u!114 &797366519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797366517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e49f339aff054453b2d8287aec75bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initializesFileSystem: 1
+  fileSystemConfig:
+    numberOfLoaders: 16
+    numberOfBinders: 8
+    numberOfInstallers: 2
+    installBufferSize: 0
+    maxPath: 256
+    userAgentString: 
+    minimizeFileDescriptorUsage: 0
+    androidDeviceReadBitrate: 50000000
+  initializesAtom: 1
+  atomConfig:
+    acfFileName: 
+    maxVirtualVoices: 32
+    maxVoiceLimitGroups: 32
+    maxCategories: 32
+    maxSequenceEventsPerFrame: 2
+    maxBeatSyncCallbacksPerFrame: 1
+    standardVoicePoolConfig:
+      memoryVoices: 16
+      streamingVoices: 8
+    hcaMxVoicePoolConfig:
+      memoryVoices: 0
+      streamingVoices: 0
+    outputSamplingRate: 0
+    usesInGamePreview: 0
+    serverFrequency: 60
+    asrOutputChannels: 0
+    useRandomSeedWithTime: 0
+    categoriesPerPlayback: 4
+    maxBuses: 8
+    maxParameterBlocks: 1024
+    vrMode: 0
+    pcBufferingTime: 0
+    iosBufferingTime: 50
+    iosOverrideIPodMusic: 0
+    androidBufferingTime: 133
+    androidStartBufferingTime: 100
+    androidLowLatencyStandardVoicePoolConfig:
+      memoryVoices: 0
+      streamingVoices: 0
+    androidUsesAndroidFastMixer: 1
+    androidForceToUseAsrForDefaultPlayback: 1
+  initializesMana: 1
+  manaConfig:
+    numberOfDecoders: 8
+    numberOfMaxEntries: 4
+  dontInitializeOnAwake: 0
+  dontDestroyOnLoad: 0
+--- !u!114 &797366520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797366517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034a0346d0aba6d41ad346bc2d72ef8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criAtom: {fileID: 797366521}
+  cuePlayers: []
+  cuePlayer2Ds:
+  - {fileID: 797366523}
+  exCueInfoList:
+  - cueSheetName: GameSE
+    cueName: Turn
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Rolling
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Landing
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Willy
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Break
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Jump
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Mud
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Corn
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: CrayBallDebries
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Slip
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Running
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Falling
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: CrayBall
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Decision
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: MenuBack
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Alart
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Select
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Increase
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Decrease
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Pause
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: BackToGame
+    gameVariableName: 
+  acbInfos:
+  - name: GameSE
+    id: 0
+    comment: 
+    acbPath: GameSE.acb
+    awbPath: 
+    atomGuid: 
+    cueInfoList:
+    - name: Turn
+      id: 0
+      comment: 
+    - name: Rolling
+      id: 1
+      comment: 
+    - name: Landing
+      id: 2
+      comment: 
+    - name: Willy
+      id: 3
+      comment: 
+    - name: Break
+      id: 4
+      comment: 
+    - name: Jump
+      id: 5
+      comment: 
+    - name: Mud
+      id: 6
+      comment: 
+    - name: Corn
+      id: 7
+      comment: 
+    - name: CrayBallDebries
+      id: 8
+      comment: 
+    - name: Slip
+      id: 9
+      comment: 
+    - name: Running
+      id: 10
+      comment: 
+    - name: Falling
+      id: 11
+      comment: 
+    - name: CrayBall
+      id: 12
+      comment: 
+  - name: MenuSE
+    id: 1
+    comment: 
+    acbPath: MenuSE.acb
+    awbPath: 
+    atomGuid: 
+    cueInfoList:
+    - name: Decision
+      id: 0
+      comment: 
+    - name: MenuBack
+      id: 1
+      comment: 
+    - name: Alart
+      id: 2
+      comment: 
+    - name: Select
+      id: 3
+      comment: 
+    - name: Increase
+      id: 4
+      comment: 
+    - name: Decrease
+      id: 5
+      comment: 
+    - name: Pause
+      id: 6
+      comment: 
+    - name: BackToGame
+      id: 7
+      comment: 
+--- !u!114 &797366521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797366517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acfFile: Tanmen.acf
+  cueSheets:
+  - name: MenuSE
+    acbFile: MenuSE.acb
+    awbFile: 
+    loaderStatus: 0
+  dspBusSetting: 
+  dontDestroyOnLoad: 0
+  dontRemoveExistsCueSheet: 0
+--- !u!4 &797366522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797366517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &797366523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797366517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cueManager: {fileID: 797366520}
+  criAtom: {fileID: 797366521}
+  criWareInitializer: {fileID: 797366519}
+  criWareErrorHandler: {fileID: 797366518}
+  cueNameList:
+  - Decision
+  - Select
+  playOnStart: 0
+  playCueNameOnStart: 
 --- !u!1 &813276442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,7 +2819,7 @@ PrefabInstance:
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
@@ -2672,7 +2984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158644178
 GameObject:
@@ -3218,6 +3530,7 @@ MonoBehaviour:
   - {fileID: 168471116}
   katamukiNum: 0.5
   hd: {fileID: 1024871943}
+  soundManager: {fileID: 797366523}
 --- !u!4 &1477460701
 Transform:
   m_ObjectHideFlags: 0
@@ -3330,7 +3643,7 @@ RectTransform:
   - {fileID: 1284123593}
   - {fileID: 1607970225}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4034,6 +4347,7 @@ MonoBehaviour:
   configCanvas: {fileID: 1479476799}
   returnCanvas: {fileID: 683054369}
   hd: {fileID: 1024871943}
+  soundManager: {fileID: 797366523}
 --- !u!1 &1620495282
 GameObject:
   m_ObjectHideFlags: 0
