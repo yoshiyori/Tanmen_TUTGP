@@ -26,7 +26,7 @@ public class MovePlayer : MonoBehaviour
 	public bool cameraStop;
 
 
-	//サウンド追加分 1/4
+	//サウンド追加分 1/6
 	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
 	//サウンド追加分 1/6 終了
@@ -93,7 +93,7 @@ public class MovePlayer : MonoBehaviour
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
 			cameraStop = true;
 			actionSound.Play("Break"); 
-			//サウンド追加分 2/4
+			//サウンド追加分 2/6
 		}
 		if (rigid.velocity.x > 0)
 		{
@@ -105,12 +105,12 @@ public class MovePlayer : MonoBehaviour
 			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-				actionSound.Play("Break");                                                      //サウンド追加分 2/4
+				actionSound.Play("Break");                                                      //サウンド追加分 3/6
 			}
 			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed, 0, 0);
-				actionSound.Play("Break");                                                      //サウンド追加分 2/4
+				actionSound.Play("Break");                                                      //サウンド追加分 4/6
 			}
 		}
 
@@ -263,7 +263,8 @@ public class MovePlayer : MonoBehaviour
 		//Debug.Log(check);
 		//Debug.Log(count);
 	}
-	//サウンド追加分 4/4
+
+	//サウンド追加分 6/6
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.gameObject.tag.Equals("Road"))
@@ -289,4 +290,5 @@ public class MovePlayer : MonoBehaviour
 			actionSound.Stop(1);
 		}
 	}
+	//サウンド追加分 6/6 終了
 }
