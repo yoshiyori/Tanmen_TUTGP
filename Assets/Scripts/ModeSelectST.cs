@@ -17,6 +17,7 @@ public class ModeSelectST : MonoBehaviour
     [SerializeField] private GameObject modeSelectCanvas;
     [SerializeField] private GameObject courseSelectCanvas;
     [SerializeField] private GameObject configCanvas;
+    [SerializeField] private GameObject titleCanvas;
 
     [SerializeField] Handle hd;
     //[SerializeField] FadeController fc;
@@ -72,6 +73,7 @@ public class ModeSelectST : MonoBehaviour
 
         if (hd.GetLeftBrake() == true || Input.GetKeyDown(KeyCode.Backspace))
         {
+            if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
             isTransition = true;
             selectNum = 3;
         }
@@ -89,6 +91,11 @@ public class ModeSelectST : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 configCanvas.SetActive(!configCanvas.activeInHierarchy);
+            }
+            else if (selectNum == 3)
+            {
+                modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
+                titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
             }
             else SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
             selectNum = 0;
