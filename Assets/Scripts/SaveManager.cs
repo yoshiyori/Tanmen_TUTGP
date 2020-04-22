@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -37,4 +38,19 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public void PourData(RankingSaveData argSave)
+    {
+        Array.Copy(argSave.goalTimes, save.goalTimes, argSave.goalTimes.Length);
+        Array.Copy(argSave.rankerNames, save.rankerNames, argSave.rankerNames.Length);
+    }
+
+    public string[] AbstractionNameData()
+    {
+        return save.rankerNames;
+    }
+
+    public float[] AbstractionTimeData()
+    {
+        return save.goalTimes;
+    }
 }

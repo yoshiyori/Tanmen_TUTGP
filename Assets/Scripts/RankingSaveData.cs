@@ -7,4 +7,5 @@ using UnityEngine;
 public class RankingSaveData {
     public string[] rankerNames;
     public float[] goalTimes;
+
 }
