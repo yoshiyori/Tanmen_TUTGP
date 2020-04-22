@@ -145,11 +145,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113442
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,11 +295,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113444
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,11 +445,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113446
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,8 +541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiuce: 5
   force: 15
-  crayBallSound: {fileID: 0}
-  crayBallCollider: {fileID: 0}
+  crayBallSound: {fileID: 4185489112731406987}
+  crayBallCollider: {fileID: 1361094859983802797}
 --- !u!114 &4528366337804754503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,11 +578,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 4528366337804754503}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - CrayBall
+  cueManager: {fileID: 0}
+  cueNameList: []
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113448
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,11 +727,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113450
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,11 +877,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,11 +1027,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,11 +1177,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,11 +1327,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,11 +1477,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,11 +1627,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,11 +1777,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,11 +1927,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
 --- !u!1 &533749438543113470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,8 +2077,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 6572448249095358329}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - CrayBallDebries
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
