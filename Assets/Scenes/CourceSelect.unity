@@ -778,6 +778,7 @@ MonoBehaviour:
   modeSelectCanvas: {fileID: 683054369}
   courseSelectCanvas: {fileID: 241983662}
   configCanvas: {fileID: 1479476799}
+  titleCanvas: {fileID: 419372691}
   hd: {fileID: 1024871943}
   isConnectJoycon: 0
 --- !u!4 &163919221
@@ -1358,9 +1359,8 @@ MonoBehaviour:
   hd: {fileID: 1024871943}
   fc: {fileID: 875585203}
   isGoRanking: 0
-  titleCanvas: {fileID: 0}
-  modeSelectCanvas: {fileID: 0}
-  rankingCanvas: {fileID: 0}
+  titleCanvas: {fileID: 419372691}
+  modeSelectCanvas: {fileID: 683054369}
 --- !u!1 &379765861
 GameObject:
   m_ObjectHideFlags: 0
