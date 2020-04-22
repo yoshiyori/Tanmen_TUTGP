@@ -6,7 +6,7 @@ using System.Linq;
 public class carPlayer : MonoBehaviour
 {
 
-    [Range(-2.0f, +2.0f)]
+    [Range(-1.0f, +1.0f)]
     public float steering = 0.0f;
 
     public float engineTorqu;
@@ -54,6 +54,10 @@ public class carPlayer : MonoBehaviour
         {
             wheel.motorTorque = torqu;
         }
+        foreach (var wheel in FrontWheel)
+        {
+            wheel.motorTorque = torqu;
+        }
 
         float breakTorqu2 = maxBreakTorqe * breakTorqu;
 
@@ -93,25 +97,17 @@ public class carPlayer : MonoBehaviour
     {
 
 
-        if (Input.GetKey(KeyCode.RightArrow) && steering < 2.0)
+        if (Input.GetKey(KeyCode.RightArrow) && steering < 1.0)
         {
-            steering = steering + 0.1f;
-            check = true;
+            steering = steering + 0.001f;
+           
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && steering > -2.0)
+        else if (Input.GetKey(KeyCode.LeftArrow) && steering > -1.0)
         {
-            steering = steering + -0.1f;
-            check = true;
+            steering = steering + -0.001f;
+          
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-        {
-            check = true;
-        }
-        else if (check == false)
-        {
-            steering = 0;
-
-        }
+        
     }
     void TorqueOperation()
     {
