@@ -22,8 +22,8 @@ public class RankingST : MonoBehaviour
         if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            isTransition = true;
-            fc.isFadeOut = true;
+            //isTransition = true;
+            //fc.isFadeOut = true;
         }
 
         if (isTransition == true && fc.isFadeOut == false)
