@@ -19,6 +19,8 @@ public class Handle : MonoBehaviour
 
     //[SerializeField] bool rlCheck;//checkの場合right
 
+    public bool isConnectHandle;
+
     private void Start()
     {
         var joycons = JoyconManager.Instance.j;
@@ -27,10 +29,15 @@ public class Handle : MonoBehaviour
 
         rBrake = false;
         lBrake = false;
+
+        if (m_joyconR != null || m_joyconL != null) isConnectHandle = true;
+        else isConnectHandle = false;
+
     }
 
     private void Update()
     {
+        if (m_joyconR == null || m_joyconL == null) return;
         rButton = null;
         lButton = null;
 
