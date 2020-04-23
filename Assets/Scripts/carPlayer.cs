@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class carPlayer : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class carPlayer : MonoBehaviour
 
     // カメラの位置の配列
     public GameObject[] CameraPositions;
+
+    //サウンド追加分 1/3
+    [SerializeField] private CuePlayer playerSound;
+    [SerializeField] private Rigidbody playerRigid;
+    //サウンド追加分 1/3 終了
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +75,18 @@ public class carPlayer : MonoBehaviour
         Tire();
 
         TorqueOperation();
+
+        //サウンド追加分 2/3
+        if((FrontWheel.Any(wheel => wheel.isGrounded) || RearWheel.Any(wheel => wheel.isGrounded)) &&
+            playerRigid.velocity.magnitude > 0.5f && !playerSound.JudgeAtomSourceStatus("Playing", 1))
+        {
+            playerSound.Play("Running", 1);
+        }
+        else
+        {
+            playerSound.Stop(1);
+        }
+        //サウンド追加分 2/3 終了
     }
 
     void Tire()
@@ -96,7 +115,11 @@ public class carPlayer : MonoBehaviour
     }
     void TorqueOperation()
     {
-
+        //サウンド追加分 3/3
+        if(Input.GetKey(KeyCode.DownArrow)){
+            playerSound.Play("Break");
+        }
+        //サウンド追加分 3/3 終了
 
         if (Input.GetKey(KeyCode.DownArrow) && engineTorqu < 100)
         {

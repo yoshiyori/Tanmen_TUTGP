@@ -17,12 +17,13 @@ public class ModeSelectST : MonoBehaviour
     [SerializeField] private GameObject modeSelectCanvas;
     [SerializeField] private GameObject courseSelectCanvas;
     [SerializeField] private GameObject configCanvas;
+    [SerializeField] private GameObject titleCanvas;
 
     [SerializeField] Handle hd;
     //[SerializeField] FadeController fc;
     private bool selectStopFlag;
     private bool isTransition;
-
+    [SerializeField] private bool isConnectJoycon;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class ModeSelectST : MonoBehaviour
         //if (modeSelectCanvas.activeInHierarchy == false) modeSelectCanvas.SetActive(true);
         if (stopTime == 0) stopTime = 0.6f;
         if (katamukiNum == 0) katamukiNum = 0.5f;
+        if (hd.isConnectHandle) isConnectJoycon = true;
     }
 
 
@@ -61,11 +63,19 @@ public class ModeSelectST : MonoBehaviour
             }
         }
 
-        if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
+        if ((hd.GetRightBrake() == true) ||
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             isTransition = true;
+            //Debug.Log("ModeselectPushSpace");
             //fc.isFadeOut = true;
+        }
+
+        if (hd.GetLeftBrake() == true || Input.GetKeyDown(KeyCode.Backspace))
+        {
+            if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+            isTransition = true;
+            selectNum = 3;
         }
 
         if (isTransition == true/* && fc.isFadeOut == false*/)
@@ -82,6 +92,11 @@ public class ModeSelectST : MonoBehaviour
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 configCanvas.SetActive(!configCanvas.activeInHierarchy);
             }
+            else if (selectNum == 3)
+            {
+                modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
+                titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
+            }
             else SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
             selectNum = 0;
             isTransition = false;
@@ -95,7 +110,7 @@ public class ModeSelectST : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
-                hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }
@@ -108,7 +123,7 @@ public class ModeSelectST : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
-                hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }

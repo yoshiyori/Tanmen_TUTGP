@@ -30,11 +30,15 @@ public class ConfigManager : MonoBehaviour
 
     [SerializeField] private GameObject configCanvas;
     [SerializeField] private GameObject returnCanvas;//config入る前に使ってたキャンバス(キャンバス使ってなかったら違うのまた作る)
+    [SerializeField] private GameObject configAlertYesPanel;
+    [SerializeField] private GameObject configAlertNoPanel;
 
     [SerializeField] Handle hd;
     //[SerializeField] FadeController fc;
     private bool selectStopFlag;
     private bool isTransition;
+    [SerializeField] private bool isAlertStandup;
+    private bool isConnectJoycon;
 
 
     void Start()
@@ -53,6 +57,8 @@ public class ConfigManager : MonoBehaviour
         bgmSlider.value = 0.5f;
         seSlider.value = 0.5f;
         handleSlider.value = 0.5f;
+        isAlertStandup = false;
+        if (hd.isConnectHandle) isConnectJoycon = true;
     }
 
 
@@ -77,14 +83,42 @@ public class ConfigManager : MonoBehaviour
         }
 
         if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
-            Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false); ;
-            isTransition = true;
+            //isTransition = true;
             //fc.isFadeOut = true;
+            if (selectNum == 3)
+            {
+                isAlertStandup = true;
+                configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+                
+            }
+            if (selectNum == 4)
+            {
+                isAlertStandup = true;
+                configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+                
+            }
         }
 
-        if (isTransition == true/* && fc.isFadeOut == false*/)
+        if (isAlertStandup)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || hd.GetRightBrake() == true)
+            {
+                isTransition = true;
+                //Debug.Log("alertDisplaySpaceKey");
+                isAlertStandup = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Backspace) || hd.GetLeftBrake() == true)
+            {
+                if (configAlertYesPanel.activeInHierarchy) configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+                else if (configAlertNoPanel.activeInHierarchy) configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+                isAlertStandup = false;
+            }
+        }
+
+        if (isTransition == true/* && fc.isFadeOut == false*/ && isAlertStandup == false)
         {
             isTransition = false;
             switch (selectNum)
@@ -102,11 +136,16 @@ public class ConfigManager : MonoBehaviour
                     }
                     else
                     {
+                        if (configAlertYesPanel.activeInHierarchy) configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+                        else if (configAlertNoPanel.activeInHierarchy) configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+
+                        if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+
                         //モード選択から来た時戻る処理書く
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
-                    if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+                    //if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                     selectNum = 0;
                     break;
                 case 4:
@@ -118,6 +157,11 @@ public class ConfigManager : MonoBehaviour
                     }
                     else
                     {
+                        if (configAlertYesPanel.activeInHierarchy) configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+                        else if (configAlertNoPanel.activeInHierarchy) configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+
+                        if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+
                         //モード選択から来た時戻る処理書く
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
@@ -127,9 +171,7 @@ public class ConfigManager : MonoBehaviour
                     break;
                 default:
                     break;
-            }
-            
-            
+            }            
         }
 
         if ((hd.GetControllerSwing() <= -8 && selectStopFlag == false) 
@@ -139,8 +181,11 @@ public class ConfigManager : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
-                hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
-                hd.JoyconRumble(1, 160, 320, 0.1f, 100);
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                    hd.JoyconRumble(1, 160, 320, 0.1f, 100);
+                }
             }
             selectStopFlag = true;
         }
@@ -152,8 +197,11 @@ public class ConfigManager : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
-                hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                }
             }
             selectStopFlag = true;
         }
@@ -184,7 +232,7 @@ public class ConfigManager : MonoBehaviour
                     if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                     selectNum = 3;
                 }
-                hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }
@@ -203,7 +251,7 @@ public class ConfigManager : MonoBehaviour
                     if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                     selectNum = 4;
                 }
-                hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }

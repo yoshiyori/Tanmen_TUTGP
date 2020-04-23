@@ -182,6 +182,8 @@ GameObject:
   - component: {fileID: 8424778944221291806}
   - component: {fileID: 8424778944221291802}
   - component: {fileID: 8424778944221291797}
+  - component: {fileID: 4190874370721765889}
+  - component: {fileID: 4811771378653654366}
   m_Layer: 0
   m_Name: Player3
   m_TagString: player
@@ -309,6 +311,52 @@ MonoBehaviour:
   - {fileID: 8424778944610367912}
   CameraLookAt: {fileID: 0}
   CameraPositions: []
+  playerSound: {fileID: 4811771378653654366}
+  playerRigid: {fileID: 8424778944221291802}
+  wheelGroundingJudges:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &4190874370721765889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424778944221291807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _cueName: 
+  _cueSheet: 
+  _use3dPositioning: 1
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+--- !u!114 &4811771378653654366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424778944221291807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criAtomSourceList:
+  - {fileID: 4190874370721765889}
+  cueManager: {fileID: 0}
+  cueNameList: []
+  playOnStart: 0
+  playCueNameOnStart: 
 --- !u!1 &8424778944540036308
 GameObject:
   m_ObjectHideFlags: 0
