@@ -313,11 +313,6 @@ MonoBehaviour:
   CameraPositions: []
   playerSound: {fileID: 4811771378653654366}
   playerRigid: {fileID: 8424778944221291802}
-  wheelGroundingJudges:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &4190874370721765889
 MonoBehaviour:
   m_ObjectHideFlags: 0
