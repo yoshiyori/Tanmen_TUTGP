@@ -16,11 +16,22 @@ public class ExtarnalEditor : Editor{
         else{
             GameObject soundManager = new GameObject("SoundManager");
             soundManager.AddComponent<CueManager>();
+            soundManager.AddComponent<CuePlayer2D>();
             soundManager.AddComponent<CriWareInitializer>();
-            soundManager.AddComponent<CriWareErrorHandler>();
+            //soundManager.AddComponent<CriWareErrorHandler>();
 
             //ヒエラルキー上でSoundManagerを選択
             Selection.activeGameObject = soundManager;
+        }
+
+        CreateErrorHandler();
+    }
+
+    private static void CreateErrorHandler(){
+        CriWareErrorHandler[] errorHandlers = FindObjectsOfType(typeof(CriWareErrorHandler)) as CriWareErrorHandler[];
+        if(errorHandlers.Length <= 0){
+            GameObject errorHandler = new GameObject("CriWareErrorHandler");
+            errorHandler.AddComponent<CriWareErrorHandler>();
         }
     }
 }

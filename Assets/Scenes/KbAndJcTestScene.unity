@@ -1025,238 +1025,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181654641}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &196767838
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 196767843}
-  - component: {fileID: 196767842}
-  - component: {fileID: 196767841}
-  - component: {fileID: 196767840}
-  - component: {fileID: 196767839}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &196767839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196767838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f154ff0ac54c142928b46e94a4ee0790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableDebugPrintOnTerminal: 0
-  enableForceCrashOnError: 0
-  dontDestroyOnLoad: 1
---- !u!114 &196767840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196767838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e49f339aff054453b2d8287aec75bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initializesFileSystem: 1
-  fileSystemConfig:
-    numberOfLoaders: 16
-    numberOfBinders: 8
-    numberOfInstallers: 2
-    installBufferSize: 0
-    maxPath: 256
-    userAgentString: 
-    minimizeFileDescriptorUsage: 0
-    androidDeviceReadBitrate: 50000000
-  initializesAtom: 1
-  atomConfig:
-    acfFileName: 
-    maxVirtualVoices: 32
-    maxVoiceLimitGroups: 32
-    maxCategories: 32
-    maxSequenceEventsPerFrame: 2
-    maxBeatSyncCallbacksPerFrame: 1
-    standardVoicePoolConfig:
-      memoryVoices: 16
-      streamingVoices: 8
-    hcaMxVoicePoolConfig:
-      memoryVoices: 0
-      streamingVoices: 0
-    outputSamplingRate: 0
-    usesInGamePreview: 0
-    serverFrequency: 60
-    asrOutputChannels: 0
-    useRandomSeedWithTime: 0
-    categoriesPerPlayback: 4
-    maxBuses: 8
-    maxParameterBlocks: 1024
-    vrMode: 0
-    pcBufferingTime: 0
-    iosBufferingTime: 50
-    iosOverrideIPodMusic: 0
-    androidBufferingTime: 133
-    androidStartBufferingTime: 100
-    androidLowLatencyStandardVoicePoolConfig:
-      memoryVoices: 0
-      streamingVoices: 0
-    androidUsesAndroidFastMixer: 1
-    androidForceToUseAsrForDefaultPlayback: 1
-  initializesMana: 1
-  manaConfig:
-    numberOfDecoders: 8
-    numberOfMaxEntries: 4
-  dontInitializeOnAwake: 0
-  dontDestroyOnLoad: 0
---- !u!114 &196767841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196767838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034a0346d0aba6d41ad346bc2d72ef8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtom: {fileID: 196767842}
-  cuePlayers: []
-  exCueInfoList:
-  - cueSheetName: Game_SE
-    cueName: Turn
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Rolling
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Landing
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Willy
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Break
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Jump
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Mud
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Corn
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: CrayBallDebries
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Slip
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Running
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: Falling
-    gameVariableName: 
-  - cueSheetName: Game_SE
-    cueName: CrayBall
-    gameVariableName: 
-  acbInfos:
-  - name: Game_SE
-    id: 0
-    comment: 
-    acbPath: Game_SE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Turn
-      id: 0
-      comment: 
-    - name: Rolling
-      id: 1
-      comment: 
-    - name: Landing
-      id: 2
-      comment: 
-    - name: Willy
-      id: 3
-      comment: 
-    - name: Break
-      id: 4
-      comment: 
-    - name: Jump
-      id: 5
-      comment: 
-    - name: Mud
-      id: 6
-      comment: 
-    - name: Corn
-      id: 7
-      comment: 
-    - name: CrayBallDebries
-      id: 8
-      comment: 
-    - name: Slip
-      id: 9
-      comment: 
-    - name: Running
-      id: 10
-      comment: 
-    - name: Falling
-      id: 11
-      comment: 
-    - name: CrayBall
-      id: 12
-      comment: 
---- !u!114 &196767842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196767838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acfFile: Tanmen.acf
-  cueSheets:
-  - name: Game_SE
-    acbFile: Game_SE.acb
-    awbFile: 
-    loaderStatus: 0
-  dspBusSetting: 
-  dontDestroyOnLoad: 0
-  dontRemoveExistsCueSheet: 0
---- !u!4 &196767843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196767838}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &197277189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1432,7 +1200,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
@@ -1442,7 +1210,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueManager
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
 --- !u!1 &199694718 stripped
@@ -1451,6 +1219,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 199694717}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &199694719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 199694717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199694718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &201391801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2532,6 +2312,308 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eda07247204e8c949b4062ac516324a6, type: 3}
+--- !u!1 &343388626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343388631}
+  - component: {fileID: 343388630}
+  - component: {fileID: 343388629}
+  - component: {fileID: 343388627}
+  - component: {fileID: 343388628}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &343388627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343388626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e49f339aff054453b2d8287aec75bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initializesFileSystem: 1
+  fileSystemConfig:
+    numberOfLoaders: 16
+    numberOfBinders: 8
+    numberOfInstallers: 2
+    installBufferSize: 0
+    maxPath: 256
+    userAgentString: 
+    minimizeFileDescriptorUsage: 0
+    androidDeviceReadBitrate: 50000000
+  initializesAtom: 1
+  atomConfig:
+    acfFileName: 
+    maxVirtualVoices: 32
+    maxVoiceLimitGroups: 32
+    maxCategories: 32
+    maxSequenceEventsPerFrame: 2
+    maxBeatSyncCallbacksPerFrame: 1
+    standardVoicePoolConfig:
+      memoryVoices: 16
+      streamingVoices: 8
+    hcaMxVoicePoolConfig:
+      memoryVoices: 0
+      streamingVoices: 0
+    outputSamplingRate: 0
+    usesInGamePreview: 0
+    serverFrequency: 60
+    asrOutputChannels: 0
+    useRandomSeedWithTime: 0
+    categoriesPerPlayback: 4
+    maxBuses: 8
+    maxParameterBlocks: 1024
+    vrMode: 0
+    pcBufferingTime: 0
+    iosBufferingTime: 50
+    iosOverrideIPodMusic: 0
+    androidBufferingTime: 133
+    androidStartBufferingTime: 100
+    androidLowLatencyStandardVoicePoolConfig:
+      memoryVoices: 0
+      streamingVoices: 0
+    androidUsesAndroidFastMixer: 1
+    androidForceToUseAsrForDefaultPlayback: 1
+  initializesMana: 1
+  manaConfig:
+    numberOfDecoders: 8
+    numberOfMaxEntries: 4
+  dontInitializeOnAwake: 0
+  dontDestroyOnLoad: 0
+--- !u!114 &343388628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343388626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cueManager: {fileID: 343388629}
+  criAtom: {fileID: 343388630}
+  criWareInitializer: {fileID: 343388627}
+  criWareErrorHandler: {fileID: 0}
+  cueNameList: []
+  playOnStart: 1
+  playCueNameOnStart: Decision
+--- !u!114 &343388629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343388626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034a0346d0aba6d41ad346bc2d72ef8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criAtom: {fileID: 343388630}
+  cuePlayers:
+  - {fileID: 199694719}
+  - {fileID: 745725192}
+  - {fileID: 979839243}
+  - {fileID: 1016989751}
+  - {fileID: 1277616008}
+  cuePlayer2Ds:
+  - {fileID: 343388628}
+  exCueInfoList:
+  - cueSheetName: GameSE
+    cueName: Turn
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Rolling
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Landing
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Willy
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Break
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Jump
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Mud
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Corn
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: CrayBallDebries
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Slip
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Running
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Falling
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: CrayBall
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Decision
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: MenuBack
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Alart
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Select
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Increase
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Decrease
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: Pause
+    gameVariableName: 
+  - cueSheetName: MenuSE
+    cueName: BackToGame
+    gameVariableName: 
+  acbInfos:
+  - name: GameSE
+    id: 0
+    comment: 
+    acbPath: GameSE.acb
+    awbPath: 
+    atomGuid: 
+    cueInfoList:
+    - name: Turn
+      id: 0
+      comment: 
+    - name: Rolling
+      id: 1
+      comment: 
+    - name: Landing
+      id: 2
+      comment: 
+    - name: Willy
+      id: 3
+      comment: 
+    - name: Break
+      id: 4
+      comment: 
+    - name: Jump
+      id: 5
+      comment: 
+    - name: Mud
+      id: 6
+      comment: 
+    - name: Corn
+      id: 7
+      comment: 
+    - name: CrayBallDebries
+      id: 8
+      comment: 
+    - name: Slip
+      id: 9
+      comment: 
+    - name: Running
+      id: 10
+      comment: 
+    - name: Falling
+      id: 11
+      comment: 
+    - name: CrayBall
+      id: 12
+      comment: 
+  - name: MenuSE
+    id: 1
+    comment: 
+    acbPath: MenuSE.acb
+    awbPath: 
+    atomGuid: 
+    cueInfoList:
+    - name: Decision
+      id: 0
+      comment: 
+    - name: MenuBack
+      id: 1
+      comment: 
+    - name: Alart
+      id: 2
+      comment: 
+    - name: Select
+      id: 3
+      comment: 
+    - name: Increase
+      id: 4
+      comment: 
+    - name: Decrease
+      id: 5
+      comment: 
+    - name: Pause
+      id: 6
+      comment: 
+    - name: BackToGame
+      id: 7
+      comment: 
+--- !u!114 &343388630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343388626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acfFile: Tanmen.acf
+  cueSheets:
+  - name: GameSE
+    acbFile: GameSE.acb
+    awbFile: 
+    loaderStatus: 0
+  - name: MenuSE
+    acbFile: MenuSE.acb
+    awbFile: 
+    loaderStatus: 0
+  dspBusSetting: 
+  dontDestroyOnLoad: 0
+  dontRemoveExistsCueSheet: 0
+--- !u!4 &343388631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343388626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &343429141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3983,6 +4065,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f310e8300762964478ffc3b60761d27d, type: 3}
+--- !u!1 &521890310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521890312}
+  - component: {fileID: 521890311}
+  m_Layer: 0
+  m_Name: CriWareErrorHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &521890311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521890310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f154ff0ac54c142928b46e94a4ee0790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDebugPrintOnTerminal: 0
+  enableForceCrashOnError: 0
+  dontDestroyOnLoad: 1
+--- !u!4 &521890312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521890310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &530062478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 468591459109490927, guid: eda07247204e8c949b4062ac516324a6,
@@ -5335,7 +5463,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 4278479767375078780, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
@@ -5365,7 +5493,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueManager
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca, type: 3}
 --- !u!1 &745725190 stripped
@@ -5380,6 +5508,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 745725189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &745725192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4278479767375078780, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 745725189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745725190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &745725194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8794778561526385242, guid: bcd5f7bd7fdb1e14c814999d59b8a0ca,
@@ -6439,7 +6579,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 1473413173530166536, guid: 57bd0f70d0479944789082754fd09cfb,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
@@ -6449,9 +6589,21 @@ PrefabInstance:
         type: 3}
       propertyPath: cueManager
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57bd0f70d0479944789082754fd09cfb, type: 3}
+--- !u!114 &979839243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1473413173530166536, guid: 57bd0f70d0479944789082754fd09cfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 979839242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963363926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &998950675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 468591459109490927, guid: eda07247204e8c949b4062ac516324a6,
@@ -6485,7 +6637,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
@@ -6495,7 +6647,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueManager
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6569,6 +6721,18 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 173160352821273847, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
+--- !u!114 &1016989751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1016989750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192161574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1055912705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 468591459109490927, guid: eda07247204e8c949b4062ac516324a6,
@@ -7414,7 +7578,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
@@ -7424,7 +7588,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueManager
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7502,6 +7666,18 @@ PrefabInstance:
       objectReference: {fileID: 745725194}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
+--- !u!114 &1277616008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1277616007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1279151652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 468591459109490927, guid: eda07247204e8c949b4062ac516324a6,
@@ -7937,11 +8113,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JoyConManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7995,6 +8166,11 @@ PrefabInstance:
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578493, guid: 7664534e7a06ef1469ca5d64c95dfd30,
@@ -9997,7 +10173,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 2469134456893037559, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: _cueName
@@ -10017,7 +10193,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 2264492164093424408, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
@@ -10047,7 +10223,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cueInfo
       value: 
-      objectReference: {fileID: 196767841}
+      objectReference: {fileID: 0}
     - target: {fileID: 6380993592543183309, guid: b85e2f067f50d90488413664a0af0f6f,
         type: 3}
       propertyPath: criAtomSource
