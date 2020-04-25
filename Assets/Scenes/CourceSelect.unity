@@ -780,8 +780,8 @@ MonoBehaviour:
   configCanvas: {fileID: 1479476799}
   titleCanvas: {fileID: 419372691}
   hd: {fileID: 1024871943}
-  soundManager: {fileID: 797366523}
   isConnectJoycon: 0
+  soundManager: {fileID: 797366523}
 --- !u!4 &163919221
 Transform:
   m_ObjectHideFlags: 0
@@ -1362,6 +1362,7 @@ MonoBehaviour:
   isGoRanking: 0
   titleCanvas: {fileID: 419372691}
   modeSelectCanvas: {fileID: 683054369}
+  soundManager: {fileID: 797366523}
 --- !u!1 &379765861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,7 +2999,6 @@ GameObject:
   - component: {fileID: 797366520}
   - component: {fileID: 797366523}
   - component: {fileID: 797366519}
-  - component: {fileID: 797366518}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -3006,21 +3006,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &797366518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797366517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f154ff0ac54c142928b46e94a4ee0790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableDebugPrintOnTerminal: 0
-  enableForceCrashOnError: 0
-  dontDestroyOnLoad: 1
 --- !u!114 &797366519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3290,10 +3275,14 @@ MonoBehaviour:
   cueManager: {fileID: 797366520}
   criAtom: {fileID: 797366521}
   criWareInitializer: {fileID: 797366519}
-  criWareErrorHandler: {fileID: 797366518}
+  criWareErrorHandler: {fileID: 0}
   cueNameList:
   - Decision
   - Select
+  - Decrease
+  - Increase
+  - MenuBack
+  - Alart
   playOnStart: 0
   playCueNameOnStart: 
 --- !u!1 &813276442
@@ -3743,6 +3732,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875801889}
   m_CullTransparentMesh: 0
+--- !u!1 &888422142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888422144}
+  - component: {fileID: 888422143}
+  m_Layer: 0
+  m_Name: CriWareErrorHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &888422143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888422142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f154ff0ac54c142928b46e94a4ee0790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDebugPrintOnTerminal: 0
+  enableForceCrashOnError: 0
+  dontDestroyOnLoad: 1
+--- !u!4 &888422144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888422142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912261036
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,6 +4939,10 @@ MonoBehaviour:
   - {fileID: 168471116}
   katamukiNum: 0.5
   hd: {fileID: 1024871943}
+  courseSelectCanvas: {fileID: 241983662}
+  returnCanvas: {fileID: 683054369}
+  isConnectJoycon: 0
+  soundManager: {fileID: 797366523}
 --- !u!4 &1477460701
 Transform:
   m_ObjectHideFlags: 0
@@ -5018,7 +5057,7 @@ RectTransform:
   - {fileID: 1812258219}
   - {fileID: 1607970225}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5801,6 +5840,8 @@ MonoBehaviour:
   configAlertYesPanel: {fileID: 1863176599}
   configAlertNoPanel: {fileID: 1812258218}
   hd: {fileID: 1024871943}
+  isAlertStandup: 0
+  soundManager: {fileID: 797366523}
 --- !u!1 &1620495282
 GameObject:
   m_ObjectHideFlags: 0

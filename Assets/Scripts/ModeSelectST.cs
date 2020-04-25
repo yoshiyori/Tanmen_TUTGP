@@ -25,7 +25,7 @@ public class ModeSelectST : MonoBehaviour
     private bool isTransition;
     [SerializeField] private bool isConnectJoycon;
 
-    [SerializeField]　private CuePlayer2D soundManager;         //サウンド追加分
+    [SerializeField]　private CuePlayer2D soundManager;         //サウンド追加分 1/5
 
     void Start()
     {
@@ -87,16 +87,20 @@ public class ModeSelectST : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 courseSelectCanvas.SetActive(!courseSelectCanvas.activeInHierarchy);
-                soundManager.Play("Decision");                                                          //サウンド追加分
+                soundManager.Play("Decision");                                                          //サウンド追加分 2/5
             }
             else if (selectNum == 2)
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 configCanvas.SetActive(!configCanvas.activeInHierarchy);
-                soundManager.Play("Decision");                                                          //サウンド追加分
+                soundManager.Play("Decision");                                                          //サウンド追加分 3/5
             }
-            else SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
+            else
+            {
+                //soundManager.PlayOnSceneSwitch("Decision");
+                SceneManager.LoadScene(modeName[selectNum], LoadSceneMode.Single);
+            }
             selectNum = 0;
             isTransition = false;
         }
@@ -109,7 +113,8 @@ public class ModeSelectST : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
-                hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                soundManager.Play("Select");                                                            //サウンド追加分 4/5
+                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }
@@ -122,7 +127,8 @@ public class ModeSelectST : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
-                hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                soundManager.Play("Select");                                                            //サウンド追加分 5/5
+                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }

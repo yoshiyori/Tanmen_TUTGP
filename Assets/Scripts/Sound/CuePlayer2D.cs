@@ -156,6 +156,7 @@ public class CuePlayer2D : MonoBehaviour{
 
         //不要なコンポーネントを削除
         Destroy(cueManager);
+        //Destroy(criAtom);
 
         //音の再生が終了したら破壊
         destroyAfterPlay = DestroyAfterPlay(this.gameObject);
@@ -204,6 +205,10 @@ public class CuePlayer2D : MonoBehaviour{
     //PlayOnStartの実行
     private void Start(){
         if(playOnStart){
+            if(criAtomExPlayerList.Count < 1){
+                criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            }
+            
             criAtomExPlayerList[0].SetCue(CriAtom.GetAcb(cueManager.GetCueSheetName(playCueNameOnStart).cueSheetName), playCueNameOnStart);
             criAtomExPlayerList[0].Start();
         }

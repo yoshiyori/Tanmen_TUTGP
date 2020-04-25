@@ -40,7 +40,7 @@ public class ConfigManager : MonoBehaviour
     [SerializeField] private bool isAlertStandup;
     private bool isConnectJoycon;
 
-    [SerializeField] private CuePlayer2D soundManager;                          //サウンド追加分
+    [SerializeField] private CuePlayer2D soundManager;                          //サウンド追加分 1/15
 
     void Start()
     {
@@ -92,12 +92,14 @@ public class ConfigManager : MonoBehaviour
             if (selectNum == 3)
             {
                 isAlertStandup = true;
+                soundManager.Play("Alart");                                             //サウンド追加分 2/15
                 configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
                 
             }
             if (selectNum == 4)
             {
                 isAlertStandup = true;
+                soundManager.Play("Alart");                                             //サウンド追加分 3/15
                 configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
                 
             }
@@ -143,7 +145,7 @@ public class ConfigManager : MonoBehaviour
                         if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
 
                         //モード選択から来た時戻る処理書く
-                        soundManager.Play("MenuBack");                              //サウンド追加分
+                        soundManager.Play("MenuBack");                              //サウンド追加分 4/15
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
@@ -165,7 +167,7 @@ public class ConfigManager : MonoBehaviour
                         if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
 
                         //モード選択から来た時戻る処理書く
-                        soundManager.Play("MenuBack");                              //サウンド追加分
+                        soundManager.Play("MenuBack");                              //サウンド追加分 5/15
                         configCanvas.SetActive(!configCanvas.activeInHierarchy);
                         returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
@@ -184,9 +186,9 @@ public class ConfigManager : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
+                soundManager.Play("Select");                                         //サウンド追加分 6/15
                 if (isConnectJoycon)
                 {
-                    soundManager.Play("Select");;                                        //サウンド追加分
                     hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
                     hd.JoyconRumble(1, 160, 320, 0.1f, 100);
                 }
@@ -201,6 +203,7 @@ public class ConfigManager : MonoBehaviour
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
+                soundManager.Play("Select");                                         //サウンド追加分 7/15
                 hd.JoyconRumble(0, 160, 320, 0.2f, 100);
                 hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
@@ -219,22 +222,23 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum == 0 && bgmSlider.value > 0)
                 {
                     bgmSlider.value -= 1.0f / bgmSliderDivisionNum;
-                    soundManager.Play("Decrease");                                  //サウンド追加分
+                    soundManager.Play("Decrease");                                  //サウンド追加分 8/15
                 }
                 else if (selectNum == 1 && seSlider.value > 0)
                 {
                     seSlider.value -= 1.0f / seSliderDivisionNum;
-                    soundManager.Play("Decrease");                                  //サウンド追加分
+                    soundManager.Play("Decrease");                                  //サウンド追加分 9/15
                 }
                 else if (selectNum == 2 && handleSlider.value > 0)
                 {
                     handleSlider.value -= 1.0f / handleSliderDivisionNum;
-                    soundManager.Play("Decrease");                                  //サウンド追加分
+                    soundManager.Play("Decrease");                                  //サウンド追加分 10/15
                 }
                 else if (selectNum == 4)
                 {
                     if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                     selectNum = 3;
+                    soundManager.Play("Select");                                     //サウンド追加分 11/15
                 }
                 if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
@@ -249,23 +253,24 @@ public class ConfigManager : MonoBehaviour
             {
                 if (selectNum == 0 && bgmSlider.value < 1)
                 {
-                    soundManager.Play("Increase");                                  //サウンド追加分
+                    soundManager.Play("Increase");                                  //サウンド追加分 12/15
                     bgmSlider.value += 1.0f / bgmSliderDivisionNum;
                 }
                 if (selectNum == 1 && seSlider.value < 1)
                 {
-                    soundManager.Play("Increase");                                  //サウンド追加分
+                    soundManager.Play("Increase");                                  //サウンド追加分 13/15
                     seSlider.value += 1.0f / seSliderDivisionNum;
                 }
                 if (selectNum == 2 && handleSlider.value < 1)
                 {
-                    soundManager.Play("Increase");                                  //サウンド追加分
+                    soundManager.Play("Increase");                                  //サウンド追加分 14/15
                     handleSlider.value += 1.0f / handleSliderDivisionNum;
                 }
                 if (selectNum == 3)
                 {
                     if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                     selectNum = 4;
+                    soundManager.Play("Select");                                     //サウンド追加分 15/15
                 }
                 if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
