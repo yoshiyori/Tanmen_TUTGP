@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-/**
- * <summary>キューの再生を簡易化するコンポーネント</summary>
- */
-[RequireComponent(typeof(CriAtomSource)), AddComponentMenu("SoundSystem/Cue Player")]
-public class CuePlayer : MonoBehaviour{
+public class CuePlayer2D : MonoBehaviour{
     //コンポーネント
-    [SerializeField] private List<CriAtomSource> criAtomSourceList = new List<CriAtomSource>();
+    [SerializeField] private List<CriAtomExPlayer> criAtomExPlayerList = new List<CriAtomExPlayer>();
     [SerializeField] private CueManager cueManager;
+    [SerializeField] private CriAtom criAtom;
+    [SerializeField] private CriWareInitializer criWareInitializer;
+    [SerializeField] private CriWareErrorHandler criWareErrorHandler;
 
     //キュー名
     [SerializeField] internal List<string> cueNameList = new List<string>();
@@ -20,20 +19,7 @@ public class CuePlayer : MonoBehaviour{
     [SerializeField] internal string playCueNameOnStart = "";
 
 #if UNITY_EDITOR
-    //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
-    public List<CriAtomSource> CriAtomSourceList{
-        get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            return criAtomSourceList;
-        }
-        set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            criAtomSourceList = value;
-        }
-    }
-    
+    //Ediotr以外からのアクセスを防ぐプロパティたち
     public CueManager CueManager{
         get{
             var method = new System.Diagnostics.StackFrame(1).GetMethod();
@@ -47,6 +33,44 @@ public class CuePlayer : MonoBehaviour{
         }
     }
     
+    public CriAtom CriAtom{
+        get{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            return criAtom;
+        }
+        set{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            criAtom = value;
+        }
+    }
+    
+    public CriWareInitializer CriWareInitializer{
+        get{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            return criWareInitializer;
+        }
+        set{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            criWareInitializer = value;
+        }
+    }
+    
+    public CriWareErrorHandler CriWareErrorHandler{
+        get{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            return criWareErrorHandler;
+        }
+        set{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            criWareErrorHandler = value;
+        }
+    }
     public List<string> CueNameList{
         get{
             var method = new System.Diagnostics.StackFrame(1).GetMethod();
@@ -59,6 +83,7 @@ public class CuePlayer : MonoBehaviour{
             cueNameList = value;
         }
     }
+
     public bool PlayOnStart{
         get{
             var method = new System.Diagnostics.StackFrame(1).GetMethod();
@@ -71,6 +96,7 @@ public class CuePlayer : MonoBehaviour{
             playOnStart = value;
         }
     }
+
     public string PlayCueNameOnStart{
         get{
             var method = new System.Diagnostics.StackFrame(1).GetMethod();
@@ -85,19 +111,10 @@ public class CuePlayer : MonoBehaviour{
     }
 #endif
 
-    /**
-     * <summary>ゲームオブジェクトに付与されているCriAtomSourceの数(読み取り専用)</summary>
-     */
-    public int criAtomSourceNum{
-        get{
-            return criAtomSourceList.Count;
-        }
-    }
-    
     //コルーチン
     private IEnumerator destroyAfterPlay;
-    private IEnumerator DestroyAfterPlay(GameObject gameObject, int atomSourceNum = 0){
-        while(!JudgeAtomSourceStatus("PlayEnd", atomSourceNum)){
+    private IEnumerator DestroyAfterPlay(GameObject gameObject, int exPlayerNum = 0){
+        while(!JudgeAtomSourceStatus("PlayEnd", exPlayerNum)){
             yield return null;
         }
         Destroy(gameObject);
@@ -106,14 +123,14 @@ public class CuePlayer : MonoBehaviour{
     /**
      * <summary>指定した名前のキューを再生</summary>
      * <param name = "cueName">再生したいキューの名前</param>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する
+     * <param name = "exPlayerNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する
      * (キューごとに異なるタイミングで再生を止めたりなどの操作をする場合はCriAtomSourceが複数必要になる。追加のCriAtomSourceは自動で適用される。)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      */
-    public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+    public void Play(string cueName, int exPlayerNum = 0, float gameVariable = 0f){
         //指定された番号のAtomSourceがない場合は追加
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
+        if(criAtomExPlayerList.Count <= exPlayerNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
         }
 
         //ゲーム変数の設定
@@ -123,78 +140,39 @@ public class CuePlayer : MonoBehaviour{
         }
 
         //キューシートの設定と再生
-        criAtomSourceList[atomSourceNum].cueSheet = cue.cueSheetName;
-        criAtomSourceList[atomSourceNum].Play(cueName);
+        criAtomExPlayerList[exPlayerNum].SetCue(CriAtom.GetAcb(cue.cueSheetName), cue.cueName);
+        criAtomExPlayerList[exPlayerNum].Start();
     }
 
     /**
-     * <summary>破壊されるオブジェクトで指定した名前のキューを再生</summary>
+     *<summary>シーンを移動する際にキューを再生させる<summary>
      * <param name = "cueName">再生したいキューの名前</param>
-     * <param name = "mesh">音源となるオブジェクトのMeshFilter</param>
-     * <param name = "Collider">音源となるオブジェクトのCollider</param>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する(追加のCriAtomSourceは自動で適用される)</param>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      */
-    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f){
-        Play(cueName, atomSourceNum, gameVariable);
+    public void PlayOnSceneSwitch(string cueName, int exPlayerNum = 0, float gameVariable = 0f){
+        DontDestroyOnLoad(this.gameObject);
+        Play(cueName, exPlayerNum, gameVariable);
 
-        //見かけ上のみオブジェクトを破壊
-        if(mesh != null){
-            Destroy(mesh);
-        }
-        if(collider != null){
-            Destroy(collider);
-        }
+        //不要なコンポーネントを削除
+        Destroy(cueManager);
+        //Destroy(criAtom);
 
-        //音の再生が終了してから破壊
+        //音の再生が終了したら破壊
         destroyAfterPlay = DestroyAfterPlay(this.gameObject);
         StartCoroutine(destroyAfterPlay);
     }
 
     /**
-     *<summary>再生しているキューの一時停止(CriAtomSourceごとの停止)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void Pause(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-        criAtomSourceList[atomSourceNum].Pause(true);
-    }
-
-
-    /**
-     *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void Restart(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-        criAtomSourceList[atomSourceNum].Pause(false);
-    }
-
-    /**
-     * <summary>再生しているキューの停止(CriAtomSourceごとの停止)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void Stop(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-        criAtomSourceList[atomSourceNum].Stop();
-    }
-
-    /**
      * <summary>CriAtomSourceの再生状態を取得<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     * <param name = "exPlayerNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
      * <returns>CriAtomSourceの再生状態<returns>
      */
-    public CriAtomSource.Status GetAtomSourceStatus(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
+    public CriAtomExPlayer.Status GetAtomSourceStatus(int exPlayerNum = 0){
+        if(criAtomExPlayerList.Count <= exPlayerNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
         }
-        return criAtomSourceList[atomSourceNum].status;
+        return criAtomExPlayerList[exPlayerNum].GetStatus();
     }
 
     /**
@@ -202,26 +180,20 @@ public class CuePlayer : MonoBehaviour{
      * <params status = "status">再生状態の名称がこの引数の値と同じかどうかを判定<params>
      * <return>再生状態と引数が一致するかどうか</return>
      */
-    public bool JudgeAtomSourceStatus(string status, int atomSourceNum = 0){
-        return GetAtomSourceStatus(atomSourceNum).ToString().Equals(status);
+    public bool JudgeAtomSourceStatus(string status, int exPlayerNum = 0){
+        return GetAtomSourceStatus(exPlayerNum).ToString().Equals(status);
     }
     
     //CriAtomSourceの追加
-    private CriAtomSource InitializeAtomSource(){
-        var atomSource = this.gameObject.AddComponent<CriAtomSource>();
-        atomSource.use3dPositioning = true;
-        atomSource.playOnStart = false;
-        return atomSource;
+    private CriAtomExPlayer InitializeAtomExPlayer(){
+        return new CriAtomExPlayer();
     }
 
-    //ADX_CueBank初期化時のCriAtomSource初期化処理
-    private void Reset(){
-        criAtomSourceList.Clear();
-        criAtomSourceList.Add(GetComponent<CriAtomSource>());
-        criAtomSourceList[0].cueSheet = "";
-        criAtomSourceList[0].cueName = "";
-        criAtomSourceList[0].playOnStart = false;
-        cueManager = GameObject.FindObjectOfType<CueManager>().GetComponent<CueManager>();
+    void Reset(){
+        cueManager = GetComponent<CueManager>();
+        criAtom = GetComponent<CriAtom>();
+        criWareErrorHandler = GetComponent<CriWareErrorHandler>();
+        criWareInitializer = GetComponent<CriWareInitializer>();
     }
 
     private void Awake(){
@@ -233,9 +205,12 @@ public class CuePlayer : MonoBehaviour{
     //PlayOnStartの実行
     private void Start(){
         if(playOnStart){
-            //Play(PlayCueNameOnStart);
-            criAtomSourceList[0].cueSheet = cueManager.GetCueSheetName(playCueNameOnStart).cueSheetName;
-            criAtomSourceList[0].Play(playCueNameOnStart);
+            if(criAtomExPlayerList.Count < 1){
+                criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            }
+            
+            criAtomExPlayerList[0].SetCue(CriAtom.GetAcb(cueManager.GetCueSheetName(playCueNameOnStart).cueSheetName), playCueNameOnStart);
+            criAtomExPlayerList[0].Start();
         }
     }
 }
