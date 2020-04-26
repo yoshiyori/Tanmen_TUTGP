@@ -94,11 +94,11 @@ public class Handle : MonoBehaviour
     {
         if (checkLRNum == 0)
         {
-            m_joyconL.SetRumble(lowFleq, highFleq, amp, time);
+            if(isConnectHandle) m_joyconL.SetRumble(lowFleq, highFleq, amp, time);
         }
         else
         {
-            m_joyconR.SetRumble(lowFleq, highFleq, amp, time);
+            if(isConnectHandle) m_joyconR.SetRumble(lowFleq, highFleq, amp, time);
         }
     }
 

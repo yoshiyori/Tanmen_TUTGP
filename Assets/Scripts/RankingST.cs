@@ -10,6 +10,8 @@ public class RankingST : MonoBehaviour
 
     private bool isTransition;
 
+    [SerializeField] private CuePlayer2D soundManager;
+
     void Start()
     {
         isTransition = false;
@@ -26,6 +28,7 @@ public class RankingST : MonoBehaviour
 
         if (isTransition == true && fc.isFadeOut == false)
         {
+            soundManager.Play("BackMenu");
             SceneManager.LoadScene("Title");
         }
 
