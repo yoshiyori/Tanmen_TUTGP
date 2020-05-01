@@ -102,4 +102,20 @@ public class Handle : MonoBehaviour
         }
     }
 
+    public float GetCycleSwing(int selectNum)
+    {
+        if (selectNum == 0)
+        {
+            return Mathf.Round(gyro.x);
+        }
+        else if (selectNum == 1)
+        {
+            return Mathf.Round(gyro.y);
+        }
+        else
+        {
+            return Mathf.Round(gyro.z);
+        }
+    }
+
 }
