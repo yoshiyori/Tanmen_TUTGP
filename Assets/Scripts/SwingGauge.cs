@@ -8,26 +8,20 @@ public class SwingGauge : MonoBehaviour
 {
     [SerializeField] Handle hd;
     [SerializeField] private Slider swingGauge;
-    //[SerializeField] int point;
     [SerializeField] private int modeSelectNum;
+    [SerializeField] private float upNum;
+
 
     private bool isPlus;
 
-    private Material mat;
-    private Color red;
-    private Color blue;
-    private Color green;
-    private Color white;
-
     void Start()
     {
-        mat = this.GetComponent<Renderer>().material;
         swingGauge.value = 0.0f;
-        red = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-        blue = new Color(0.0f, 1.0f, 0.0f, 1.0f);
-        green = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-        white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         isPlus = false;
+        if (upNum == 0.0f)
+        {
+            upNum = 0.05f;
+        }
     }
 
     void Update()
@@ -37,6 +31,10 @@ public class SwingGauge : MonoBehaviour
 
     void ChargeGauge(int argModeSelectNum)
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            swingGauge.value = 0.0f;
+        }
         switch (argModeSelectNum)
         {
             case 0:
@@ -44,7 +42,7 @@ public class SwingGauge : MonoBehaviour
                 {
                     if (isPlus == false)
                     {
-                        swingGauge.value += 0.05f;
+                        swingGauge.value += upNum;
                         isPlus = true;
                     }
                 }
@@ -52,18 +50,40 @@ public class SwingGauge : MonoBehaviour
                 {
                     if (isPlus == true)
                     {
-                        swingGauge.value += 0.05f;
+                        swingGauge.value += upNum;
                         isPlus = false;
                     }
 
                 }
                 break;
             case 1:
+                if (hd.GetControlllerAccel(1) >= 0.3)
+                {
+                    if (isPlus == false)
+                    {
 
-
-
-
-
+                        swingGauge.value += upNum;
+                        isPlus = true;
+                    }
+                }
+                if (hd.GetControlllerAccel(1) <= -0.3)
+                {
+                    if (isPlus == false)
+                    {
+                        swingGauge.value += upNum;
+                        isPlus = true;
+                    }
+                }
+                if ( (hd.GetControlllerAccel(1) <= 0.1 && hd.GetControlllerAccel(1) >= 0.0) ||
+                    (hd.GetControlllerAccel(1) >= -0.1 && hd.GetControlllerAccel(1) <= 0.0) )
+                {
+                    if (isPlus == true)
+                    {
+                        swingGauge.value += upNum;
+                        isPlus = false;
+                    }
+                    
+                }
                 break;
             default:
                 break;
