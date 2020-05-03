@@ -11,11 +11,14 @@ public class CuePlayer : MonoBehaviour{
     //コンポーネント
     [SerializeField] private List<CriAtomSource> criAtomSourceList = new List<CriAtomSource>();
     [SerializeField] private CueManager cueManager;
+
     //キュー名
     [SerializeField] internal List<string> cueNameList = new List<string>();
+
     //パラメーター
     [SerializeField] private bool playOnStart = false;
     [SerializeField] internal string playCueNameOnStart = "";
+
 #if UNITY_EDITOR
     //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
     public List<CriAtomSource> CriAtomSourceList{
@@ -99,6 +102,7 @@ public class CuePlayer : MonoBehaviour{
         }
         Destroy(gameObject);
     }
+
     /**
      * <summary>指定した名前のキューを再生</summary>
      * <param name = "cueName">再生したいキューの名前</param>
@@ -107,16 +111,22 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      */
     public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+        //指定された番号のAtomSourceがない場合は追加
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
         }
+
+        //ゲーム変数の設定
         var cue = cueManager.GetCueSheetName(cueName);
         if(!cue.gameVariableName.Equals("")){
             CriAtomEx.SetGameVariable(cue.gameVariableName, gameVariable);
         }
+
+        //キューシートの設定と再生
         criAtomSourceList[atomSourceNum].cueSheet = cue.cueSheetName;
         criAtomSourceList[atomSourceNum].Play(cueName);
     }
+
     /**
      * <summary>破壊されるオブジェクトで指定した名前のキューを再生</summary>
      * <param name = "cueName">再生したいキューの名前</param>
@@ -127,27 +137,43 @@ public class CuePlayer : MonoBehaviour{
      */
     public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f){
         Play(cueName, atomSourceNum, gameVariable);
+
+        //見かけ上のみオブジェクトを破壊
         if(mesh != null){
             Destroy(mesh);
         }
         if(collider != null){
             Destroy(collider);
         }
+
+        //音の再生が終了してから破壊
         destroyAfterPlay = DestroyAfterPlay(this.gameObject);
         StartCoroutine(destroyAfterPlay);
     }
+
+    /**
+     *<summary>再生しているキューの一時停止(CriAtomSourceごとの停止)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
     public void Pause(int atomSourceNum = 0){
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
         }
         criAtomSourceList[atomSourceNum].Pause(true);
     }
+
+
+    /**
+     *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
     public void Restart(int atomSourceNum = 0){
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
         }
         criAtomSourceList[atomSourceNum].Pause(false);
     }
+
     /**
      * <summary>再生しているキューの停止(CriAtomSourceごとの停止)<summary>
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
@@ -158,6 +184,7 @@ public class CuePlayer : MonoBehaviour{
         }
         criAtomSourceList[atomSourceNum].Stop();
     }
+
     /**
      * <summary>CriAtomSourceの再生状態を取得<summary>
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
@@ -169,6 +196,7 @@ public class CuePlayer : MonoBehaviour{
         }
         return criAtomSourceList[atomSourceNum].status;
     }
+
     /**
      * <summary>CriAtomSourceの再生状態を判定<summary>
      * <params status = "status">再生状態の名称がこの引数の値と同じかどうかを判定<params>
@@ -179,12 +207,13 @@ public class CuePlayer : MonoBehaviour{
     }
     
     //CriAtomSourceの追加
-    private CriAtomSource InitializeAtomSource(bool use3dPositioning = true, bool playOnStart = false){
+    private CriAtomSource InitializeAtomSource(){
         var atomSource = this.gameObject.AddComponent<CriAtomSource>();
-        atomSource.use3dPositioning = use3dPositioning;
-        atomSource.playOnStart = playOnStart;
+        atomSource.use3dPositioning = true;
+        atomSource.playOnStart = false;
         return atomSource;
     }
+
     //ADX_CueBank初期化時のCriAtomSource初期化処理
     private void Reset(){
         criAtomSourceList.Clear();
@@ -194,11 +223,13 @@ public class CuePlayer : MonoBehaviour{
         criAtomSourceList[0].playOnStart = false;
         cueManager = GameObject.FindObjectOfType<CueManager>().GetComponent<CueManager>();
     }
+
     private void Awake(){
         if(cueManager == null){
             cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
         }
     }
+
     //PlayOnStartの実行
     private void Start(){
         if(playOnStart){

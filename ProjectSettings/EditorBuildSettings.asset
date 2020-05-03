@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Title.unity
-    guid: 4bbafb6c854e15e4b85de00bf5e05cf6
-  - enabled: 1
-    path: Assets/Scenes/CourceSelect.unity
+    path: Assets/Scenes/Performance/CourceSelect.unity
     guid: f3e0e245e0b9c724c90af3e76f728d18
   - enabled: 1
-    path: Assets/Scenes/KbAndJcTestScene.unity
+    path: Assets/Scenes/Performance/main.unity
     guid: 8429d0e6a712fda4a8da158ce3148d9a
   - enabled: 1
-    path: Assets/Scenes/Ranking.unity
+    path: Assets/Scenes/Performance/Ranking.unity
     guid: 12891d3f0b924ab438677cf96001805f
+  - enabled: 1
+    path: Assets/Scenes/Develop/10yen.unity
+    guid: a278a9c584e892a40bf33ff31a63f6d5
   m_configObjects: {}

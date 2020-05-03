@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 
 public class RankingManager : MonoBehaviour
 {
     [SerializeField] SaveManager sm;
-    RankingSaveData save;
+    RankingSaveData rSave;
     private int wordSelectNum;
     private int allWordPanel;
 
@@ -41,6 +42,7 @@ public class RankingManager : MonoBehaviour
 
     void Start()
     {
+        rSave = new RankingSaveData();
         alphabetsRectTrans = alphabets.GetComponent<RectTransform>();
         selectPanelRectTrans = selectPanel.GetComponent<RectTransform>();
         userNamewordBoxText = userNameWordBox.GetComponent<Text>();
@@ -50,6 +52,9 @@ public class RankingManager : MonoBehaviour
         betweenRanksNum = -1;
         allWordPanel = 0;
 
+        rankingPlayerName = new string[10];
+        rankingPlayerTime = new float[10];
+
         rankersNameBoxText = new Text[10];
         rankersTimeBoxText = new Text[10];
         for (int i = 0; i < 10; i++)
@@ -58,6 +63,7 @@ public class RankingManager : MonoBehaviour
             rankersTimeBoxText[i] = rankersTimeBox[i].GetComponent<Text>();
         }
         isDisplayRanking = false;
+
     }
 
 
@@ -171,33 +177,42 @@ public class RankingManager : MonoBehaviour
     void SaveRankerData()
     {
         sm.Load();
-        if (save.rankerNames.Length == 0)
+        rSave.arrayLengthNum = sm.AbstractionArrayLengthNum();
+        if (rSave.arrayLengthNum == 0)
         {
-            save.rankerNames[0] = userName;
-            save.goalTimes[0] = UnityEngine.Random.Range(300.0f, 600.0f);//まだタイムないので仮置き
-                                                             //save.goalTimes[0] = Random.Range(5, 10).ToString("00") + "."
-                                                             //    + Random.Range(0, 99).ToString("00") + "'" 
-                                                             //    + Random.Range(1,999).ToString("000");
+            rankingPlayerName[0] = userName;
+            rankingPlayerTime[0] = UnityEngine.Random.Range(300.0f, 600.0f);//まだタイムないので仮置き
+                                                                            //save.goalTimes[0] = Random.Range(5, 10).ToString("00") + "."
+                                                                            //    + Random.Range(0, 99).ToString("00") + "'" 
+                                                                            //    + Random.Range(1,999).ToString("000");
+                                                                            //save.rankerNames[0] = userName;
+                                                                            //save.goalTimes[0] = UnityEngine.Random.Range(300.0f, 600.0f);//まだタイムないので仮置き
+                                                                            //save.goalTimes[0] = Random.Range(5, 10).ToString("00") + "."
+                                                                            //    + Random.Range(0, 99).ToString("00") + "'" 
+                                                                            //    + Random.Range(1,999).ToString("000");
+            
         }
         else
         {
             float goalTimeKari = UnityEngine.Random.Range(300.0f, 600.0f);//本当ならここにそのときのTime入れる
-            for (int i = 0; i < save.goalTimes.Length; i++)
+            for (int i = 0; i < rSave.arrayLengthNum; i++)
             {
-                if (save.goalTimes[i] > goalTimeKari)
+                if (rankingPlayerTime[i] > goalTimeKari)
                 {
                     betweenRanksNum = i;
                     break;
                 }
                 if (betweenRanksNum > -1)
                 {
-                    InsertGoalTimesArray(save.goalTimes, goalTimeKari, betweenRanksNum);
-                    InsertRankerNamesArray(save.rankerNames, userName, betweenRanksNum);
-                    sm.Save();
+                    InsertGoalTimesArray(rankingPlayerTime, goalTimeKari, betweenRanksNum);
+                    InsertRankerNamesArray(rankingPlayerName, userName, betweenRanksNum);
                 }
             }
-        }
 
+            
+        }
+        sm.PourData(rankingPlayerName, rankingPlayerTime, 10);
+        sm.Save();
         InputDataUIPanel.SetActive(!InputDataUIPanel.activeInHierarchy);
         isfinishEnterWord = false;
         isDisplayRanking = true;
@@ -252,17 +267,21 @@ public class RankingManager : MonoBehaviour
     void DisplayRanking()
     {
         sm.Load();
-        for (int i = 0; i < save.rankerNames.Length; i++)
+        sm.AbstractionNameData().CopyTo(rSave.rankerNames, sm.AbstractionArrayLengthNum());
+        sm.AbstractionTimeData().CopyTo(rSave.goalTimes, sm.AbstractionArrayLengthNum());
+        rSave.arrayLengthNum = sm.AbstractionArrayLengthNum();
+
+        for (int i = 0; i < rSave.arrayLengthNum; i++)
         {
-            rankersNameBoxText[i].text = save.rankerNames[i];
-            rankersTimeBoxText[i].text = (save.goalTimes[i] / 60).ToString("00") + "," + (save.goalTimes[i] % 60).ToString("00") + "'" + "000";
+            rankersNameBoxText[i].text = rSave.rankerNames[i];
+            rankersTimeBoxText[i].text = (rSave.goalTimes[i] / 60).ToString("00") + "," + (rSave.goalTimes[i] % 60).ToString("00") + "'" + "000";
         }
-        if (save.rankerNames.Length < 10)
+        if (rSave.rankerNames.Length < 10)
         {
-            for (int i = 0; i < 10 - save.rankerNames.Length; i++)
+            for (int i = 0; i < 10 - rSave.arrayLengthNum; i++)
             {
-                rankersNameBoxText[i + save.rankerNames.Length].text = "---";
-                rankersTimeBoxText[i + save.rankerNames.Length].text = "00.00'000";
+                rankersNameBoxText[i + rSave.arrayLengthNum].text = "---";
+                rankersTimeBoxText[i + rSave.arrayLengthNum].text = "00.00'000";
             }
         }
     }

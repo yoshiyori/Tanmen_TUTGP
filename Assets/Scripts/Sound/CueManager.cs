@@ -16,6 +16,7 @@ public class CueManager : MonoBehaviour{
     //コンポーネント
     [SerializeField, NonEditable] private CriAtom criAtom;
     [SerializeField] private CuePlayer[] cuePlayers;
+    [SerializeField] private CuePlayer2D[] cuePlayer2Ds;
 
     //データ
     [SerializeField] private List<ExCueInfo> exCueInfoList = new List<ExCueInfo>();
@@ -46,6 +47,19 @@ public class CueManager : MonoBehaviour{
             var method = new System.Diagnostics.StackFrame(1).GetMethod();
             Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             cuePlayers = value;
+        }
+    }
+
+    public CuePlayer2D[] CuePlayer2Ds{
+        get{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            return cuePlayer2Ds;
+        }
+        set{
+            var method = new System.Diagnostics.StackFrame(1).GetMethod();
+            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
+            cuePlayer2Ds = value;
         }
     }
 
@@ -108,8 +122,13 @@ public class CueManager : MonoBehaviour{
             Array.Clear(cuePlayers, 0, cuePlayers.Length);
             Array.Resize(ref cuePlayers, 0);
         }
+        if((cuePlayer2Ds != null) && (cuePlayer2Ds.Length > 0)){
+            Array.Clear(cuePlayer2Ds, 0, cuePlayer2Ds.Length);
+            Array.Resize(ref cuePlayer2Ds, 0);
+        }
         
         cuePlayers = FindObjectsOfType<CuePlayer>();
+        cuePlayer2Ds = FindObjectsOfType<CuePlayer2D>();
     }
 
     //CuePlayerから使用するキューの名前を取得し、それに併せてCriAtomにキューシートを登録する
@@ -131,15 +150,30 @@ public class CueManager : MonoBehaviour{
         Array.Clear(criAtom.cueSheets, 0, criAtom.cueSheets.Length);
         Array.Resize(ref criAtom.cueSheets, 0);
 
-        foreach(var cuePlayers in cuePlayers){
-            foreach(var cueName in cuePlayers.cueNameList){
+        foreach(var cuePlayer in cuePlayers){
+            foreach(var cueName in cuePlayer.cueNameList){
                 var usedCueSheet = GetCueSheetName(cueName).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayers.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayers.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.playCueNameOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+                if(!usedCueSheetList.Contains(usedCueSheet)){
+                    usedCueSheetList.Add(usedCueSheet);
+                }
+            }
+        }
+
+        foreach(var cuePlayer2D in cuePlayer2Ds){
+            foreach(var cueName in cuePlayer2D.cueNameList){
+                var usedCueSheet = GetCueSheetName(cueName).cueSheetName;
+                if(!usedCueSheetList.Contains(usedCueSheet)){
+                    usedCueSheetList.Add(usedCueSheet);
+                }
+            }
+            if(!cuePlayer2D.playCueNameOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer2D.playCueNameOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -162,8 +196,12 @@ public class CueManager : MonoBehaviour{
                 if(!exCueInfoList[i].cueSheetName.Equals(criAtom.cueSheets[j].name)){
                     j++;
                 }
-                bool succes = criAtom.cueSheets[j].acb.GetCueInfo(exCueInfoList[i].cueName, out var cueInfo);
-                if(succes){
+
+                if(j >= criAtom.cueSheets.Length){
+                    break;
+                }
+                
+                if(criAtom.cueSheets[j].acb.GetCueInfo(exCueInfoList[i].cueName, out var cueInfo)){
                     exCueInfoList[i].gameVariableName = cueInfo.gameVariableInfo.name;
                 }
             }
@@ -220,6 +258,15 @@ public class CueManager : MonoBehaviour{
                 }
             }
         }
+        foreach(var cuePlayer2D in cuePlayers){
+            foreach(var matchData in matchDatas){
+                if(cuePlayer2D.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2D.playCueNameOnStart.Equals(matchData.cueName)){
+                    for(int i = 0; i < cuePlayer2D.criAtomSourceNum; i++){
+                        cuePlayer2D.Pause(i);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -239,6 +286,15 @@ public class CueManager : MonoBehaviour{
                 if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.playCueNameOnStart.Equals(matchData.cueName)){
                     for(int i = 0; i < cuePlayer.criAtomSourceNum; i++){
                         cuePlayer.Restart(i);
+                    }
+                }
+            }
+        }
+        foreach(var cuePlayer2D in cuePlayers){
+            foreach(var matchData in matchDatas){
+                if(cuePlayer2D.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2D.playCueNameOnStart.Equals(matchData.cueName)){
+                    for(int i = 0; i < cuePlayer2D.criAtomSourceNum; i++){
+                        cuePlayer2D.Restart(i);
                     }
                 }
             }

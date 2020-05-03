@@ -5,7 +5,8 @@ using UnityEngine;
 
 [Serializable] 
 public class RankingSaveData {
-    public string[] rankerNames;
-    public float[] goalTimes;
+    public string[] rankerNames = new string[10];
+    public float[] goalTimes = new float[10];
+    public int arrayLengthNum;
 
 }

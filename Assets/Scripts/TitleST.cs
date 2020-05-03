@@ -18,6 +18,8 @@ public class TitleST : MonoBehaviour
     [SerializeField] private GameObject modeSelectCanvas;
     //[SerializeField] private GameObject rankingCanvas;
 
+    [SerializeField] private CuePlayer2D soundManager;                      //サウンド追加分 1/2
+
     private void Start()
     {
         time = 0.0f;
@@ -46,12 +48,12 @@ public class TitleST : MonoBehaviour
             isTransition = false;
             modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
             titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
+            soundManager.Play("Decision");                                  //サウンド追加分 2/2
         }
         if (isTransition == true && fc.isFadeOut == false && isGoRanking == true)
         {
             isTransition = false;
             //rankingCanvas.SetActive(!rankingCanvas.activeInHierarchy);
-            titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
             Debug.Log("まだできてない");
         }
 

@@ -94,11 +94,27 @@ public class Handle : MonoBehaviour
     {
         if (checkLRNum == 0)
         {
-            m_joyconL.SetRumble(lowFleq, highFleq, amp, time);
+            if(isConnectHandle) m_joyconL.SetRumble(lowFleq, highFleq, amp, time);
         }
         else
         {
-            m_joyconR.SetRumble(lowFleq, highFleq, amp, time);
+            if(isConnectHandle) m_joyconR.SetRumble(lowFleq, highFleq, amp, time);
+        }
+    }
+
+    public float GetCycleSwing(int selectNum)
+    {
+        if (selectNum == 0)
+        {
+            return Mathf.Round(gyro.x);
+        }
+        else if (selectNum == 1)
+        {
+            return Mathf.Round(gyro.y);
+        }
+        else
+        {
+            return Mathf.Round(gyro.z);
         }
     }
 
