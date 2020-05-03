@@ -52,7 +52,7 @@ public class GameSystem : Driver
         }
         if (followCamera != null && myCar.CameraPositions[viewNo] != null)
         {
-            followCamera.SetAim(myCar.CameraLookAt, myCar.CameraPositions[viewNo]);
+          //  followCamera.SetAim(myCar.CameraLookAt, myCar.CameraPositions[viewNo]);
         }
     }
 

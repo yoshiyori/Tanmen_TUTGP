@@ -21,7 +21,7 @@ public class PlayerDirecting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		/*
+		
 		startDetaTime = Time.time;
 
 		if (willieFlg == true)
@@ -35,7 +35,7 @@ public class PlayerDirecting : MonoBehaviour
 		{
 			willieFlg = true;
 			willieSTime = startDetaTime;
-			this.gameObject.transform.Rotate(new Vector3(0, 0, -40));
+			this.gameObject.transform.Rotate(new Vector3(0, 0, 40));
 
 		}
 
@@ -43,12 +43,12 @@ public class PlayerDirecting : MonoBehaviour
 		{
 			if (willieFlg == true)
 			{
-				this.gameObject.transform.Rotate(new Vector3(0, 0, 40));
+				this.gameObject.transform.Rotate(new Vector3(0, 0, -40));
 			}
 			willieFlg = false;
 			willieSTime = 0;
 		}
-		*/
+		
 	}
 	
 }
