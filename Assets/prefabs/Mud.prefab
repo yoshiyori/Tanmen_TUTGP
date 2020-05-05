@@ -163,8 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 7646787614246052140}
-  cueInfo: {fileID: 0}
-  cueNameList:
-  - Mud
+  cueManager: {fileID: 0}
+  cueNameList: []
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 

@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "player")
         {
             triggerObsFlag = true;
            // nowSpeed = rigid.velocity;
@@ -43,7 +43,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player" && triggerTypeKakunin == false)
+        if (other.gameObject.tag == "player" && triggerTypeKakunin == false)
         {
             triggerObsFlag = false;
             mudSound.Stop();                                                        //サウンド追加分3/3
