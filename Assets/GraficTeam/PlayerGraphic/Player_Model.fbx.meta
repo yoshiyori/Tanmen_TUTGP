@@ -69,7 +69,57 @@ ModelImporter:
     4300014: Biker19:Leg
     4300016: Biker19:Foot
     4300018: Biker19:Shoes
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BikeBody
+    second: {fileID: 2100000, guid: ad5c5148aa987fa42a5a3f11447bb467, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BikeGear
+    second: {fileID: 2100000, guid: 4b039c2f4565199419ee5772ef3c0b62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BikeHandle
+    second: {fileID: 2100000, guid: a7f1964ca816ab540aad794fab15bea9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BikeWheel
+    second: {fileID: 2100000, guid: 645e5aa5ebf0ffc489aeb7fa128c2e90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_RiderBody
+    second: {fileID: 2100000, guid: 3bbfb9db0678124408bace390f9065fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_RiderBoots
+    second: {fileID: 2100000, guid: e05e20c23e2b5eb488b4b8ca0142c029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_RiderFoot
+    second: {fileID: 2100000, guid: ff757d01ccef67f47b5f7d4639b084dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_RiderHand
+    second: {fileID: 2100000, guid: ba1e1740f936d9043a05c2050059da3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_RiderHead
+    second: {fileID: 2100000, guid: 2b7530c582e96634795ceedb173cb436, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_RiderLeg
+    second: {fileID: 2100000, guid: d45a50c21de69c64486c50755abb4f5a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
