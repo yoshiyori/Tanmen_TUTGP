@@ -54,7 +54,6 @@ public class TitleST : MonoBehaviour
         {
             isTransition = false;
             //rankingCanvas.SetActive(!rankingCanvas.activeInHierarchy);
-            titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
             Debug.Log("まだできてない");
         }
 

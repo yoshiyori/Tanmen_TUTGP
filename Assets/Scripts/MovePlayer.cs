@@ -17,6 +17,7 @@ public class MovePlayer : MonoBehaviour
 	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
+	public bool sandControl;
 	private bool willieFlg;
 	public bool turnTipe;
 	private int count = 0;
@@ -46,7 +47,8 @@ public class MovePlayer : MonoBehaviour
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
 		TureMaxSpeed = maxSpeed;
-		
+		sandControl = false;
+
 	}
 
 	// Update is called once per frame
@@ -59,7 +61,7 @@ public class MovePlayer : MonoBehaviour
 		cameraStop = false;
 		nowSpeed = rigid.velocity;
 		pos = this.gameObject.transform.localEulerAngles;
-
+		
 		//ここで速度とかの制御
 
 
@@ -267,9 +269,11 @@ public class MovePlayer : MonoBehaviour
 	//サウンド追加分 6/6
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.gameObject.tag.Equals("Road"))
+		
+		if (other.gameObject.tag.Equals("Road"))
 		{
-			if(junp){
+			sandControl = true;
+			if (junp){
 				actionSound.Play("Landing");
 				junp = false;
 			}
@@ -279,12 +283,17 @@ public class MovePlayer : MonoBehaviour
 				//Debug.Log("Running");
 				actionSound.Play("Running", 1);
 			}
+			
 		}
 	}
-	
+
 	void OnCollisionExit(Collision other)
 	{
-		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		if (other.gameObject.tag.Equals("Road"))
+		{
+			sandControl = false;
+		}
+		if ((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			//Debug.Log("Exit");
 			actionSound.Stop(1);

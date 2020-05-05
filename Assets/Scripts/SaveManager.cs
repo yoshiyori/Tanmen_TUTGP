@@ -13,6 +13,18 @@ public class SaveManager : MonoBehaviour
     {
         filePath = "Assets/SaveData" + "/" + ".rankingsavedata.json";
         save = new RankingSaveData();
+        Save();
+        /*
+        for (int i = 0; i < 10; i++)
+        {
+            save.rankerNames[i] = new string;
+        }
+        */
+    }
+
+    void Update()
+    {
+
     }
 
     public void Save()
@@ -38,10 +50,12 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void PourData(RankingSaveData argSave)
+    public void PourData(string[] argNameArray, float[] argTimeArray, int argArrayLengthNum)
     {
-        Array.Copy(argSave.goalTimes, save.goalTimes, argSave.goalTimes.Length);
-        Array.Copy(argSave.rankerNames, save.rankerNames, argSave.rankerNames.Length);
+        argNameArray.CopyTo(save.rankerNames, 10);
+        argTimeArray.CopyTo(save.goalTimes, 10);
+        save.arrayLengthNum = argArrayLengthNum;
+
     }
 
     public string[] AbstractionNameData()
@@ -52,5 +66,10 @@ public class SaveManager : MonoBehaviour
     public float[] AbstractionTimeData()
     {
         return save.goalTimes;
+    }
+
+    public int AbstractionArrayLengthNum()
+    {
+        return save.arrayLengthNum;
     }
 }
