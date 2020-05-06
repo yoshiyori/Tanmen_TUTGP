@@ -31,9 +31,9 @@ public class ModeSelectST : MonoBehaviour
     {
         if (modeName == null)
         {
-            modeName[0] = "KbAndJcTestScene";//コース１
-            modeName[1] = "KbAndJcTestScene";//コース２
-            modeName[2] = "KbAndJcTestScene";//コース３
+            modeName[0] = "main";//コース１
+            modeName[1] = "main";//コース２
+            modeName[2] = "main";//コース３
         }
         selectNum = 0;
         selectStopFlag = false;
@@ -95,6 +95,12 @@ public class ModeSelectST : MonoBehaviour
                 modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
                 configCanvas.SetActive(!configCanvas.activeInHierarchy);
                 soundManager.Play("Decision");                                                          //サウンド追加分 3/5
+            }
+            else if (selectNum == 3)
+            {
+                modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
+                titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
+                soundManager.Play("Decision");
             }
             else
             {

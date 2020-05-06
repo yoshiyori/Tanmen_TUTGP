@@ -30,9 +30,9 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
     {
         if (sceneName == null)
         {
-            sceneName[0] = "KbAndJcTestScene";//コース１
-            sceneName[1] = "KbAndJcTestScene";//コース２
-            sceneName[2] = "KbAndJcTestScene";//コース３
+            sceneName[0] = "main";//コース１
+            sceneName[1] = "main";//コース２
+            sceneName[2] = "main";//コース３
         }
         selectNum = 0;
         selectStopFlag = false;
@@ -79,10 +79,22 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
         if (isTransition == true/* && fc.isFadeOut == false*/)
         {
-            //soundManager.PlayOnSceneSwitch("Decision");
-            SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
-            isTransition = false;
-            selectNum = 0;
+
+            if (selectNum == 3)
+            {
+                isTransition = false;
+                selectNum = 0;
+                soundManager.Play("Decision");
+                courseSelectCanvas.SetActive(!courseSelectCanvas.activeInHierarchy);
+                returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
+            }
+            else
+            {
+                //soundManager.PlayOnSceneSwitch("Decision");
+                SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
+                isTransition = false;
+                selectNum = 0;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) ||

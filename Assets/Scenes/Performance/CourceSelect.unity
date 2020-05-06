@@ -765,9 +765,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modeName:
-  - KbAndJcTestScene
-  - KbAndJcTEstScene
-  - KbAndJcTestScene
+  - main
+  - main
+  - main
   - Title
   stopTime: 0.6
   frames:
