@@ -11,6 +11,7 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
+	[SerializeField] float rollingJumpSpeed;	//スイングブースト時のスピード
 	private float TureMaxSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
@@ -70,6 +71,10 @@ public class MovePlayer : MonoBehaviour
 		{
 			maxSpeed = mudSpeed;
 		}
+		else if (succesRollingJump == true) //すぃんぐすぴーど実装時追加分
+		{
+			maxSpeed = rollingJumpSpeed;
+		}
 		else
 		{
 			maxSpeed = TureMaxSpeed;
@@ -94,7 +99,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
 			cameraStop = true;
-			actionSound.Play("Break"); 
+			actionSound.Play("Break");
 			//サウンド追加分 2/6
 		}
 		if (rigid.velocity.x > 0)
@@ -301,4 +306,9 @@ public class MovePlayer : MonoBehaviour
 		}
 	}
 	//サウンド追加分 6/6 終了
+
+	public bool GetSandCtrl()	//スイングブースト実装時追加
+	{
+		return sandControl;
+	}
 }

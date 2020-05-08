@@ -19,18 +19,20 @@ public class SwingJumpJudge : MonoBehaviour
     [SerializeField] private MovePlayer movePlayer;
 
     //Gauge関係
-    [SerializeField] private GameObject SwingGaugePanel;
+    [SerializeField] private GameObject swingGaugeObject;
+    [SerializeField] private GameObject swingCommandTextObject;
     [SerializeField] private Slider swingGauge;
     [SerializeField] private float upNum;
-    private bool nowAccelFlag;
     private float time;
-    private float useGaugeTime;
     private bool isPlus;
+    private bool touchingGroundFrag;
+    private bool afterJumpingFlag;
+    [SerializeField] int useGaugeSpeed;
 
-    [SerializeField] CheckTouching ct;
 
     public Handle hd;//JoyConから数値受け取る時とかに使う
     //[SerializeField] bool joyconFlag;//JoyCon使うかどうかのフラグ
+    private MovePlayer mp;
 
     private void Start()
     {
@@ -41,9 +43,11 @@ public class SwingJumpJudge : MonoBehaviour
 
         //Gauge関係
         swingGauge.value = 0.0f;
-        useGaugeTime = 5;
         isPlus = false;
-        nowAccelFlag = false;
+        mp = playerObject.GetComponent<MovePlayer>();
+        touchingGroundFrag = mp.GetSandCtrl();
+        afterJumpingFlag = false;
+        if (useGaugeSpeed == 0) useGaugeSpeed = 30;
         if (upNum == 0.0f)
         {
             upNum = 0.05f;
@@ -63,16 +67,26 @@ public class SwingJumpJudge : MonoBehaviour
             jumpSound.Play("Jump");
 
             //Gauge関係
-            SwingGaugePanel.SetActive(!SwingGaugePanel.activeInHierarchy);
+            if (swingGaugeObject.activeInHierarchy == false && swingCommandTextObject.activeInHierarchy == false)
+            {
+                swingGaugeObject.SetActive(true);
+                swingCommandTextObject.SetActive(true);
+            }
         }
         triggerObsFlag = false;
+        touchingGroundFrag = mp.GetSandCtrl();
 
-        if (nowJunpFlag == true)
+        if (nowJunpFlag == true && afterJumpingFlag == true)
         {
             ChargeGauge(1);//ぐるぐるするやつを選択するために１をいれた
-            if (ct.GetTouching()) nowJunpFlag = false;
+            if (touchingGroundFrag)
+            {
+                nowJunpFlag = false;
+                afterJumpingFlag = false;
+                if (swingCommandTextObject.activeInHierarchy) swingCommandTextObject.SetActive(false);
+            }
         }
-        if (nowJunpFlag == false && SwingGaugePanel.activeInHierarchy == true)
+        if (nowJunpFlag == false && swingGaugeObject.activeInHierarchy == true)
         {
             UseGauge();
         }
@@ -86,11 +100,14 @@ public class SwingJumpJudge : MonoBehaviour
             triggerObsFlag = true;
             nowSpeed = rigid.velocity;
         }
-        if (other.gameObject.tag == "Rode")
-        {
-            nowJunpFlag = false;
-        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "player")
+        {
+            afterJumpingFlag = true;
+        }
     }
 
     public void JunpPlayer()
@@ -110,7 +127,7 @@ public class SwingJumpJudge : MonoBehaviour
 
     void ChargeGauge(int argModeSelectNum)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             swingGauge.value += upNum;
         }
@@ -174,15 +191,15 @@ public class SwingJumpJudge : MonoBehaviour
     void UseGauge()
     {
         time += Time.deltaTime;
-        if (time > useGaugeTime)
+        if (time > Time.deltaTime)
         {
             time = 0.0f;
-            swingGauge.value -= upNum * 2;
+            swingGauge.value -= upNum * useGaugeSpeed * Time.deltaTime;
             rigid.AddRelativeForce(-junpAccelSpeed, 0, 0);
         }
         if (swingGauge.value <= 0.0f)
         {
-            SwingGaugePanel.SetActive(!SwingGaugePanel.activeInHierarchy);
+            if (swingGaugeObject.activeInHierarchy) swingGaugeObject.SetActive(false);
         }
     }
 }

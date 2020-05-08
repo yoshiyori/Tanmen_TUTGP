@@ -13,7 +13,7 @@ public class CheckTouching : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Road")
+        if (other.gameObject.tag == "player")
         {
             touchingFlag = true;
         }
