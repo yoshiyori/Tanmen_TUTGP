@@ -28,6 +28,8 @@ public class SwingJumpJudge : MonoBehaviour
     private bool touchingGroundFrag;
     private bool afterJumpingFlag;
     [SerializeField] int useGaugeSpeed;
+    private bool movingFlag;
+    [SerializeField] int decreaseGaugeSpeed;
 
 
     public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -45,7 +47,9 @@ public class SwingJumpJudge : MonoBehaviour
         isPlus = false;
         touchingGroundFrag = movePlayer.GetSandCtrl();
         afterJumpingFlag = false;
+        movingFlag = false;
         if (useGaugeSpeed == 0) useGaugeSpeed = 30;
+        if (decreaseGaugeSpeed == 0) decreaseGaugeSpeed = 15;
         if (upNum == 0.0f)
         {
             upNum = 0.05f;
@@ -83,7 +87,7 @@ public class SwingJumpJudge : MonoBehaviour
                 afterJumpingFlag = false;
                 if (swingCommandTextObject.activeInHierarchy)
                 {
-                    movePlayer.succesRollingJump = true;
+                    if (swingGauge.value > 0.0f) movePlayer.succesRollingJump = true;
                     movePlayer.swingBoostFlag = true;
                     swingCommandTextObject.SetActive(false);
                 }
@@ -130,9 +134,11 @@ public class SwingJumpJudge : MonoBehaviour
 
     void ChargeGauge(int argModeSelectNum)
     {
+        time += Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
             swingGauge.value += upNum;
+            movingFlag = true;
         }
         switch (argModeSelectNum)
         {
@@ -143,6 +149,7 @@ public class SwingJumpJudge : MonoBehaviour
                     {
                         swingGauge.value += upNum;
                         isPlus = true;
+                        movingFlag = true;
                     }
                 }
                 if (hd.GetCycleSwing(0) < -2.5)
@@ -151,6 +158,7 @@ public class SwingJumpJudge : MonoBehaviour
                     {
                         swingGauge.value += upNum;
                         isPlus = false;
+                        movingFlag = true;
                     }
 
                 }
@@ -163,6 +171,7 @@ public class SwingJumpJudge : MonoBehaviour
 
                         swingGauge.value += upNum;
                         isPlus = true;
+                        movingFlag = true;
                     }
                 }
                 if (hd.GetControlllerAccel(1) <= -0.3)
@@ -171,6 +180,7 @@ public class SwingJumpJudge : MonoBehaviour
                     {
                         swingGauge.value += upNum;
                         isPlus = true;
+                        movingFlag = true;
                     }
                 }
                 if ((hd.GetControlllerAccel(1) <= 0.1 && hd.GetControlllerAccel(1) >= 0.0) ||
@@ -180,6 +190,7 @@ public class SwingJumpJudge : MonoBehaviour
                     {
                         swingGauge.value += upNum;
                         isPlus = false;
+                        movingFlag = true;
                     }
 
                 }
@@ -188,7 +199,16 @@ public class SwingJumpJudge : MonoBehaviour
                 break;
         }
 
+        if (movingFlag == true)
+        {
+            time = 0.0f;
+            movingFlag = false;
+        }
+        if (time > 0.5)
+        {
 
+            swingGauge.value -= upNum * decreaseGaugeSpeed * Time.deltaTime;
+        }
     }
 
     void UseGauge()
