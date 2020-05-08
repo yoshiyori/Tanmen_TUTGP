@@ -96,5 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrans: {fileID: 0}
-  cameraVec: {x: 5, y: 1, z: 0}
-  cameraRot: {x: 5, y: 270, z: 0}
+  player: {fileID: 0}
+  cameraPos: {fileID: 0}
+  cameraLoolAt: {fileID: 0}
+  tipe: 1
+  hd: {fileID: 0}
