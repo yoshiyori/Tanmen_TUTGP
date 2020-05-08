@@ -11,7 +11,7 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
-	[SerializeField] float rollingJumpSpeed;	//スイングブースト時のスピード
+	[SerializeField] float swingBoostSpeed;	//スイングブースト時のスピード
 	private float TureMaxSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
@@ -26,6 +26,7 @@ public class MovePlayer : MonoBehaviour
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 	public bool cameraStop;
+	public bool swingBoostFlag;	//スイングブースト中かどうかのFlag
 
 
 	//サウンド追加分 1/6
@@ -71,9 +72,9 @@ public class MovePlayer : MonoBehaviour
 		{
 			maxSpeed = mudSpeed;
 		}
-		else if (succesRollingJump == true) //すぃんぐすぴーど実装時追加分
+		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
 		{
-			maxSpeed = rollingJumpSpeed;
+			maxSpeed = swingBoostSpeed;
 		}
 		else
 		{

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5524917922335328465}
   - component: {fileID: 4075735018066651264}
   - component: {fileID: 1004533117820851386}
+  - component: {fileID: 6300809663157587389}
   m_Layer: 0
   m_Name: JumpJudg
   m_TagString: Jump
@@ -181,8 +182,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtomSourceList:
   - {fileID: 4075735018066651264}
-  cueInfo: {fileID: 0}
+  cueManager: {fileID: 0}
   cueNameList:
   - Jump
   playOnStart: 0
-  playCueOnStart: 
+  playCueNameOnStart: 
+--- !u!114 &6300809663157587389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524917922335328464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab93f1078d6659847bcd4376dd882f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  junpAccelSpeed: 10000
+  triggerObsFlag: 0
+  nowJunpFlag: 0
+  playerObject: {fileID: 0}
+  junpSpeed: 70000000
+  jumpSound: {fileID: 1004533117820851386}
+  movePlayer: {fileID: 0}
+  swingGaugeObject: {fileID: 0}
+  swingCommandTextObject: {fileID: 0}
+  swingGauge: {fileID: 0}
+  upNum: 0.05
+  useGaugeSpeed: 30
+  hd: {fileID: 0}

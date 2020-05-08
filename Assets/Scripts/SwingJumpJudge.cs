@@ -32,7 +32,6 @@ public class SwingJumpJudge : MonoBehaviour
 
     public Handle hd;//JoyConから数値受け取る時とかに使う
     //[SerializeField] bool joyconFlag;//JoyCon使うかどうかのフラグ
-    private MovePlayer mp;
 
     private void Start()
     {
@@ -44,8 +43,7 @@ public class SwingJumpJudge : MonoBehaviour
         //Gauge関係
         swingGauge.value = 0.0f;
         isPlus = false;
-        mp = playerObject.GetComponent<MovePlayer>();
-        touchingGroundFrag = mp.GetSandCtrl();
+        touchingGroundFrag = movePlayer.GetSandCtrl();
         afterJumpingFlag = false;
         if (useGaugeSpeed == 0) useGaugeSpeed = 30;
         if (upNum == 0.0f)
@@ -74,7 +72,7 @@ public class SwingJumpJudge : MonoBehaviour
             }
         }
         triggerObsFlag = false;
-        touchingGroundFrag = mp.GetSandCtrl();
+        touchingGroundFrag = movePlayer.GetSandCtrl();
 
         if (nowJunpFlag == true && afterJumpingFlag == true)
         {
@@ -83,10 +81,15 @@ public class SwingJumpJudge : MonoBehaviour
             {
                 nowJunpFlag = false;
                 afterJumpingFlag = false;
-                if (swingCommandTextObject.activeInHierarchy) swingCommandTextObject.SetActive(false);
+                if (swingCommandTextObject.activeInHierarchy)
+                {
+                    movePlayer.succesRollingJump = true;
+                    movePlayer.swingBoostFlag = true;
+                    swingCommandTextObject.SetActive(false);
+                }
             }
         }
-        if (nowJunpFlag == false && swingGaugeObject.activeInHierarchy == true)
+        if (nowJunpFlag == false && swingGaugeObject.activeInHierarchy == true && swingCommandTextObject.activeInHierarchy == false)
         {
             UseGauge();
         }
@@ -200,6 +203,7 @@ public class SwingJumpJudge : MonoBehaviour
         if (swingGauge.value <= 0.0f)
         {
             if (swingGaugeObject.activeInHierarchy) swingGaugeObject.SetActive(false);
+            movePlayer.swingBoostFlag = false;
         }
     }
 }
