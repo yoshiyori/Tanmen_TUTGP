@@ -765,9 +765,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modeName:
-  - KbAndJcTestScene
-  - KbAndJcTEstScene
-  - KbAndJcTestScene
+  - main
+  - main
+  - main
   - Title
   stopTime: 0.6
   frames:
@@ -3023,7 +3023,7 @@ MonoBehaviour:
     numberOfLoaders: 16
     numberOfBinders: 8
     numberOfInstallers: 2
-    installBufferSize: 0
+    installBufferSize: 32
     maxPath: 256
     userAgentString: 
     minimizeFileDescriptorUsage: 0
