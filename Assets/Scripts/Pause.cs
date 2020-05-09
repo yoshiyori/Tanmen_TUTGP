@@ -7,6 +7,8 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private CueManager cueManager;
 
+    private bool pauseNow = false; //ポーズ判断フラグ
+
     void Reset()
     {
         cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
@@ -14,23 +16,23 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown(KeyCode.Q) && !pauseNow)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
+            Time.timeScale = 0f; //timeScaleを0にして各種動作を止める
 
-            if (pauseUI.activeSelf)
-            {
-                Time.timeScale = 0f;
-                //キューシート「Game_SE」に属するキューの再生を全て一時停止する
-                //一時停止中に再度、再生要求があると再生を再開するため注意 (後々修正するかも)
-                cueManager.PauseCueSheet("Game_SE");
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                //キューシート「Game_SE」に属するキューの再生を全て再開するする
-                cueManager.RestartCueSheet("Game_SE");
-            }
+            //キューシート「GameSE」に属するキューの再生を全て停止させる
+            cueManager.PauseCueSheet("GameSE");
+            pauseNow = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Q) && pauseNow)
+        {
+            pauseUI.SetActive(!pauseUI.activeSelf);
+            Time.timeScale = 1f; //timeScaleを1にして各種動作を再開する
+
+            //キューシート「GameSE」に属するキューの再生を全て再開する
+            cueManager.RestartCueSheet("GameSE");
+            pauseNow = false;
         }
     }
 }
