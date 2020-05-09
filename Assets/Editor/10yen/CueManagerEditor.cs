@@ -47,13 +47,19 @@ public class CueManagerEditor : Editor{
                     EditorGUILayout.LabelField("Cue");
                 EditorGUILayout.EndHorizontal();
                 if((cueManager.ExCueInfoList != null) && (cueManager.ExCueInfoList.Count > 0)){
-                    EditorGUILayoutEx.Separator(true);
+                    string recentCueSheetName = "";
                     for(int i = 0; i < cueManager.ExCueInfoList.Count; i++){
+                        if(!recentCueSheetName.Equals(cueManager.ExCueInfoList[i].CueSheetName)){
+                            EditorGUILayoutEx.Separator(true);
+                        }
+
                         EditorGUILayout.BeginHorizontal();
                             EditorGUILayout.LabelField(i.ToString(), GUILayout.MaxWidth(40));
                             EditorGUILayout.LabelField(cueManager.ExCueInfoList[i].CueSheetName);
                             EditorGUILayout.LabelField(cueManager.ExCueInfoList[i].CueName);
                         EditorGUILayout.EndHorizontal();
+
+                        recentCueSheetName = cueManager.ExCueInfoList[i].CueSheetName;
                     }
                 }
             EditorGUI.indentLevel--;

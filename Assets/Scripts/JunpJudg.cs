@@ -47,12 +47,12 @@ public class JunpJudg : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "player")
         {
             triggerObsFlag = true;
             nowSpeed = rigid.velocity;
         }
-        if (other.gameObject.tag == "Lode")
+        if (other.gameObject.tag == "Road")
         {
             nowJunpFlag = false;
         }

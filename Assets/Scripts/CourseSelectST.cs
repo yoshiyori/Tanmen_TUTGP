@@ -18,20 +18,21 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
     //[SerializeField] FadeController fc;
     private bool selectStopFlag;
     private bool isTransition;
-
     [SerializeField] private GameObject courseSelectCanvas;
     [SerializeField] private GameObject returnCanvas;
 
     [SerializeField] private bool isConnectJoycon;//Joycon接続してるならTrue、してないならFalse
     private int connectCheckIdentificationNum;
 
+    [SerializeField] private CuePlayer2D soundManager;                          //サウンド追加分1/3
+
     void Start()
     {
         if (sceneName == null)
         {
-            sceneName[0] = "KbAndJcTestScene";//コース１
-            sceneName[1] = "KbAndJcTestScene";//コース２
-            sceneName[2] = "KbAndJcTestScene";//コース３
+            sceneName[0] = "main";//コース１
+            sceneName[1] = "main";//コース２
+            sceneName[2] = "main";//コース３
         }
         selectNum = 0;
         selectStopFlag = false;
@@ -78,16 +79,18 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
 
         if (isTransition == true/* && fc.isFadeOut == false*/)
         {
-            
+
             if (selectNum == 3)
             {
                 isTransition = false;
                 selectNum = 0;
+                soundManager.Play("Decision");
                 courseSelectCanvas.SetActive(!courseSelectCanvas.activeInHierarchy);
                 returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
             }
             else
             {
+                //soundManager.PlayOnSceneSwitch("Decision");
                 SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
                 isTransition = false;
                 selectNum = 0;
@@ -102,7 +105,8 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
-                if (isConnectJoycon == true) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                soundManager.Play("Select");                                                        //サウンド追加分 2/3
+                hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }
@@ -115,7 +119,8 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
-                if (isConnectJoycon == true) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                soundManager.Play("Select");                                                        //サウンド追加分 3/3
+                hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }

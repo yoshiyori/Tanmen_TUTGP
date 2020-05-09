@@ -11,6 +11,9 @@ public class PlayerDirecting : MonoBehaviour
 	public bool willieFlg;
 	private float startDetaTime;
 	private float willieSTime;
+
+	[SerializeField] private CuePlayer playerSound;					//サウンド追加分 1/2
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -21,7 +24,7 @@ public class PlayerDirecting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		/*
+		
 		startDetaTime = Time.time;
 
 		if (willieFlg == true)
@@ -35,20 +38,20 @@ public class PlayerDirecting : MonoBehaviour
 		{
 			willieFlg = true;
 			willieSTime = startDetaTime;
-			this.gameObject.transform.Rotate(new Vector3(0, 0, -40));
-
+			this.gameObject.transform.Rotate(new Vector3(0, 0, 40));
+			playerSound.Play("Willy");									//サウンド追加分 2/2
 		}
 
 		if (startDetaTime > willieTime + willieSTime)
 		{
 			if (willieFlg == true)
 			{
-				this.gameObject.transform.Rotate(new Vector3(0, 0, 40));
+				this.gameObject.transform.Rotate(new Vector3(0, 0, -40));
 			}
 			willieFlg = false;
 			willieSTime = 0;
 		}
-		*/
+		
 	}
 	
 }

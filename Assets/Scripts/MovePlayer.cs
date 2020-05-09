@@ -11,12 +11,14 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
+	[SerializeField] float swingBoostSpeed;	//スイングブースト時のスピード
 	private float TureMaxSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
+	public bool sandControl;
 	private bool willieFlg;
 	public bool turnTipe;
 	private int count = 0;
@@ -24,6 +26,7 @@ public class MovePlayer : MonoBehaviour
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 	public bool cameraStop;
+	public bool swingBoostFlag;	//スイングブースト中かどうかのFlag
 
 
 	//サウンド追加分 1/6
@@ -46,7 +49,8 @@ public class MovePlayer : MonoBehaviour
 		//rigidbodyの取得
 		rigid = GetComponent<Rigidbody>();
 		TureMaxSpeed = maxSpeed;
-		
+		sandControl = false;
+
 	}
 
 	// Update is called once per frame
@@ -59,7 +63,7 @@ public class MovePlayer : MonoBehaviour
 		cameraStop = false;
 		nowSpeed = rigid.velocity;
 		pos = this.gameObject.transform.localEulerAngles;
-
+		
 		//ここで速度とかの制御
 
 
@@ -67,6 +71,10 @@ public class MovePlayer : MonoBehaviour
 		if (mudTrigger == true)
 		{
 			maxSpeed = mudSpeed;
+		}
+		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
+		{
+			maxSpeed = swingBoostSpeed;
 		}
 		else
 		{
@@ -92,7 +100,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
 			cameraStop = true;
-			actionSound.Play("Break"); 
+			actionSound.Play("Break");
 			//サウンド追加分 2/6
 		}
 		if (rigid.velocity.x > 0)
@@ -146,6 +154,7 @@ public class MovePlayer : MonoBehaviour
 		if (Input.GetKey(KeyCode.Z))
 		{
 			Debug.Log(maxSpeed);
+			Debug.Log("x : " + nowSpeed.x + "y : " + nowSpeed.y + "z : " + nowSpeed.z);
 
 		}
 		oldSpeed = nowSpeed;
@@ -267,9 +276,11 @@ public class MovePlayer : MonoBehaviour
 	//サウンド追加分 6/6
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.gameObject.tag.Equals("Road"))
+		
+		if (other.gameObject.tag.Equals("Road"))
 		{
-			if(junp){
+			sandControl = true;
+			if (junp){
 				actionSound.Play("Landing");
 				junp = false;
 			}
@@ -279,16 +290,26 @@ public class MovePlayer : MonoBehaviour
 				//Debug.Log("Running");
 				actionSound.Play("Running", 1);
 			}
+			
 		}
 	}
-	
+
 	void OnCollisionExit(Collision other)
 	{
-		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		if (other.gameObject.tag.Equals("Road"))
+		{
+			sandControl = false;
+		}
+		if ((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			//Debug.Log("Exit");
 			actionSound.Stop(1);
 		}
 	}
 	//サウンド追加分 6/6 終了
+
+	public bool GetSandCtrl()	//スイングブースト実装時追加
+	{
+		return sandControl;
+	}
 }
