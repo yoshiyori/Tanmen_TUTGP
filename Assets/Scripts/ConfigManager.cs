@@ -39,6 +39,7 @@ public class ConfigManager : MonoBehaviour
     private bool isTransition;
     [SerializeField] private bool isAlertStandup;
     private bool isConnectJoycon;
+    [SerializeField] private bool choosingModeFlag;
 
     [SerializeField] private CuePlayer2D soundManager;                          //サウンド追加分 1/15
 
@@ -60,12 +61,19 @@ public class ConfigManager : MonoBehaviour
         handleSlider.value = 0.5f;
         isAlertStandup = false;
         if (hd.isConnectHandle) isConnectJoycon = true;
+        choosingModeFlag = false;
     }
 
 
     void Update()
     {
-        time += Time.deltaTime;
+        if (isConnectJoycon)
+        {
+            hd.JoyconRumble(0, 160, 320, 5.0f, 50);
+            hd.JoyconRumble(1, 160, 320, 5.0f, 50);
+        }
+
+        if (choosingModeFlag == true) time += Time.deltaTime;
 
         if (time > 0.5f)
         {
@@ -83,10 +91,86 @@ public class ConfigManager : MonoBehaviour
             }
         }
 
-        if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
-            Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) ||
+            (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
+            )
         {
-            if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false); ;
+            if (choosingModeFlag == false)
+            {
+                if (selectNum < 3)
+                {
+                    choosingModeFlag = true;
+                }
+                if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+                //isTransition = true;
+                //fc.isFadeOut = true;
+                if (selectNum == 3)
+                {
+                    isAlertStandup = true;
+                    soundManager.Play("Alart");                                             //サウンド追加分 2/15
+                    configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+
+                }
+                if (selectNum == 4)
+                {
+                    isAlertStandup = true;
+                    soundManager.Play("Alart");                                             //サウンド追加分 3/15
+                    configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+
+                }
+            }
+
+            if (isAlertStandup)
+            {
+                isTransition = true;
+                //Debug.Log("alertDisplaySpaceKey");
+                isAlertStandup = false;
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) ||
+            (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
+            )
+        {
+            if (isAlertStandup)
+            {
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if (  
+            (hd.GetRightBrake() == true || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.KeypadEnter))
+            && choosingModeFlag == false
+            )
+        {
+            if (selectNum < 3)
+            {
+                choosingModeFlag = true;
+            }
+            if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
             //isTransition = true;
             //fc.isFadeOut = true;
             if (selectNum == 3)
@@ -118,8 +202,11 @@ public class ConfigManager : MonoBehaviour
                 if (configAlertYesPanel.activeInHierarchy) configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
                 else if (configAlertNoPanel.activeInHierarchy) configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
                 isAlertStandup = false;
+                if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+
             }
         }
+
 
         if (isTransition == true/* && fc.isFadeOut == false*/ && isAlertStandup == false)
         {
@@ -151,6 +238,7 @@ public class ConfigManager : MonoBehaviour
                     }
                     //if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                     selectNum = 0;
+                    if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                     break;
                 case 4:
                     //スライダーで変更した値を反映させる処理書く
@@ -173,51 +261,52 @@ public class ConfigManager : MonoBehaviour
                     }
                     
                     selectNum = 0;
+                    if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                     break;
                 default:
                     break;
             }            
         }
 
-        if ((hd.GetControllerSwing() <= -8 && selectStopFlag == false) 
-            || Input.GetKeyDown(KeyCode.DownArrow))
+        if ((Input.GetKeyDown(KeyCode.RightArrow) ||
+            (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
+            )  &&  choosingModeFlag == false)
         {
-            if (selectNum < 4)
+            if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+            selectNum++;
+            if (selectNum > 4) selectNum = 0;
+            if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+            soundManager.Play("Select");                                         //サウンド追加分 6/15
+            if (isConnectJoycon)
             {
-                if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
-                selectNum++;
-                soundManager.Play("Select");                                         //サウンド追加分 6/15
-                if (isConnectJoycon)
-                {
-                    hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
-                    hd.JoyconRumble(1, 160, 320, 0.1f, 100);
-                }
+                hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                hd.JoyconRumble(1, 160, 320, 0.1f, 100);
             }
             selectStopFlag = true;
         }
 
-        if ((hd.GetControllerSwing() >= 8 && selectStopFlag == false)
-            || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (selectNum > 0)
-            {
-                if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
-                selectNum--;
-                soundManager.Play("Select");                                         //サウンド追加分 7/15
-                hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
-            }
-            selectStopFlag = true;
-        }
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow) ||
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) ||
             (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
-            )
+            )  &&  choosingModeFlag == false)
         {
-            if (selectNum != 3)
+            if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+            selectNum--;
+            if (selectNum < 0) selectNum = 4;
+            if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+            soundManager.Play("Select");                                         //サウンド追加分 7/15
+            hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+            hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+            selectStopFlag = true;
+        }
+
+
+
+
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) ||
+            (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)) 
+            && choosingModeFlag == true)
+        {
+            if (selectNum < 3)
             {
                 if (selectNum == 0 && bgmSlider.value > 0)
                 {
@@ -234,22 +323,16 @@ public class ConfigManager : MonoBehaviour
                     handleSlider.value -= 1.0f / handleSliderDivisionNum;
                     soundManager.Play("Decrease");                                  //サウンド追加分 10/15
                 }
-                else if (selectNum == 4)
-                {
-                    if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
-                    selectNum = 3;
-                    soundManager.Play("Select");                                     //サウンド追加分 11/15
-                }
                 if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) ||
+        if ((Input.GetKeyDown(KeyCode.RightArrow) ||
             (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
-            )
+            )  && choosingModeFlag == true)
         {
-            if (selectNum < 4)
+            if (selectNum < 3)
             {
                 if (selectNum == 0 && bgmSlider.value < 1)
                 {
@@ -266,15 +349,39 @@ public class ConfigManager : MonoBehaviour
                     soundManager.Play("Increase");                                  //サウンド追加分 14/15
                     handleSlider.value += 1.0f / handleSliderDivisionNum;
                 }
-                if (selectNum == 3)
-                {
-                    if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
-                    selectNum = 4;
-                    soundManager.Play("Select");                                     //サウンド追加分 15/15
-                }
                 if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
             }
             selectStopFlag = true;
+        }
+
+
+        if (choosingModeFlag)
+        {
+            if ((hd.GetRightBrake() == true) ||
+            Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                choosingModeFlag = false;
+            }
+            if (hd.GetLeftBrake() == true || Input.GetKeyDown(KeyCode.Backspace))
+            {
+                switch (selectNum)//本当は保存しといたその時々のデフォルト値を0.5fの所に入れる
+                {
+                    case 0:
+                        bgmSlider.value = 0.5f;
+                        break;
+                    case 1:
+                        seSlider.value = 0.5f;
+                        break;
+                    case 2:
+                        handleSlider.value = 0.5f;
+                        break;
+                    default:
+                        break;
+                }
+                choosingModeFlag = false;
+            }
+            
+
         }
 
 
