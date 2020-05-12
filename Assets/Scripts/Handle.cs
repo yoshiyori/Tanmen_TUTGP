@@ -121,6 +121,10 @@ public class Handle : MonoBehaviour
                 rSLRDown = true;
                 rSLRPressCheckFlag = true;
             }
+            else
+            {
+                rSLRDown = false;
+            }
         }
         else
         {

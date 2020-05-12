@@ -100,14 +100,10 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum > 4) selectNum = 0;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 soundManager.Play("Select");                                         //サウンド追加分 6/15
-                if (isConnectJoycon)
-                {
-                    hd.JoyconRumble(0, 160, 320, 0.1f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
-                    hd.JoyconRumble(1, 160, 320, 0.1f, 100);
-                }
+                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
                 selectStopFlag = true;
             }
-            if (choosingModeFlag == true)
+            else
             {
                 if (selectNum < 3)
                 {
@@ -126,7 +122,7 @@ public class ConfigManager : MonoBehaviour
                         soundManager.Play("Increase");                                  //サウンド追加分 14/15
                         handleSlider.value += 1.0f / handleSliderDivisionNum;
                     }
-                    if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                    if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
                 }
                 selectStopFlag = true;
             }
@@ -144,8 +140,7 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum < 0) selectNum = 4;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 soundManager.Play("Select");                                         //サウンド追加分 7/15
-                hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);
                 selectStopFlag = true;
             }
 
@@ -168,7 +163,8 @@ public class ConfigManager : MonoBehaviour
                         handleSlider.value -= 1.0f / handleSliderDivisionNum;
                         soundManager.Play("Decrease");                                  //サウンド追加分 10/15
                     }
-                    if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);
+                                        //第一引数が1で右コントローラー（左手で持つ）、他はSetRumble()の引数と同様
                 }
                 selectStopFlag = true;
             }
@@ -201,11 +197,21 @@ public class ConfigManager : MonoBehaviour
                     configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
 
                 }
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                }
             }
             else
             {
                 choosingModeFlag = false;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                }
             }
 
             if (isAlertStandup == true && alertStandingFlag == true)
@@ -214,7 +220,15 @@ public class ConfigManager : MonoBehaviour
                 //Debug.Log("alertDisplaySpaceKey");
                 isAlertStandup = false;
                 alertStandingFlag = false;
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                }
             }
+
+            
+            
         }
 
         if (hd.GetLeftBrakeDown() == true || Input.GetKeyUp(KeyCode.Backspace))
@@ -237,6 +251,11 @@ public class ConfigManager : MonoBehaviour
                 }
                 choosingModeFlag = false;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                }
             }
             if (isAlertStandup == true && alertStandingFlag == true)
             {
@@ -245,6 +264,11 @@ public class ConfigManager : MonoBehaviour
                 isAlertStandup = false;
                 alertStandingFlag = false;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+                if (isConnectJoycon)
+                {
+                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                }
             }
         }
 
