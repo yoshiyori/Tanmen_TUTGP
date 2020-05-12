@@ -11,11 +11,19 @@ public class Handle : MonoBehaviour
     private Vector3 gyro;
     private Joycon.Button? rButton;
     private Joycon.Button? lButton;
-    private bool rBrake;
-    private bool lBrake;
+    private Joycon.Button? rButtonUp;
+    private Joycon.Button? lButtonUp;
+    private bool rSLR;
+    private bool lSLR;
+    private bool rSLRDown;
+    private bool lSLRDown;
+    private bool rSLRPressCheckFlag;
+    private bool lSLRPressCheckFlag;
+
 
     private static readonly Joycon.Button[] m_buttons =
         Enum.GetValues(typeof(Joycon.Button)) as Joycon.Button[];
+
 
     //[SerializeField] bool rlCheck;//checkの場合right
 
@@ -23,15 +31,46 @@ public class Handle : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Handle.cs Start()");
         var joycons = JoyconManager.Instance.j;
         m_joyconR = joycons.Find(c => !c.isLeft);
         m_joyconL = joycons.Find(c => c.isLeft);
 
-        rBrake = false;
-        lBrake = false;
+        rSLR = false;
+        lSLR = false;
+        rSLRDown = false;
+        lSLRDown = false;
+        rSLRPressCheckFlag = false;
+        lSLRPressCheckFlag = false;
 
-        if (m_joyconR != null || m_joyconL != null) isConnectHandle = true;
-        else isConnectHandle = false;
+        if (m_joyconR != null || m_joyconL != null)
+        {
+            isConnectHandle = true;
+        }
+        else
+        {
+            isConnectHandle = false;
+            foreach (var button in m_buttons)
+            {
+                if (m_joyconL.GetButton(button))
+                {
+                    lButton = button;
+                }
+                if (m_joyconR.GetButton(button))
+                {
+                    rButton = button;
+                }
+                if (m_joyconL.GetButtonUp(button))
+                {
+                    lButtonUp = button;
+                }
+                if (m_joyconR.GetButtonUp(button))
+                {
+                    rButtonUp = button;
+                }
+
+            }
+        }
 
     }
 
@@ -56,11 +95,55 @@ public class Handle : MonoBehaviour
             }
         }
 
-        if (lButton == Joycon.Button.SL || lButton == Joycon.Button.SR) lBrake = true;
-        else lBrake = false;
-        if (rButton == Joycon.Button.SL || rButton == Joycon.Button.SR) rBrake = true;
-        else rBrake = false;
+        if (lButton == Joycon.Button.SL || lButton == Joycon.Button.SR)
+        {
+            lSLR = true;
+            if (lSLRPressCheckFlag == false)
+            {
+                lSLRPressCheckFlag = true;
+                lSLRDown = true;
+            }
+            else
+            {
+                lSLRDown = false;
+            }
+        }
+        else
+        {
+            lSLR = false;
+            lSLRDown = false;
+        }
+        if (rButton == Joycon.Button.SL || rButton == Joycon.Button.SR)
+        {
+            rSLR = true;
+            if (rSLRPressCheckFlag == false)
+            {
+                rSLRDown = true;
+                rSLRPressCheckFlag = true;
+            }
+            else
+            {
+                rSLRDown = false;
+            }
+        }
+        else
+        {
+            rSLR = false;
+            rSLRDown = false;
+        }
 
+        
+
+        if (lButton == null && lSLRPressCheckFlag == true)
+        {
+            lSLRPressCheckFlag = false;
+        }
+        if (rButton == null && lSLRPressCheckFlag == true)
+        {
+            rSLRPressCheckFlag = false;
+        }
+
+        
 
     }
 
@@ -82,12 +165,22 @@ public class Handle : MonoBehaviour
 
     public bool GetRightBrake()
     {
-        return rBrake;
+        return lSLR;
     }
 
     public bool GetLeftBrake()
     {
-        return lBrake;
+        return rSLR;
+    }
+
+    public bool GetRightBrakeDown()
+    {
+        return lSLRDown;
+    }
+
+    public bool GetLeftBrakeDown()
+    {
+        return rSLRDown;
     }
 
     public void JoyconRumble(int checkLRNum, float lowFleq, float highFleq, float amp, int time)
@@ -117,5 +210,6 @@ public class Handle : MonoBehaviour
             return Mathf.Round(gyro.z);
         }
     }
+
 
 }
