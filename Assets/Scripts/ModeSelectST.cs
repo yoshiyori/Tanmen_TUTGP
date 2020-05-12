@@ -65,7 +65,7 @@ public class ModeSelectST : MonoBehaviour
             }
         }
 
-        if ((hd.GetRightBrake() == true) ||
+        if ((hd.GetRightBrakeDown() == true) ||
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             isTransition = true;
@@ -73,7 +73,7 @@ public class ModeSelectST : MonoBehaviour
             //fc.isFadeOut = true;
         }
 
-        if (hd.GetLeftBrake() == true || Input.GetKeyDown(KeyCode.Backspace))
+        if (hd.GetLeftBrakeDown() == true || Input.GetKeyDown(KeyCode.Backspace))
         {
             if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
             isTransition = true;

@@ -19,7 +19,7 @@ public class RankingST : MonoBehaviour
 
     void Update()
     {
-        if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
+        if ((hd.GetRightBrakeDown() == true || hd.GetLeftBrakeDown() == true) ||
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             //isTransition = true;

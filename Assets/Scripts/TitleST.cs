@@ -36,7 +36,7 @@ public class TitleST : MonoBehaviour
             flashObject.SetActive(!flashObject.activeInHierarchy);
         }
 
-        if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) ||
+        if ((hd.GetRightBrakeDown() == true || hd.GetLeftBrakeDown() == true) ||
             Input.anyKeyDown)
         {
             //fc.isFadeOut = true;
