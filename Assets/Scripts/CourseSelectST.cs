@@ -63,14 +63,14 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             }
         }
 
-        if ((hd.GetRightBrake() == true) ||
+        if ((hd.GetRightBrakeDown() == true) ||
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             isTransition = true;
             //fc.isFadeOut = true;
         }
 
-        if (hd.GetLeftBrake() == true || Input.GetKeyDown(KeyCode.Backspace))
+        if (hd.GetLeftBrakeDown() == true || Input.GetKeyDown(KeyCode.Backspace))
         {
             isTransition = true;
             if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
