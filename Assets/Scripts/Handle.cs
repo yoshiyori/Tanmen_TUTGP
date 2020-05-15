@@ -31,7 +31,6 @@ public class Handle : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Handle.cs Start()");
         var joycons = JoyconManager.Instance.j;
         m_joyconR = joycons.Find(c => !c.isLeft);
         m_joyconL = joycons.Find(c => c.isLeft);
@@ -46,10 +45,6 @@ public class Handle : MonoBehaviour
         if (m_joyconR != null || m_joyconL != null)
         {
             isConnectHandle = true;
-        }
-        else
-        {
-            isConnectHandle = false;
             foreach (var button in m_buttons)
             {
                 if (m_joyconL.GetButton(button))
@@ -70,6 +65,10 @@ public class Handle : MonoBehaviour
                 }
 
             }
+        }
+        else
+        {
+            isConnectHandle = false;
         }
 
     }
