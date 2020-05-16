@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,14 +12,17 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
-	[SerializeField] float swingBoostSpeed;	//スイングブースト時のスピード
+	[SerializeField] float swingBoostSpeed; //スイングブースト時のスピード
+	[SerializeField] float blerLimit;//この速度からブラーをかける
 	private float TureMaxSpeed;
+	private double blerSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
 	public bool sandControl;
+	public bool blerTrigger;
 	private bool willieFlg;
 	public bool turnTipe;
 	private int count = 0;
@@ -62,6 +66,7 @@ public class MovePlayer : MonoBehaviour
 		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
 		cameraStop = false;
 		nowSpeed = rigid.velocity;
+		blerSpeed = Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z);
 		pos = this.gameObject.transform.localEulerAngles;
 		
 		//ここで速度とかの制御
@@ -108,6 +113,16 @@ public class MovePlayer : MonoBehaviour
 			//rigid.velocity = Vector3.zero;
 		}
 
+		if (blerSpeed > blerLimit)
+		{
+			blerTrigger = true;
+		}
+		else
+		{
+			blerTrigger = false;
+		}
+		
+
 		if (joyconFlag == true)
 		{
 			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
@@ -153,7 +168,8 @@ public class MovePlayer : MonoBehaviour
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
-			Debug.Log(rigid.velocity);
+			//Debug.Log(rigid.velocity.magnitude);
+			Debug.Log(Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z));
 		
 		}
 		oldSpeed = nowSpeed;

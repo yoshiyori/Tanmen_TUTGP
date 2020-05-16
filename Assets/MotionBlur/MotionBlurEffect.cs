@@ -10,12 +10,14 @@ public class MotionBlurEffect : MonoBehaviour {
 
     public bool extraBlur = false;
     public Shader curShader;
+	public GameObject player;
 
     private Material curMaterial;
     private RenderTexture tempRT;
+	private bool blerTrigger;
 
 
-    //获取材质，get
+    //ここでマテリアルを取得
     Material material {
 
         get
@@ -29,7 +31,7 @@ public class MotionBlurEffect : MonoBehaviour {
         }
     }
 
-    //当材质变为不可用或是非激活状态，调用删除此材质
+    //マテリアルがなかったら削除
     void OnDisable()
     {
         if (curMaterial)
@@ -38,45 +40,49 @@ public class MotionBlurEffect : MonoBehaviour {
         }
     }
 
-    //此函数在当完成所有渲染图片后被调用，用来渲染图片后期效果
+    //ここでレンダリングしてる
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        if (curShader != null)
-        {
-            //创建符合要求的RenderTexture
-            if (tempRT == null || tempRT.width != source.width || tempRT.height != source.height)
-            {
-                DestroyImmediate(tempRT);
-                tempRT = new RenderTexture(source.width, source.height, 0);
-                tempRT.hideFlags = HideFlags.HideAndDontSave;
-                Graphics.Blit(source, tempRT);
-            }
+		blerTrigger = player.GetComponent<MovePlayer>().blerTrigger;
 
-            //是否开启额外模糊效果
-            if (extraBlur)
-            {
-                //将源纹理tempTR复制到blurBuffer,在复制到tempTR，实现将分辨率降低为原来的1/4的效果
-                RenderTexture blurBuffer = RenderTexture.GetTemporary(source.width / 4, source.height / 4, 0);
-                tempRT.MarkRestoreExpected();
-                Graphics.Blit(tempRT, blurBuffer);
-                Graphics.Blit(blurBuffer, tempRT);
-                //渲染完成后，释放blurBuffer
-                RenderTexture.ReleaseTemporary(blurBuffer);
-            }
+		
+			if (blerTrigger == true)
+			{
+				//要件を満たすテクスチャの生成
+				if (tempRT == null || tempRT.width != source.width || tempRT.height != source.height)
+				{
+					DestroyImmediate(tempRT);
+					tempRT = new RenderTexture(source.width, source.height, 0);
+					tempRT.hideFlags = HideFlags.HideAndDontSave;
+					Graphics.Blit(source, tempRT);
+				}
 
-            //设置shader 的外部变量
-            material.SetTexture("_MainTex", tempRT);
-            material.SetFloat("_BlurAmount", 1 - blurAmount);
+				//追加のブラーを使うかどうか
+				if (extraBlur)
+				{
+					//ざっくりいうと解像度を1/4になってます
+					RenderTexture blurBuffer = RenderTexture.GetTemporary(source.width / 4, source.height / 4, 0);
+					tempRT.MarkRestoreExpected();
+					Graphics.Blit(tempRT, blurBuffer);
+					Graphics.Blit(blurBuffer, tempRT);
 
-            //复制源纹理到目标纹理，加上材质效果，分两次渲染是为了判断是否添加extraBlur的模糊效果
-            Graphics.Blit(source, tempRT, material);
-            Graphics.Blit(tempRT, destination);
-        }
-        else
-        {
-            //直接复制源纹理到目标纹理，不做特效处理
-            Graphics.Blit(source, destination);
-        }
+					RenderTexture.ReleaseTemporary(blurBuffer);
+				}
+
+				//シェーダーの外部変数の登録
+				material.SetTexture("_MainTex", tempRT);
+				material.SetFloat("_BlurAmount", 1 - blurAmount);
+
+				//上記の追加のブラーを使うかどうかの設定
+				Graphics.Blit(source, tempRT, material);
+				Graphics.Blit(tempRT, destination);
+			}
+			else
+			{
+				//特殊効果なしでテクスチャに張り付け
+				Graphics.Blit(source, destination);
+			}
+		
 
     }
 
