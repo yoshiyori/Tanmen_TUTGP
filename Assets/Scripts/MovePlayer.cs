@@ -153,9 +153,8 @@ public class MovePlayer : MonoBehaviour
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
-			Debug.Log(maxSpeed);
-			Debug.Log("x : " + nowSpeed.x + "y : " + nowSpeed.y + "z : " + nowSpeed.z);
-
+			Debug.Log(rigid.velocity);
+		
 		}
 		oldSpeed = nowSpeed;
 
