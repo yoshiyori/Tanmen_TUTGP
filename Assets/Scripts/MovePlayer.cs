@@ -30,8 +30,8 @@ public class MovePlayer : MonoBehaviour
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 	public bool cameraStop;
-	public bool swingBoostFlag;	//スイングブースト中かどうかのFlag
-
+	public bool swingBoostFlag; //スイングブースト中かどうかのFlag
+	public SwingJumpJudge sjj;
 
 	//サウンド追加分 1/6
 	[SerializeField] private CuePlayer actionSound;
@@ -46,6 +46,7 @@ public class MovePlayer : MonoBehaviour
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
+		
 	}
 
 	private void Start()
@@ -54,7 +55,7 @@ public class MovePlayer : MonoBehaviour
 		rigid = GetComponent<Rigidbody>();
 		TureMaxSpeed = maxSpeed;
 		sandControl = false;
-
+		joyconFlag = hd.isConnectHandle;
 	}
 
 	// Update is called once per frame
@@ -142,7 +143,7 @@ public class MovePlayer : MonoBehaviour
 		turnPlayer();
 		
 		
-		junpFlag.GetComponent<JunpJudg>().JunpPlayer();
+		junpFlag.GetComponent<SwingJumpJudge>().JunpPlayer();
 
 		//サウンド追加分 5/6
 		if(succesRollingJump)
@@ -156,14 +157,14 @@ public class MovePlayer : MonoBehaviour
 		}
 		//サウンド追加分 5/6 終了
 
-		if (joyconFlag == true)
+		if (joyconFlag == true && junp == false)
 		{
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-3), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-3), 0) * rigid.velocity;
 		}
-
 
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
@@ -305,9 +306,11 @@ public class MovePlayer : MonoBehaviour
 				//Debug.Log("Running");
 				actionSound.Play("Running", 1);
 			}
-			
+
 		}
+
 	}
+
 
 	void OnCollisionExit(Collision other)
 	{

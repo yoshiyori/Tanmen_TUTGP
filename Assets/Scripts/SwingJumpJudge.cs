@@ -26,7 +26,7 @@ public class SwingJumpJudge : MonoBehaviour
     private float time;
     private bool isPlus;
     private bool touchingGroundFrag;
-    private bool afterJumpingFlag;
+    [SerializeField] private bool afterJumpingFlag;
     [SerializeField] int useGaugeSpeed;
     private bool movingFlag;
     [SerializeField] int decreaseGaugeSpeed;
@@ -225,5 +225,10 @@ public class SwingJumpJudge : MonoBehaviour
             if (swingGaugeObject.activeInHierarchy) swingGaugeObject.SetActive(false);
             movePlayer.swingBoostFlag = false;
         }
+    }
+
+    public bool GetAfterJumpingFlag()
+    {
+        return afterJumpingFlag;
     }
 }
