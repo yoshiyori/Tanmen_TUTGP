@@ -220,12 +220,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60547364}
   m_CullTransparentMesh: 0
---- !u!4 &130909255 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 976970601789590473, guid: 3f316a32f4a99d945a060048df1c569a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1183774550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &211111139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -849,6 +843,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &618531926 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 976970601789590473, guid: 3f316a32f4a99d945a060048df1c569a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183774550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &621732736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,10 +1524,10 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_RenderMode: 2
+  m_SortingLayerID: -19293431
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -1538,7 +1538,7 @@ ParticleSystemRenderer:
   m_NormalDirection: 0
   m_ShadowBias: 0
   m_RenderAlignment: 0
-  m_Pivot: {x: 0, y: 5, z: 0}
+  m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
@@ -2383,7 +2383,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6161,11 +6161,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777367988}
-  m_LocalRotation: {x: -0, y: -0.9848078, z: 0.17364816, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 15}
   m_LocalScale: {x: 0.9646, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 130909255}
+  m_Father: {fileID: 618531926}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &840497473
