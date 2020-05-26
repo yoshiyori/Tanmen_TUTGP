@@ -63,8 +63,6 @@ public class MovePlayer : MonoBehaviour
 		actionSound.InitializeAisacControl("Landing");									//サウンド追加分 2/8
 	}
 
-    }
-
 	// Update is called once per frame
 	void Update()
 	{
