@@ -199,11 +199,31 @@ public class CuePlayer : MonoBehaviour{
 
     /**
      * <summary>CriAtomSourceの再生状態を判定<summary>
-     * <params status = "status">再生状態の名称がこの引数の値と同じかどうかを判定<params>
+     * <params name = "status">再生状態の名称がこの引数の値と同じかどうかを判定<params>
      * <return>再生状態と引数が一致するかどうか</return>
      */
     public bool JudgeAtomSourceStatus(string status, int atomSourceNum = 0){
         return GetAtomSourceStatus(atomSourceNum).ToString().Equals(status);
+    }
+
+    /**
+     * <summary>指定したAISACコントロールを初期化<summary>
+     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
+     */
+    public void InitializeAisacControl(string aisacControlName){
+        foreach(CriAtomSource source in criAtomSourceList){
+            source.SetAisacControl(aisacControlName, 0f);
+        }
+    }
+
+    /**
+     * <summary>指定したAISACコントロールの値を設定<summary>
+     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
+     * <params name = "value">AISACコントロールの値<params>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void SetAisacControl(string aisacControlName, float value, int atomSourceNum){
+        criAtomSourceList[atomSourceNum].SetAisacControl(aisacControlName, value);
     }
     
     //CriAtomSourceの追加
