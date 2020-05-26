@@ -12,7 +12,9 @@ public class PlayerDirecting : MonoBehaviour
 	private float startDetaTime;
 	private float willieSTime;
 
-	[SerializeField] private CuePlayer playerSound;					//サウンド追加分 1/2
+	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
+
+	[SerializeField] private Handle hd;								//Joycon関係追加 5/26
 
 	// Start is called before the first frame update
 	void Start()
@@ -34,7 +36,7 @@ public class PlayerDirecting : MonoBehaviour
 
 		//ウィリー
 		
-		if (Input.GetKeyDown(KeyCode.S)&&willieFlg == false)
+		if ( (Input.GetKeyDown(KeyCode.S)  || hd.GetControllerSwing() >= 8) &&willieFlg == false)
 		{
 			willieFlg = true;
 			willieSTime = startDetaTime;
