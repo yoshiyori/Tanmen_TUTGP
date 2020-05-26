@@ -33,10 +33,10 @@ public class MovePlayer : MonoBehaviour
 	public bool swingBoostFlag; //スイングブースト中かどうかのFlag
 	public SwingJumpJudge sjj;
 
-	//サウンド追加分 1/6
+	//サウンド追加分 1/8
 	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
-	//サウンド追加分 1/6 終了
+	//サウンド追加分 1/8 終了
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -56,6 +56,8 @@ public class MovePlayer : MonoBehaviour
 		TureMaxSpeed = maxSpeed;
 		sandControl = false;
 		joyconFlag = hd.isConnectHandle;
+
+		actionSound.InitializeAisacControl("Landing");									//サウンド追加分 2/8
 	}
 
 	// Update is called once per frame
@@ -107,7 +109,7 @@ public class MovePlayer : MonoBehaviour
 			rigid.AddRelativeForce(brakeSpeed, 0, 0);
 			cameraStop = true;
 			actionSound.Play("Break");
-			//サウンド追加分 2/6
+			//サウンド追加分 3/8
 		}
 		if (rigid.velocity.x > 0)
 		{
@@ -129,12 +131,12 @@ public class MovePlayer : MonoBehaviour
 			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-				actionSound.Play("Break");                                                      //サウンド追加分 3/6
+				actionSound.Play("Break");                                                      //サウンド追加分 4/8
 			}
 			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
 				rigid.AddRelativeForce(brakeSpeed, 0, 0);
-				actionSound.Play("Break");                                                      //サウンド追加分 4/6
+				actionSound.Play("Break");                                                      //サウンド追加分 5/8
 			}
 		}
 
@@ -145,7 +147,7 @@ public class MovePlayer : MonoBehaviour
 		
 		junpFlag.GetComponent<SwingJumpJudge>().JunpPlayer();
 
-		//サウンド追加分 5/6
+		//サウンド追加分 6/8
 		if(succesRollingJump)
 		{
 			actionSound.Play("Rolling");
@@ -155,7 +157,18 @@ public class MovePlayer : MonoBehaviour
 		{
 			actionSound.Stop(1);
 		}
-		//サウンド追加分 5/6 終了
+
+		//自転車を漕ぐ音
+		if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			//Debug.Log("Running");
+			actionSound.Play("Running", 1);
+		}
+		else if((nowSpeed.magnitude < 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			actionSound.Stop(1);
+		}
+		//サウンド追加分 6/8 終了
 
 		if (joyconFlag == true && junp == false)
 		{
@@ -289,24 +302,22 @@ public class MovePlayer : MonoBehaviour
 		//Debug.Log(count);
 	}
 
-	//サウンド追加分 6/6
 	void OnCollisionEnter(Collision other)
 	{
-		
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = true;
+
+			//サウンド追加分 7/8
+			//着地音
 			if (junp){
 				actionSound.Play("Landing");
 				junp = false;
 			}
 
-			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
-			{
-				//Debug.Log("Running");
-				actionSound.Play("Running", 1);
-			}
-
+			//走行音の切り替え
+			actionSound.SetAisacControl("Landing", 0f, 1);
+			//サウンド追加分 7/8 終了
 		}
 
 	}
@@ -317,14 +328,9 @@ public class MovePlayer : MonoBehaviour
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = false;
-		}
-		if ((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
-		{
-			//Debug.Log("Exit");
-			actionSound.Stop(1);
+			actionSound.SetAisacControl("Landing", 1f, 1);			//サウンド追加分 8/8
 		}
 	}
-	//サウンド追加分 6/6 終了
 
 	public bool GetSandCtrl()	//スイングブースト実装時追加
 	{
