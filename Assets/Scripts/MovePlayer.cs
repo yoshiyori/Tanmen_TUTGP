@@ -32,6 +32,9 @@ public class MovePlayer : MonoBehaviour
 	public bool cameraStop;
 	public bool swingBoostFlag; //スイングブースト中かどうかのFlag
 	public SwingJumpJudge sjj;
+    [SerializeField]ParticleSystem concentratedLine; //集中線のパーティクルを入れる
+    [SerializeField]GameObject concentratedLineCamera; //集中線を写す専用カメラを入れる
+    private bool concentratedLineEndFlag; //集中線終了用フラグ
 
 	//サウンド追加分 1/8
 	[SerializeField] private CuePlayer actionSound;
@@ -83,7 +86,17 @@ public class MovePlayer : MonoBehaviour
 		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
 		{
 			maxSpeed = swingBoostSpeed;
+            
+            //集中線出現用処理
+            concentratedLineCamera.SetActive(true);
+            concentratedLineEndFlag = true;
 		}
+        else if (swingBoostFlag == false && concentratedLineEndFlag == true) //集中線消去用処理
+        {
+            maxSpeed = TureMaxSpeed;
+            concentratedLine.Clear();
+            concentratedLineCamera.SetActive(false);
+        }
 		else
 		{
 			maxSpeed = TureMaxSpeed;
