@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -810,6 +810,9 @@ MonoBehaviour:
   - cueSheetName: GameSE
     cueName: CrayBall
     gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SwingBoost
+    gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
     gameVariableName: 
@@ -880,6 +883,9 @@ MonoBehaviour:
       comment: 
     - name: CrayBall
       id: 12
+      comment: 
+    - name: SwingBoost
+      id: 13
       comment: 
   - name: MenuSE
     id: 1
@@ -2308,7 +2314,7 @@ PrefabInstance:
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: cueNameList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
@@ -2319,6 +2325,11 @@ PrefabInstance:
         type: 3}
       propertyPath: cueNameList.Array.data[0]
       value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.data[1]
+      value: SwingBoost
       objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
@@ -2429,6 +2440,16 @@ PrefabInstance:
         type: 3}
       propertyPath: junpSpeed
       value: 80000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075735018066651264, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: _cueName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075735018066651264, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: _cueSheet
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

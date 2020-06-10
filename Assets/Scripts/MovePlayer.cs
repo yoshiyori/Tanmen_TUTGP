@@ -163,7 +163,7 @@ public class MovePlayer : MonoBehaviour
 		//サウンド追加分 6/8
 		if(succesRollingJump)
 		{
-			actionSound.Play("Rolling");
+			//actionSound.Play("Rolling");
 			succesRollingJump = false;
 		}
 		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
