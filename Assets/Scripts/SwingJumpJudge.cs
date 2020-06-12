@@ -144,7 +144,7 @@ public class SwingJumpJudge : MonoBehaviour
         }
         else
         {
-            jumpSound.loop = false;
+            //jumpSound.loop = false;
         }
 
         switch (argModeSelectNum)
