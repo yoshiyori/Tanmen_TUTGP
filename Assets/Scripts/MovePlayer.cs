@@ -222,7 +222,6 @@ public class MovePlayer : MonoBehaviour
         }
 
 
-	}
 
 	void turnPlayer()
 	{
