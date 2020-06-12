@@ -14,9 +14,10 @@ public class SwingJumpJudge : MonoBehaviour
     private Vector3 nowSpeed;
     private Vector3 playerPosition;
 
-    //サウンド追加分 1/4
+    //サウンド追加分 1/6
     [SerializeField] private CuePlayer jumpSound;
     [SerializeField] private MovePlayer movePlayer;
+    private float loopTime = 0f;
 
     //Gauge関係
     [SerializeField] private GameObject swingGaugeObject;
@@ -26,7 +27,7 @@ public class SwingJumpJudge : MonoBehaviour
     private float time;
     private bool isPlus;
     private bool touchingGroundFrag;
-    private bool afterJumpingFlag;
+    [SerializeField] private bool afterJumpingFlag;
     [SerializeField] int useGaugeSpeed;
     private bool movingFlag;
     [SerializeField] int decreaseGaugeSpeed;
@@ -40,7 +41,7 @@ public class SwingJumpJudge : MonoBehaviour
         triggerObsFlag = false;
         rigid = playerObject.GetComponent<Rigidbody>();
         playerPosition = playerObject.transform.position;
-        //inertiaPlayer = playerObject.GetComponent<InertiaPlayer>();                         //サウンド追加分 2/4
+        //inertiaPlayer = playerObject.GetComponent<InertiaPlayer>();                         //サウンド追加分 2/6
 
         //Gauge関係
         swingGauge.value = 0.0f;
@@ -64,7 +65,7 @@ public class SwingJumpJudge : MonoBehaviour
             triggerObsFlag = false;
             nowJunpFlag = true;
 
-            //サウンド追加分 3/4
+            //サウンド追加分 3/6
             movePlayer.junp = true;
             jumpSound.Play("Jump");
 
@@ -127,7 +128,7 @@ public class SwingJumpJudge : MonoBehaviour
             rigid.AddRelativeForce(-junpAccelSpeed, 0, 0);
             nowJunpFlag = false;
             Debug.Log("JunpAcccel");
-            movePlayer.succesRollingJump = true;                                         //サウンド追加分 4/4
+            movePlayer.succesRollingJump = true;                //サウンド追加分 4/6
         }
 
     }
@@ -137,9 +138,15 @@ public class SwingJumpJudge : MonoBehaviour
         time += Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            swingGauge.value += upNum;
+            swingGauge.value += upNum * 0.2f;
             movingFlag = true;
+            PlaySwingBoostSound();                              //サウンド追加分 5/6
         }
+        else
+        {
+            jumpSound.loop = false;
+        }
+
         switch (argModeSelectNum)
         {
             case 0:
@@ -224,6 +231,24 @@ public class SwingJumpJudge : MonoBehaviour
         {
             if (swingGaugeObject.activeInHierarchy) swingGaugeObject.SetActive(false);
             movePlayer.swingBoostFlag = false;
+        }
+    }
+
+    public bool GetAfterJumpingFlag()
+    {
+        return afterJumpingFlag;
+    }
+
+    //サウンド追加分 6/6
+    private void PlaySwingBoostSound(){
+        if(loopTime <= 0f){
+            jumpSound.Play("SwingBoost");
+        }
+
+        loopTime += Time.deltaTime;
+        if(loopTime >= 0.7f - swingGauge.value * 0.5f){
+            //Debug.Log(loopTime.ToString() + ", " + (1f - swingGauge.value * 0.5f).ToString());
+            loopTime = 0f;
         }
     }
 }

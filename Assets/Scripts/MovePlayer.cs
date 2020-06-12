@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,14 +12,17 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
-	[SerializeField] float swingBoostSpeed;	//スイングブースト時のスピード
+	[SerializeField] float swingBoostSpeed; //スイングブースト時のスピード
+	[SerializeField] float blerLimit;//この速度からブラーをかける
 	private float TureMaxSpeed;
+	private double blerSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
 	private bool mudTrigger;
 	public bool junp;
 	public bool sandControl;
+	public bool blerTrigger;
 	private bool willieFlg;
 	public bool turnTipe;
 	private int count = 0;
@@ -26,13 +30,16 @@ public class MovePlayer : MonoBehaviour
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 	public bool cameraStop;
-	public bool swingBoostFlag;	//スイングブースト中かどうかのFlag
+	public bool swingBoostFlag; //スイングブースト中かどうかのFlag
+	public SwingJumpJudge sjj;
+    [SerializeField]ParticleSystem concentratedLine; //集中線のパーティクルを入れる
+    [SerializeField]GameObject concentratedLineCamera; //集中線を写す専用カメラを入れる
+    private bool concentratedLineEndFlag; //集中線終了用フラグ
 
-
-	//サウンド追加分 1/6
+	//サウンド追加分 1/8
 	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
-	//サウンド追加分 1/6 終了
+	//サウンド追加分 1/8 終了
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -42,6 +49,7 @@ public class MovePlayer : MonoBehaviour
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
+		
 	}
 
 	private void Start()
@@ -50,98 +58,149 @@ public class MovePlayer : MonoBehaviour
 		rigid = GetComponent<Rigidbody>();
 		TureMaxSpeed = maxSpeed;
 		sandControl = false;
+		joyconFlag = hd.isConnectHandle;
 
+		actionSound.InitializeAisacControl("Landing");									//サウンド追加分 2/8
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 
-		if(Time.timeScale == 1f) //ポーズ実装時追加。ポーズ中は動作しないようにする
-        {
-            mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
-            //junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
-            willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
-            cameraStop = false;
-            nowSpeed = rigid.velocity;
-            pos = this.gameObject.transform.localEulerAngles;
+		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
+		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
+		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
+		cameraStop = false;
+		nowSpeed = rigid.velocity;
+		blerSpeed = Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z);
+		pos = this.gameObject.transform.localEulerAngles;
+		
+		//ここで速度とかの制御
 
             //ここで速度とかの制御
 
 
+		if (mudTrigger == true)
+		{
+			maxSpeed = mudSpeed;
+		}
+		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
+		{
+			maxSpeed = swingBoostSpeed;
+            
+            //集中線出現用処理
+            concentratedLineCamera.SetActive(true);
+            concentratedLineEndFlag = true;
+		}
+        else if (swingBoostFlag == false && concentratedLineEndFlag == true) //集中線消去用処理
+        {
+            maxSpeed = TureMaxSpeed;
+            concentratedLine.Clear();
+            concentratedLineCamera.SetActive(false);
+        }
+		else
+		{
+			maxSpeed = TureMaxSpeed;
+		}
 
-            if (mudTrigger == true)
-            {
-                maxSpeed = mudSpeed;
-            }
-            else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
-            {
-                maxSpeed = swingBoostSpeed;
-            }
-            else
-            {
-                maxSpeed = TureMaxSpeed;
-            }
+		if (rigid.velocity.magnitude < maxSpeed)
+		{
+			rigid.AddRelativeForce(-accelSpeed, 0, 0);
+		}
+		else if (maxSpeed < -nowSpeed.x)
+		{
+			if (mudTrigger == false)
+			{
+				nowSpeed.x = oldSpeed.x - 10;
+			}
+			else
+			{
+				nowSpeed.x = oldSpeed.x - 100000000;
+			}
+		}
+		if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x < 0.1)
+		{
+			rigid.AddRelativeForce(brakeSpeed, 0, 0);
+			cameraStop = true;
+			actionSound.Play("Break");
+			//サウンド追加分 3/8
+		}
+		if (rigid.velocity.x > 0)
+		{
+			//rigid.velocity = Vector3.zero;
+		}
 
-            if (rigid.velocity.magnitude < maxSpeed)
-            {
-                rigid.AddRelativeForce(-accelSpeed, 0, 0);
-            }
-            else if (maxSpeed < -nowSpeed.x)
-            {
-                if (mudTrigger == false)
-                {
-                    nowSpeed.x = oldSpeed.x - 10;
-                }
-                else
-                {
-                    nowSpeed.x = oldSpeed.x - 100000000;
-                }
-            }
-            if (Input.GetKey(KeyCode.DownArrow) && rigid.velocity.x < 0.1)
-            {
-                rigid.AddRelativeForce(brakeSpeed, 0, 0);
-                cameraStop = true;
-                actionSound.Play("Break");
-                //サウンド追加分 2/6
-            }
-            if (rigid.velocity.x > 0)
-            {
-                //rigid.velocity = Vector3.zero;
-            }
+		if (blerSpeed > blerLimit)
+		{
+			blerTrigger = true;
+		}
+		else
+		{
+			blerTrigger = false;
+		}
+		
 
-            if (joyconFlag == true)
-            {
-                if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
-                {
-                    rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-                    actionSound.Play("Break");                                                      //サウンド追加分 3/6
-                }
-                if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
-                {
-                    rigid.AddRelativeForce(brakeSpeed, 0, 0);
-                    actionSound.Play("Break");                                                      //サウンド追加分 4/6
-                }
-            }
+		if (joyconFlag == true)
+		{
+			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+			{
+				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
+				actionSound.Play("Break");                                                      //サウンド追加分 4/8
+			}
+			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
+			{
+				rigid.AddRelativeForce(brakeSpeed, 0, 0);
+				actionSound.Play("Break");                                                      //サウンド追加分 5/8
+			}
+		}
 
-            //回転
+		//回転
+		
+		turnPlayer();
+		
+		
+		junpFlag.GetComponent<SwingJumpJudge>().JunpPlayer();
 
-            turnPlayer();
+		//サウンド追加分 6/8
+		if(succesRollingJump)
+		{
+			//actionSound.Play("Rolling");
+			succesRollingJump = false;
+		}
+		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			actionSound.Stop(1);
+		}
 
+		//自転車を漕ぐ音
+		if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			//Debug.Log("Running");
+			actionSound.Play("Running", 1);
+		}
+		else if((nowSpeed.magnitude < 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		{
+			actionSound.Stop(1);
+		}
+		//サウンド追加分 6/8 終了
 
-            junpFlag.GetComponent<JunpJudg>().JunpPlayer();
+		if (joyconFlag == true && junp == false)
+		{
+			//var rot = transform.rotation.eulerAngles;
+			//rot.y = hd.GetControlllerAccel(-100);
+			//transform.rotation = Quaternion.Euler(rot);
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-3), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-3), 0) * rigid.velocity;
+		}
 
-            //サウンド追加分 5/6
-            if (succesRollingJump)
-            {
-                actionSound.Play("Rolling");
-                succesRollingJump = false;
-            }
-            if ((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
-            {
-                actionSound.Stop(1);
-            }
-            //サウンド追加分 5/6 終了
+		//確認用
+		if (Input.GetKey(KeyCode.Z))
+		{
+			//Debug.Log(rigid.velocity.magnitude);
+			Debug.Log(Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z));
+		
+		}
+		oldSpeed = nowSpeed;
 
             if (joyconFlag == true)
             {
@@ -276,40 +335,35 @@ public class MovePlayer : MonoBehaviour
 		//Debug.Log(count);
 	}
 
-	//サウンド追加分 6/6
 	void OnCollisionEnter(Collision other)
 	{
-		
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = true;
+
+			//サウンド追加分 7/8
+			//着地音
 			if (junp){
 				actionSound.Play("Landing");
 				junp = false;
 			}
 
-			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
-			{
-				//Debug.Log("Running");
-				actionSound.Play("Running", 1);
-			}
-			
+			//走行音の切り替え
+			actionSound.SetAisacControl("Landing", 0f, 1);
+			//サウンド追加分 7/8 終了
 		}
+
 	}
+
 
 	void OnCollisionExit(Collision other)
 	{
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = false;
-		}
-		if ((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
-		{
-			//Debug.Log("Exit");
-			actionSound.Stop(1);
+			actionSound.SetAisacControl("Landing", 1f, 1);			//サウンド追加分 8/8
 		}
 	}
-	//サウンド追加分 6/6 終了
 
 	public bool GetSandCtrl()	//スイングブースト実装時追加
 	{

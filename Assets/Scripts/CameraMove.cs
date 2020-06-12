@@ -6,10 +6,12 @@ public class CameraMove : MonoBehaviour
 {
     Transform cameraTrans;
     [SerializeField] Transform playerTrans;
-    [SerializeField] Vector3 cameraVec;
-    [SerializeField] Vector3 cameraRot;
+    private Vector3 cameraVec;
+  //  [SerializeField] Vector3 cameraRot;
     private Vector3 lerpCamera;
     public GameObject player;
+    public GameObject cameraPos;
+    public GameObject cameraLoolAt;
     private float rotaSpeed;
     public int tipe;
     private bool joyconFlag;
@@ -22,14 +24,14 @@ public class CameraMove : MonoBehaviour
         {
             rotaSpeed = player.GetComponent<InertiaPlayer>().rotaSpeed;
             cameraTrans = transform;
-            cameraTrans.rotation = Quaternion.Euler(cameraRot);
+          //  cameraTrans.rotation = Quaternion.Euler(cameraRot);
             joyconFlag = player.GetComponent<InertiaPlayer>().joyconFlag;
         }
         if (tipe == 1)
         {
             rotaSpeed = player.GetComponent<MovePlayer>().rotaSpeed;
             cameraTrans = transform;
-            cameraTrans.rotation = Quaternion.Euler(cameraRot);
+           // cameraTrans.rotation = Quaternion.Euler(cameraRot);
             joyconFlag = player.GetComponent<MovePlayer>().joyconFlag;
 
         }
@@ -37,44 +39,41 @@ public class CameraMove : MonoBehaviour
         {
             rotaSpeed = 2;
             cameraTrans = transform;
-            cameraTrans.rotation = Quaternion.Euler(cameraRot);
+           // cameraTrans.rotation = Quaternion.Euler(cameraRot);
             joyconFlag = false;
 
         }
 
     }
-
-    private void Update()
+    void LateUpdate()
     {
+        cameraVec = cameraPos.transform.position - player.transform.position;
+
         if (tipe == 1)
         {
             stop = player.GetComponent<MovePlayer>().cameraStop;
         }
-    }
-    void LateUpdate()
-    {
+
         if (tipe != 2)
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 // this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
                 //transform.RotateAround(playerTrans.position, Vector3.up, rotaSpeed);
-                queue(cameraVec, -rotaSpeed);
-                cameraTrans.LookAt(playerTrans.position);
+                queue(cameraVec, -rotaSpeed);           
 
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 //this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
                 //transform.RotateAround(playerTrans.position, Vector3.up, -rotaSpeed);
-                queue(cameraVec, rotaSpeed);
-                cameraTrans.LookAt(playerTrans.position);
+                queue(cameraVec, rotaSpeed);             
             }
 
             if (joyconFlag == true && hd.GetControlllerAccel(10) != 0.0f)
             {
                 queue(cameraVec, hd.GetControlllerAccel(5));
-                cameraTrans.LookAt(playerTrans.position);
+               
 
                 /*if (leftRightNum > 0)
                 {
@@ -88,6 +87,7 @@ public class CameraMove : MonoBehaviour
                 }*/
 
             }
+            cameraTrans.LookAt(cameraLoolAt.transform.position);
         }
 
         cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
