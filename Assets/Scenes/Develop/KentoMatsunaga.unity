@@ -312,6 +312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mud (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -396,11 +401,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
@@ -610,6 +610,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpJudg
       objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -679,11 +684,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.7227522
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
@@ -773,6 +773,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpJudg
       objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -843,11 +848,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7227522
       objectReference: {fileID: 0}
-    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b382e7ef595b0e46a4dcbb727122b11, type: 3}
 --- !u!1001 &550703146
@@ -861,6 +861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mud (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -946,11 +951,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
@@ -1168,6 +1168,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mud
       objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1252,11 +1257,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
@@ -2416,6 +2416,16 @@ PrefabInstance:
       propertyPath: cameraLoolAt
       value: 
       objectReference: {fileID: 290979815}
+    - target: {fileID: 6228299778135643494, guid: 3f316a32f4a99d945a060048df1c569a,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1911404639}
+    - target: {fileID: 6228299778135643494, guid: 3f316a32f4a99d945a060048df1c569a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f316a32f4a99d945a060048df1c569a, type: 3}
 --- !u!1001 &1102500907
@@ -2429,6 +2439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mud
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
@@ -2514,11 +2529,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
@@ -2957,6 +2967,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mud (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3041,11 +3056,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
@@ -3334,6 +3344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mud (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: cueNameList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8327025692696826273, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3418,11 +3433,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: cueNameList.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}

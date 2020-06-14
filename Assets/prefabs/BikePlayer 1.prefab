@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 1281438874017903056}
   - component: {fileID: 1281438873064066652}
   - component: {fileID: 1281438873064066627}
+  - component: {fileID: 4368630588184284816}
   m_Layer: 0
   m_Name: Player_Model (1)
   m_TagString: player
@@ -637,6 +638,26 @@ MonoBehaviour:
   player: {fileID: 1281438874621425338}
   willieFlg: 0
   playerSound: {fileID: 0}
+  hd: {fileID: 0}
+--- !u!95 &4368630588184284816
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281438874017541616}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e1edc303c0cbc74fb1fef4e57c5d45c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1281438874017541618
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,15 +1011,20 @@ MonoBehaviour:
   brakeSpeed: 5500000
   mudSpeed: 10
   swingBoostSpeed: 0
+  blerLimit: 0
   mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
   junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
     type: 3}
   objectPlayer: {fileID: 1281438874017541616}
   junp: 0
   sandControl: 0
+  blerTrigger: 0
   turnTipe: 1
   cameraStop: 0
   swingBoostFlag: 0
+  sjj: {fileID: 0}
+  concentratedLine: {fileID: 0}
+  concentratedLineCamera: {fileID: 0}
   actionSound: {fileID: 1281438874621425334}
   succesRollingJump: 0
   hd: {fileID: 0}
