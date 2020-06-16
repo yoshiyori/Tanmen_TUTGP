@@ -18,6 +18,11 @@ public class CuePlayer : MonoBehaviour{
     //パラメーター
     [SerializeField] private bool playOnStart = false;
     [SerializeField] internal string playCueNameOnStart = "";
+    private bool loop = false;
+    [HideInInspector] public float loopSpeed;
+
+    //その他
+    private CriAtomExStandardVoicePool voicePool;
 
 #if UNITY_EDITOR
     //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
@@ -95,12 +100,21 @@ public class CuePlayer : MonoBehaviour{
     }
     
     //コルーチン
-    private IEnumerator destroyAfterPlay;
     private IEnumerator DestroyAfterPlay(GameObject gameObject, int atomSourceNum = 0){
         while(!JudgeAtomSourceStatus("PlayEnd", atomSourceNum)){
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+        while(loop){
+            if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
+                criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(loopSpeed);
+                Play(cueName, atomSourceNum, gameVariable);
+            }
+            yield return null;
+        }
     }
 
     /**
@@ -147,8 +161,22 @@ public class CuePlayer : MonoBehaviour{
         }
 
         //音の再生が終了してから破壊
-        destroyAfterPlay = DestroyAfterPlay(this.gameObject);
-        StartCoroutine(destroyAfterPlay);
+        StartCoroutine(DestroyAfterPlay(this.gameObject));
+    }
+
+    public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomSourceList.Count <= atomSourceNum){
+            criAtomSourceList.Add(InitializeAtomSource());
+        }
+
+        //タイムストレッチ準備
+        voicePool = new CriAtomExStandardVoicePool(4, 2, 48000, false, 2);
+        voicePool.AttachDspTimeStretch();
+        criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
+
+        loop = true;
+        StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable));
     }
 
     /**
@@ -183,6 +211,16 @@ public class CuePlayer : MonoBehaviour{
             criAtomSourceList.Add(InitializeAtomSource());
         }
         criAtomSourceList[atomSourceNum].Stop();
+    }
+
+    /**
+     * <summary>再生しているキューの停止(CriAtomSourceごとの停止)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void StopStrechLoop(){
+        loop = false;
+        voicePool.DetachDsp();
+        voicePool.Dispose();
     }
 
     /**
