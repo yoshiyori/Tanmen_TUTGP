@@ -14,6 +14,7 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] float mudSpeed;
 	[SerializeField] float swingBoostSpeed; //スイングブースト時のスピード
 	[SerializeField] float blerLimit;//この速度からブラーをかける
+	public Animator PlayerAni;
 	private float TureMaxSpeed;
 	private double blerSpeed;
 	public GameObject mud;
@@ -26,6 +27,7 @@ public class MovePlayer : MonoBehaviour
 	private bool willieFlg;
 	public bool turnTipe;
 	private int count = 0;
+	public int startLook = 0;
 	private Vector3 nowSpeed;
 	private Vector3 oldSpeed;
 	private Vector3 pos;
@@ -66,6 +68,12 @@ public class MovePlayer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (startLook == 0)
+		{
+			PlayerAni.SetTrigger("Start");
+			startLook = 1;
+		}
+
 
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
@@ -86,9 +94,9 @@ public class MovePlayer : MonoBehaviour
 		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
 		{
 			maxSpeed = swingBoostSpeed;
-            
-            //集中線出現用処理
-            concentratedLineCamera.SetActive(true);
+			PlayerAni.SetBool("Dush", true);
+			//集中線出現用処理
+			concentratedLineCamera.SetActive(true);
             concentratedLineEndFlag = true;
 		}
         else if (swingBoostFlag == false && concentratedLineEndFlag == true) //集中線消去用処理
@@ -96,7 +104,8 @@ public class MovePlayer : MonoBehaviour
             maxSpeed = TureMaxSpeed;
             concentratedLine.Clear();
             concentratedLineCamera.SetActive(false);
-        }
+			PlayerAni.SetBool("Dush", false);
+		}
 		else
 		{
 			maxSpeed = TureMaxSpeed;
@@ -218,6 +227,11 @@ public class MovePlayer : MonoBehaviour
 				{
 					rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
 				}
+				PlayerAni.SetBool("Right", true);
+			}
+			else
+			{
+				PlayerAni.SetBool("Right", false);
 			}
 			if (Input.GetKey(KeyCode.LeftArrow))
 			{
@@ -227,8 +241,13 @@ public class MovePlayer : MonoBehaviour
 				{
 					rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 				}
+				PlayerAni.SetBool("Left", true);
 			}
-			
+			else
+			{
+				PlayerAni.SetBool("Left", false);
+			}
+
 		}
 		else if (rigid.velocity.magnitude > maxSpeed / 3 && rigid.velocity.magnitude <= maxSpeed * 2 / 3)
 		{
@@ -245,6 +264,11 @@ public class MovePlayer : MonoBehaviour
 						rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
 					}
 					count++;
+					PlayerAni.SetBool("Right", true);
+				}
+				else
+				{
+					PlayerAni.SetBool("Right", false);
 				}
 				if (Input.GetKey(KeyCode.LeftArrow))
 				{
@@ -255,8 +279,13 @@ public class MovePlayer : MonoBehaviour
 						rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 					}
 					count++;
+					PlayerAni.SetBool("Left", true);
 				}
-				
+				else
+				{
+					PlayerAni.SetBool("Left", false);
+				}
+
 			}
 			else
 			{
@@ -281,8 +310,13 @@ public class MovePlayer : MonoBehaviour
 						rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
 					}
 					count++;
+					PlayerAni.SetBool("Right", true);
 				}
-				if (Input.GetKey(KeyCode.LeftArrow))
+				else
+				{
+					PlayerAni.SetBool("Right", false);
+				}
+				 if (Input.GetKey(KeyCode.LeftArrow))
 				{
 					check = true;
 					this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
@@ -291,8 +325,13 @@ public class MovePlayer : MonoBehaviour
 						rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
 					}
 					count++;
+					PlayerAni.SetBool("Left", true);
 				}
-				
+				else
+				{
+					PlayerAni.SetBool("Left", false);
+				}
+
 			}
 			else
 			{
@@ -331,6 +370,7 @@ public class MovePlayer : MonoBehaviour
 			//走行音の切り替え
 			actionSound.SetAisacControl("Landing", 0f, 1);
 			//サウンド追加分 7/8 終了
+			PlayerAni.SetBool("Junp", false);
 		}
 
 	}
@@ -343,6 +383,7 @@ public class MovePlayer : MonoBehaviour
 			sandControl = false;
 			actionSound.SetAisacControl("Landing", 1f, 1);			//サウンド追加分 8/8
 		}
+		PlayerAni.SetBool("Junp", true);
 	}
 
 	public bool GetSandCtrl()	//スイングブースト実装時追加
