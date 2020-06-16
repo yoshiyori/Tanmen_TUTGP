@@ -538,6 +538,9 @@ MonoBehaviour:
   - cueSheetName: GameSE
     cueName: CrayBall
     gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SwingBoost
+    gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
     gameVariableName: 
@@ -608,6 +611,9 @@ MonoBehaviour:
       comment: 
     - name: CrayBall
       id: 12
+      comment: 
+    - name: SwingBoost
+      id: 13
       comment: 
   - name: MenuSE
     id: 1
@@ -1654,7 +1660,7 @@ PrefabInstance:
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: cueNameList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
@@ -1665,6 +1671,11 @@ PrefabInstance:
         type: 3}
       propertyPath: cueNameList.Array.data[0]
       value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: cueNameList.Array.data[1]
+      value: SwingBoost
       objectReference: {fileID: 0}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
@@ -1780,6 +1791,16 @@ PrefabInstance:
         type: 3}
       propertyPath: junpAccelSpeed
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075735018066651264, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: _cueName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075735018066651264, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: _cueSheet
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
