@@ -162,7 +162,7 @@ MonoBehaviour:
   - {fileID: 4075735018066651264}
   cueManager: {fileID: 0}
   cueNameList:
-  - Jump
+  - 
   playOnStart: 0
   playCueNameOnStart: 
 --- !u!114 &6300809663157587389
@@ -182,12 +182,14 @@ MonoBehaviour:
   nowJunpFlag: 0
   playerObject: {fileID: 0}
   junpSpeed: 70000000
+  PlayerAni: {fileID: 0}
   jumpSound: {fileID: 1004533117820851386}
   movePlayer: {fileID: 0}
   swingGaugeObject: {fileID: 0}
   swingCommandTextObject: {fileID: 0}
   swingGauge: {fileID: 0}
   upNum: 0.05
+  afterJumpingFlag: 0
   useGaugeSpeed: 30
   decreaseGaugeSpeed: 0
   hd: {fileID: 0}

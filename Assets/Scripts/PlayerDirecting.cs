@@ -11,6 +11,7 @@ public class PlayerDirecting : MonoBehaviour
 	public bool willieFlg;
 	private float startDetaTime;
 	private float willieSTime;
+	public Animator PlayerAni; 
 
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
@@ -40,15 +41,17 @@ public class PlayerDirecting : MonoBehaviour
 		{
 			willieFlg = true;
 			willieSTime = startDetaTime;
-			this.gameObject.transform.Rotate(new Vector3(0, 0, 40));
-			playerSound.Play("Willy");									//サウンド追加分 2/2
+			this.gameObject.transform.Rotate(new Vector3(-40, 0, 0));
+			playerSound.Play("Willy");
+			PlayerAni.SetTrigger("Dush");//サウンド追加分 2/2
 		}
 
 		if (startDetaTime > willieTime + willieSTime)
 		{
 			if (willieFlg == true)
 			{
-				this.gameObject.transform.Rotate(new Vector3(0, 0, -40));
+				this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
+				PlayerAni.SetTrigger("DushEnd");
 			}
 			willieFlg = false;
 			willieSTime = 0;
