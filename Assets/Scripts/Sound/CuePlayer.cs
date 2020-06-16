@@ -18,7 +18,7 @@ public class CuePlayer : MonoBehaviour{
     //パラメーター
     [SerializeField] private bool playOnStart = false;
     [SerializeField] internal string playCueNameOnStart = "";
-    private bool loop = false;
+    [HideInInspector] public bool loop = false;
     [HideInInspector] public float loopSpeed;
 
     //その他
@@ -171,9 +171,11 @@ public class CuePlayer : MonoBehaviour{
         }
 
         //タイムストレッチ準備
-        voicePool = new CriAtomExStandardVoicePool(4, 2, 48000, false, 2);
-        voicePool.AttachDspTimeStretch();
-        criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
+        if(voicePool == null){
+            voicePool = new CriAtomExStandardVoicePool(4, 2, 48000, false, 2);
+            voicePool.AttachDspTimeStretch();
+            criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
+        }
 
         loop = true;
         StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable));

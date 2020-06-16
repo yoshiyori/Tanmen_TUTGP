@@ -141,12 +141,19 @@ public class SwingJumpJudge : MonoBehaviour
             swingGauge.value += upNum * 0.2f;
             movingFlag = true;
             //PlaySwingBoostSound();                              //サウンド追加分 5/6
-            jumpSound.loopSpeed = 1f + swingGauge.value;
-            jumpSound.PlayStrechLoop("SwingBoost", 1);
+            jumpSound.loopSpeed = 0.5f + (Mathf.Sqrt(1 - swingGauge.value * swingGauge.value) * 0.5f);
+            Debug.Log(jumpSound.loopSpeed);
+            if(!jumpSound.loop)
+            {
+                jumpSound.PlayStrechLoop("SwingBoost", 1);
+            }
         }
         else
         {
-            //jumpSound.loop = false;
+            if(jumpSound.loop)
+            {
+                jumpSound.StopStrechLoop();
+            }
         }
 
         switch (argModeSelectNum)
