@@ -228,6 +228,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1733931230}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &206116550 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4272174287555334870, guid: 42d71bdc64cf5924abd8c32925db3680,
+    type: 3}
+  m_PrefabInstance: {fileID: 1733931230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284736413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1798,11 @@ PrefabInstance:
       propertyPath: junpAccelSpeed
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 206116550}
     - target: {fileID: 4075735018066651264, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: _cueName
@@ -1984,7 +1995,7 @@ PrefabInstance:
     - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: blerLimit
-      value: 39
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -2005,7 +2016,7 @@ PrefabInstance:
     - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: maxSpeed
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -2016,6 +2027,16 @@ PrefabInstance:
         type: 3}
       propertyPath: brakeSpeed
       value: 5500000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 206116550}
+    - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: turnTipe
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5697949188883363157, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -2137,6 +2158,21 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 206116550}
+    - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: playerSound
+      value: 
+      objectReference: {fileID: 1733931233}
+    - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: hd
+      value: 
+      objectReference: {fileID: 1416394669}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42d71bdc64cf5924abd8c32925db3680, type: 3}
 --- !u!4 &1733931231 stripped
