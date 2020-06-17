@@ -492,7 +492,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerObject
       value: 
-      objectReference: {fileID: 1758115509}
+      objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_Constraints
@@ -1777,6 +1777,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!95 &1120134373 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4272174287555334870, guid: 42d71bdc64cf5924abd8c32925db3680,
+    type: 3}
+  m_PrefabInstance: {fileID: 1733931230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1187461039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2165,7 +2171,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerObject
       value: 
-      objectReference: {fileID: 1758115509}
+      objectReference: {fileID: 0}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_Constraints
@@ -2562,6 +2568,11 @@ PrefabInstance:
       propertyPath: concentratedLine
       value: 
       objectReference: {fileID: 1640551348}
+    - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 1120134373}
     - target: {fileID: 5697949188883363157, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2677,6 +2688,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 645e5aa5ebf0ffc489aeb7fa128c2e90, type: 2}
+    - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 1120134373}
+    - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: playerSound
+      value: 
+      objectReference: {fileID: 1733931233}
+    - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: hd
+      value: 
+      objectReference: {fileID: 1416394669}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42d71bdc64cf5924abd8c32925db3680, type: 3}
 --- !u!4 &1733931231 stripped
@@ -2727,12 +2753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9da4f4c8734b764ea1e2bc662c3c400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1758115509 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1281438874017541616, guid: 42d71bdc64cf5924abd8c32925db3680,
-    type: 3}
-  m_PrefabInstance: {fileID: 1733931230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1789766494
 GameObject:
   m_ObjectHideFlags: 0
