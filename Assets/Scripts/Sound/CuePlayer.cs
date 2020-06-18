@@ -19,7 +19,7 @@ public class CuePlayer : MonoBehaviour{
     [SerializeField] private bool playOnStart = false;
     [SerializeField] internal string playCueNameOnStart = "";
     [HideInInspector] public bool loop = false;
-    [HideInInspector] public float loopSpeed;
+    [HideInInspector] public float loopTime;
 
     //その他
     private CriAtomExStandardVoicePool voicePool;
@@ -110,8 +110,19 @@ public class CuePlayer : MonoBehaviour{
     private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
         while(loop){
             if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
-                criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(loopSpeed);
+                criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(loopTime);
                 Play(cueName, atomSourceNum, gameVariable);
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator DisposeStandardVoicePool(int atomSourceNum = 0){
+        while(true){
+            if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
+                voicePool.DetachDsp();
+                voicePool.Dispose();
+                break;
             }
             yield return null;
         }
@@ -164,21 +175,29 @@ public class CuePlayer : MonoBehaviour{
         StartCoroutine(DestroyAfterPlay(this.gameObject));
     }
 
+    /**
+     * <summary>タイムストレッチを用いてキューをループ再生(CuePayerのフィールド)</summary>
+     * <param name = "cueName">再生したいキューの名前</param>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する(追加のCriAtomSourceは自動で適用される)</param>
+     * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
+     */
     public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
         //指定された番号のAtomSourceがない場合は追加
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
         }
 
-        //タイムストレッチ準備
-        if(voicePool == null){
-            voicePool = new CriAtomExStandardVoicePool(4, 2, 48000, false, 2);
-            voicePool.AttachDspTimeStretch();
-            criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
-        }
+        if(!loop){
+            //タイムストレッチ準備
+            if(voicePool == null){
+                voicePool = new CriAtomExStandardVoicePool(4, 2, 48000, false, 2);
+                voicePool.AttachDspTimeStretch();
+                criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
+            }
 
-        loop = true;
-        StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable));
+            loop = true;
+            StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable));
+        }
     }
 
     /**
@@ -216,13 +235,17 @@ public class CuePlayer : MonoBehaviour{
     }
 
     /**
-     * <summary>再生しているキューの停止(CriAtomSourceごとの停止)<summary>
+     * <summary>タイムストレッチを利用したループ再生の終了(CriAtomSourceごとの停止)<summary>
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     * <param name = "detachInsertionDSP">インサーション</param>
      */
-    public void StopStrechLoop(){
-        loop = false;
-        voicePool.DetachDsp();
-        voicePool.Dispose();
+    public void StopStrechLoop(int atomSourceNum = 0, bool disposeStandardVoicePool = true){
+        if(loop){
+            loop = false;
+            if(disposeStandardVoicePool){
+                StartCoroutine(DisposeStandardVoicePool(atomSourceNum));
+            }
+        }
     }
 
     /**
