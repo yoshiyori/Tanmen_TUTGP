@@ -13,6 +13,7 @@ public class SwingJumpJudge : MonoBehaviour
     public float junpSpeed;
     private Vector3 nowSpeed;
     private Vector3 playerPosition;
+    public Animator PlayerAni;
 
     //サウンド追加分 1/8
     [SerializeField] private CuePlayer jumpSound;
@@ -68,7 +69,7 @@ public class SwingJumpJudge : MonoBehaviour
             //サウンド追加分 3/8
             movePlayer.junp = true;
             jumpSound.Play("Jump");
-
+            PlayerAni.SetTrigger("Junp");
             //Gauge関係
             if (swingGaugeObject.activeInHierarchy == false && swingCommandTextObject.activeInHierarchy == false)
             {
