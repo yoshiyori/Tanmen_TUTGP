@@ -143,7 +143,7 @@ public class SwingJumpJudge : MonoBehaviour
         time += Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            swingGauge.value += upNum * 0.2f;
+            swingGauge.value += upNum * 0.1f;
             movingFlag = true;
             
             //サウンド追加分 6/14
