@@ -573,7 +573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cuePlayer: {fileID: 1130085089}
-  source: {fileID: 1130085090}
 --- !u!4 &1130085088
 Transform:
   m_ObjectHideFlags: 0
@@ -607,7 +606,8 @@ MonoBehaviour:
   - SwingBoost
   playOnStart: 0
   playCueNameOnStart: 
-  loopSpeed: 0
+  loop: 0
+  loopTime: 0
 --- !u!114 &1130085090
 MonoBehaviour:
   m_ObjectHideFlags: 0
