@@ -188,6 +188,8 @@ public class CueManager : MonoBehaviour{
     }
 #endif
 
+    
+
     //各キューのゲーム変数名を取得
     private void SetGameVariableName(){
         int j = 0;

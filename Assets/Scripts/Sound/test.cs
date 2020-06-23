@@ -4,36 +4,38 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class test : MonoBehaviour{
-    [SerializeField] private CuePlayer2D cuePlayer2D;
-    //[SerializeField] private CueManager cueManager;
-    [SerializeField] private CriAtom atom;
-    [SerializeField] private GameObject a;
+    [SerializeField] private CuePlayer cuePlayer;
+    [SerializeField] private CriAtomSource source;
+    //[SerializeField] private CueManager soundManager;
+    //[SerializeField] private CriAtom atom;
+    //[SerializeField] private GameObject a;
+
+    private CriAtomExStandardVoicePool voicePool;
 
     private void Reset(){
-        //soundManager = FindObjectOfType<CuePlayer2D>();
+        //soundManager = FindObjectOfType<>();
         //cueManager = FindObjectOfType<CueManager>();
         //atom = FindObjectOfType<CriAtom>();
     }
 
     private void Start(){
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update(){
         if(Input.GetKeyDown(KeyCode.A)){
-            SceneManager.LoadScene("10yen");
+            voicePool = new CriAtomExStandardVoicePool(1, 2, 48000, false, 2);
+            Debug.Log("Made voice pool");
+            voicePool.AttachDspTimeStretch();
+            source.player.SetVoicePoolIdentifier(2);
+            source.player.SetDspTimeStretchRatio(2f);
+            source.player.UpdateAll();
         }
-        if(Input.GetKeyDown(KeyCode.S)){
-        cuePlayer2D = FindObjectOfType<CuePlayer2D>();
-        a = FindObjectOfType<Transform>().gameObject;
+        if(Input.GetKeyDown(KeyCode.D)){
+            voicePool.Dispose();
+            Debug.Log("Dispose voice pool");
         }
-    }
-
-    private void SceneLoaded(){
-        atom = FindObjectOfType<CriAtom>();
-        cuePlayer2D = FindObjectOfType<CuePlayer2D>();
-        a = FindObjectOfType<Transform>().gameObject;
-        atom.AddCueSheetInternal("MenuSE", "MenuSE.acb", "", null);
-        cuePlayer2D.Play("Decision");
+        if(Input.GetKeyDown(KeyCode.P)){
+            cuePlayer.Play("SwingBoost");
+        }
     }
 }
