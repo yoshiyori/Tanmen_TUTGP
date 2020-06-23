@@ -107,20 +107,29 @@ public class CuePlayer : MonoBehaviour{
         Destroy(gameObject);
     }
 
-    private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+    private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
         while(loop){
             if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
                 criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(loopTime);
-                Play(cueName, atomSourceNum, gameVariable);
+                Play(cueName, atomSourceNum, gameVariable, selectorLabel);
             }
             yield return null;
         }
     }
 
-    private IEnumerator DisposeStandardVoicePool(int atomSourceNum = 0){
+    private IEnumerator DetachInsertionDSP(int atomSourceNum = 0){
         while(true){
             if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
                 voicePool.DetachDsp();
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator DisposeStandardVoicePoolCore(int atomSourceNum = 0){
+        while(true){
+            if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
                 voicePool.Dispose();
                 break;
             }
@@ -134,8 +143,9 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する
      * (キューごとに異なるタイミングで再生を止めたりなどの操作をする場合はCriAtomSourceが複数必要になる。追加のCriAtomSourceは自動で適用される。)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
+     * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+    public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
         //指定された番号のAtomSourceがない場合は追加
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
@@ -145,6 +155,11 @@ public class CuePlayer : MonoBehaviour{
         var cue = cueManager.GetCueSheetName(cueName);
         if(!cue.gameVariableName.Equals("")){
             CriAtomEx.SetGameVariable(cue.gameVariableName, gameVariable);
+        }
+
+        //セレクターの設定
+        if(!selectorLabel.Equals("")){
+            criAtomSourceList[atomSourceNum].player.SetSelectorLabel(cueName, selectorLabel);
         }
 
         //キューシートの設定と再生
@@ -159,9 +174,10 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "Collider">音源となるオブジェクトのCollider</param>
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する(追加のCriAtomSourceは自動で適用される)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
+     * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f){
-        Play(cueName, atomSourceNum, gameVariable);
+    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
+        Play(cueName, atomSourceNum, gameVariable, selectorLabel);
 
         //見かけ上のみオブジェクトを破壊
         if(mesh != null){
@@ -180,8 +196,9 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "cueName">再生したいキューの名前</param>
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する(追加のCriAtomSourceは自動で適用される)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
+     * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f){
+    public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
         //指定された番号のAtomSourceがない場合は追加
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
@@ -190,14 +207,53 @@ public class CuePlayer : MonoBehaviour{
         if(!loop){
             //タイムストレッチ準備
             if(voicePool == null){
-                voicePool = new CriAtomExStandardVoicePool(4, 2, 48000, false, 2);
+                voicePool = new CriAtomExStandardVoicePool(2, 2, 48000, false, 2);
                 voicePool.AttachDspTimeStretch();
                 criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
             }
 
             loop = true;
-            StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable));
+            StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable, selectorLabel));
         }
+    }
+
+    /**
+     * <summary>指定したAISACコントロールの値を設定<summary>
+     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
+     * <params name = "value">AISACコントロールの値<params>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void SetAisacControl(string aisacControlName, float value, int atomSourceNum = 0){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomSourceList.Count <= atomSourceNum){
+            criAtomSourceList.Add(InitializeAtomSource());
+        }
+
+        criAtomSourceList[atomSourceNum].SetAisacControl(aisacControlName, value);
+    }
+
+    /**
+     * <summary>指定したAtomSourceの保持するキューのセレクタラベルを変更<summary>
+     * <params name = "cueName">セレクタラベルを変更するキューの名前<params>
+     * <params name = "selectorLabel">指定するセレクタラベル<params>
+     * <param name = "atomSourceNum">指定したキューを保持するAtomSourceの番号を指定</param>
+     */
+    public void SwitchSelector(string cueName, string selectorLabel, int atomSourceNum = 0){
+        criAtomSourceList[atomSourceNum].player.SetSelectorLabel(cueName, selectorLabel);
+    }
+
+    /**
+     * <summary>指定したAtomSourceのインサーションDSP設定を初期化<summary>
+     * <param name = "atomSourceNum">指定したキューを保持するAtomSourceの番号を指定</param>
+     */
+    public void ResetInsertionDSP(int atomSourceNum = 0){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomSourceList.Count <= atomSourceNum){
+            criAtomSourceList.Add(InitializeAtomSource());
+        }
+
+        criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(1f);
+        criAtomSourceList[atomSourceNum].player.SetDspPitchShifterPitch(1f);
     }
 
     /**
@@ -239,13 +295,21 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
      * <param name = "detachInsertionDSP">インサーション</param>
      */
-    public void StopStrechLoop(int atomSourceNum = 0, bool disposeStandardVoicePool = true){
+    public void StopStrechLoop(int atomSourceNum = 0, bool detachInsertionDSP = true){
         if(loop){
             loop = false;
-            if(disposeStandardVoicePool){
-                StartCoroutine(DisposeStandardVoicePool(atomSourceNum));
+            if(detachInsertionDSP){
+                StartCoroutine(DetachInsertionDSP(atomSourceNum));
             }
         }
+    }
+
+    /**
+     * <summary>指定したAtomSourceが使用しているボイスプールを破棄<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void DisposeStandardVoicePool(int atomSourceNum = 0){
+        StartCoroutine(DisposeStandardVoicePoolCore(atomSourceNum));
     }
 
     /**
@@ -277,16 +341,6 @@ public class CuePlayer : MonoBehaviour{
         foreach(CriAtomSource source in criAtomSourceList){
             source.SetAisacControl(aisacControlName, 0f);
         }
-    }
-
-    /**
-     * <summary>指定したAISACコントロールの値を設定<summary>
-     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
-     * <params name = "value">AISACコントロールの値<params>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void SetAisacControl(string aisacControlName, float value, int atomSourceNum){
-        criAtomSourceList[atomSourceNum].SetAisacControl(aisacControlName, value);
     }
     
     //CriAtomSourceの追加
