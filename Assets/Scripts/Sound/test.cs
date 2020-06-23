@@ -5,12 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class test : MonoBehaviour{
     [SerializeField] private CuePlayer cuePlayer;
-    [SerializeField] private CriAtomSource source;
-    //[SerializeField] private CueManager soundManager;
-    //[SerializeField] private CriAtom atom;
-    //[SerializeField] private GameObject a;
-
-    private CriAtomExStandardVoicePool voicePool;
+    float value = 0f;
 
     private void Reset(){
         //soundManager = FindObjectOfType<>();
@@ -19,23 +14,18 @@ public class test : MonoBehaviour{
     }
 
     private void Start(){
+        cuePlayer.Play("SwingBoost", 0, 0f, "Decrease");
     }
 
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.A)){
-            voicePool = new CriAtomExStandardVoicePool(1, 2, 48000, false, 2);
-            Debug.Log("Made voice pool");
-            voicePool.AttachDspTimeStretch();
-            source.player.SetVoicePoolIdentifier(2);
-            source.player.SetDspTimeStretchRatio(2f);
-            source.player.UpdateAll();
+        if(Input.GetKeyDown(KeyCode.W)){
+            value += 0.1f;
         }
-        if(Input.GetKeyDown(KeyCode.D)){
-            voicePool.Dispose();
-            Debug.Log("Dispose voice pool");
+        else if(Input.GetKeyDown(KeyCode.S)){
+            value -= 0.1f;
         }
-        if(Input.GetKeyDown(KeyCode.P)){
-            cuePlayer.Play("SwingBoost");
-        }
+
+        Debug.Log(value);
+        cuePlayer.SetAisacControl("SwingBoost", value);
     }
 }
