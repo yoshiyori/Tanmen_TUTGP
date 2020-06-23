@@ -43,7 +43,7 @@ public class AuraChanging : MonoBehaviour
             ChangeAuraColor(2);//Blue
         }
 
-
+        ChangeAuraSize(swingGauge.value);
 
     }
 
@@ -71,6 +71,19 @@ public class AuraChanging : MonoBehaviour
         ParticleSystem.MainModule main2 = par_exParticle.main;
         main.startColor = color;
         main2.startColor = color;
+    }
+
+    private void ChangeAuraSize(float value)
+    {
+        var emission = par_exParticle.emission;
+        emission.rateOverTime = 50f + (value * 50f);
+
+        ParticleSystem.MainModule main = parParticle.main;
+        ParticleSystem.MainModule main2 = par_exParticle.main;
+        main.gravityModifier = -0.1f + (value);
+
+        var shape = par_exParticle.shape;
+        shape.radius = 0.7f + (1.3f * value);
     }
 
 }
