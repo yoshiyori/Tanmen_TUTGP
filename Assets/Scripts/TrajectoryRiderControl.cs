@@ -42,7 +42,7 @@ public class TrajectoryRiderControl : MonoBehaviour
 
         if (mp.swingBoostFlag == false && boostingFlag == true)
         {
-            //Destroy(trjRiderObj, 2.0f);
+            Destroy(trjRiderObj, 2.0f);
             boostingFlag = false;
         }
 
