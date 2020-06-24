@@ -1199,6 +1199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConcentratedLineCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 3819697161831577562, guid: 3959e3858b4e989429d9b3fc0dc3e98b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819697161831577561, guid: 3959e3858b4e989429d9b3fc0dc3e98b,
         type: 3}
       propertyPath: m_LocalPosition.x
