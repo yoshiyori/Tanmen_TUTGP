@@ -16,7 +16,7 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !pauseNow)
+        if (Input.GetKeyDown(KeyCode.Escape) && !pauseNow)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = 0f; //timeScaleを0にして各種動作を止める
@@ -25,7 +25,7 @@ public class Pause : MonoBehaviour
             cueManager.PauseCueSheet("GameSE");
             pauseNow = true;
         }
-        else if(Input.GetKeyDown(KeyCode.Q) && pauseNow)
+        else if(Input.GetKeyDown(KeyCode.Escape) && pauseNow)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = 1f; //timeScaleを1にして各種動作を再開する
