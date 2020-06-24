@@ -16,6 +16,7 @@ public class CameraMove : MonoBehaviour
     public int tipe;
     private bool joyconFlag;
     private bool stop;
+    private bool speedTrigger;
     public Handle hd;
 
     void Start()
@@ -48,6 +49,7 @@ public class CameraMove : MonoBehaviour
     void LateUpdate()
     {
         cameraVec = cameraPos.transform.position - player.transform.position;
+        speedTrigger = player.GetComponent<MovePlayer>().blerTrigger;
 
         if (tipe == 1)
         {
@@ -90,8 +92,14 @@ public class CameraMove : MonoBehaviour
             cameraTrans.LookAt(cameraLoolAt.transform.position);
         }
 
-        cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
-
+        if (speedTrigger == false)
+        {
+            cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 5.0f * Time.deltaTime);
+        }
+        else if (speedTrigger == true)
+        {
+            cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 3.0f * Time.deltaTime);
+        }
 
     }
     void queue(Vector3 arg_Vec, float arg_Rote)
