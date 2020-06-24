@@ -33,6 +33,7 @@ public class SwingJumpJudge : MonoBehaviour
     [SerializeField] int useGaugeSpeed;
     private bool movingFlag;
     [SerializeField] int decreaseGaugeSpeed;
+    [SerializeField] float UseKeyGaugeIncreaseNum;
 
 
     public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -56,6 +57,10 @@ public class SwingJumpJudge : MonoBehaviour
         if (upNum == 0.0f)
         {
             upNum = 0.05f;
+        }
+        if (UseKeyGaugeIncreaseNum == 0)
+        {
+            UseKeyGaugeIncreaseNum = 0.1f;
         }
     }
 
@@ -143,7 +148,7 @@ public class SwingJumpJudge : MonoBehaviour
         time += Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            swingGauge.value += upNum * 0.1f;
+            swingGauge.value += upNum * UseKeyGaugeIncreaseNum;
             movingFlag = true;
             
             //サウンド追加分 6/14
