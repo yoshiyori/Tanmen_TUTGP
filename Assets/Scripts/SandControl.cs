@@ -15,7 +15,6 @@ public class SandControl : MonoBehaviour
     void Update()
     {
         rodeIn = player.GetComponent<MovePlayer>().sandControl;
-
         if (rodeIn == true)
         {
             count++;
