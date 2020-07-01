@@ -8,11 +8,11 @@ public class MovePlayer : MonoBehaviour
 	//変数
 	private Rigidbody rigid;
 	[SerializeField] float accelSpeed;
-	[SerializeField] float maxSpeed;
+	[SerializeField] public float maxSpeed;
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
-	[SerializeField] float swingBoostSpeed; //スイングブースト時のスピード
+	public float swingBoostSpeed; //スイングブースト時のスピード（スピードゲージ追加に伴いpublic化）
 	[SerializeField] float blerLimit;//この速度からブラーをかける
 	public Animator PlayerAni;
 	private float TureMaxSpeed;
@@ -28,7 +28,7 @@ public class MovePlayer : MonoBehaviour
 	public bool turnTipe;
 	private int count = 0;
 	public int startLook = 0;
-	private Vector3 nowSpeed;
+	[System.NonSerialized]public Vector3 nowSpeed; //スピードゲージ追加時にpublic化（Inspector上では見えないように設定済み）
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 	public bool cameraStop;
