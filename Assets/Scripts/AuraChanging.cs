@@ -66,7 +66,7 @@ public class AuraChanging : MonoBehaviour
                 color.color = perClear;
                 break;
         }
-        
+
         ParticleSystem.MainModule main = parParticle.main;
         ParticleSystem.MainModule main2 = par_exParticle.main;
         main.startColor = color;
