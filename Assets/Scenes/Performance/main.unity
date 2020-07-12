@@ -787,18 +787,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtom: {fileID: 343388630}
   cuePlayers:
-  - {fileID: 950105248}
-  - {fileID: 217074199}
-  - {fileID: 2120091968}
-  - {fileID: 1697670574}
-  - {fileID: 1789295192}
-  - {fileID: 114440021}
-  - {fileID: 1196645401}
-  - {fileID: 1955200882}
   - {fileID: 39445820}
-  - {fileID: 1789425263}
+  - {fileID: 114440021}
+  - {fileID: 217074199}
   - {fileID: 859978495}
+  - {fileID: 950105248}
+  - {fileID: 1196645401}
+  - {fileID: 1697670574}
   - {fileID: 1733931233}
+  - {fileID: 1789295192}
+  - {fileID: 1789425263}
+  - {fileID: 1955200882}
+  - {fileID: 2120091968}
   cuePlayer2Ds:
   - {fileID: 343388628}
   exCueInfoList:
@@ -2462,7 +2462,7 @@ PrefabInstance:
     - target: {fileID: 1281438874621425334, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
-      value: Rolling
+      value: Turn
       objectReference: {fileID: 0}
     - target: {fileID: 1281438874621425334, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -3021,7 +3021,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutrialCourseTest2_kai
       objectReference: {fileID: 0}
+    - target: {fileID: 5335470057123212694, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 343388629}
     - target: {fileID: 5335470057511331653, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 343388629}
+    - target: {fileID: 5335470057252538519, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 343388629}
+    - target: {fileID: 5335470058178503352, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: cueManager
       value: 
@@ -3121,11 +3136,6 @@ PrefabInstance:
       propertyPath: swingGaugeFill
       value: 
       objectReference: {fileID: 503944779}
-    - target: {fileID: 5335470057123212694, guid: bcc40a8827545254babb9a760bb9079f,
-        type: 3}
-      propertyPath: cueManager
-      value: 
-      objectReference: {fileID: 343388629}
     - target: {fileID: 5335470057123212689, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: playerObject
@@ -3166,11 +3176,6 @@ PrefabInstance:
       propertyPath: swingGaugeFill
       value: 
       objectReference: {fileID: 503944779}
-    - target: {fileID: 5335470058178503352, guid: bcc40a8827545254babb9a760bb9079f,
-        type: 3}
-      propertyPath: cueManager
-      value: 
-      objectReference: {fileID: 343388629}
     - target: {fileID: 5335470058178503355, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: playerObject
@@ -3211,11 +3216,6 @@ PrefabInstance:
       propertyPath: swingGaugeFill
       value: 
       objectReference: {fileID: 503944779}
-    - target: {fileID: 5335470057252538519, guid: bcc40a8827545254babb9a760bb9079f,
-        type: 3}
-      propertyPath: cueManager
-      value: 
-      objectReference: {fileID: 343388629}
     - target: {fileID: 5335470057252538518, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: playerObject
