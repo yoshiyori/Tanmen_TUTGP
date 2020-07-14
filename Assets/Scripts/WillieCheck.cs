@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class WillieCheck : MonoBehaviour
 {
-    [SerializeField] Image willieCheck;
     [SerializeField] PlayerDirecting playerDirecting;
-    [SerializeField] Color willieGoColor;
-    [SerializeField] GameObject goText;
-    [SerializeField] Color willieUseChargeColor;
+    [SerializeField] GameObject goUI;
     [SerializeField] GameObject chargeTimeText;
     float chargeTime;
     int seconds;
@@ -25,9 +22,8 @@ public class WillieCheck : MonoBehaviour
     {
         if(playerDirecting.willieFlg == true && playerDirecting.willieChargeFlag == false)
         {
-            goText.SetActive(false);
-            willieCheck.color = willieUseChargeColor;
-            chargeTime = playerDirecting.williChargeTime;
+            goUI.SetActive(false);
+            chargeTime = playerDirecting.williChargeTime + 1;
         }
         else if (playerDirecting.willieFlg == true && playerDirecting.willieChargeFlag == true)
         {
@@ -40,8 +36,7 @@ public class WillieCheck : MonoBehaviour
         {
             chargeTimeText.SetActive(false);
             chargeTime = 0f;
-            goText.SetActive(true);
-            willieCheck.color = willieGoColor;
+            goUI.SetActive(true);
         }
     }
 }

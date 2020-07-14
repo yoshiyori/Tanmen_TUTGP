@@ -1087,65 +1087,9 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 395036990182620830, guid: 7c95613aba6a8784585a888509900b0c,
+    - target: {fileID: 4589198526320266510, guid: 7c95613aba6a8784585a888509900b0c,
         type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: dc44a80d8e77fba408029431300f79f2,
-        type: 3}
-    - target: {fileID: 395036991318372124, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: d5cb46f74aa618949a1b81599bbc6ef1,
-        type: 3}
-    - target: {fileID: 395036991318372124, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036989534110392, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: dc44a80d8e77fba408029431300f79f2,
-        type: 3}
-    - target: {fileID: 395036990087361692, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: dc44a80d8e77fba408029431300f79f2,
-        type: 3}
-    - target: {fileID: 395036991043872646, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: dc44a80d8e77fba408029431300f79f2,
-        type: 3}
-    - target: {fileID: 395036991132510176, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: dc44a80d8e77fba408029431300f79f2,
-        type: 3}
-    - target: {fileID: 395036989534110398, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036990087361698, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036991043872644, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036991132510182, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589198526320266510, guid: 7c95613aba6a8784585a888509900b0c,
@@ -1163,50 +1107,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1733931232}
-    - target: {fileID: 395036991318372130, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036990300274501, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036989398016731, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_UiScaleMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036990300274502, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -145
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036990300274502, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 340
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036990300274502, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036991318372131, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -39
-      objectReference: {fileID: 0}
     - target: {fileID: 395036989612539874, guid: 7c95613aba6a8784585a888509900b0c,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036989612539873, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_Name
-      value: SwingGaugeFill
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c95613aba6a8784585a888509900b0c, type: 3}
