@@ -12,7 +12,9 @@ public class PosVec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        playerVec = rb.velocity;
+
     }
 
     // Update is called once per frame
