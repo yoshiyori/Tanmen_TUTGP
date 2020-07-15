@@ -769,8 +769,9 @@ MonoBehaviour:
   cueManager: {fileID: 343388629}
   criAtom: {fileID: 343388630}
   criWareInitializer: {fileID: 343388627}
-  criWareErrorHandler: {fileID: 0}
-  cueNameList: []
+  criWareErrorHandler: {fileID: 521890311}
+  cueNameList:
+  - Wind
   playOnStart: 1
   playCueNameOnStart: Decision
 --- !u!114 &343388629
@@ -834,6 +835,9 @@ MonoBehaviour:
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: SwingBoost
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Wind
     gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
@@ -899,6 +903,9 @@ MonoBehaviour:
       comment: 
     - name: SwingBoost
       id: 13
+      comment: 
+    - name: Wind
+      id: 14
       comment: 
   - name: MenuSE
     id: 1
@@ -1107,6 +1114,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1733931232}
+    - target: {fileID: 6643935036808267055, guid: 7c95613aba6a8784585a888509900b0c,
+        type: 3}
+      propertyPath: SoundManager
+      value: 
+      objectReference: {fileID: 343388628}
+    - target: {fileID: 6643935036808267055, guid: 7c95613aba6a8784585a888509900b0c,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 343388628}
     - target: {fileID: 395036989612539874, guid: 7c95613aba6a8784585a888509900b0c,
         type: 3}
       propertyPath: m_AnchorMax.y
