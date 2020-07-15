@@ -367,6 +367,8 @@ public class MovePlayer : MonoBehaviour
 			//着地音
 			if (junp)
 			{
+				actionSound.SetRandomAisacControl("GroundRandomizer_Pitch");
+				actionSound.SetRandomAisacControl("GroundRandomizer_Filter");
 				actionSound.Play("Landing");
 				junp = false;
 			}

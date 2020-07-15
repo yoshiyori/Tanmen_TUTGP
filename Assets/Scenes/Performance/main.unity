@@ -201,6 +201,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85d2249fb158aa488379959997df36b, type: 3}
+--- !u!114 &39445820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5335470057123212694, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &57501225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,6 +418,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85d2249fb158aa488379959997df36b, type: 3}
+--- !u!114 &114440021 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4137116029044230108, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &134514012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -778,16 +802,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtom: {fileID: 343388630}
   cuePlayers:
+  - {fileID: 39445820}
+  - {fileID: 114440021}
+  - {fileID: 217074199}
   - {fileID: 859978495}
+  - {fileID: 950105248}
+  - {fileID: 1196645401}
+  - {fileID: 1697670574}
   - {fileID: 1733931233}
+  - {fileID: 1789295192}
+  - {fileID: 1789425263}
+  - {fileID: 1955200882}
+  - {fileID: 2120091968}
   cuePlayer2Ds:
   - {fileID: 343388628}
   exCueInfoList:
   - cueSheetName: GameSE
     cueName: Turn
-    gameVariableName: 
-  - cueSheetName: GameSE
-    cueName: Rolling
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Landing
@@ -808,9 +839,6 @@ MonoBehaviour:
     cueName: Corn
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: CrayBallDebries
-    gameVariableName: 
-  - cueSheetName: GameSE
     cueName: Slip
     gameVariableName: 
   - cueSheetName: GameSE
@@ -818,9 +846,6 @@ MonoBehaviour:
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Falling
-    gameVariableName: 
-  - cueSheetName: GameSE
-    cueName: CrayBall
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: SwingBoost
@@ -860,9 +885,6 @@ MonoBehaviour:
     - name: Turn
       id: 0
       comment: 
-    - name: Rolling
-      id: 1
-      comment: 
     - name: Landing
       id: 2
       comment: 
@@ -881,9 +903,6 @@ MonoBehaviour:
     - name: Corn
       id: 7
       comment: 
-    - name: CrayBallDebries
-      id: 8
-      comment: 
     - name: Slip
       id: 9
       comment: 
@@ -892,9 +911,6 @@ MonoBehaviour:
       comment: 
     - name: Falling
       id: 11
-      comment: 
-    - name: CrayBall
-      id: 12
       comment: 
     - name: SwingBoost
       id: 13
@@ -1901,6 +1917,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &950105248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5335470058350192565, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1007703121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2077,6 +2105,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1196645401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5335470057252538519, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1308044039 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 395036990182620830, guid: 7c95613aba6a8784585a888509900b0c,
@@ -2284,6 +2324,18 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1697670574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5335470056898243968, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1733931230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2484,7 +2536,7 @@ PrefabInstance:
     - target: {fileID: 1281438874621425334, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: cueNameList.Array.data[0]
-      value: Rolling
+      value: Turn
       objectReference: {fileID: 0}
     - target: {fileID: 1281438874621425334, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -2626,12 +2678,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9da4f4c8734b764ea1e2bc662c3c400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1789295192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4137116027433518086, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1789425263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8314375692341163699, guid: b1e5447664eb0bb4a9837684e28517b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 848391160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1841117288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8303503379316412950, guid: 42d71bdc64cf5924abd8c32925db3680,
     type: 3}
   m_PrefabInstance: {fileID: 1733931230}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1955200882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5335470058178503352, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2035422588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2810,6 +2898,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85d2249fb158aa488379959997df36b, type: 3}
+--- !u!114 &2120091968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5335470057015595315, guid: bcc40a8827545254babb9a760bb9079f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5335470057196625338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2143830372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2980,7 +3080,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutrialCourseTest2_kai
       objectReference: {fileID: 0}
+    - target: {fileID: 5335470057123212694, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 343388629}
     - target: {fileID: 5335470057511331653, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 343388629}
+    - target: {fileID: 5335470057252538519, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 343388629}
+    - target: {fileID: 5335470058178503352, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: cueManager
       value: 
