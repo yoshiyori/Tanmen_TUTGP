@@ -6,9 +6,11 @@ public class PlayerDirecting : MonoBehaviour
 {
 	[SerializeField] float willieSpeed;
 	[SerializeField] float willieTime;
+    public float williChargeTime;
 	private Rigidbody rigid;
 	public GameObject player;
 	public bool willieFlg;
+    public bool willieChargeFlag;
 	private float startDetaTime;
 	private float willieSTime;
 	public Animator PlayerAni; 
@@ -22,6 +24,7 @@ public class PlayerDirecting : MonoBehaviour
     {
 		rigid = player.GetComponent<Rigidbody>();
 		willieFlg = false;
+        willieChargeFlag = false;
 	}
 
     // Update is called once per frame
@@ -48,14 +51,23 @@ public class PlayerDirecting : MonoBehaviour
 
 		if (startDetaTime > willieTime + willieSTime)
 		{
-			if (willieFlg == true)
+			if (willieFlg == true && willieChargeFlag == false)
 			{
 				this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
 				PlayerAni.SetTrigger("DushEnd");
 			}
-			willieFlg = false;
-			willieSTime = 0;
+            willieChargeFlag = true;
 		}
+
+        if (startDetaTime > williChargeTime + willieTime + willieSTime)
+        {
+            if(willieChargeFlag == true)
+            {
+                willieFlg = false;
+            }
+            willieSTime = 0;
+            willieChargeFlag = false;
+        }
 		
 	}
 	

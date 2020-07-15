@@ -233,6 +233,21 @@ public class CuePlayer : MonoBehaviour{
     }
 
     /**
+     * <summary>ランダムなAISACコントロールの値を設定<summary>
+     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
+     * <params name = "value">AISACコントロールの値<params>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void SetRandomAisacControl(string aisacControlName, int atomSourceNum = 0){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomSourceList.Count <= atomSourceNum){
+            criAtomSourceList.Add(InitializeAtomSource());
+        }
+
+        criAtomSourceList[atomSourceNum].SetAisacControl(aisacControlName, Random.value);
+    }
+
+    /**
      * <summary>指定したAtomSourceの保持するキューのセレクタラベルを変更<summary>
      * <params name = "cueName">セレクタラベルを変更するキューの名前<params>
      * <params name = "selectorLabel">指定するセレクタラベル<params>

@@ -33,6 +33,11 @@ public class SwingJumpJudge : MonoBehaviour
     [SerializeField] int useGaugeSpeed;
     private bool movingFlag;
     [SerializeField] int decreaseGaugeSpeed;
+    [SerializeField] float UseKeyGaugeIncreaseNum;
+    [SerializeField] private Image swingGaugeFill;
+    private Color gaugeColorYellow;
+    private Color gaugeColorOrange;
+    private Color gaugeColorRed;
 
 
     public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -57,10 +62,20 @@ public class SwingJumpJudge : MonoBehaviour
         {
             upNum = 0.05f;
         }
+        if (UseKeyGaugeIncreaseNum == 0)
+        {
+            UseKeyGaugeIncreaseNum = 0.1f;
+        }
+
+        gaugeColorYellow = new Color(1.0f, 1.0f, 0.11f, 1.0f);
+        gaugeColorOrange = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+        gaugeColorRed = new Color(1.0f, 0.0f, 0.0f, 1.0f);
     }
 
     private void Update()
     {
+        ChangeGaugeColor();
+
         if (triggerObsFlag == true)
         {
             rigid.AddForce(0, junpSpeed, 0);
@@ -143,7 +158,7 @@ public class SwingJumpJudge : MonoBehaviour
         time += Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            swingGauge.value += upNum * 0.1f;
+            swingGauge.value += upNum * UseKeyGaugeIncreaseNum;
             movingFlag = true;
             
             //サウンド追加分 6/14
@@ -255,6 +270,22 @@ public class SwingJumpJudge : MonoBehaviour
         {
             if (swingGaugeObject.activeInHierarchy) swingGaugeObject.SetActive(false);
             movePlayer.swingBoostFlag = false;
+        }
+    }
+
+    void ChangeGaugeColor()
+    {
+        if (swingGauge.value < 0.5)
+        {
+            swingGaugeFill.color = gaugeColorYellow;
+        }
+        else if (swingGauge.value < 0.8)
+        {
+            swingGaugeFill.color = gaugeColorOrange;
+        }
+        else
+        {
+            swingGaugeFill.color = gaugeColorRed;
         }
     }
 

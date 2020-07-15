@@ -8,11 +8,11 @@ public class MovePlayer : MonoBehaviour
 	//変数
 	private Rigidbody rigid;
 	[SerializeField] float accelSpeed;
-	[SerializeField] float maxSpeed;
+	[SerializeField] public float maxSpeed;
 	[SerializeField] public float rotaSpeed;
 	[SerializeField] float brakeSpeed;
 	[SerializeField] float mudSpeed;
-	[SerializeField] float swingBoostSpeed; //スイングブースト時のスピード
+	public float swingBoostSpeed; //スイングブースト時のスピード（スピードゲージ追加に伴いpublic化）
 	[SerializeField] float blerLimit;//この速度からブラーをかける
 	public Animator PlayerAni;
 	private float TureMaxSpeed;
@@ -28,15 +28,15 @@ public class MovePlayer : MonoBehaviour
 	public bool turnTipe;
 	private int count = 0;
 	public int startLook = 0;
-	private Vector3 nowSpeed;
+	[System.NonSerialized] public Vector3 nowSpeed; //スピードゲージ追加時にpublic化（Inspector上では見えないように設定済み）
 	private Vector3 oldSpeed;
 	private Vector3 pos;
 	public bool cameraStop;
 	public bool swingBoostFlag; //スイングブースト中かどうかのFlag
 	public SwingJumpJudge sjj;
-    [SerializeField]ParticleSystem concentratedLine; //集中線のパーティクルを入れる
-    [SerializeField]GameObject concentratedLineCamera; //集中線を写す専用カメラを入れる
-    private bool concentratedLineEndFlag; //集中線終了用フラグ
+	[SerializeField] ParticleSystem concentratedLine; //集中線のパーティクルを入れる
+	[SerializeField] GameObject concentratedLineCamera; //集中線を写す専用カメラを入れる
+	private bool concentratedLineEndFlag; //集中線終了用フラグ
 
 	//サウンド追加分 1/8
 	[SerializeField] private CuePlayer actionSound;
@@ -51,7 +51,7 @@ public class MovePlayer : MonoBehaviour
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
-		
+
 	}
 
 	private void Start()
@@ -62,7 +62,7 @@ public class MovePlayer : MonoBehaviour
 		sandControl = false;
 		joyconFlag = hd.isConnectHandle;
 
-		actionSound.InitializeAisacControl("Landing");									//サウンド追加分 2/8
+		actionSound.InitializeAisacControl("Landing");                                  //サウンド追加分 2/8
 	}
 
 	// Update is called once per frame
@@ -82,7 +82,8 @@ public class MovePlayer : MonoBehaviour
 		nowSpeed = rigid.velocity;
 		blerSpeed = Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z);
 		pos = this.gameObject.transform.localEulerAngles;
-		
+
+
 		//ここで速度とかの制御
 
             //ここで速度とかの制御
@@ -98,13 +99,13 @@ public class MovePlayer : MonoBehaviour
 			PlayerAni.SetBool("Dush", true);
 			//集中線出現用処理
 			concentratedLineCamera.SetActive(true);
-            concentratedLineEndFlag = true;
+			concentratedLineEndFlag = true;
 		}
-        else if (swingBoostFlag == false && concentratedLineEndFlag == true) //集中線消去用処理
-        {
-            maxSpeed = TureMaxSpeed;
-            concentratedLine.Clear();
-            concentratedLineCamera.SetActive(false);
+		else if (swingBoostFlag == false && concentratedLineEndFlag == true) //集中線消去用処理
+		{
+			maxSpeed = TureMaxSpeed;
+			concentratedLine.Clear();
+			concentratedLineCamera.SetActive(false);
 			PlayerAni.SetBool("Dush", false);
 		}
 		else
@@ -147,7 +148,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			blerTrigger = false;
 		}
-		
+
 
 		if (joyconFlag == true)
 		{
@@ -164,30 +165,30 @@ public class MovePlayer : MonoBehaviour
 		}
 
 		//回転
-		
+
 		turnPlayer();
-		
-		
+
+
 		junpFlag.GetComponent<SwingJumpJudge>().JunpPlayer();
 
 		//サウンド追加分 6/8
-		if(succesRollingJump)
+		if (succesRollingJump)
 		{
 			//actionSound.Play("Rolling");
 			succesRollingJump = false;
 		}
-		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		if ((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			actionSound.Stop(1);
 		}
 
 		//自転車を漕ぐ音
-		if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
+		if ((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			//Debug.Log("Running");
 			actionSound.Play("Running", 1);
 		}
-		else if((nowSpeed.magnitude < 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		else if ((nowSpeed.magnitude < 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			actionSound.Stop(1);
 		}
@@ -207,7 +208,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			//Debug.Log(rigid.velocity.magnitude);
 			Debug.Log(Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z));
-		
+
 		}
 		oldSpeed = nowSpeed;
 
@@ -272,7 +273,7 @@ public class MovePlayer : MonoBehaviour
 		{
 
 
-			if (count <60)
+			if (count < 60)
 			{
 				if (Input.GetKey(KeyCode.RightArrow))
 				{
@@ -314,7 +315,7 @@ public class MovePlayer : MonoBehaviour
 					check = true;
 				}
 			}
-			
+
 		}
 		else if (rigid.velocity.magnitude >= maxSpeed * 2 / 3)
 		{
@@ -335,7 +336,7 @@ public class MovePlayer : MonoBehaviour
 				{
 					PlayerAni.SetBool("Right", false);
 				}
-				 if (Input.GetKey(KeyCode.LeftArrow))
+				if (Input.GetKey(KeyCode.LeftArrow))
 				{
 					check = true;
 					this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
@@ -360,12 +361,14 @@ public class MovePlayer : MonoBehaviour
 					check = true;
 				}
 			}
-			
-		}	
-		
-		if(check == false)
+
+		}
+
+
+
+		if (check == false)
 		{
-			count = 0;	
+			count = 0;
 			//Debug.Log("動いた");
 		}
 
@@ -378,10 +381,13 @@ public class MovePlayer : MonoBehaviour
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = true;
-
+			postureControl();
 			//サウンド追加分 7/8
 			//着地音
-			if (junp){
+			if (junp)
+			{
+				actionSound.SetRandomAisacControl("GroundRandomizer_Pitch");
+				actionSound.SetRandomAisacControl("GroundRandomizer_Filter");
 				actionSound.Play("Landing");
 				junp = false;
 			}
@@ -400,13 +406,30 @@ public class MovePlayer : MonoBehaviour
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = false;
-			actionSound.SetAisacControl("Landing", 1f, 1);			//サウンド追加分 8/8
+			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
 		}
 		PlayerAni.SetBool("Junp", true);
 	}
 
-	public bool GetSandCtrl()	//スイングブースト実装時追加
+	public bool GetSandCtrl()   //スイングブースト実装時追加
 	{
 		return sandControl;
+	}
+	void postureControl()
+	{
+		RaycastHit hit;
+		if (Physics.Raycast(
+				   transform.position,
+				   -transform.up,
+				   out hit,
+				   float.PositiveInfinity))
+		{
+			Quaternion q = Quaternion.FromToRotation(
+						transform.up,
+						hit.normal);
+
+			transform.rotation *= q;
+
+		}
 	}
 }

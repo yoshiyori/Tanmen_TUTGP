@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3527,9 +3527,6 @@ MonoBehaviour:
     cueName: Turn
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: Rolling
-    gameVariableName: 
-  - cueSheetName: GameSE
     cueName: Landing
     gameVariableName: 
   - cueSheetName: GameSE
@@ -3548,9 +3545,6 @@ MonoBehaviour:
     cueName: Corn
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: CrayBallDebries
-    gameVariableName: 
-  - cueSheetName: GameSE
     cueName: Slip
     gameVariableName: 
   - cueSheetName: GameSE
@@ -3560,7 +3554,7 @@ MonoBehaviour:
     cueName: Falling
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: CrayBall
+    cueName: SwingBoost
     gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
@@ -3597,9 +3591,6 @@ MonoBehaviour:
     - name: Turn
       id: 0
       comment: 
-    - name: Rolling
-      id: 1
-      comment: 
     - name: Landing
       id: 2
       comment: 
@@ -3618,9 +3609,6 @@ MonoBehaviour:
     - name: Corn
       id: 7
       comment: 
-    - name: CrayBallDebries
-      id: 8
-      comment: 
     - name: Slip
       id: 9
       comment: 
@@ -3630,8 +3618,8 @@ MonoBehaviour:
     - name: Falling
       id: 11
       comment: 
-    - name: CrayBall
-      id: 12
+    - name: SwingBoost
+      id: 13
       comment: 
   - name: MenuSE
     id: 1
