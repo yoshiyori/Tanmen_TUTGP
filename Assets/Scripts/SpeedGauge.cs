@@ -20,7 +20,7 @@ public class SpeedGauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nowSpeed = player.GetComponent<Rigidbody>().velocity.magnitude;
+        nowSpeed = (float)player.GetComponent<MovePlayer>().blerSpeed;
         speedGauge.value = nowSpeed;
     }
 }

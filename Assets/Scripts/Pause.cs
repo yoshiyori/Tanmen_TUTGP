@@ -7,7 +7,14 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private CueManager cueManager;
 
-    private bool pauseNow = false; //ポーズ判断フラグ
+    [System.NonSerialized]public static bool pauseNow; //ポーズ判断フラグ
+    private bool inPause;
+
+    private void Start()
+    {
+        pauseNow = false;
+        inPause = false;
+    }
 
     void Reset()
     {
@@ -16,7 +23,8 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !pauseNow)
+        //Debug.Log(pauseNow);
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseNow == false)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = 0f; //timeScaleを0にして各種動作を止める
@@ -25,14 +33,12 @@ public class Pause : MonoBehaviour
             cueManager.PauseCueSheet("GameSE");
             pauseNow = true;
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && pauseNow)
+        else if (pauseNow == false)
         {
-            pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = 1f; //timeScaleを1にして各種動作を再開する
 
             //キューシート「GameSE」に属するキューの再生を全て再開する
             cueManager.RestartCueSheet("GameSE");
-            pauseNow = false;
         }
     }
 }

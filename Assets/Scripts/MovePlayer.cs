@@ -16,7 +16,7 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] float blerLimit;//この速度からブラーをかける
 	public Animator PlayerAni;
 	private float TureMaxSpeed;
-	private double blerSpeed;
+	public double blerSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
@@ -68,7 +68,13 @@ public class MovePlayer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (startLook == 0)
+
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
+        if (startLook == 0)
 		{
 			PlayerAni.SetTrigger("Start");
 			startLook = 1;

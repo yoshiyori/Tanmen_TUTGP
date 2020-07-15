@@ -30,8 +30,13 @@ public class PlayerDirecting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		
-		startDetaTime = Time.time;
+
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
+        startDetaTime = Time.time;
 
 		if (willieFlg == true)
 		{
