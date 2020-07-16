@@ -30,7 +30,13 @@ public class PosVec : MonoBehaviour
     void unitVec(Vector3 Vec)
     {
         float a = (float)Math.Sqrt(Vec.x * Vec.x + Vec.y * Vec.y + Vec.z * Vec.z);
-        unit = new Vector3(Vec.x / a, Vec.y / a, Vec.z / a);
-
+        if (a != 0)
+        {
+            unit = new Vector3(Vec.x / a, Vec.y / a, Vec.z / a);
+        }
+        else
+        {
+            unit = Vec;
+        }
     }
 }
