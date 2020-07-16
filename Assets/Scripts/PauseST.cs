@@ -11,6 +11,7 @@ public class PauseST : MonoBehaviour
     private float realDeltaTime;
     private float lastRealTime;
     private float stopTimer;                        //時間計測
+    private float lastStopTime;
     [SerializeField] private float stopTime;        //コントローラーを傾けっぱなしの場合、一気に端までいかないために一つ一つの選択項目に留めておく時間
     [SerializeField] private GameObject[] frames;   //selectNum == -2はsceneName[3]、selectNum == -1はsceneName[4]に該当
     [SerializeField] private float katamukiNum;     //コントローラーをどこまで傾けたら横入力判定されるか
@@ -42,13 +43,13 @@ public class PauseST : MonoBehaviour
         if (katamukiNum == 0) katamukiNum = 0.5f;
         if (hd.isConnectHandle) isConnectJoycon = true;
         lastRealTime = 0.0f;
-    }
+        lastStopTime = 0.0f;
+}
 
 
     void Update()
     {
         realDeltaTime = Time.realtimeSinceStartup - lastRealTime;
-        Debug.Log(selectNum);
 
         if (realDeltaTime > 0.5f)
         {
@@ -59,11 +60,12 @@ public class PauseST : MonoBehaviour
 
         if (selectStopFlag == true)
         {
-            stopTimer += Time.deltaTime;
+            stopTimer = Time.realtimeSinceStartup - lastStopTime;
             if (stopTimer > stopTime)
             {
                 selectStopFlag = false;
                 stopTimer = 0.0f;
+                lastStopTime = Time.realtimeSinceStartup;
             }
         }
 
@@ -125,7 +127,7 @@ public class PauseST : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
                 soundManager.Play("Select");                                                            //サウンド追加分 4/5
-                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                //if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様（元の仕様変更が必要なため一時オミット）
             }
             selectStopFlag = true;
         }
@@ -139,7 +141,7 @@ public class PauseST : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
                 soundManager.Play("Select");                                                            //サウンド追加分 5/5
-                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+                //if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様（元の仕様変更が必要なため一時オミット）
             }
             selectStopFlag = true;
         }

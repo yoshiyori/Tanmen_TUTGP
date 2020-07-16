@@ -601,6 +601,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 395036990300274501, guid: 7c95613aba6a8784585a888509900b0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 395036989398016725, guid: 7c95613aba6a8784585a888509900b0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -732,11 +737,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 395036991318372130, guid: 7c95613aba6a8784585a888509900b0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395036990300274501, guid: 7c95613aba6a8784585a888509900b0c,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3310,7 +3310,7 @@ PrefabInstance:
     - target: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: isConnectHandle
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
@@ -5131,22 +5131,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutrialCourseTest2_kai
       objectReference: {fileID: 0}
-    - target: {fileID: 5335470057123212694, guid: bcc40a8827545254babb9a760bb9079f,
-        type: 3}
-      propertyPath: cueManager
-      value: 
-      objectReference: {fileID: 996369702}
     - target: {fileID: 5335470057511331653, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: cueManager
       value: 
       objectReference: {fileID: 996369702}
-    - target: {fileID: 5335470057252538519, guid: bcc40a8827545254babb9a760bb9079f,
+    - target: {fileID: 5335470058178503352, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: cueManager
       value: 
       objectReference: {fileID: 996369702}
-    - target: {fileID: 5335470058178503352, guid: bcc40a8827545254babb9a760bb9079f,
+    - target: {fileID: 5335470057123212694, guid: bcc40a8827545254babb9a760bb9079f,
+        type: 3}
+      propertyPath: cueManager
+      value: 
+      objectReference: {fileID: 996369702}
+    - target: {fileID: 5335470057252538519, guid: bcc40a8827545254babb9a760bb9079f,
         type: 3}
       propertyPath: cueManager
       value: 
@@ -5530,7 +5530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modeName: []
-  stopTime: 0.6
+  stopTime: 1
   frames:
   - {fileID: 1587300365}
   - {fileID: 476283}
@@ -5540,7 +5540,7 @@ MonoBehaviour:
   configCanvas: {fileID: 452541450}
   pauseCanvas: {fileID: 1489040298}
   hd: {fileID: 2074773292}
-  isConnectJoycon: 0
+  isConnectJoycon: 1
   soundManager: {fileID: 996369700}
 --- !u!1 &1437968497
 GameObject:
