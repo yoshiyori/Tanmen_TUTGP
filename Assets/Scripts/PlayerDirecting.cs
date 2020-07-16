@@ -49,22 +49,19 @@ public class PlayerDirecting : MonoBehaviour
 			PlayerAni.SetTrigger("Dush");//サウンド追加分 2/2
 		}
 
-		if (startDetaTime > willieTime + willieSTime)
+		if (startDetaTime > willieTime + willieSTime && willieFlg == true)
 		{
-			if (willieFlg == true && willieChargeFlag == false)
-			{
-				this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
-				PlayerAni.SetTrigger("DushEnd");
-			}
+            if(willieChargeFlag == false)
+            {
+                this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
+                PlayerAni.SetTrigger("DushEnd");
+            }
             willieChargeFlag = true;
 		}
 
-        if (startDetaTime > williChargeTime + willieTime + willieSTime)
+        if (startDetaTime > williChargeTime + willieTime + willieSTime && willieChargeFlag == true)
         {
-            if(willieChargeFlag == true)
-            {
-                willieFlg = false;
-            }
+            willieFlg = false;
             willieSTime = 0;
             willieChargeFlag = false;
         }
