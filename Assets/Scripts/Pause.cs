@@ -22,16 +22,16 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(pauseNow);
+        Debug.Log(pauseNow);
         if ((Input.GetKeyDown(KeyCode.Escape) /*ここにZLZRを押したかどうかの判定を書く*/)
             && pauseNow == false)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = 0f; //timeScaleを0にして各種動作を止める
 
+            pauseNow = true;
             //キューシート「GameSE」に属するキューの再生を全て停止させる
             cueManager.PauseCueSheet("GameSE");
-            pauseNow = true;
         }
         else if (pauseNow == false)
         {
