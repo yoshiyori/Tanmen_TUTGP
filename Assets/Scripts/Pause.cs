@@ -6,14 +6,13 @@ public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private CueManager cueManager;
+    [SerializeField] Handle hd;
 
     [System.NonSerialized]public static bool pauseNow; //ポーズ判断フラグ
-    private bool inPause;
 
     private void Start()
     {
         pauseNow = false;
-        inPause = false;
     }
 
     void Reset()
@@ -24,7 +23,8 @@ public class Pause : MonoBehaviour
     void Update()
     {
         //Debug.Log(pauseNow);
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseNow == false)
+        if ((Input.GetKeyDown(KeyCode.Escape) /*ここにZLZRを押したかどうかの判定を書く*/)
+            && pauseNow == false)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = 0f; //timeScaleを0にして各種動作を止める
