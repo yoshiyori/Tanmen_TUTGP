@@ -29,6 +29,8 @@ public class Handle : MonoBehaviour
 
     public bool isConnectHandle;
 
+    [SerializeField] float HandleValueCheck;
+
     private void Start()
     {
         var joycons = JoyconManager.Instance.j;
@@ -153,7 +155,7 @@ public class Handle : MonoBehaviour
         if (Mathf.Abs(accel.x) < 0.1 || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;
         else handleValue = Mathf.Round(accel.x * magunification);
 
-
+        HandleValueCheck = handleValue;
         return handleValue;
     }
 

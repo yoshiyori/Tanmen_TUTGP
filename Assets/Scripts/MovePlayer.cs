@@ -206,8 +206,8 @@ public class MovePlayer : MonoBehaviour
 			{
 				PlayerAni.SetBool("Right", true);
 			}
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-3), 0));
-			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-3), 0) * rigid.velocity;
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-2.5f), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-2.5f), 0) * rigid.velocity;
 		}
 
 		//確認用
