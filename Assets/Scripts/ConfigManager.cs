@@ -101,7 +101,7 @@ public class ConfigManager : MonoBehaviour
             (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
             )
         {
-            if (choosingModeFlag == false)
+            if (choosingModeFlag == false && AlertPanelCheck() == false)
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum++;
@@ -142,12 +142,26 @@ public class ConfigManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (choosingModeFlag == false && AlertPanelCheck() == false)
+            {
+                if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+                selectNum++;
+                if (selectNum > 4) selectNum = 0;
+                if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+                guiSound.Play("Select");                                         //サウンド追加分 6/15
+                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                selectStopFlag = true;
+            }
+        }
+
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) ||
             (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
             )
         {
-            if (choosingModeFlag == false)
+            if (choosingModeFlag == false && AlertPanelCheck() == false)
             {
                 if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
                 selectNum--;
@@ -189,6 +203,21 @@ public class ConfigManager : MonoBehaviour
                 selectStopFlag = true;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (choosingModeFlag == false && AlertPanelCheck() == false)
+            {
+                if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+                selectNum--;
+                if (selectNum < 0) selectNum = 4;
+                if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
+                guiSound.Play("Select");                                         //サウンド追加分 7/15
+                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);
+                selectStopFlag = true;
+            }
+        }
+
 
         if (hd.GetRightBrakeDown() == true || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
@@ -533,6 +562,19 @@ public class ConfigManager : MonoBehaviour
         }
         */
 
+
+    }
+
+    private bool AlertPanelCheck()
+    {
+        if (configAlertYesPanel.activeInHierarchy == true || configAlertNoPanel.activeInHierarchy == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 
