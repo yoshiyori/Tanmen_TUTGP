@@ -1271,7 +1271,7 @@ MonoBehaviour:
   - {fileID: 4257555046815596045}
   - {fileID: 4257555045020304008}
   katamukiNum: 0.5
-  isIngame: 1
+  isIngame: 0
   bgmSlider: {fileID: 4257555045850295106}
   seSlider: {fileID: 4257555045791577438}
   handleSlider: {fileID: 4257555046068649583}

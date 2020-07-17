@@ -7,6 +7,12 @@ public class GameManeger : MonoBehaviour
 {
     [System.NonSerialized]public static GameManeger instance; //シングルトンにするために使うもの
 
+    //ゲームスタートのためのフラグ
+    [System.NonSerialized] public static bool gameStartFlag = true;
+
+    //ゴールした時のためのフラグ
+    [System.NonSerialized] public static bool goalFlag;
+
     //ポーズから移動したときに使う
     [System.NonSerialized] public static bool pauseMove;
 

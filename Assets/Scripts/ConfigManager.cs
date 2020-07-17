@@ -17,6 +17,7 @@ public class ConfigManager : MonoBehaviour
 
     [SerializeField] private bool isIngame; //ゲームしてる時Pauseで行くときはTrue,モード選択から行くときはFalse
     private float lastRealTime; //ポーズ時の時間計測用
+    private float lastStopTime;
 
     private GameObject Slider01;
     private GameObject Slider02;
@@ -103,11 +104,22 @@ public class ConfigManager : MonoBehaviour
 
         if (selectStopFlag == true)
         {
-            stopTimer += Time.deltaTime;
+            if (isIngame == true)
+            {
+                stopTimer = Time.realtimeSinceStartup - lastStopTime;
+            }
+            else
+            {
+                stopTimer += Time.deltaTime;
+            }
             if (stopTimer > stopTime)
             {
                 selectStopFlag = false;
                 stopTimer = 0.0f;
+                if(isIngame == true)
+                {
+                    lastStopTime = Time.realtimeSinceStartup;
+                }
             }
         }
 

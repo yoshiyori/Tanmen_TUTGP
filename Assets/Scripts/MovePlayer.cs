@@ -47,7 +47,9 @@ public class MovePlayer : MonoBehaviour
 	public Handle hd;//JoyConから数値受け取る時とかに使う
 	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
 
-	void Awake()
+    float time;//ゴール後数秒後に止まるようにするために使う（OC用）
+
+    void Awake()
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
@@ -72,6 +74,26 @@ public class MovePlayer : MonoBehaviour
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
+        }
+
+        if(GameManeger.gameStartFlag == true)
+        {
+            PlayerAni.speed = 0;
+            return;
+        }
+        else if(GameManeger.gameStartFlag == false && GameManeger.goalFlag == false)
+        {
+            PlayerAni.speed = 1;
+        }
+
+        if(GameManeger.goalFlag == true)
+        {
+            time += Time.deltaTime;
+            if(time > 1.0f)
+            {
+                PlayerAni.speed = 0;
+                return;
+            }
         }
 
         if (startLook == 0)

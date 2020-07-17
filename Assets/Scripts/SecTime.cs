@@ -42,7 +42,7 @@ public class SecTime : MonoBehaviour
             //ゴールフラグ処理
             if(timeManagerScript.secNumber == 5)
             {
-                timeManagerScript.goalFlag = true;
+                GameManeger.goalFlag = true;
             }
         }
     }

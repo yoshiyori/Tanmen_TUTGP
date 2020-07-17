@@ -22,7 +22,12 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(pauseNow);
+
+        if(GameManeger.goalFlag == true)
+        {
+            return;
+        }
+
         if ((Input.GetKeyDown(KeyCode.Escape) || hd.GetZLDown() || hd.GetZRDown())
             && pauseNow == false)
         {

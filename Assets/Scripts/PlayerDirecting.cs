@@ -40,6 +40,10 @@ public class PlayerDirecting : MonoBehaviour
         {
             return;
         }
+        if(GameManeger.gameStartFlag == true || GameManeger.goalFlag == true)
+        {
+            return;
+        }
 
         startDetaTime = Time.time;
 
