@@ -283,7 +283,7 @@ public class Handle : MonoBehaviour
 
     public bool GetZLDown()
     {
-        return ZRDown;
+        return ZLDown;
     }
 
 }
