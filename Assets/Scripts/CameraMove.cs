@@ -62,20 +62,20 @@ public class CameraMove : MonoBehaviour
             {
                 // this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
                 //transform.RotateAround(playerTrans.position, Vector3.up, rotaSpeed);
-                queue(cameraVec, -rotaSpeed);           
+                queue(cameraVec, -rotaSpeed);
 
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 //this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
                 //transform.RotateAround(playerTrans.position, Vector3.up, -rotaSpeed);
-                queue(cameraVec, rotaSpeed);             
+                queue(cameraVec, rotaSpeed);
             }
 
             if (joyconFlag == true && hd.GetControlllerAccel(10) != 0.0f)
             {
                 queue(cameraVec, hd.GetControlllerAccel(5));
-               
+
 
                 /*if (leftRightNum > 0)
                 {

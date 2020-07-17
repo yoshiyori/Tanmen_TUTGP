@@ -17,21 +17,35 @@ public class PlayerDirecting : MonoBehaviour
 
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
-	[SerializeField] private Handle hd;								//Joycon関係追加 5/26
-
+	[SerializeField] private Handle hd;                             //Joycon関係追加 5/26
+	[SerializeField] private GameObject jumpConfirm;
+	private JumpingConfirm jcon;                    //緊急のため荒療治（スイングジャンプ中にウィリーしちゃうから追加）
+	[SerializeField] private bool checkNowJump;
 	// Start is called before the first frame update
 	void Start()
     {
 		rigid = player.GetComponent<Rigidbody>();
 		willieFlg = false;
         willieChargeFlag = false;
+		jcon = jumpConfirm.GetComponent<JumpingConfirm>();
 	}
 
     // Update is called once per frame
     void Update()
     {
-		
+		checkNowJump = jcon.allSwingJumpFlag;
 		startDetaTime = Time.time;
+
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+        if(GameManeger.gameStartFlag == true || GameManeger.goalFlag == true)
+        {
+            return;
+        }
+
+        startDetaTime = Time.time;
 
 		if (willieFlg == true)
 		{
@@ -40,7 +54,7 @@ public class PlayerDirecting : MonoBehaviour
 
 		//ウィリー
 		
-		if ( (Input.GetKeyDown(KeyCode.S)  || hd.GetControllerSwing() >= 8) &&willieFlg == false)
+		if ( (Input.GetKeyDown(KeyCode.Space)  || hd.GetControllerSwing() >= 8) &&willieFlg == false && checkNowJump == false)
 		{
 			willieFlg = true;
 			willieSTime = startDetaTime;

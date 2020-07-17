@@ -16,7 +16,7 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] float blerLimit;//この速度からブラーをかける
 	public Animator PlayerAni;
 	private float TureMaxSpeed;
-	private double blerSpeed;
+	public double blerSpeed;
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
@@ -47,7 +47,9 @@ public class MovePlayer : MonoBehaviour
 	public Handle hd;//JoyConから数値受け取る時とかに使う
 	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
 
-	void Awake()
+    float time;//ゴール後数秒後に止まるようにするために使う（OC用）
+
+    void Awake()
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
@@ -68,7 +70,34 @@ public class MovePlayer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (startLook == 0)
+
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
+        if(GameManeger.gameStartFlag == true)
+        {
+            PlayerAni.speed = 0;
+            return;
+        }
+        else if(GameManeger.gameStartFlag == false && GameManeger.goalFlag == false)
+        {
+            PlayerAni.speed = 1;
+        }
+
+        if(GameManeger.goalFlag == true)
+        {
+            time += Time.deltaTime;
+            if(time > 1.0f)
+            {
+                PlayerAni.speed = 0;
+                //音を止める処理を書く
+                return;
+            }
+        }
+
+        if (startLook == 0)
 		{
 			PlayerAni.SetTrigger("Start");
 			startLook = 1;
@@ -86,6 +115,7 @@ public class MovePlayer : MonoBehaviour
 
 		//ここで速度とかの制御
 
+            //ここで速度とかの制御
 
 
 		if (mudTrigger == true)
@@ -198,8 +228,16 @@ public class MovePlayer : MonoBehaviour
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-3), 0));
-			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-3), 0) * rigid.velocity;
+			if (hd.GetControlllerAccel(-3) < 0)
+			{
+				PlayerAni.SetBool("Left", true);
+			}
+			else if (hd.GetControlllerAccel(-3) > 0)
+			{
+				PlayerAni.SetBool("Right", true);
+			}
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-2.5f), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-2.5f), 0) * rigid.velocity;
 		}
 
 		//確認用
@@ -211,8 +249,26 @@ public class MovePlayer : MonoBehaviour
 		}
 		oldSpeed = nowSpeed;
 
+            if (joyconFlag == true)
+            {
+                //var rot = transform.rotation.eulerAngles;
+                //rot.y = hd.GetControlllerAccel(-100);
+                //transform.rotation = Quaternion.Euler(rot);
+                this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
+            }
 
-	}
+
+            //確認用
+            if (Input.GetKey(KeyCode.Z))
+            {
+                Debug.Log(maxSpeed);
+                Debug.Log("x : " + nowSpeed.x + "y : " + nowSpeed.y + "z : " + nowSpeed.z);
+
+            }
+            oldSpeed = nowSpeed;
+        }
+
+
 
 	void turnPlayer()
 	{
