@@ -19,6 +19,12 @@ public class Handle : MonoBehaviour
     private bool lSLRDown;
     private bool rSLRPressCheckFlag;
     private bool lSLRPressCheckFlag;
+    private bool ZR;
+    private bool ZL;
+    private bool ZRDown;
+    private bool ZLDown;
+    private bool ZRPressCheckFlag;
+    private bool ZLPressCheckFlag;
 
 
     private static readonly Joycon.Button[] m_buttons =
@@ -43,6 +49,8 @@ public class Handle : MonoBehaviour
         lSLRDown = false;
         rSLRPressCheckFlag = false;
         lSLRPressCheckFlag = false;
+        ZR = false;
+        ZL = false;
 
         if (m_joyconR != null || m_joyconL != null)
         {
@@ -96,6 +104,46 @@ public class Handle : MonoBehaviour
             }
         }
 
+        if (lButton == Joycon.Button.SHOULDER_2)
+        {
+            ZL = true;
+            if (ZLPressCheckFlag == false)
+            {
+                ZLPressCheckFlag = true;
+                ZLDown = true;
+            }
+            else
+            {
+                ZLDown = false;
+            }
+        }
+        else
+        {
+            ZL = false;
+            ZLDown = false;
+        }
+
+        if (rButton == Joycon.Button.SHOULDER_2)
+        {
+            ZR = true;
+            if (ZRPressCheckFlag == false)
+            {
+                ZRPressCheckFlag = true;
+                ZRDown = true;
+            }
+            else
+            {
+                ZRDown = false;
+            }
+        }
+        else
+        {
+            ZR = false;
+            ZRDown = false;
+        }
+
+
+
         if (lButton == Joycon.Button.SL || lButton == Joycon.Button.SR)
         {
             lSLR = true;
@@ -144,7 +192,14 @@ public class Handle : MonoBehaviour
             rSLRPressCheckFlag = false;
         }
 
-        
+        if (lButton == null && ZRPressCheckFlag == true)
+        {
+            ZRPressCheckFlag = false;
+        }
+        if (rButton == null && ZLPressCheckFlag == true)
+        {
+            ZLPressCheckFlag = false;
+        }
 
     }
 
@@ -212,5 +267,23 @@ public class Handle : MonoBehaviour
         }
     }
 
+    public bool GetZR()
+    {
+        return ZR;
+    }
+
+    public bool GetZL()
+    {
+        return ZL;
+    }
+    public bool GetZRDown()
+    {
+        return ZRDown;
+    }
+
+    public bool GetZLDown()
+    {
+        return ZRDown;
+    }
 
 }
