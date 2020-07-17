@@ -111,6 +111,15 @@ public class CuePlayer2D : MonoBehaviour{
     }
 #endif
 
+    /**
+     * <summary>ゲームオブジェクトに付与されているCriAtomSourceの数(読み取り専用)</summary>
+     */
+    public int criAtomSourceNum{
+        get{
+            return criAtomExPlayerList.Count;
+        }
+    }
+
     //コルーチン
     private IEnumerator destroyAfterPlay;
     private IEnumerator DestroyAfterPlay(GameObject gameObject, int exPlayerNum = 0){
@@ -231,6 +240,28 @@ public class CuePlayer2D : MonoBehaviour{
      */
     public bool JudgeAtomSourceStatus(string status, int exPlayerNum = 0){
         return GetAtomSourceStatus(exPlayerNum).ToString().Equals(status);
+    }
+
+    /**
+     *<summary>再生しているキューの一時停止(CriAtomSourceごとの停止)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void Pause(int atomSourceNum = 0){
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+        criAtomExPlayerList[atomSourceNum].Pause(true);
+    }
+
+    /**
+     *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void Restart(int atomSourceNum = 0){
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+        criAtomExPlayerList[atomSourceNum].Pause(false);
     }
     
     //CriAtomSourceの追加

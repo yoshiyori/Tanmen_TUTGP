@@ -282,7 +282,6 @@ public class CuePlayer : MonoBehaviour{
         criAtomSourceList[atomSourceNum].Pause(true);
     }
 
-
     /**
      *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
