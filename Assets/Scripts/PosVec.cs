@@ -9,6 +9,8 @@ public class PosVec : MonoBehaviour
     private Vector3 playerVec;
     private Vector3 unit;
     private Vector3 nowPos;
+
+    private float a;
     // Start is called before the first frame update
     void Start()
     {
