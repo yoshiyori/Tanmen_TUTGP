@@ -204,10 +204,11 @@ public class Handle : MonoBehaviour
     }
 
 
-    public float GetControlllerAccel(float magunification)
+    public float GetControlllerAccel(float sensitivity, float magunification)
     {
         float handleValue = 10;
-        if (Mathf.Abs(accel.x) < 0.1 || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;
+        //if (Mathf.Abs(accel.x) < 0.2 || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;
+        if (Mathf.Abs(accel.x) < sensitivity || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;
         else handleValue = Mathf.Round(accel.x * magunification);
 
         HandleValueCheck = handleValue;

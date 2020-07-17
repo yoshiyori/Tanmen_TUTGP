@@ -41,7 +41,7 @@ public class ButtonFlash : MonoBehaviour
             }
         }
 
-        if (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)//right
+        if (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)//right
         {
             selectStopFlag = true;
             if (buttons[selectNum].activeInHierarchy == false) buttons[selectNum].SetActive(true);
@@ -52,7 +52,7 @@ public class ButtonFlash : MonoBehaviour
             }
             //Debug.Log(selectNum);
         }
-        if (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)//left
+        if (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)//left
         {
             selectStopFlag = true;
             if (buttons[selectNum].activeInHierarchy == false) buttons[selectNum].SetActive(true);

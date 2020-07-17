@@ -72,10 +72,9 @@ public class CameraMove : MonoBehaviour
                 queue(cameraVec, rotaSpeed);
             }
 
-            if (joyconFlag == true && hd.GetControlllerAccel(10) != 0.0f)
+            if (joyconFlag == true && hd.GetControlllerAccel(0.2f, 10) != 0.0f)
             {
-                queue(cameraVec, hd.GetControlllerAccel(5));
-
+                queue(cameraVec, hd.GetControlllerAccel(0.2f, 5));
 
                 /*if (leftRightNum > 0)
                 {
