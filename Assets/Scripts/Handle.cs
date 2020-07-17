@@ -204,7 +204,7 @@ public class Handle : MonoBehaviour
     }
 
 
-    public float GetControlllerAccel(float magunification, float sensitivity)
+    public float GetControlllerAccel(float sensitivity, float magunification)
     {
         float handleValue = 10;
         //if (Mathf.Abs(accel.x) < 0.2 || Mathf.Abs(GetControllerSwing()) >= 8) handleValue = 0.0f;

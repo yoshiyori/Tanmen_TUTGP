@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SelectST : MonoBehaviour
 {
-    private int selectNum;
+    [SerializeField] private int selectNum;
     private float time = 0f;                        
     private float stopTimer;                        //時間計測
     [SerializeField] private float stopTime;        //コントローラーを傾けっぱなしの場合、一気に端までいかないために一つ一つの選択項目に留めておく時間
@@ -95,7 +95,7 @@ public class SelectST : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) ||
-                (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
+                (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)
                 )
             {
                 if (selectNum > 0)
@@ -110,10 +110,10 @@ public class SelectST : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow) ||
-                (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
+                (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)
                 )
             {
-                if ((selectNum < 3 && selectNum >= 0))
+                if ((selectNum < 2 && selectNum >= 0))
                 {
                     frames[selectNum].SetActive(false);
                     selectNum++;

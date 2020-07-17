@@ -47,6 +47,7 @@ public class MovePlayer : MonoBehaviour
 	public Handle hd;//JoyConから数値受け取る時とかに使う
 	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
 	[SerializeField] public float handleSensitivity;
+	[SerializeField] Data data;
 
     float time;//ゴール後数秒後に止まるようにするために使う（OC用）
 
@@ -65,7 +66,7 @@ public class MovePlayer : MonoBehaviour
 		joyconFlag = hd.isConnectHandle;
 
 		actionSound.InitializeAisacControl("Landing");                                  //サウンド追加分 2/8
-		if (handleSensitivity == 0.0f) handleSensitivity = 0.2f;
+		handleSensitivity = 0.2f + data.handleSensitivity;
 	}
 
 	// Update is called once per frame
@@ -224,6 +225,8 @@ public class MovePlayer : MonoBehaviour
 		}
 		//サウンド追加分 6/8 終了
 
+		handleSensitivity = 0.2f + data.handleSensitivity;
+
 		if (joyconFlag == true && junp == false)
 		{
 			//var rot = transform.rotation.eulerAngles;
@@ -240,7 +243,6 @@ public class MovePlayer : MonoBehaviour
 			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0));
 			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0) * rigid.velocity;
 		}
-
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
@@ -255,7 +257,7 @@ public class MovePlayer : MonoBehaviour
                 //var rot = transform.rotation.eulerAngles;
                 //rot.y = hd.GetControlllerAccel(-100);
                 //transform.rotation = Quaternion.Euler(rot);
-                this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
+                //this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(0.2f, -5), 0));
             }
 
 

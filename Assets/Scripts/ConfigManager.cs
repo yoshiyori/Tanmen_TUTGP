@@ -48,10 +48,12 @@ public class ConfigManager : MonoBehaviour
     //サウンド追加分 1/15
     [SerializeField] private CuePlayer2D guiSound;
     [SerializeField] private VolManager volumeManager;
+    [SerializeField] Data hdSensitivitydata;
 
     void OnEnable(){
         seSlider.value = CriAtom.GetCategoryVolume("SE");
         bgmSlider.value = CriAtom.GetCategoryVolume("BGM");
+        handleSlider.value = hdSensitivitydata.handleSensitivity / 0.3f;
 
         volumeManager = (VolManager)FindObjectOfType(typeof(VolManager));
         if(volumeManager.seSlider == null || volumeManager.bgmSlider == null){
@@ -75,7 +77,7 @@ public class ConfigManager : MonoBehaviour
         //↓デフォルトの値を0.5とする。とりあえず今はここで0.5とするが、本当は実際の値を引っ張ってきて反映させる。
         //bgmSlider.value = 0.5f;
         //seSlider.value = 0.5f;
-        handleSlider.value = 0.5f;
+        //handleSlider.value = 0.0f;//0.2~0.5  0.03=0.1(slider) ...(*/0.3)
         isAlertStandup = false;
         if (hd.isConnectHandle) isConnectJoycon = true;
         choosingModeFlag = false;
@@ -353,7 +355,7 @@ public class ConfigManager : MonoBehaviour
                         seSlider.value = CriAtom.GetCategoryVolume("SE");
                         break;
                     case 2:
-                        handleSlider.value = 0.5f;
+                        handleSlider.value = hdSensitivitydata.handleSensitivity / 0.3f;
                         break;
                     default:
                         break;
@@ -432,6 +434,7 @@ public class ConfigManager : MonoBehaviour
                     //サウンド追加分
                     volumeManager.changed = true;
                     volumeManager.SetVolume();
+                    hdSensitivitydata.handleSensitivity = handleSlider.value * 0.3f;
 
                     if (isIngame == true)
                     {
