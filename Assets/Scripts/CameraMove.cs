@@ -94,11 +94,11 @@ public class CameraMove : MonoBehaviour
 
         if (speedTrigger == false)
         {
-            cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 5.0f * Time.deltaTime);
+            cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
         }
         else if (speedTrigger == true)
         {
-            cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 3.0f * Time.deltaTime);
+            cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 8.0f * Time.deltaTime);
         }
 
     }
