@@ -53,7 +53,7 @@ public class ConfigManager : MonoBehaviour
     void OnEnable(){
         seSlider.value = CriAtom.GetCategoryVolume("SE");
         bgmSlider.value = CriAtom.GetCategoryVolume("BGM");
-        handleSlider.value = hdSensitivitydata.handleSensitivity / 0.3f;
+        handleSlider.value = 1.0f - hdSensitivitydata.handleSensitivity / 0.3f;
 
         volumeManager = (VolManager)FindObjectOfType(typeof(VolManager));
         if(volumeManager != null){
@@ -360,7 +360,7 @@ public class ConfigManager : MonoBehaviour
                         seSlider.value = CriAtom.GetCategoryVolume("SE");
                         break;
                     case 2:
-                        handleSlider.value = hdSensitivitydata.handleSensitivity / 0.3f;
+                        handleSlider.value = 1.0f - hdSensitivitydata.handleSensitivity / 0.3f;
                         break;
                     default:
                         break;
@@ -444,6 +444,8 @@ public class ConfigManager : MonoBehaviour
                     else{
                         Debug.LogWarning("VolManager is not found. Start playing from the first scene.");
                     }
+
+                    hdSensitivitydata.handleSensitivity = (1.0f - handleSlider.value) * 0.3f;
 
                     if (isIngame == true)
                     {
