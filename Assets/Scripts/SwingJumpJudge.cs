@@ -198,7 +198,7 @@ public class SwingJumpJudge : MonoBehaviour
                 }
                 break;
             case 1:
-                if (hd.GetControlllerAccel(1) >= 0.3)
+                if (hd.GetControlllerAccel(0.2f, 1) >= 0.3)
                 {
                     if (isPlus == false)
                     {
@@ -211,7 +211,7 @@ public class SwingJumpJudge : MonoBehaviour
                         PlaySwingBoostIncreaseSound();
                     }
                 }
-                if (hd.GetControlllerAccel(1) <= -0.3)
+                if (hd.GetControlllerAccel(0.2f, 1) <= -0.3)
                 {
                     if (isPlus == false)
                     {
@@ -223,8 +223,8 @@ public class SwingJumpJudge : MonoBehaviour
                         PlaySwingBoostIncreaseSound();
                     }
                 }
-                if ((hd.GetControlllerAccel(1) <= 0.1 && hd.GetControlllerAccel(1) >= 0.0) ||
-                    (hd.GetControlllerAccel(1) >= -0.1 && hd.GetControlllerAccel(1) <= 0.0))
+                if ((hd.GetControlllerAccel(0.2f, 1) <= 0.1 && hd.GetControlllerAccel(0.2f, 1) >= 0.0) ||
+                    (hd.GetControlllerAccel(0.2f, 1) >= -0.1 && hd.GetControlllerAccel(0.2f, 1) <= 0.0))
                 {
                     if (isPlus == true)
                     {

@@ -46,12 +46,12 @@ public class MovePlayer : MonoBehaviour
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
 	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
+	[SerializeField] public float handleSensitivity;
 
 	void Awake()
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
-
 	}
 
 	private void Start()
@@ -63,6 +63,7 @@ public class MovePlayer : MonoBehaviour
 		joyconFlag = hd.isConnectHandle;
 
 		actionSound.InitializeAisacControl("Landing");                                  //サウンド追加分 2/8
+		if (handleSensitivity == 0.0f) handleSensitivity = 0.2f;
 	}
 
 	// Update is called once per frame
@@ -198,16 +199,16 @@ public class MovePlayer : MonoBehaviour
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			if (hd.GetControlllerAccel(-3) < 0)
+			if (hd.GetControlllerAccel(handleSensitivity, -2.5f) < 0)
 			{
 				PlayerAni.SetBool("Left", true);
 			}
-			else if (hd.GetControlllerAccel(-3) > 0)
+			else if (hd.GetControlllerAccel(handleSensitivity, -2.5f) > 0)
 			{
 				PlayerAni.SetBool("Right", true);
 			}
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-2.5f), 0));
-			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-2.5f), 0) * rigid.velocity;
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0) * rigid.velocity;
 		}
 
 		//確認用

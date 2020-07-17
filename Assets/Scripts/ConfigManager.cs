@@ -98,7 +98,7 @@ public class ConfigManager : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.RightArrow) ||
-            (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
+            (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)
             )
         {
             if (choosingModeFlag == false && AlertPanelCheck() == false)
@@ -158,7 +158,7 @@ public class ConfigManager : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) ||
-            (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
+            (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)
             )
         {
             if (choosingModeFlag == false && AlertPanelCheck() == false)
