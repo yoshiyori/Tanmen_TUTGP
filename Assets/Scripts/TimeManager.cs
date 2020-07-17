@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] GameObject CountDownText;
+    [SerializeField] GameObject countDownTextObject;
+    Text countDownText;
     [SerializeField] float startCountDownTime;
     [SerializeField] GameObject startText;
     float countDownTime;
@@ -20,6 +21,10 @@ public class TimeManager : MonoBehaviour
     [System.NonSerialized] public int secNumber; //セクター表記用変数
     [System.NonSerialized] public float oldSecTime; //セクター計算用変数
 
+    //サウンド追加分
+    [SerializeField] private CuePlayer2D soundManager;
+    private int recentCount;
+
     void Start()
     {
         //変数系初期化
@@ -30,10 +35,14 @@ public class TimeManager : MonoBehaviour
         seconds = 0;
         mseconds = 0;
         countDownTime = startCountDownTime;
-        CountDownText.SetActive(true);
+        countDownTextObject.SetActive(true);
+
+        countDownText = countDownTextObject.GetComponent<Text>();
+
         startText.SetActive(false);
 
-        Debug.Log(countDownTime);
+        //サウンド追加分
+        recentCount = (int)startCountDownTime + 1;
     }
 
     void Update()
@@ -42,12 +51,23 @@ public class TimeManager : MonoBehaviour
         {
             countDownTime -= Time.deltaTime;
             countDownSeconds = (int)countDownTime + 1;
-            CountDownText.GetComponent<Text>().text = countDownSeconds.ToString();
+            countDownText.text = countDownSeconds.ToString();
+
+            //サウンド追加分
+            if(recentCount > countDownSeconds){
+                soundManager.Play("Start", 1);
+                recentCount = countDownSeconds;
+            }
+
             if(countDownTime <= 0)
             {
-                CountDownText.SetActive(false);
+                countDownTextObject.SetActive(false);
                 startText.SetActive(true);
                 GameManeger.gameStartFlag = false;
+                countDownTime = startCountDownTime;
+
+                //サウンド追加分
+                soundManager.Play("Start");
             }
         }
         else if (GameManeger.gameStartFlag == false)

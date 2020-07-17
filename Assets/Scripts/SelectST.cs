@@ -20,8 +20,6 @@ public class SelectST : MonoBehaviour
     private float lastRealTime;
     private float lastStopTime;
 
-    bool returnFlag;
-
     [SerializeField] private CuePlayer2D soundManager;         //サウンド追加分 1/5
 
     void Start()
@@ -37,18 +35,13 @@ public class SelectST : MonoBehaviour
 
     void Update()
     {
-        if(AlertSet.alertFlag == true && returnFlag == false)
+        if(AlertSet.alertFlag == true)
         {
             frames[selectNum].SetActive(false);
-            returnFlag = true;
         }
         else
         {
-            if(AlertSet.alertFlag == false && returnFlag == true)
-            {
-                frames[selectNum].SetActive(true);
-                returnFlag = false;
-            }
+            frames[selectNum].SetActive(true);
 
             if (inPause == true)
             {
@@ -80,7 +73,8 @@ public class SelectST : MonoBehaviour
                 if (time > 0.5f)
                 {
                     time = 0.0f;
-                    frames[selectNum].SetActive(!frames[selectNum].activeInHierarchy);
+                    var frame = frames[selectNum].GetComponent<Image>();
+                    frame.enabled = !frame.enabled;
                 }
 
                 if (selectStopFlag == true)
@@ -98,12 +92,16 @@ public class SelectST : MonoBehaviour
                 (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)
                 )
             {
-                if (selectNum > 0)
+                if (selectNum >= 0)
                 {
                     frames[selectNum].SetActive(false);
                     selectNum--;
+                    if(selectNum == -1)
+                    {
+                        selectNum = frames.Length - 1;
+                    }
                     frames[selectNum].SetActive(true);
-                    soundManager.Play("Select", 1);                                                            //サウンド追加分 4/5
+                    soundManager.Play("Select",1);                                                            //サウンド追加分 4/5
                                                                                                             //if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様（元の仕様変更が必要なため一時オミット）
                 }
                 selectStopFlag = true;
@@ -117,8 +115,12 @@ public class SelectST : MonoBehaviour
                 {
                     frames[selectNum].SetActive(false);
                     selectNum++;
+                    if(selectNum == frames.Length)
+                    {
+                        selectNum = 0;
+                    }
                     frames[selectNum].SetActive(true);
-                    soundManager.Play("Select", 1);                                                            //サウンド追加分 5/5
+                    soundManager.Play("Select",1);                                                            //サウンド追加分 5/5
                                                                                                             //if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様（元の仕様変更が必要なため一時オミット）
                 }
                 selectStopFlag = true;

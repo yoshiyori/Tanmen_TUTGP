@@ -56,9 +56,14 @@ public class ConfigManager : MonoBehaviour
         handleSlider.value = hdSensitivitydata.handleSensitivity / 0.3f;
 
         volumeManager = (VolManager)FindObjectOfType(typeof(VolManager));
-        if(volumeManager.seSlider == null || volumeManager.bgmSlider == null){
-            volumeManager.seSlider = seSlider;
-            volumeManager.bgmSlider = bgmSlider;
+        if(volumeManager != null){
+            if(volumeManager.seSlider == null || volumeManager.bgmSlider == null){
+                volumeManager.seSlider = seSlider;
+                volumeManager.bgmSlider = bgmSlider;
+            }
+        }
+        else{
+            Debug.LogWarning("VolManager is not found. Start playing from the first scene.");
         }
     }
 
@@ -432,9 +437,13 @@ public class ConfigManager : MonoBehaviour
                 case 4:
                     //スライダーで変更した値を反映させる処理書く
                     //サウンド追加分
-                    volumeManager.changed = true;
-                    volumeManager.SetVolume();
-                    hdSensitivitydata.handleSensitivity = handleSlider.value * 0.3f;
+                    if(volumeManager != null){
+                        volumeManager.changed = true;
+                        volumeManager.SetVolume();
+                    }
+                    else{
+                        Debug.LogWarning("VolManager is not found. Start playing from the first scene.");
+                    }
 
                     if (isIngame == true)
                     {
@@ -490,7 +499,7 @@ public class ConfigManager : MonoBehaviour
             {
                 choosingModeFlag = true;
             }
-            if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+		    if (selectNum > 2 && frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
             //isTransition = true;
             //fc.isFadeOut = true;
             if (selectNum == 3)
