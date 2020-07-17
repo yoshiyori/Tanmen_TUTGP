@@ -32,8 +32,6 @@ public class TimeManager : MonoBehaviour
         countDownTime = startCountDownTime;
         CountDownText.SetActive(true);
         startText.SetActive(false);
-
-        Debug.Log(countDownTime);
     }
 
     void Update()
@@ -48,6 +46,7 @@ public class TimeManager : MonoBehaviour
                 CountDownText.SetActive(false);
                 startText.SetActive(true);
                 GameManeger.gameStartFlag = false;
+                countDownTime = startCountDownTime;
             }
         }
         else if (GameManeger.gameStartFlag == false)
