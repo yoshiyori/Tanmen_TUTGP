@@ -103,7 +103,7 @@ public class SelectST : MonoBehaviour
                     frames[selectNum].SetActive(false);
                     selectNum--;
                     frames[selectNum].SetActive(true);
-                    soundManager.Play("Select");                                                            //サウンド追加分 4/5
+                    soundManager.Play("Select", 1);                                                            //サウンド追加分 4/5
                                                                                                             //if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様（元の仕様変更が必要なため一時オミット）
                 }
                 selectStopFlag = true;
@@ -118,7 +118,7 @@ public class SelectST : MonoBehaviour
                     frames[selectNum].SetActive(false);
                     selectNum++;
                     frames[selectNum].SetActive(true);
-                    soundManager.Play("Select");                                                            //サウンド追加分 5/5
+                    soundManager.Play("Select", 1);                                                            //サウンド追加分 5/5
                                                                                                             //if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様（元の仕様変更が必要なため一時オミット）
                 }
                 selectStopFlag = true;
