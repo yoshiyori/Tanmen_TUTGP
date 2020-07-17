@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] GameObject CountDownText;
+    [SerializeField] GameObject countDownTextObject;
+    Text countDownText;
     [SerializeField] float startCountDownTime;
     [SerializeField] GameObject startText;
     float countDownTime;
@@ -34,7 +35,10 @@ public class TimeManager : MonoBehaviour
         seconds = 0;
         mseconds = 0;
         countDownTime = startCountDownTime;
-        CountDownText.SetActive(true);
+        countDownTextObject.SetActive(true);
+
+        countDownText = countDownTextObject.GetComponent<Text>();
+
         startText.SetActive(false);
 
         //サウンド追加分
@@ -47,7 +51,7 @@ public class TimeManager : MonoBehaviour
         {
             countDownTime -= Time.deltaTime;
             countDownSeconds = (int)countDownTime + 1;
-            CountDownText.GetComponent<Text>().text = countDownSeconds.ToString();
+            countDownText.text = countDownSeconds.ToString();
 
             //サウンド追加分
             if(recentCount > countDownSeconds){
@@ -57,7 +61,7 @@ public class TimeManager : MonoBehaviour
 
             if(countDownTime <= 0)
             {
-                CountDownText.SetActive(false);
+                countDownTextObject.SetActive(false);
                 startText.SetActive(true);
                 GameManeger.gameStartFlag = false;
                 countDownTime = startCountDownTime;
