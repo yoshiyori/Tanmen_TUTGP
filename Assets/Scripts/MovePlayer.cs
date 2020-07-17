@@ -205,8 +205,16 @@ public class MovePlayer : MonoBehaviour
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-3), 0));
-			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-3), 0) * rigid.velocity;
+			if (hd.GetControlllerAccel(-3) < 0)
+			{
+				PlayerAni.SetBool("Left", true);
+			}
+			else if (hd.GetControlllerAccel(-3) > 0)
+			{
+				PlayerAni.SetBool("Right", true);
+			}
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-2.5f), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-2.5f), 0) * rigid.velocity;
 		}
 
 		//確認用
