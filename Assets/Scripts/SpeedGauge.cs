@@ -12,7 +12,6 @@ public class SpeedGauge : MonoBehaviour
 
     //サウンド追加分 1/3
     [SerializeField] CuePlayer2D soundManager;
-    private float aisacControlVal;
     private CriAtomExPlayback exPlayback;
 
     // Start is called before the first frame update
@@ -25,7 +24,7 @@ public class SpeedGauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nowSpeed = player.GetComponent<Rigidbody>().velocity.magnitude;
+        nowSpeed = (float)player.GetComponent<MovePlayer>().blerSpeed;
         speedGauge.value = nowSpeed;
 
         //サウンド追加分 3/3

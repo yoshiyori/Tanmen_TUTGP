@@ -21,7 +21,13 @@ public class WillieCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerDirecting.willieFlg == true && playerDirecting.willieChargeFlag == false)
+
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
+        if (playerDirecting.willieFlg == true && playerDirecting.willieChargeFlag == false)
         {
             goUI.SetActive(false);
             chargeTime = playerDirecting.williChargeTime + 1;

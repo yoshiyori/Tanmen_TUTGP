@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 namespace SoundSystem{
     public class VolManager : MonoBehaviour{
         //Slider
-        [SerializeField] private Slider seSlider;
-        [SerializeField] private Slider bgmSlider;
+        public Slider seSlider;
+        public Slider bgmSlider;
+        private List<Slider> Sliders;
 
         //flag
         [HideInInspector] public bool changed = false;
@@ -40,10 +41,23 @@ namespace SoundSystem{
 
         private void ActiveSceneChanged(Scene thisScene, Scene nextScene){
             if(nextScene.name.Equals("main")){
-                Debug.Log(se.ToString() + " ," + bgm.ToString());
-                CriAtom.SetCategoryVolume("SE", se);
-                CriAtom.SetCategoryVolume("BGM", bgm);
+                SetVolume();
+                /*foreach(Object slider in FindObjectsOfType(typeof(Slider))){
+                    Debug.Log(slider.name);
+                    if(slider.name.Equals("BGMSlider")){
+                        bgmSlider = ((GameObject)slider).GetComponent<Slider>();
+                    }
+                    if(slider.name.Equals("SESlider")){
+                        seSlider = ((GameObject)slider).GetComponent<Slider>();
+                    }
+                }*/
             }
+        }
+
+        public void SetVolume(){
+            Debug.Log(se.ToString() + " ," + bgm.ToString());
+            CriAtom.SetCategoryVolume("SE", se);
+            CriAtom.SetCategoryVolume("BGM", bgm);
         }
     }
 }

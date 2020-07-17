@@ -260,7 +260,7 @@ public class CueManager : MonoBehaviour{
                 }
             }
         }
-        foreach(var cuePlayer2D in cuePlayers){
+        foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2D.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2D.playCueNameOnStart.Equals(matchData.cueName)){
                     for(int i = 0; i < cuePlayer2D.criAtomSourceNum; i++){
@@ -292,7 +292,7 @@ public class CueManager : MonoBehaviour{
                 }
             }
         }
-        foreach(var cuePlayer2D in cuePlayers){
+        foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2D.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2D.playCueNameOnStart.Equals(matchData.cueName)){
                     for(int i = 0; i < cuePlayer2D.criAtomSourceNum; i++){
