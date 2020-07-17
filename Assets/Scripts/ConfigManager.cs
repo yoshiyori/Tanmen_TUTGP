@@ -16,6 +16,7 @@ public class ConfigManager : MonoBehaviour
     [SerializeField] private float katamukiNum;     //コントローラーをどこまで傾けたら横入力判定されるか
 
     [SerializeField] private bool isIngame; //ゲームしてる時Pauseで行くときはTrue,モード選択から行くときはFalse
+    private float lastRealTime; //ポーズ時の時間計測用
 
     private GameObject Slider01;
     private GameObject Slider02;
@@ -78,12 +79,26 @@ public class ConfigManager : MonoBehaviour
     void Update()
     {
         if (isAlertStandup == true && alertStandingFlag == false) alertStandingFlag = true;
-        if (choosingModeFlag == true) time += Time.deltaTime;
+        if (choosingModeFlag == true)
+        {
+            if (isIngame == true)
+            {
+                time = Time.realtimeSinceStartup - lastRealTime;
+            }
+            else
+            {
+                time += Time.deltaTime;
+            }
+        }
 
         if (time > 0.4f)//点滅間隔
         {
             time = 0.0f;
             frames[selectNum].SetActive(!frames[selectNum].activeInHierarchy);
+            if(isIngame == true)
+            {
+                lastRealTime = Time.realtimeSinceStartup;
+            }
         }
 
         if (selectStopFlag == true)
@@ -108,7 +123,10 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum > 4) selectNum = 0;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 guiSound.Play("Select");                                         //サウンド追加分 6/15
-                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                {
+                    if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                }
                 selectStopFlag = true;
             }
             else
@@ -136,7 +154,11 @@ public class ConfigManager : MonoBehaviour
                         //サウンド追加分 14/15
                         guiSound.Play("Increase");
                     }
-                    if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                    if(isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                    }
+                    
                 }
                 selectStopFlag = true;
             }
@@ -151,7 +173,10 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum > 4) selectNum = 0;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 guiSound.Play("Select");                                         //サウンド追加分 6/15
-                if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                if(isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                {
+                    if (isConnectJoycon) hd.JoyconRumble(0, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                }
                 selectStopFlag = true;
             }
         }
@@ -168,7 +193,10 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum < 0) selectNum = 4;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 guiSound.Play("Select");                                         //サウンド追加分 7/15
-                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);
+                if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                {
+                    if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                }
                 selectStopFlag = true;
             }
 
@@ -197,8 +225,10 @@ public class ConfigManager : MonoBehaviour
                         //サウンド追加分 10/15
                         guiSound.Play("Decrease");
                     }
-                    if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);
-                                        //第一引数が1で右コントローラー（左手で持つ）、他はSetRumble()の引数と同様
+                    if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                    }
                 }
                 selectStopFlag = true;
             }
@@ -213,7 +243,10 @@ public class ConfigManager : MonoBehaviour
                 if (selectNum < 0) selectNum = 4;
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 guiSound.Play("Select");                                         //サウンド追加分 7/15
-                if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);
+                if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                {
+                    if (isConnectJoycon) hd.JoyconRumble(1, 160, 320, 0.2f, 50);//第一引数が0で左コントローラー(右手で持つ) 、他はSetRumble()の引数と同様
+                }
                 selectStopFlag = true;
             }
         }
@@ -247,8 +280,11 @@ public class ConfigManager : MonoBehaviour
                 }
                 if (isConnectJoycon)
                 {
-                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                        hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    }
                 }
             }
             else
@@ -257,8 +293,11 @@ public class ConfigManager : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 if (isConnectJoycon)
                 {
-                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                        hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    }
                 }
             }
 
@@ -270,8 +309,12 @@ public class ConfigManager : MonoBehaviour
                 alertStandingFlag = false;
                 if (isConnectJoycon)
                 {
-                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                        hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+
+                    }
                 }
             }
 
@@ -301,8 +344,11 @@ public class ConfigManager : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 if (isConnectJoycon)
                 {
-                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                        hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    }
                 }
             }
             if (isAlertStandup == true && alertStandingFlag == true)
@@ -314,8 +360,11 @@ public class ConfigManager : MonoBehaviour
                 if (frames[selectNum].activeInHierarchy == false) frames[selectNum].SetActive(true);
                 if (isConnectJoycon)
                 {
-                    hd.JoyconRumble(0, 160, 320, 0.2f, 100);
-                    hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    if (isIngame == false)//ポーズの仕様上バグるのでポーズ時は振動しないように応急処理
+                    {
+                        hd.JoyconRumble(0, 160, 320, 0.2f, 100);
+                        hd.JoyconRumble(1, 160, 320, 0.2f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+                    }
                 }
             }
         }
@@ -335,7 +384,14 @@ public class ConfigManager : MonoBehaviour
                 case 3:
                     if (isIngame == true)
                     {
-                        //Pauseから来た時戻る処理書く
+                        if (configAlertYesPanel.activeInHierarchy) configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+                        else if (configAlertNoPanel.activeInHierarchy) configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+
+                        if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+
+                        guiSound.Play("MenuBack");                              //サウンド追加分 4/15
+                        configCanvas.SetActive(!configCanvas.activeInHierarchy);
+                        returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
                     else
                     {
@@ -360,7 +416,14 @@ public class ConfigManager : MonoBehaviour
 
                     if (isIngame == true)
                     {
-                        //Pauseから来た時戻る処理書く
+                        if (configAlertYesPanel.activeInHierarchy) configAlertYesPanel.SetActive(!configAlertYesPanel.activeInHierarchy);
+                        else if (configAlertNoPanel.activeInHierarchy) configAlertNoPanel.SetActive(!configAlertNoPanel.activeInHierarchy);
+
+                        if (frames[selectNum].activeInHierarchy == true) frames[selectNum].SetActive(false);
+
+                        guiSound.Play("MenuBack");                              //サウンド追加分 4/15
+                        configCanvas.SetActive(!configCanvas.activeInHierarchy);
+                        returnCanvas.SetActive(!returnCanvas.activeInHierarchy);
                     }
                     else
                     {
