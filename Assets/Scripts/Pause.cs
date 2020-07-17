@@ -23,7 +23,7 @@ public class Pause : MonoBehaviour
     void Update()
     {
         Debug.Log(pauseNow);
-        if ((Input.GetKeyDown(KeyCode.Escape) /*ここにZLZRを押したかどうかの判定を書く*/)
+        if ((Input.GetKeyDown(KeyCode.Escape) || hd.GetZLDown() || hd.GetZRDown())
             && pauseNow == false)
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
