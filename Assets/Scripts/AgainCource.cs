@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AgainCource : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Handle hd;
+    [SerializeField] private CuePlayer2D soundManager;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (hd.GetRightBrakeDown() == true
+            || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            GameManeger.gameStartFlag = true;
+            GameManeger.goalFlag = false;
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            soundManager.Play("Decision");
+        }
     }
 }

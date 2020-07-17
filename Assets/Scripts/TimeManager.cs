@@ -32,6 +32,8 @@ public class TimeManager : MonoBehaviour
         countDownTime = startCountDownTime;
         CountDownText.SetActive(true);
         startText.SetActive(false);
+
+        Debug.Log(countDownTime);
     }
 
     void Update()

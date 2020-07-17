@@ -92,6 +92,7 @@ public class MovePlayer : MonoBehaviour
             if(time > 1.0f)
             {
                 PlayerAni.speed = 0;
+                actionSound.Stop();
                 return;
             }
         }
