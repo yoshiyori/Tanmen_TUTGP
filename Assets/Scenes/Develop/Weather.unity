@@ -136,11 +136,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JoyConManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -197,6 +192,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578493, guid: 7664534e7a06ef1469ca5d64c95dfd30,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967384812872578494, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -757,6 +757,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1360851290}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_Constraints
@@ -777,11 +782,6 @@ PrefabInstance:
       propertyPath: cueNameList.Array.data[0]
       value: Mud
       objectReference: {fileID: 0}
-    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 1360851290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
 --- !u!114 &621732737 stripped
@@ -848,51 +848,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpJudg
       objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 1360851290}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: movePlayer
-      value: 
-      objectReference: {fileID: 1360851286}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingGaugeObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingCommandTextObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingGauge
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: hd
-      value: 
-      objectReference: {fileID: 211111140}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: decreaseGaugeSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: junpSpeed
-      value: 40000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: PlayerAni
-      value: 
-      objectReference: {fileID: 109624530}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -963,6 +918,51 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7227522
       objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1360851290}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: movePlayer
+      value: 
+      objectReference: {fileID: 1360851286}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingGaugeObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingCommandTextObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingGauge
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: hd
+      value: 
+      objectReference: {fileID: 211111140}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: decreaseGaugeSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: junpSpeed
+      value: 40000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 109624530}
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: cueNameList.Array.size
@@ -1079,6 +1079,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1360851290}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_Constraints
@@ -1099,11 +1104,6 @@ PrefabInstance:
       propertyPath: cueManager
       value: 
       objectReference: {fileID: 429109148}
-    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 1360851290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
 --- !u!114 &638156809 stripped
@@ -1175,71 +1175,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 1360851290}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: movePlayer
-      value: 
-      objectReference: {fileID: 1360851286}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingGaugeObject
-      value: 
-      objectReference: {fileID: 919420575}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingCommandTextObject
-      value: 
-      objectReference: {fileID: 102260983}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingGauge
-      value: 
-      objectReference: {fileID: 919420577}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: hd
-      value: 
-      objectReference: {fileID: 211111140}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: decreaseGaugeSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: junpSpeed
-      value: 80000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: PlayerAni
-      value: 
-      objectReference: {fileID: 109624530}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: junpAccelSpeed
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: nowJunpFlag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: upNum
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
-        type: 3}
-      propertyPath: swingGaugeFill
-      value: 
-      objectReference: {fileID: 1444374780}
     - target: {fileID: 5524917922335328467, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1310,6 +1245,71 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.0581093
       objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1360851290}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: movePlayer
+      value: 
+      objectReference: {fileID: 1360851286}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingGaugeObject
+      value: 
+      objectReference: {fileID: 919420575}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingCommandTextObject
+      value: 
+      objectReference: {fileID: 102260983}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingGauge
+      value: 
+      objectReference: {fileID: 919420577}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: hd
+      value: 
+      objectReference: {fileID: 211111140}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: decreaseGaugeSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: junpSpeed
+      value: 80000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: PlayerAni
+      value: 
+      objectReference: {fileID: 109624530}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: junpAccelSpeed
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: nowJunpFlag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: upNum
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300809663157587389, guid: 1b382e7ef595b0e46a4dcbb727122b11,
+        type: 3}
+      propertyPath: swingGaugeFill
+      value: 
+      objectReference: {fileID: 1444374780}
     - target: {fileID: 1004533117820851386, guid: 1b382e7ef595b0e46a4dcbb727122b11,
         type: 3}
       propertyPath: cueNameList.Array.size
@@ -1415,6 +1415,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1008518596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 395036990182620830, guid: 7c95613aba6a8784585a888509900b0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2144258890}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1183774550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1537,16 +1549,16 @@ PrefabInstance:
       propertyPath: cameraLoolAt
       value: 
       objectReference: {fileID: 1360851283}
-    - target: {fileID: 6228299778135643494, guid: 3f316a32f4a99d945a060048df1c569a,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1360851290}
     - target: {fileID: 976970601789590472, guid: 3f316a32f4a99d945a060048df1c569a,
         type: 3}
       propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6228299778135643494, guid: 3f316a32f4a99d945a060048df1c569a,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1360851290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f316a32f4a99d945a060048df1c569a, type: 3}
 --- !u!1001 &1235984760
@@ -1636,6 +1648,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1360851290}
     - target: {fileID: 5048074581527104182, guid: b1e5447664eb0bb4a9837684e28517b6,
         type: 3}
       propertyPath: m_Constraints
@@ -1656,11 +1673,6 @@ PrefabInstance:
       propertyPath: cueManager
       value: 
       objectReference: {fileID: 429109148}
-    - target: {fileID: 678140099833542550, guid: b1e5447664eb0bb4a9837684e28517b6,
-        type: 3}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 1360851290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
 --- !u!114 &1235984761 stripped
@@ -1698,6 +1710,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BikePlayer 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697949188883363157, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697949188883363157, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.89
       objectReference: {fileID: 0}
     - target: {fileID: 5364449070508583699, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -1835,16 +1857,6 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 5697949188883363157, guid: 42d71bdc64cf5924abd8c32925db3680,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697949188883363157, guid: 42d71bdc64cf5924abd8c32925db3680,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.89
-      objectReference: {fileID: 0}
     - target: {fileID: 1281438873064066627, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: playerSound
@@ -1905,6 +1917,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 645e5aa5ebf0ffc489aeb7fa128c2e90, type: 2}
+    - target: {fileID: 2729583404072321259, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1360851290}
     - target: {fileID: 1281438874621425335, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
       propertyPath: _cueName
@@ -1915,11 +1932,6 @@ PrefabInstance:
       propertyPath: _cueSheet
       value: GameSE
       objectReference: {fileID: 0}
-    - target: {fileID: 2729583404072321259, guid: 42d71bdc64cf5924abd8c32925db3680,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1360851290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42d71bdc64cf5924abd8c32925db3680, type: 3}
 --- !u!1 &1360851283 stripped
@@ -2059,7 +2071,7 @@ PrefabInstance:
         type: 3}
       propertyPath: totalTimeText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1008518596}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187e0d7d2a9168b4fa1868ffdf191d00, type: 3}
 --- !u!1 &1977401704 stripped
