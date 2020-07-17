@@ -54,9 +54,14 @@ public class ConfigManager : MonoBehaviour
         bgmSlider.value = CriAtom.GetCategoryVolume("BGM");
 
         volumeManager = (VolManager)FindObjectOfType(typeof(VolManager));
-        if(volumeManager.seSlider == null || volumeManager.bgmSlider == null){
-            volumeManager.seSlider = seSlider;
-            volumeManager.bgmSlider = bgmSlider;
+        if(volumeManager != null){
+            if(volumeManager.seSlider == null || volumeManager.bgmSlider == null){
+                volumeManager.seSlider = seSlider;
+                volumeManager.bgmSlider = bgmSlider;
+            }
+        }
+        else{
+            Debug.LogWarning("VolManager is not found. Start playing from the first scene.");
         }
     }
 
@@ -430,8 +435,13 @@ public class ConfigManager : MonoBehaviour
                 case 4:
                     //スライダーで変更した値を反映させる処理書く
                     //サウンド追加分
-                    volumeManager.changed = true;
-                    volumeManager.SetVolume();
+                    if(volumeManager != null){
+                        volumeManager.changed = true;
+                        volumeManager.SetVolume();
+                    }
+                    else{
+                        Debug.LogWarning("VolManager is not found. Start playing from the first scene.");
+                    }
 
                     if (isIngame == true)
                     {
