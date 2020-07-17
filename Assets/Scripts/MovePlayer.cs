@@ -92,7 +92,7 @@ public class MovePlayer : MonoBehaviour
             if(time > 1.0f)
             {
                 PlayerAni.speed = 0;
-                //音停止用の処理を入れる
+                //音を止める処理を書く
                 return;
             }
         }

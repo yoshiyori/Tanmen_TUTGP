@@ -8,20 +8,18 @@ public class Goal : MonoBehaviour
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject returnModeSelect;
+    [SerializeField] GameObject goalText;
     float time;
 
     private void Start()
     {
         returnModeSelect.SetActive(false);
+        goalText.SetActive(false);
         time = 0f;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            GameManeger.goalFlag = true;
-        }
         if(GameManeger.goalFlag == true)
         {
             time += Time.deltaTime;
@@ -35,5 +33,6 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManeger.goalFlag = true;
+        goalText.SetActive(true);
     }
 }
