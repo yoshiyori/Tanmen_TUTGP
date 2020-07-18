@@ -11,6 +11,9 @@ public class Goal : MonoBehaviour
     [SerializeField] GameObject goalText;
     float time;
 
+    //サウンド追加する
+    [SerializeField] private CueManager cueManager;
+
     private void Start()
     {
         returnModeSelect.SetActive(false);
@@ -34,5 +37,7 @@ public class Goal : MonoBehaviour
     {
         GameManeger.goalFlag = true;
         goalText.SetActive(true);
+
+        cueManager.PauseCueSheet("GameSE");
     }
 }
