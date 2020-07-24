@@ -20,6 +20,7 @@ public class MovePlayer : MonoBehaviour
 	public GameObject mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
+	public GameObject front;
 	private bool mudTrigger;
 	public bool junp;
 	public bool sandControl;
@@ -28,6 +29,7 @@ public class MovePlayer : MonoBehaviour
 	public bool turnTipe;
 	private int count = 0;
 	public int startLook = 0;
+	private int driftCount;
 	[System.NonSerialized] public Vector3 nowSpeed; //スピードゲージ追加時にpublic化（Inspector上では見えないように設定済み）
 	private Vector3 oldSpeed;
 	private Vector3 pos;
@@ -49,9 +51,9 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] public float handleSensitivity;
 	[SerializeField] Data data;
 
-    float time;//ゴール後数秒後に止まるようにするために使う（OC用）
+	float time;//ゴール後数秒後に止まるようにするために使う（OC用）
 
-    void Awake()
+	void Awake()
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
@@ -73,33 +75,33 @@ public class MovePlayer : MonoBehaviour
 	void Update()
 	{
 
-        if (Mathf.Approximately(Time.timeScale, 0f))
-        {
-            return;
-        }
+		if (Mathf.Approximately(Time.timeScale, 0f))
+		{
+			return;
+		}
 
-        if(GameManeger.gameStartFlag == true)
-        {
-            PlayerAni.speed = 0;
-            return;
-        }
-        else if(GameManeger.gameStartFlag == false && GameManeger.goalFlag == false)
-        {
-            PlayerAni.speed = 1;
-        }
+		if (GameManeger.gameStartFlag == true)
+		{
+			PlayerAni.speed = 0;
+			return;
+		}
+		else if (GameManeger.gameStartFlag == false && GameManeger.goalFlag == false)
+		{
+			PlayerAni.speed = 1;
+		}
 
-        if(GameManeger.goalFlag == true)
-        {
-            time += Time.deltaTime;
-            if(time > 1.0f)
-            {
-                PlayerAni.speed = 0;
-                //音を止める処理を書く
-                return;
-            }
-        }
+		if (GameManeger.goalFlag == true)
+		{
+			time += Time.deltaTime;
+			if (time > 1.0f)
+			{
+				PlayerAni.speed = 0;
+				//音を止める処理を書く
+				return;
+			}
+		}
 
-        if (startLook == 0)
+		if (startLook == 0)
 		{
 			PlayerAni.SetTrigger("Start");
 			startLook = 1;
@@ -117,7 +119,7 @@ public class MovePlayer : MonoBehaviour
 
 		//ここで速度とかの制御
 
-            //ここで速度とかの制御
+		//ここで速度とかの制御
 
 
 		if (mudTrigger == true)
@@ -197,6 +199,21 @@ public class MovePlayer : MonoBehaviour
 
 		//回転
 
+		if (Input.GetKey(KeyCode.Z) && willieFlg == false)
+		{
+			turnTipe = false;
+			driftCount = 0;
+		}
+		else
+		{
+			turnTipe = true;
+			if (driftCount == 0)
+			{
+			    Vector3 frontNow = front.transform.position- transform.position;
+				//rigid.velocity = Quaternion.Euler(frontNow.normalized) * rigid.velocity;
+			}
+			driftCount++;
+		}
 		turnPlayer();
 
 
@@ -252,24 +269,24 @@ public class MovePlayer : MonoBehaviour
 		}
 		oldSpeed = nowSpeed;
 
-            if (joyconFlag == true)
-            {
-                //var rot = transform.rotation.eulerAngles;
-                //rot.y = hd.GetControlllerAccel(-100);
-                //transform.rotation = Quaternion.Euler(rot);
-                //this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(0.2f, -5), 0));
-            }
+		if (joyconFlag == true)
+		{
+			//var rot = transform.rotation.eulerAngles;
+			//rot.y = hd.GetControlllerAccel(-100);
+			//transform.rotation = Quaternion.Euler(rot);
+			//this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(0.2f, -5), 0));
+		}
 
 
-            //確認用
-            if (Input.GetKey(KeyCode.Z))
-            {
-                Debug.Log(maxSpeed);
-                Debug.Log("x : " + nowSpeed.x + "y : " + nowSpeed.y + "z : " + nowSpeed.z);
+		//確認用
+		if (Input.GetKey(KeyCode.Z))
+		{
+			Debug.Log(maxSpeed);
+			Debug.Log("x : " + nowSpeed.x + "y : " + nowSpeed.y + "z : " + nowSpeed.z);
 
-            }
-            oldSpeed = nowSpeed;
-        }
+		}
+		oldSpeed = nowSpeed;
+	}
 
 
 
@@ -277,39 +294,40 @@ public class MovePlayer : MonoBehaviour
 	{
 		bool check = false;
 
-		if (rigid.velocity.magnitude < maxSpeed / 3)
+		/*if (rigid.velocity.magnitude < maxSpeed / 3)
 		{
-			if (Input.GetKey(KeyCode.RightArrow))
-			{
-				check = true;
-				this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-				if (turnTipe == true)
-				{
-					rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
-				}
-				PlayerAni.SetBool("Right", true);
-			}
-			else
-			{
-				PlayerAni.SetBool("Right", false);
-			}
-			if (Input.GetKey(KeyCode.LeftArrow))
-			{
-				check = true;
-				this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-				if (turnTipe == true)
-				{
-					rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
-				}
-				PlayerAni.SetBool("Left", true);
-			}
-			else
-			{
-				PlayerAni.SetBool("Left", false);
-			}
+			
 
+		}*/
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			check = true;
+			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+			if (turnTipe == true)
+			{
+				rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+			}
+			PlayerAni.SetBool("Right", true);
 		}
-		else if (rigid.velocity.magnitude > maxSpeed / 3 && rigid.velocity.magnitude <= maxSpeed * 2 / 3)
+		else
+		{
+			PlayerAni.SetBool("Right", false);
+		}
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			check = true;
+			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+			if (turnTipe == true)
+			{
+				rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
+			}
+			PlayerAni.SetBool("Left", true);
+		}
+		else
+		{
+			PlayerAni.SetBool("Left", false);
+		}
+		/*else if (rigid.velocity.magnitude > maxSpeed / 3 && rigid.velocity.magnitude <= maxSpeed * 2 / 3)
 		{
 
 
@@ -402,7 +420,7 @@ public class MovePlayer : MonoBehaviour
 				}
 			}
 
-		}
+		}*/
 
 
 
