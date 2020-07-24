@@ -13,8 +13,8 @@ public class PlayerDirecting : MonoBehaviour
     public bool willieChargeFlag;
 	private float startDetaTime;
 	private float willieSTime;
-	public Animator PlayerAni; 
-
+	public Animator PlayerAni;
+	private bool dorift;
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
 	[SerializeField] private Handle hd;                             //Joycon関係追加 5/26
@@ -35,6 +35,7 @@ public class PlayerDirecting : MonoBehaviour
     {
 		checkNowJump = jcon.allSwingJumpFlag;
 		startDetaTime = Time.time;
+		dorift = player.GetComponent<MovePlayer>().turnTipe;
 
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
@@ -54,7 +55,7 @@ public class PlayerDirecting : MonoBehaviour
 
 		//ウィリー
 		
-		if ( (Input.GetKeyDown(KeyCode.Space)  || hd.GetControllerSwing() >= 8) &&willieFlg == false && checkNowJump == false)
+		if ( (Input.GetKeyDown(KeyCode.Space)  || hd.GetControllerSwing() >= 8) &&willieFlg == false && checkNowJump == false && dorift == true)
 		{
 			willieFlg = true;
 			willieSTime = startDetaTime;
