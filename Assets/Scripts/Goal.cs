@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    //これはOC用のスクリプトです。本当のゴールはSecTime.csのほうに処理が書いてある
-
     [SerializeField] GameObject player;
-    [SerializeField] GameObject returnModeSelect;
+    [SerializeField] GameObject resultCanvas;
+    [SerializeField] GameObject inGameUI;
     [SerializeField] GameObject goalText;
     float time;
+    [System.NonSerialized] public static bool resultFlag;
 
     //サウンド追加する
     [SerializeField] private CueManager cueManager;
 
     private void Start()
     {
-        returnModeSelect.SetActive(false);
+        resultCanvas.SetActive(false);
         goalText.SetActive(false);
         time = 0f;
+        resultFlag = false;
     }
 
     private void Update()
@@ -28,7 +29,10 @@ public class Goal : MonoBehaviour
             time += Time.deltaTime;
             if (time >= 3)
             {
-                returnModeSelect.SetActive(true);
+                goalText.SetActive(false);
+                inGameUI.SetActive(false);
+                resultCanvas.SetActive(true);
+                resultFlag = true;
             }
         }
     }

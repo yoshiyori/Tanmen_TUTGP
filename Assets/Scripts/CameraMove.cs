@@ -58,35 +58,38 @@ public class CameraMove : MonoBehaviour
 
         if (tipe != 2)
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (GameManeger.gameStartFlag == false && GameManeger.goalFlag == false) //スタート&ゴール時は操作できないようにする
             {
-                // this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-                //transform.RotateAround(playerTrans.position, Vector3.up, rotaSpeed);
-                queue(cameraVec, -rotaSpeed);
-
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                //this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-                //transform.RotateAround(playerTrans.position, Vector3.up, -rotaSpeed);
-                queue(cameraVec, rotaSpeed);
-            }
-
-            if (joyconFlag == true && hd.GetControlllerAccel(0.2f, 10) != 0.0f)
-            {
-                queue(cameraVec, hd.GetControlllerAccel(0.2f, 5));
-
-                /*if (leftRightNum > 0)
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    queue(cameraVec, leftRightNum);
-                    cameraTrans.LookAt(playerTrans.position);
+                    // this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+                    //transform.RotateAround(playerTrans.position, Vector3.up, rotaSpeed);
+                    queue(cameraVec, -rotaSpeed);
+
                 }
-                else if (leftRightNum < 0)
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    queue(cameraVec, leftRightNum);
-                    cameraTrans.LookAt(playerTrans.position);
-                }*/
+                    //this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+                    //transform.RotateAround(playerTrans.position, Vector3.up, -rotaSpeed);
+                    queue(cameraVec, rotaSpeed);
+                }
 
+                if (joyconFlag == true && hd.GetControlllerAccel(0.2f, 10) != 0.0f)
+                {
+                    queue(cameraVec, hd.GetControlllerAccel(0.2f, 5));
+
+                    /*if (leftRightNum > 0)
+                    {
+                        queue(cameraVec, leftRightNum);
+                        cameraTrans.LookAt(playerTrans.position);
+                    }
+                    else if (leftRightNum < 0)
+                    {
+                        queue(cameraVec, leftRightNum);
+                        cameraTrans.LookAt(playerTrans.position);
+                    }*/
+
+                }
             }
             cameraTrans.LookAt(cameraLoolAt.transform.position);
         }

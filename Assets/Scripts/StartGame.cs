@@ -11,13 +11,16 @@ public class StartGame : MonoBehaviour
 
     private void Update()
     {
-        if (hd.GetRightBrakeDown() == true
-            || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        if(GameManeger.gameStartFlag == false)
         {
-            GameManeger.gameStartFlag = true;
-            GameManeger.goalFlag = false;
-            SceneManager.LoadSceneAsync(sceanName);
-            soundManager.Play("Decision");
+            if (hd.GetRightBrakeDown() == true
+            || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                GameManeger.gameStartFlag = true;
+                GameManeger.goalFlag = false;
+                SceneManager.LoadSceneAsync(sceanName);
+                soundManager.Play("Decision");
+            }
         }
     }
 }
