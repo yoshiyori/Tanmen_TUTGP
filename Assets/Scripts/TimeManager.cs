@@ -18,8 +18,13 @@ public class TimeManager : MonoBehaviour
     int minutes, seconds, mseconds;
     public Text totalTimeText; //全体のタイム表示テキスト
 
-    [System.NonSerialized] public int secNumber; //セクター表記用変数
-    [System.NonSerialized] public float oldSecTime; //セクター計算用変数
+    //セクター関連
+    [System.NonSerialized] public List<float> secTime = new List<float>(); //セクターごとのタイムを記録
+    [SerializeField] GameObject[] secTimeText; //セクターの数を入力
+    [System.NonSerialized] public static bool secFlag;
+    int secNumber; //セクター表記用変数
+    float oldSecTime; //セクター計算用変数
+    int secMinutes, secSeconds, secMSeconds;
 
     //サウンド追加分
     [SerializeField] private CuePlayer2D soundManager;
@@ -30,16 +35,17 @@ public class TimeManager : MonoBehaviour
         //変数系初期化
         totalTime = 0.0f;
         oldSecTime = 0.0f;
-        secNumber = 1;
+        secNumber = 0;
         minutes = 0;
         seconds = 0;
         mseconds = 0;
         countDownTime = startCountDownTime;
         countDownTextObject.SetActive(true);
-
         countDownText = countDownTextObject.GetComponent<Text>();
-
         startText.SetActive(false);
+        secMinutes = 0;
+        secSeconds = 0;
+        secMSeconds = 0;
 
         //サウンド追加分
         recentCount = (int)startCountDownTime + 1;
@@ -91,11 +97,30 @@ public class TimeManager : MonoBehaviour
                 totalTimeText.text = string.Format("Time　{0:00}:{1:00}.{2:000}", minutes, seconds, mseconds);
 
             }
-            if(GameManeger.goalFlag == true)
+            else if(GameManeger.goalFlag == true)
             {
                 //ゴールした時の処理を入れる（現状何もなし）
+            }
+            if (secFlag == true)
+            {
+                secTimeMeasurement();
+                secFlag = false;
             }
         }
     }
 
+    void secTimeMeasurement()
+    {
+        secTime.Add(totalTime - oldSecTime);
+        oldSecTime += secTime[secNumber];
+        secMinutes = Mathf.FloorToInt(secTime[secNumber] / 60f);
+        secSeconds = Mathf.FloorToInt(secTime[secNumber] % 60f);
+        secMSeconds = Mathf.FloorToInt((secTime[secNumber] % 60f - secSeconds) * 1000);
+        secTimeText[secNumber].GetComponent<Text>().text = string.Format("sec{0:0}　{1:00}:{2:00}.{3:000}", secNumber + 1, secMinutes, secSeconds, secMSeconds);
+        secTimeText[secNumber].SetActive(true);
+        if (secNumber < secTimeText.Length - 1)
+        {
+            secNumber++;
+        }
+    }
 }

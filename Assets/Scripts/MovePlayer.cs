@@ -93,12 +93,11 @@ public class MovePlayer : MonoBehaviour
 		if (GameManeger.goalFlag == true)
 		{
 			time += Time.deltaTime;
-			if (time > 1.0f)
-			{
-				PlayerAni.speed = 0;
-				//音を止める処理を書く
-				return;
-			}
+            if (rigid.velocity.x > 0)
+            {
+                PlayerAni.speed = 0;
+            }
+            return;
 		}
 
 		if (startLook == 0)

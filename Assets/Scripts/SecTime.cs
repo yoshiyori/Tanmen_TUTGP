@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SecTime : MonoBehaviour
 {
+    //旧仕様（今は使わない）
+
     //TimeManagerスクリプトから各種変数を参照する
     GameObject timeManager;
     TimeManager timeManagerScript;
@@ -26,25 +28,17 @@ public class SecTime : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            secTime = timeManagerScript.totalTime - timeManagerScript.oldSecTime; //全体のタイムからそれまでのセクタータイムの合計を引く
 
             //テキスト表示用処理
             minutes = Mathf.FloorToInt(secTime / 60f);
             seconds = Mathf.FloorToInt(secTime % 60f);
             mseconds = Mathf.FloorToInt((secTime % 60f - seconds) * 1000);
-            secTimeText.GetComponent<Text>().text = string.Format("sec{0:0}　{1:00}:{2:00}.{3:000}", timeManagerScript.secNumber, minutes, seconds, mseconds);
+            //secTimeText.GetComponent<Text>().text = string.Format("sec{0:0}　{1:00}:{2:00}.{3:000}", timeManagerScript.secNumber, minutes, seconds, mseconds);
             secTimeText.SetActive(!secTimeText.activeSelf);
 
             //セクタータイムを前のセクタータイムの合計値に足す
-            timeManagerScript.oldSecTime += secTime;
-            timeManagerScript.secNumber++; //セクターの数字が合うように1足す
-
-            //ゴールフラグ処理
-            if(timeManagerScript.secNumber == 5)
-            {
-                GameManeger.goalFlag = true;
-            }
+            //timeManagerScript.oldSecTime += secTime;
+            //timeManagerScript.secNumber++; //セクターの数字が合うように1足す
         }
     }
-
 }

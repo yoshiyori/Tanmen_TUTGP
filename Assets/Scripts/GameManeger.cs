@@ -8,7 +8,7 @@ public class GameManeger : MonoBehaviour
     [System.NonSerialized]public static GameManeger instance; //シングルトンにするために使うもの
 
     //ゲームスタートのためのフラグ
-    [System.NonSerialized] public static bool gameStartFlag = true;
+    [System.NonSerialized] public static bool gameStartFlag;
 
     //ゴールした時のためのフラグ
     [System.NonSerialized] public static bool goalFlag;
@@ -21,6 +21,8 @@ public class GameManeger : MonoBehaviour
     [System.NonSerialized] public static bool moveModeSelect;
     [System.NonSerialized] public static bool moveCorceSelect;
 
+    [SerializeField] bool inGameTestFlag; //制作中、タイトル画面を介さずいきなりゲーム本編をテストするときに使う
+
     void Awake()
     {
         //シングルトン処理
@@ -32,6 +34,10 @@ public class GameManeger : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        if(inGameTestFlag == true)
+        {
+            gameStartFlag = true;
         }
     }
 }
