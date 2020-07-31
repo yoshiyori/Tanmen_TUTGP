@@ -22,7 +22,7 @@ public class TimeManager : MonoBehaviour
     [System.NonSerialized] public List<float> secTime = new List<float>(); //セクターごとのタイムを記録
     [SerializeField] GameObject[] secTimeText; //セクターの数を入力
     [System.NonSerialized] public static bool secFlag;
-    int secNumber; //セクター表記用変数
+    public int secNumber; //セクター表記用変数
     float oldSecTime; //セクター計算用変数
     int secMinutes, secSeconds, secMSeconds;
 
