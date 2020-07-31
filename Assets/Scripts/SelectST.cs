@@ -31,6 +31,7 @@ public class SelectST : MonoBehaviour
         if (hd.isConnectHandle == true) isConnectJoycon = true;
         lastRealTime = 0.0f;
         lastStopTime = 0.0f;
+        AlertSet.alertFlag = false;      //他シーンから戻ってきたときframesが表示されなかったので追加
     }
 
     void Update()

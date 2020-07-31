@@ -49,7 +49,7 @@ public class MovePlayer : MonoBehaviour
 	public Handle hd;//JoyConから数値受け取る時とかに使う
 	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
 	[SerializeField] public float handleSensitivity;
-	[SerializeField] Data data;
+	[SerializeField] HdSensitivity data;
 
 	float time;//ゴール後数秒後に止まるようにするために使う（OC用）
 
