@@ -55,7 +55,6 @@ public class SaveManager : MonoBehaviour
         argNameArray.CopyTo(save.rankerNames, 10);
         argTimeArray.CopyTo(save.goalTimes, 10);
         save.arrayLengthNum = argArrayLengthNum;
-
     }
 
     public string[] AbstractionNameData()
