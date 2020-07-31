@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Security.Cryptography;
+using UnityEngine.SceneManagement;
 
 public class RankingManager : MonoBehaviour
 {
@@ -142,7 +143,7 @@ public class RankingManager : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) ||
-            (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)
+            (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false) && isTransition == false
             )
             {
                 if (selectNum > 0)
@@ -155,10 +156,10 @@ public class RankingManager : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow) ||
-                (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)
+                (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false) && isTransition == false
                 )
             {
-                if ((selectNum < 2 && selectNum >= 0))
+                if ((selectNum < selectFrames.Length - 1 && selectNum >= 0))
                 {
                     if (selectFrames[selectNum].activeInHierarchy == true) selectFrames[selectNum].SetActive(false);
                     selectNum++;                                                     //サウンド追加分 3/3
@@ -189,16 +190,14 @@ public class RankingManager : MonoBehaviour
                 {
                     isTransition = false;
                     selectNum = 0;
-                }
-                if (selectNum == 1)
-                {
-                    isTransition = false;
-                    selectNum = 0;
+                    SceneManager.LoadScene("Main");
                 }
                 else
                 {
                     isTransition = false;
                     selectNum = 0;
+                    GameManeger.moveTitle = true;
+                    SceneManager.LoadSceneAsync("CourceSelect");
                 }
             }
         }
