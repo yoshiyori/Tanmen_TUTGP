@@ -48,7 +48,7 @@ public class ConfigManager : MonoBehaviour
     //サウンド追加分 1/15
     [SerializeField] private CuePlayer2D guiSound;
     [SerializeField] private VolManager volumeManager;
-    [SerializeField] Data hdSensitivitydata;
+    [SerializeField] HdSensitivity hdSensitivitydata;
 
     void OnEnable(){
         seSlider.value = CriAtom.GetCategoryVolume("SE");

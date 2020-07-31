@@ -179,6 +179,13 @@ public class RankingManager : MonoBehaviour
                 if (alertStandingFlag == false)
                 {
                     if (alertPanel.activeInHierarchy == false) alertPanel.SetActive(true);
+                }
+            }
+
+            if (alertStandingFlag == false && alertPanel.activeInHierarchy == true)
+            {
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
                     alertStandingFlag = true;
                 }
             }
@@ -280,7 +287,7 @@ public class RankingManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             thirdWordsName[wordRemainingTime] = (char)wordSelectNum;
             userName = new string(thirdWordsName);
