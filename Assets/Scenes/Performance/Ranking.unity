@@ -4704,6 +4704,7 @@ MonoBehaviour:
   hd: {fileID: 902701090}
   stopTime: 0
   katamukiNum: 0
+  timedata: {fileID: 11400000, guid: e13fcb5c011974843a5a18a7781ffe5e, type: 2}
 --- !u!4 &936971479
 Transform:
   m_ObjectHideFlags: 0

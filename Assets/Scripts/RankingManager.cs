@@ -59,6 +59,7 @@ public class RankingManager : MonoBehaviour
     string filePath;
     RankingSaveData save;
 
+    [SerializeField] TimeData timedata;
 
     void Awake()
     {
@@ -309,15 +310,14 @@ public class RankingManager : MonoBehaviour
         if (save.arrayLengthNum == 0)
         {
             rankingPlayerName[0] = userName;
-            rankingPlayerTime[0] = 10.0f;
+            rankingPlayerTime[0] = timedata.goalTime;
             save.arrayLengthNum += 1;
         }
         else
         {
-            float goalTimeKari = UnityEngine.Random.Range(100.0f, 600.0f);//本当ならここにそのときのTime入れる
             for (int i = 0; i < save.arrayLengthNum; i++)
             {
-                if (rankingPlayerTime[i] > goalTimeKari)
+                if (rankingPlayerTime[i] > timedata.goalTime)
                 {
                     float[] stayNums = new float[10];
                     string[] stayNames = new string[10];
@@ -327,7 +327,7 @@ public class RankingManager : MonoBehaviour
 
 
                     rankingPlayerName[i] = userName;
-                    rankingPlayerTime[i] = goalTimeKari;
+                    rankingPlayerTime[i] = timedata.goalTime;
 
                     Array.Copy(stayNames, i, rankingPlayerName, i + 1, 10 - (i + 1));
                     Array.Copy(stayNums, i, rankingPlayerTime, i + 1, 10 - (i + 1));
@@ -339,7 +339,7 @@ public class RankingManager : MonoBehaviour
             if (isAdd == false && save.arrayLengthNum < 10)
             {
                 rankingPlayerName[save.arrayLengthNum] = userName;
-                rankingPlayerTime[save.arrayLengthNum] = goalTimeKari;
+                rankingPlayerTime[save.arrayLengthNum] = timedata.goalTime;
                 save.arrayLengthNum += 1;
             }
 
@@ -355,51 +355,7 @@ public class RankingManager : MonoBehaviour
         isDisplayRanking = true;
     }
 
-    string[] InsertRankerNamesArray(string[] argArray, string InsertName, int insertNum)
-    {
-        string[] a = new string[argArray.Length];
 
-        for (int i = 0; i < argArray.Length; i++)
-        {
-            if (i == insertNum)
-            {
-                a[i] = InsertName;
-            }
-            else if (i > insertNum)
-            {
-                a[i] = argArray[i - 1];
-            }
-            else
-            {
-                a[i] = argArray[i];
-            }
-        }
-
-        return a;
-    }
-
-    float[] InsertGoalTimesArray(float[] argArray, float InsertTime, int insertNum)
-    {
-        float[] a = new float[10];
-
-        for (int i = 0; i < argArray.Length; i++)
-        {
-            if (i == insertNum)
-            {
-                a[i] = InsertTime;
-            }
-            else if (i > insertNum)
-            {
-                a[i] = argArray[i - 1];
-            }
-            else
-            {
-                a[i] = argArray[i];
-            }
-        }
-
-        return a;
-    }
 
     void DisplayRanking()
     {
@@ -411,18 +367,8 @@ public class RankingManager : MonoBehaviour
             int seconds = Mathf.FloorToInt(save.goalTimes[i] % 60f);
             int mseconds = Mathf.FloorToInt((save.goalTimes[i] % 60f - seconds) * 1000);
             rankersTimeBoxText[i].text = string.Format("{0:00}.{1:00}'{2:000}", minutes, seconds, mseconds);
-            //rankersTimeBoxText[i].text = (save.goalTimes[i] / 60).ToString("00") + "," + (save.goalTimes[i] % 60).ToString("00") + "'" + "000";
         }
-        /*
-        if (rSave.rankerNames.Length < 10)
-        {
-            for (int i = 0; i < 10 - rSave.arrayLengthNum; i++)
-            {
-                rankersNameBoxText[i + rSave.arrayLengthNum].text = "---";
-                rankersTimeBoxText[i + rSave.arrayLengthNum].text = "00.00'000";
-            }
-        }
-        */
+
     }
 
     public void Save()

@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TimeData : ScriptableObject
 {
-    public float handleSensitivity;
+    public float goalTime;
 }

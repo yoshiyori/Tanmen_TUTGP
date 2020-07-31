@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Result : MonoBehaviour
     [SerializeField] Handle hd;
     [SerializeField] private CuePlayer2D soundManager;
     int minutes, seconds, mseconds;
+
+    //Ranking関係追加分
+    [SerializeField] TimeData timedata;
 
     // Update is called once per frame
     void Update()
@@ -35,7 +39,9 @@ public class Result : MonoBehaviour
             if (hd.GetRightBrakeDown() == true
             || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
+                timedata.goalTime = timeManager.totalTime;
                 soundManager.Play("Decision", 1);
+                SceneManager.LoadScene("Ranking");
             }
         }
     }
