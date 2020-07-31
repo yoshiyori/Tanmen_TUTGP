@@ -30,7 +30,7 @@ public class SwingJumpJudge : MonoBehaviour
     private bool isPlus;
     private bool touchingGroundFrag;
     [SerializeField] private bool afterJumpingFlag;
-    [SerializeField] int useGaugeSpeed;
+    [SerializeField] float useGaugeSpeed;
     private bool movingFlag;
     [SerializeField] int decreaseGaugeSpeed;
     [SerializeField] float UseKeyGaugeIncreaseNum;
