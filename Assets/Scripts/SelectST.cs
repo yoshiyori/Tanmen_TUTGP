@@ -111,7 +111,7 @@ public class SelectST : MonoBehaviour
                 (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)
                 )
             {
-                if ((selectNum < 2 && selectNum >= 0))
+                if ((selectNum < frames.Length && selectNum >= 0))
                 {
                     frames[selectNum].SetActive(false);
                     selectNum++;
