@@ -20,7 +20,7 @@ public class AlertSet : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             alertPanel.SetActive(true);
-            soundManager.Play("Alart");
+            soundManager.Play("Alart", 1);
             alertFlag = true;
         }
     }

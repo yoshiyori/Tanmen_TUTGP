@@ -20,14 +20,14 @@ public class ReturnTitle : MonoBehaviour
             }
             GameManeger.moveTitle = true;
             SceneManager.LoadSceneAsync("CourceSelect");
-            soundManager.Play("Decision");
+            soundManager.Play("Decision", 1);
         }
         else if ((hd.GetLeftBrakeDown() == true || Input.GetKeyUp(KeyCode.Backspace)) 
             && inPause == true)
         {
             this.gameObject.SetActive(false);
             AlertSet.alertFlag = false;
-            soundManager.Play("MenuBack");
+            soundManager.Play("MenuBack", 1);
         }
     }
 }
