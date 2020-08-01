@@ -11,7 +11,7 @@ public class SaveManager : MonoBehaviour
 
     void Awake()
     {
-        filePath = "Assets/SaveData" + "/" + ".rankingsavedata.json";
+        filePath = "StreamingAssets/Assets/SaveData" + "/" + ".rankingsavedata.json";
         save = new RankingSaveData();
         Save();
         /*
