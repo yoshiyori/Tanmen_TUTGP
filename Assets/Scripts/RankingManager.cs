@@ -66,7 +66,7 @@ public class RankingManager : MonoBehaviour
 
     void Awake()
     {
-        filePath = Application.dataPath + "/SaveData" + "/savedata.json";
+        filePath = Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json";
         
         save = new RankingSaveData();
         if (System.IO.File.Exists(filePath) == false)
@@ -395,7 +395,7 @@ public class RankingManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(save);
 
-        StreamWriter streamWriter = new StreamWriter(Application.dataPath + "/SaveData" + "/savedata.json", false);
+        StreamWriter streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json", false);
         streamWriter.Write(json);
         streamWriter.Flush();
         streamWriter.Close();
