@@ -61,6 +61,9 @@ public class RankingManager : MonoBehaviour
 
     [SerializeField] TimeData timedata;
 
+    //サウンド追加分
+    [SerializeField] private CuePlayer2D soundManager;
+
     void Awake()
     {
         filePath = Application.dataPath + "/SaveData" + "/savedata.json";
@@ -150,8 +153,11 @@ public class RankingManager : MonoBehaviour
                 if (selectNum > 0)
                 {
                     if (selectFrames[selectNum].activeInHierarchy == true) selectFrames[selectNum].SetActive(false);
-                    selectNum--;                                                        //サウンド追加分 2/3
+                    selectNum--;
                     hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+
+                    //サウンド追加分
+                    soundManager.Play("Select");
                 }
                 selectStopFlag = true;
             }
@@ -163,8 +169,11 @@ public class RankingManager : MonoBehaviour
                 if ((selectNum < selectFrames.Length - 1 && selectNum >= 0))
                 {
                     if (selectFrames[selectNum].activeInHierarchy == true) selectFrames[selectNum].SetActive(false);
-                    selectNum++;                                                     //サウンド追加分 3/3
+                    selectNum++;
                     hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+
+                    //サウンド追加分
+                    soundManager.Play("Select");
                 }
                 selectStopFlag = true;
             }
@@ -179,7 +188,13 @@ public class RankingManager : MonoBehaviour
                 }
                 if (alertStandingFlag == false)
                 {
-                    if (alertPanel.activeInHierarchy == false) alertPanel.SetActive(true);
+                    if (alertPanel.activeInHierarchy == false)
+                    {
+                        alertPanel.SetActive(true);
+
+                        //サウンド追加分
+                        soundManager.Play("Alart");
+                    }
                 }
             }
 
@@ -236,7 +251,6 @@ public class RankingManager : MonoBehaviour
                 allWordPanel = 0;
                 alphabetsRectTrans.localPosition += new Vector3(50.0f * 10, 0.0f, 0.0f);
                 selectPanelRectTrans.localPosition += new Vector3(-50.0f * 15, 0.0f, 0.0f);
-                
             }
             else
             {
@@ -244,8 +258,8 @@ public class RankingManager : MonoBehaviour
                 wordSelectNum++;
             }
 
-
-            
+            //サウンド追加分
+            soundManager.Play("Select");
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -270,8 +284,8 @@ public class RankingManager : MonoBehaviour
                 wordSelectNum--;
             }
 
-
-            
+            //サウンド追加分
+            soundManager.Play("Select");
         }
 
         if (Input.GetKeyDown(KeyCode.Backspace))
@@ -285,6 +299,9 @@ public class RankingManager : MonoBehaviour
                 Array.Copy(kariokiArray, thirdWordsName, wordRemainingTime - 1);
                 wordRemainingTime--;
                 userNamewordBoxText.text = new string(thirdWordsName);
+
+                //サウンド追加分
+                soundManager.Play("MenuBack");
             }
         }
 
@@ -294,6 +311,9 @@ public class RankingManager : MonoBehaviour
             userName = new string(thirdWordsName);
             wordRemainingTime++;
             userNamewordBoxText.text = userName;
+
+            //サウンド追加分
+            soundManager.Play("Decision");
 
             if (wordRemainingTime >= 3)
             {
