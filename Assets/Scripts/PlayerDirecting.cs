@@ -15,6 +15,7 @@ public class PlayerDirecting : MonoBehaviour
 	private float willieSTime;
 	public Animator PlayerAni;
 	private bool dorift;
+	public bool williOnOff;
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
 	[SerializeField] private Handle hd;                             //Joycon関係追加 5/26
@@ -62,6 +63,7 @@ public class PlayerDirecting : MonoBehaviour
 			this.gameObject.transform.Rotate(new Vector3(-40, 0, 0));
 			playerSound.Play("Willy");
 			PlayerAni.SetTrigger("Dush");//サウンド追加分 2/2
+			williOnOff = true;
 		}
 
 		if (startDetaTime > willieTime + willieSTime && willieFlg == true)
@@ -70,6 +72,7 @@ public class PlayerDirecting : MonoBehaviour
             {
                 this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
                 PlayerAni.SetTrigger("DushEnd");
+				williOnOff = false;
             }
             willieChargeFlag = true;
 		}

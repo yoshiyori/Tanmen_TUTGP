@@ -27,6 +27,7 @@ public class MovePlayer : MonoBehaviour
 	public bool blerTrigger;
 	private bool willieFlg;
 	public bool turnTipe;
+	private bool willeOnOff;
 	private int count = 0;
 	public int startLook = 0;
 	private int driftCount;
@@ -109,6 +110,7 @@ public class MovePlayer : MonoBehaviour
 
 		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
 		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
+		willeOnOff = objectPlayer.GetComponent<PlayerDirecting>().williOnOff;
 		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
 		cameraStop = false;
 		nowSpeed = rigid.velocity;
@@ -198,7 +200,7 @@ public class MovePlayer : MonoBehaviour
 
 		//回転
 
-		if (Input.GetKey(KeyCode.Z) && willieFlg == false)
+		if (Input.GetKey(KeyCode.Z) && willeOnOff == false)
 		{
 			turnTipe = false;
 			driftCount = 0;
