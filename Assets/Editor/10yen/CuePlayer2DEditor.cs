@@ -122,7 +122,7 @@ public class CuePlayer2DEditor : Editor{
                     GUI.enabled = false;
                 }
 
-                selectedCueIndex_PlayOnStart = cueNames.FindIndex(n => n.Equals(cuePlayer2D.PlayCueNameOnStart));
+                /*selectedCueIndex_PlayOnStart = cueNames.FindIndex(n => n.Equals(cuePlayer2D.PlayCueNameOnStart));
 
                 selectedCueIndex_PlayOnStart = EditorGUILayout.Popup(selectedCueIndex_PlayOnStart, cueNames.ToArray());
                 if((selectedCueIndex_PlayOnStart >= cueNames.Count) && (cueNames.Count > 0)){
@@ -134,7 +134,8 @@ public class CuePlayer2DEditor : Editor{
                 }
                 else{
                     cuePlayer2D.PlayCueNameOnStart = "";
-                }
+                }*/
+                cuePlayer2D.PlayCueNameOnStart = EditorGUILayout.TextField(cuePlayer2D.PlayCueNameOnStart);
             EditorGUILayout.EndHorizontal();
 
             //使用するキューの一覧
@@ -144,7 +145,8 @@ public class CuePlayer2DEditor : Editor{
                 EditorGUI.indentLevel++;
                 for(int i = 0; i < cuePlayer2D.CueNameList.Count; i++){
                     EditorGUILayout.BeginHorizontal();
-                        selectedCueIndex_CueName[i] = cueNames.FindIndex(n => n.Equals(cuePlayer2D.CueNameList[i]));
+                        cuePlayer2D.CueNameList[i] = EditorGUILayout.TextField(cuePlayer2D.CueNameList[i]);
+                        /*selectedCueIndex_CueName[i] = cueNames.FindIndex(n => n.Equals(cuePlayer2D.CueNameList[i]));
 
                         if(selectedCueIndex_CueName[i] < 0){
                             selectedCueIndex_CueName[i] = 0;
@@ -164,7 +166,7 @@ public class CuePlayer2DEditor : Editor{
                         else{
                             cuePlayer2D.CueNameList[i] = "";
                             GUI.enabled = false;
-                        }
+                        }*/
 
                         //プレビュー処理
                         /*if(!playFlag){

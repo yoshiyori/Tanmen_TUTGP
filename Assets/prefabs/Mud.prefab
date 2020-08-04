@@ -143,6 +143,7 @@ MonoBehaviour:
   _playOnStart: 0
   _cueName: 
   _cueSheet: 
+  _regionOnStart: {fileID: 0}
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
@@ -164,7 +165,8 @@ MonoBehaviour:
   criAtomSourceList:
   - {fileID: 7646787614246052140}
   cueManager: {fileID: 0}
-  cueNameList: []
+  cueNameList:
+  - Mud
   playOnStart: 0
   playCueNameOnStart: 
   loop: 0
