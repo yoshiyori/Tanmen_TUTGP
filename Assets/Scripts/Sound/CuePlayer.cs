@@ -383,10 +383,21 @@ public class CuePlayer : MonoBehaviour{
 
     //PlayOnStartの実行
     private void Start(){
+        if(cueManager == null){
+            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
+        }
+
         if(playOnStart){
             //Play(PlayCueNameOnStart);
             criAtomSourceList[0].cueSheet = cueManager.GetCueSheetName(playCueNameOnStart).cueSheetName;
             criAtomSourceList[0].Play(playCueNameOnStart);
+        }
+    }
+
+    private void Update(){
+        if(cueManager == null){
+            //cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
+            Debug.Log("Sound Manager Not Found");
         }
     }
 }

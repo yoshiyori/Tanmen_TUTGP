@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1457,7 +1457,7 @@ MonoBehaviour:
   newCanvas: {fileID: 1479476799}
   oldCanvas: {fileID: 1863300791}
   hd: {fileID: 1024871943}
-  soundManager: {fileID: 797366523}
+  soundManager: {fileID: 1739538112}
   configFlag: 1
 --- !u!114 &171077321
 MonoBehaviour:
@@ -2090,7 +2090,7 @@ RectTransform:
   - {fileID: 1895327008}
   - {fileID: 1477460701}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2599,7 +2599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hd: {fileID: 1024871943}
-  soundManager: {fileID: 797366523}
+  soundManager: {fileID: 1739538112}
   sceanName: main
 --- !u!114 &310593374
 MonoBehaviour:
@@ -2739,7 +2739,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &325275150
 GameObject:
@@ -3023,7 +3023,7 @@ MonoBehaviour:
   titleCanvas: {fileID: 419372691}
   modeSelectCanvas: {fileID: 1863300791}
   rankingCanvas: {fileID: 1663795316}
-  soundManager: {fileID: 797366523}
+  soundManager: {fileID: 1739538112}
   selectNum: 0
   stopTime: 0
   katamukiNum: 0
@@ -3348,7 +3348,7 @@ RectTransform:
   - {fileID: 1828622292}
   - {fileID: 20539921}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3699,7 +3699,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541439669
 GameObject:
@@ -4764,7 +4764,6 @@ GameObject:
   - component: {fileID: 797366522}
   - component: {fileID: 797366521}
   - component: {fileID: 797366520}
-  - component: {fileID: 797366523}
   - component: {fileID: 797366519}
   m_Layer: 0
   m_Name: SoundManager
@@ -4811,6 +4810,7 @@ MonoBehaviour:
       streamingVoices: 0
     outputSamplingRate: 0
     usesInGamePreview: 0
+    inGamePreviewMode: 3
     serverFrequency: 60
     asrOutputChannels: 0
     useRandomSeedWithTime: 0
@@ -4818,6 +4818,7 @@ MonoBehaviour:
     maxBuses: 8
     maxParameterBlocks: 1024
     vrMode: 0
+    keepPlayingSoundOnPause: 1
     pcBufferingTime: 0
     iosBufferingTime: 50
     iosOverrideIPodMusic: 0
@@ -4828,6 +4829,7 @@ MonoBehaviour:
       streamingVoices: 0
     androidUsesAndroidFastMixer: 1
     androidForceToUseAsrForDefaultPlayback: 1
+    androidUsesAAudio: 0
   initializesMana: 1
   manaConfig:
     numberOfDecoders: 8
@@ -4848,8 +4850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtom: {fileID: 797366521}
   cuePlayers: []
-  cuePlayer2Ds:
-  - {fileID: 797366523}
+  cuePlayer2Ds: {fileID: 1739538112}
   exCueInfoList:
   - cueSheetName: GameSE
     cueName: Turn
@@ -4887,6 +4888,12 @@ MonoBehaviour:
   - cueSheetName: GameSE
     cueName: Wind
     gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Start
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SectionPass
+    gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
     gameVariableName: 
@@ -4911,81 +4918,9 @@ MonoBehaviour:
   - cueSheetName: MenuSE
     cueName: BackToGame
     gameVariableName: 
-  acbInfos:
-  - name: GameSE
-    id: 0
-    comment: 
-    acbPath: GameSE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Turn
-      id: 0
-      comment: 
-    - name: Landing
-      id: 2
-      comment: 
-    - name: Willy
-      id: 3
-      comment: 
-    - name: Break
-      id: 4
-      comment: 
-    - name: Jump
-      id: 5
-      comment: 
-    - name: Mud
-      id: 6
-      comment: 
-    - name: Corn
-      id: 7
-      comment: 
-    - name: Slip
-      id: 9
-      comment: 
-    - name: Running
-      id: 10
-      comment: 
-    - name: Falling
-      id: 11
-      comment: 
-    - name: SwingBoost
-      id: 13
-      comment: 
-    - name: Wind
-      id: 14
-      comment: 
-  - name: MenuSE
-    id: 1
-    comment: 
-    acbPath: MenuSE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Decision
-      id: 0
-      comment: 
-    - name: MenuBack
-      id: 1
-      comment: 
-    - name: Alart
-      id: 2
-      comment: 
-    - name: Select
-      id: 3
-      comment: 
-    - name: Increase
-      id: 4
-      comment: 
-    - name: Decrease
-      id: 5
-      comment: 
-    - name: Pause
-      id: 6
-      comment: 
-    - name: BackToGame
-      id: 7
-      comment: 
+  - cueSheetName: Result
+    cueName: DisplaySectionTime
+    gameVariableName: 
 --- !u!114 &797366521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,7 +4940,7 @@ MonoBehaviour:
     awbFile: 
     loaderStatus: 0
   dspBusSetting: 
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   dontRemoveExistsCueSheet: 0
 --- !u!4 &797366522
 Transform:
@@ -5021,31 +4956,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &797366523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797366517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cueManager: {fileID: 797366520}
-  criAtom: {fileID: 797366521}
-  criWareInitializer: {fileID: 797366519}
-  criWareErrorHandler: {fileID: 0}
-  cueNameList:
-  - Decision
-  - Select
-  - Decrease
-  - Increase
-  - MenuBack
-  - Alart
-  playOnStart: 0
-  playCueNameOnStart: 
 --- !u!1 &814406551
 GameObject:
   m_ObjectHideFlags: 0
@@ -5652,7 +5562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912261036
 GameObject:
@@ -6404,7 +6314,7 @@ PrefabInstance:
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3967384812872578496, guid: 7664534e7a06ef1469ca5d64c95dfd30,
         type: 3}
@@ -6801,7 +6711,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128182640
 GameObject:
@@ -7830,7 +7740,7 @@ MonoBehaviour:
   hd: {fileID: 1024871943}
   isConnectJoycon: 0
   inPause: 0
-  soundManager: {fileID: 797366523}
+  soundManager: {fileID: 1739538112}
 --- !u!1 &1377120888
 GameObject:
   m_ObjectHideFlags: 0
@@ -8396,7 +8306,7 @@ MonoBehaviour:
   courseSelectCanvas: {fileID: 241983662}
   returnCanvas: {fileID: 0}
   isConnectJoycon: 0
-  soundManager: {fileID: 797366523}
+  soundManager: {fileID: 1739538112}
 --- !u!4 &1477460701
 Transform:
   m_ObjectHideFlags: 0
@@ -8511,7 +8421,7 @@ RectTransform:
   - {fileID: 1812258219}
   - {fileID: 1607970225}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9671,9 +9581,9 @@ MonoBehaviour:
   hd: {fileID: 1024871943}
   isAlertStandup: 0
   choosingModeFlag: 0
-  guiSound: {fileID: 797366523}
+  guiSound: {fileID: 1739538112}
   volumeManager: {fileID: 514568918}
-  hdSensitivitydata: {fileID: 0}
+  hdSensitivitydata: {fileID: 11400000, guid: afe8c9338133ccb45a6e04373cccd98a, type: 2}
 --- !u!1 &1618107465
 GameObject:
   m_ObjectHideFlags: 0
@@ -9742,7 +9652,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10034,7 +9944,7 @@ RectTransform:
   - {fileID: 315792620}
   - {fileID: 1849188021}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10532,6 +10442,62 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1739538111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739538113}
+  - component: {fileID: 1739538112}
+  m_Layer: 0
+  m_Name: CuePlayer2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1739538112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739538111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cueManager: {fileID: 797366520}
+  criAtom: {fileID: 797366521}
+  criWareInitializer: {fileID: 797366519}
+  criWareErrorHandler: {fileID: 0}
+  cueNameList:
+  - Decision
+  - MenuBack
+  - Alart
+  - Select
+  - Increase
+  - Decrease
+  playOnStart: 0
+  playCueNameOnStart: 
+--- !u!4 &1739538113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739538111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749860011
 GameObject:
   m_ObjectHideFlags: 0
@@ -11526,7 +11492,7 @@ RectTransform:
   - {fileID: 1749860012}
   - {fileID: 1341836593}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

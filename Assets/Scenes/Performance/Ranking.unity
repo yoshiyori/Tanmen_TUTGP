@@ -513,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hd: {fileID: 902701090}
   fc: {fileID: 862553412}
-  soundManager: {fileID: 1366173694}
+  soundManager: {fileID: 1067220108}
 --- !u!4 &83744026
 Transform:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &119884256
 GameObject:
@@ -2032,7 +2032,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432425827
 GameObject:
@@ -4705,7 +4705,7 @@ MonoBehaviour:
   stopTime: 0
   katamukiNum: 0
   timedata: {fileID: 11400000, guid: e13fcb5c011974843a5a18a7781ffe5e, type: 2}
-  soundManager: {fileID: 1366173694}
+  soundManager: {fileID: 1067220108}
 --- !u!4 &936971479
 Transform:
   m_ObjectHideFlags: 0
@@ -4718,7 +4718,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938136481
 GameObject:
@@ -5186,6 +5186,60 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 110, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1067220107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067220109}
+  - component: {fileID: 1067220108}
+  m_Layer: 0
+  m_Name: CuePlayer2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1067220108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067220107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cueManager: {fileID: 1366173695}
+  criAtom: {fileID: 0}
+  criWareInitializer: {fileID: 0}
+  criWareErrorHandler: {fileID: 0}
+  cueNameList:
+  - Select
+  - Alart
+  - Decision
+  - MenuBack
+  playOnStart: 0
+  playCueNameOnStart: 
+--- !u!4 &1067220109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067220107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 697.70996, y: 259.395, z: 572.605}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1076480118
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,7 +5784,7 @@ RectTransform:
   - {fileID: 462844739}
   - {fileID: 834531140}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6426,7 +6480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1299304064
 GameObject:
@@ -6665,7 +6719,6 @@ GameObject:
   - component: {fileID: 1366173697}
   - component: {fileID: 1366173696}
   - component: {fileID: 1366173695}
-  - component: {fileID: 1366173694}
   - component: {fileID: 1366173693}
   - component: {fileID: 1366173692}
   m_Layer: 0
@@ -6728,6 +6781,7 @@ MonoBehaviour:
       streamingVoices: 0
     outputSamplingRate: 0
     usesInGamePreview: 0
+    inGamePreviewMode: 3
     serverFrequency: 60
     asrOutputChannels: 0
     useRandomSeedWithTime: 0
@@ -6735,6 +6789,7 @@ MonoBehaviour:
     maxBuses: 8
     maxParameterBlocks: 1024
     vrMode: 0
+    keepPlayingSoundOnPause: 1
     pcBufferingTime: 0
     iosBufferingTime: 50
     iosOverrideIPodMusic: 0
@@ -6745,35 +6800,13 @@ MonoBehaviour:
       streamingVoices: 0
     androidUsesAndroidFastMixer: 1
     androidForceToUseAsrForDefaultPlayback: 1
+    androidUsesAAudio: 0
   initializesMana: 1
   manaConfig:
     numberOfDecoders: 8
     numberOfMaxEntries: 4
   dontInitializeOnAwake: 0
   dontDestroyOnLoad: 0
---- !u!114 &1366173694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366173691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cueManager: {fileID: 1366173695}
-  criAtom: {fileID: 0}
-  criWareInitializer: {fileID: 0}
-  criWareErrorHandler: {fileID: 0}
-  cueNameList:
-  - Select
-  - Alart
-  - Decision
-  - MenuBack
-  playOnStart: 0
-  playCueNameOnStart: 
 --- !u!114 &1366173695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,8 +6821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criAtom: {fileID: 1366173696}
   cuePlayers: []
-  cuePlayer2Ds:
-  - {fileID: 1366173694}
+  cuePlayer2Ds: {fileID: 1067220108}
   exCueInfoList:
   - cueSheetName: GameSE
     cueName: Turn
@@ -6860,97 +6892,6 @@ MonoBehaviour:
   - cueSheetName: Result
     cueName: DisplaySectionTime
     gameVariableName: 
-  acbInfos:
-  - name: GameSE
-    id: 0
-    comment: 
-    acbPath: GameSE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Turn
-      id: 0
-      comment: 
-    - name: Landing
-      id: 2
-      comment: 
-    - name: Willy
-      id: 3
-      comment: 
-    - name: Break
-      id: 4
-      comment: 
-    - name: Jump
-      id: 5
-      comment: 
-    - name: Mud
-      id: 6
-      comment: 
-    - name: Corn
-      id: 7
-      comment: 
-    - name: Slip
-      id: 9
-      comment: 
-    - name: Running
-      id: 10
-      comment: 
-    - name: Falling
-      id: 11
-      comment: 
-    - name: SwingBoost
-      id: 13
-      comment: 
-    - name: Wind
-      id: 14
-      comment: 
-    - name: Start
-      id: 15
-      comment: 
-    - name: SectionPass
-      id: 16
-      comment: 
-  - name: MenuSE
-    id: 1
-    comment: 
-    acbPath: MenuSE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Decision
-      id: 0
-      comment: 
-    - name: MenuBack
-      id: 1
-      comment: 
-    - name: Alart
-      id: 2
-      comment: 
-    - name: Select
-      id: 3
-      comment: 
-    - name: Increase
-      id: 4
-      comment: 
-    - name: Decrease
-      id: 5
-      comment: 
-    - name: Pause
-      id: 6
-      comment: 
-    - name: BackToGame
-      id: 7
-      comment: 
-  - name: Result
-    id: 2
-    comment: 
-    acbPath: Result.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: DisplaySectionTime
-      id: 0
-      comment: 
 --- !u!114 &1366173696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7448,7 +7389,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588473528
 GameObject:
