@@ -19,7 +19,8 @@ public class StartGame : MonoBehaviour
                 GameManeger.gameStartFlag = true;
                 GameManeger.goalFlag = false;
                 SceneManager.LoadSceneAsync(sceanName);
-                soundManager.Play("Decision");
+                soundManager.Stop(1);
+                //soundManager.Play("Descision");
             }
         }
     }

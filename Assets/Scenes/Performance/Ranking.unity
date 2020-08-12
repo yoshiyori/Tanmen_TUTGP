@@ -6823,6 +6823,12 @@ MonoBehaviour:
   cuePlayers: []
   cuePlayer2Ds: {fileID: 1067220108}
   exCueInfoList:
+  - cueSheetName: GameBGM
+    cueName: GameBGM
+    gameVariableName: 
+  - cueSheetName: GameBGM
+    cueName: SwingBoostPhrase
+    gameVariableName: 
   - cueSheetName: GameSE
     cueName: Turn
     gameVariableName: 
@@ -6836,7 +6842,7 @@ MonoBehaviour:
     cueName: Break
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: Jump
+    cueName: JumpP
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Mud
@@ -6854,16 +6860,34 @@ MonoBehaviour:
     cueName: Falling
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: SwingBoost
+    cueName: SwingBoostP
     gameVariableName: 
   - cueSheetName: GameSE
-    cueName: Wind
+    cueName: WindP
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Start
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: SectionPass
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SwingBoost
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Jump
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Wind
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SwingBoostAccel
+    gameVariableName: 
+  - cueSheetName: MenuBGM
+    cueName: Menu
+    gameVariableName: 
+  - cueSheetName: MenuBGM
+    cueName: Title
     gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
@@ -6908,7 +6932,7 @@ MonoBehaviour:
   cueSheets:
   - name: MenuSE
     acbFile: MenuSE.acb
-    awbFile: 
+    awbFile: MenuSE.awb
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 0

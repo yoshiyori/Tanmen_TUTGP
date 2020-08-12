@@ -40,10 +40,9 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] GameObject concentratedLineCamera; //集中線を写す専用カメラを入れる
 	private bool concentratedLineEndFlag; //集中線終了用フラグ
 
-	//サウンド追加分 1/8
+	//サウンド追加分
 	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
-	//サウンド追加分 1/8 終了
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
