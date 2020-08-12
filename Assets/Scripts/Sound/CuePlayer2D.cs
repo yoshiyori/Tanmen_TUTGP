@@ -228,8 +228,11 @@ public class CuePlayer2D : MonoBehaviour{
      */
     public CriAtomExPlayer.Status GetAtomSourceStatus(int exPlayerNum = 0){
         if(criAtomExPlayerList.Count <= exPlayerNum){
-            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            for(int i = 0; i <= exPlayerNum - criAtomExPlayerList.Count + 1; i++){
+                criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            }
         }
+        
         return criAtomExPlayerList[exPlayerNum].GetStatus();
     }
 
@@ -247,9 +250,15 @@ public class CuePlayer2D : MonoBehaviour{
      * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
      */
     public void Pause(int atomSourceNum = 0){
+        Debug.Log(criAtomExPlayerList.Count);
         if(criAtomExPlayerList.Count <= atomSourceNum){
-            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            Debug.Log("a");
+            for(int i = 0; i < atomSourceNum - criAtomExPlayerList.Count + 1; i++){
+                Debug.Log("add");
+                criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            }
         }
+
         criAtomExPlayerList[atomSourceNum].Pause(true);
     }
 
@@ -262,6 +271,17 @@ public class CuePlayer2D : MonoBehaviour{
             criAtomExPlayerList.Add(InitializeAtomExPlayer());
         }
         criAtomExPlayerList[atomSourceNum].Pause(false);
+    }
+
+    /**
+     * <summary>再生しているキューの停止(CriAtomExPlayerごとの停止)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void Stop(int atomSourceNum = 0){
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+        criAtomExPlayerList[atomSourceNum].Stop();
     }
     
     //CriAtomSourceの追加

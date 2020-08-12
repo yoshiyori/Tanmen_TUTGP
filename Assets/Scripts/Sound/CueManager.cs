@@ -248,7 +248,7 @@ public class CueManager : MonoBehaviour{
 
         foreach(var usedCueSheet in usedCueSheetList){
             if(!usedCueSheet.Equals("")){
-                CriAtom.AddCueSheet(usedCueSheet, usedCueSheet + ".acb", "", null);
+                CriAtom.AddCueSheet(usedCueSheet, usedCueSheet + ".acb", usedCueSheet + ".awb", null);
             }
         }
 
@@ -318,7 +318,7 @@ public class CueManager : MonoBehaviour{
 
         foreach(var usedCueSheet in usedCueSheetList){
             if(!usedCueSheet.Equals("")){
-                criAtom.AddCueSheetInternal(usedCueSheet, usedCueSheet + ".acb", "", null);
+                criAtom.AddCueSheetInternal(usedCueSheet, usedCueSheet + ".acb", usedCueSheet + ".awb", null);
             }
         }
         EditorUtility.SetDirty(criAtom);
@@ -539,7 +539,7 @@ public class CueManager : MonoBehaviour{
     }
 
     void Awake(){
-        Debug.Log("Awake");
+        //Debug.Log("Awake");
 
         //前シーンからサウンドマネージャーが引き継がれた場合自身を削除
         if(singleton == null){
