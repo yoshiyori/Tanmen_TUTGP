@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class RankingManager : MonoBehaviour
 {
-    [SerializeField] SaveManager sm;
     RankingSaveData rSave;
     private int wordSelectNum;
     private int allWordPanel;
