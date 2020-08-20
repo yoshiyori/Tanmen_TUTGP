@@ -213,6 +213,7 @@ public class RankingManager : MonoBehaviour
                 {
                     isTransition = false;
                     selectNum = 0;
+                    GameManeger.goalFlag = false;
                     SceneManager.LoadScene("Main");
                 }
                 else
@@ -220,6 +221,7 @@ public class RankingManager : MonoBehaviour
                     isTransition = false;
                     selectNum = 0;
                     GameManeger.moveTitle = true;
+                    GameManeger.goalFlag = false;
                     SceneManager.LoadSceneAsync("CourceSelect");
                 }
             }
