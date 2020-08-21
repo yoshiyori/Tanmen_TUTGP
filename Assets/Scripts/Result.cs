@@ -40,6 +40,18 @@ public class Result : MonoBehaviour
             || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 timedata.goalTime = timeManager.totalTime;
+                for (int i = 0; i < timeManager.secTime.Count; i++)
+                {
+                    timedata.secTimes[i] = timeManager.secTime[i];
+                }
+                //Debug.Log(timeManager.secTime.Count);
+                if (timeManager.secTime.Count < 4)
+                {
+                    for (int i = 0; i < 4 - timeManager.secTime.Count; i++)
+                    {
+                        timedata.secTimes[timeManager.secTime.Count + i] = 0.0f;
+                    }
+                }
                 soundManager.Play("Decision", 1);
                 SceneManager.LoadScene("Ranking");
             }
