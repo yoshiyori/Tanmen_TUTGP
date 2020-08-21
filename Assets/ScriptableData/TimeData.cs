@@ -6,4 +6,5 @@ using UnityEngine;
 public class TimeData : ScriptableObject
 {
     public float goalTime;
+    public float[] secTimes = new float[4];
 }
