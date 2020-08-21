@@ -8,6 +8,7 @@ public class Goal : MonoBehaviour
     [SerializeField] GameObject resultCanvas;
     [SerializeField] GameObject inGameUI;
     [SerializeField] GameObject goalText;
+    public Animator PlayerAni;
     float time;
     [System.NonSerialized] public static bool resultFlag;
 
@@ -26,6 +27,7 @@ public class Goal : MonoBehaviour
     {
         if(GameManeger.goalFlag == true)
         {
+            PlayerAni.SetBool("Goal", true);
             time += Time.deltaTime;
             if (time >= 3)
             {
