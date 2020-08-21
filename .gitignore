@@ -62,5 +62,5 @@ Ground textures pack/
 Assets/Font/
 
 #file of Ranking Savedata
-SaveData/*
-!SaveData/readme.txt
+savedata.json
+savedata.json.meta

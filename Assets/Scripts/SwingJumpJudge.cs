@@ -18,8 +18,8 @@ public class SwingJumpJudge : MonoBehaviour
     //サウンド追加分 1/14
     [SerializeField] private CuePlayer jumpSound;
     [SerializeField] private MovePlayer movePlayer;
-    private float loopTime = 0f;
     private bool decreasing = false;
+    private bool swingBoostAccel = false;
 
     //Gauge関係
     [SerializeField] private GameObject swingGaugeObject;
@@ -114,6 +114,9 @@ public class SwingJumpJudge : MonoBehaviour
                     if (swingGauge.value > 0.0f) movePlayer.succesRollingJump = true;
                     movePlayer.swingBoostFlag = true;
                     swingCommandTextObject.SetActive(false);
+
+			        //サウンド追加分
+			        jumpSound.Play("SwingBoostAccel");
                 }
             }
         }
@@ -318,8 +321,8 @@ public class SwingJumpJudge : MonoBehaviour
             decreasing = false;
         }
         jumpSound.SetAisacControl("SwingBoost", 0.5f, 1);
-        jumpSound.loopTime = 0.5f + (Mathf.Sqrt(1 - swingGauge.value * swingGauge.value) * 0.5f);            //スイングブースト ループ再生間隔制御
-        jumpSound.PlayStrechLoop("SwingBoost", 1, 0f, "Increase");
+        jumpSound.loopTime = 1f - (swingGauge.value * 0.5f);            //スイングブースト ループ再生間隔制御
+        jumpSound.PlayStrechLoop("SwingBoostP", 1, 0f, "SwingBoost", "Increase");
     }
     
     private void PlaySwingBoostDecreaseSound()
@@ -332,7 +335,7 @@ public class SwingJumpJudge : MonoBehaviour
         
         if(swingGauge.value > 0 && time > 0.5f && !jumpSound.JudgeAtomSourceStatus("Playing", 1))
         {
-            jumpSound.Play("SwingBoost", 1, 0f, "Decrease");
+            jumpSound.Play("SwingBoostP", 1, 0f, "SwingBoost", "Decrease");
         }
         if(swingGauge.value <= 0 && jumpSound.JudgeAtomSourceStatus("Playing", 1)) jumpSound.Stop(1);
         jumpSound.SetAisacControl("SwingBoost", swingGauge.value * 0.5f, 1);

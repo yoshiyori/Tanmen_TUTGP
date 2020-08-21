@@ -32,6 +32,11 @@ public class TitleST : MonoBehaviour
         time = 0.0f;
         isTransition = false;
         isGoRanking = false;
+
+        //サウンド追加分
+        if(!soundManager.JudgeAtomSourceStatus("Playing", 1)){
+            soundManager.Play("Title", 1);
+        }
     }
 
     void Update()
@@ -80,7 +85,11 @@ public class TitleST : MonoBehaviour
             isTransition = false;
             modeSelectCanvas.SetActive(!modeSelectCanvas.activeInHierarchy);
             titleCanvas.SetActive(!titleCanvas.activeInHierarchy);
-            soundManager.Play("Decision");                                  //サウンド追加分 2/2
+
+            //サウンド追加分
+            soundManager.Play("Decision");
+            soundManager.Stop(1);
+            soundManager.Play("Menu", 1);
         }
         if (isTransition == true && fc.isFadeOut == false && isGoRanking == true)
         {

@@ -140,6 +140,7 @@ MonoBehaviour:
   _playOnStart: 0
   _cueName: 
   _cueSheet: 
+  _regionOnStart: {fileID: 0}
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
@@ -162,7 +163,7 @@ MonoBehaviour:
   - {fileID: 4075735018066651264}
   cueManager: {fileID: 0}
   cueNameList:
-  - 
+  - Jump
   playOnStart: 0
   playCueNameOnStart: 
   loop: 0
