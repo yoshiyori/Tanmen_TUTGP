@@ -54,6 +54,10 @@ public class RankingManager : MonoBehaviour
     [SerializeField] private float katamukiNum;
     private bool alertStandingFlag;
 
+    private bool alphabetSelectStopFlag;
+    private float alphabetStopTimer;
+    [SerializeField] private float alphabetStopTime;//JoyCon使用時、alphabet選ぶ際、傾けっぱなしにした場合の一文字待機時間
+
     //Save
     string filePath;
     RankingSaveData save;
@@ -109,6 +113,7 @@ public class RankingManager : MonoBehaviour
         selectStopFlag = false;
         isTransition = false;
         if (stopTime == 0) stopTime = 0.6f;
+        if (alphabetStopTime == 0) alphabetStopTime = 0.1f;
         if (katamukiNum == 0) katamukiNum = 0.5f;
         alertStandingFlag = false;
 
@@ -117,7 +122,7 @@ public class RankingManager : MonoBehaviour
 
     void Update()
     {
-        
+
 
         if (isfinishEnterWord == false && isDisplayRanking == false) AlpabetMove();
 
@@ -199,7 +204,7 @@ public class RankingManager : MonoBehaviour
 
             if (alertStandingFlag == false && alertPanel.activeInHierarchy == true)
             {
-                if (Input.GetKeyUp(KeyCode.Space))
+                if (Input.GetKeyUp(KeyCode.Space) || (hd.GetRightBrakeDown() == true))
                 {
                     alertStandingFlag = true;
                 }
@@ -235,9 +240,21 @@ public class RankingManager : MonoBehaviour
             flashTimer = 0.0f;
             selectPanel.SetActive(!selectPanel.activeInHierarchy);
         }
-       
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+
+        if (alphabetSelectStopFlag == true)
         {
+            alphabetStopTimer += Time.deltaTime;
+            if (alphabetStopTimer > stopTime)
+            {
+                alphabetSelectStopFlag = false;
+                alphabetStopTimer = 0.0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) ||
+            (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && alphabetSelectStopFlag == false))
+        {
+            alphabetSelectStopFlag = true;
             if ((allWordPanel == 0 && wordSelectNum >= 72) || 
                 allWordPanel > 0 && allWordPanel < 10
                 )
@@ -262,8 +279,9 @@ public class RankingManager : MonoBehaviour
             //サウンド追加分
             soundManager.Play("Select");
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && alphabetSelectStopFlag == false))
         {
+            alphabetSelectStopFlag = true;
             if ((allWordPanel == 10 && wordSelectNum <= 82) ||
                  allWordPanel < 10 && allWordPanel > 0
                 )
@@ -289,7 +307,7 @@ public class RankingManager : MonoBehaviour
             soundManager.Play("Select");
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace) || (hd.GetLeftBrakeDown() == true))
         {
 
             if (wordRemainingTime > 0)
@@ -306,7 +324,7 @@ public class RankingManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || (hd.GetRightBrakeDown() == true))
         {
             thirdWordsName[wordRemainingTime] = (char)wordSelectNum;
             userName = new string(thirdWordsName);
