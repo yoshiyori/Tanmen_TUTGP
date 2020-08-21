@@ -90,7 +90,10 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             }
             else
             {
+                //サウンド追加分
                 //soundManager.PlayOnSceneSwitch("Decision");
+                soundManager.Stop(1);
+
                 SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
                 isTransition = false;
                 selectNum = 0;
