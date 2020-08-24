@@ -880,6 +880,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &235090215
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1913894434}
+    m_Modifications:
+    - target: {fileID: 100000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_Name
+      value: Akira_stop
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9ca2969cec472b443ae2f92f25515f19, type: 2}
+    - target: {fileID: 9500000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a18a8b50d6e505b438a32e44aea5d1b0, type: 3}
 --- !u!1 &273602536
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +1038,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273602536}
   m_CullTransparentMesh: 0
+--- !u!1 &286849649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4272174287564726604, guid: 42d71bdc64cf5924abd8c32925db3680,
+    type: 3}
+  m_PrefabInstance: {fileID: 1913894433}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &315668473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1503,6 +1590,7 @@ MonoBehaviour:
       streamingVoices: 0
     outputSamplingRate: 0
     usesInGamePreview: 0
+    inGamePreviewMode: 3
     serverFrequency: 60
     asrOutputChannels: 0
     useRandomSeedWithTime: 0
@@ -1510,6 +1598,7 @@ MonoBehaviour:
     maxBuses: 8
     maxParameterBlocks: 1024
     vrMode: 0
+    keepPlayingSoundOnPause: 1
     pcBufferingTime: 0
     iosBufferingTime: 50
     iosOverrideIPodMusic: 0
@@ -1520,6 +1609,7 @@ MonoBehaviour:
       streamingVoices: 0
     androidUsesAndroidFastMixer: 1
     androidForceToUseAsrForDefaultPlayback: 1
+    androidUsesAAudio: 0
   initializesMana: 1
   manaConfig:
     numberOfDecoders: 8
@@ -1578,8 +1668,7 @@ MonoBehaviour:
   - {fileID: 1758539263}
   - {fileID: 1913894436}
   - {fileID: 1877042809}
-  cuePlayer2Ds:
-  - {fileID: 399776984}
+  cuePlayer2Ds: {fileID: 0}
   exCueInfoList:
   - cueSheetName: GameSE
     cueName: Turn
@@ -1644,84 +1733,6 @@ MonoBehaviour:
   - cueSheetName: MenuSE
     cueName: BackToGame
     gameVariableName: 
-  acbInfos:
-  - name: GameSE
-    id: 0
-    comment: 
-    acbPath: GameSE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Turn
-      id: 0
-      comment: 
-    - name: Landing
-      id: 2
-      comment: 
-    - name: Willy
-      id: 3
-      comment: 
-    - name: Break
-      id: 4
-      comment: 
-    - name: Jump
-      id: 5
-      comment: 
-    - name: Mud
-      id: 6
-      comment: 
-    - name: Corn
-      id: 7
-      comment: 
-    - name: Slip
-      id: 9
-      comment: 
-    - name: Running
-      id: 10
-      comment: 
-    - name: Falling
-      id: 11
-      comment: 
-    - name: SwingBoost
-      id: 13
-      comment: 
-    - name: Wind
-      id: 14
-      comment: 
-    - name: Start
-      id: 15
-      comment: 
-  - name: MenuSE
-    id: 1
-    comment: 
-    acbPath: MenuSE.acb
-    awbPath: 
-    atomGuid: 
-    cueInfoList:
-    - name: Decision
-      id: 0
-      comment: 
-    - name: MenuBack
-      id: 1
-      comment: 
-    - name: Alart
-      id: 2
-      comment: 
-    - name: Select
-      id: 3
-      comment: 
-    - name: Increase
-      id: 4
-      comment: 
-    - name: Decrease
-      id: 5
-      comment: 
-    - name: Pause
-      id: 6
-      comment: 
-    - name: BackToGame
-      id: 7
-      comment: 
 --- !u!4 &399776988
 Transform:
   m_ObjectHideFlags: 0
@@ -6129,6 +6140,25 @@ Transform:
   m_Father: {fileID: 1913894434}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1242371431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a18a8b50d6e505b438a32e44aea5d1b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 235090215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1242371434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242371431}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1831051, y: 0.52213544, z: 1}
+  m_Center: {x: 0.48590466, y: 0.4921875, z: -5.6207315e-15}
 --- !u!1001 &1252455863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6326,6 +6356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e829298fc19174db1c65930e3b1955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 399776984}
+  isGoal: 0
 --- !u!65 &1305710110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8950,7 +8982,7 @@ PrefabInstance:
         type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 11400000, guid: 7825b01d7471c8346b40c73d1b18c5eb,
+      objectReference: {fileID: 11400000, guid: afe8c9338133ccb45a6e04373cccd98a,
         type: 2}
     - target: {fileID: 1281438874621425328, guid: 42d71bdc64cf5924abd8c32925db3680,
         type: 3}
@@ -9127,6 +9159,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4272174287555334870, guid: 42d71bdc64cf5924abd8c32925db3680,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42d71bdc64cf5924abd8c32925db3680, type: 3}
 --- !u!4 &1913894434 stripped
@@ -9141,7 +9178,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1913894433}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 286849649}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414e99c57093dbe498e34354cbb58ef2, type: 3}
@@ -9555,6 +9592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e829298fc19174db1c65930e3b1955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 399776984}
+  isGoal: 0
 --- !u!65 &2020534341
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10346,6 +10385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e829298fc19174db1c65930e3b1955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 399776984}
+  isGoal: 0
 --- !u!114 &2129981112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10362,6 +10403,8 @@ MonoBehaviour:
   resultCanvas: {fileID: 1720834813}
   inGameUI: {fileID: 1834052999}
   goalText: {fileID: 1000101874}
+  goalObject: {fileID: 1242371431}
+  playerObject: {fileID: 286849649}
   cueManager: {fileID: 399776987}
 --- !u!65 &2129981113
 BoxCollider:
