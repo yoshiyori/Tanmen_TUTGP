@@ -88,10 +88,12 @@ MonoBehaviour:
   swingBoostSpeed: 0
   blerLimit: 0
   PlayerAni: {fileID: 0}
+  blerSpeed: 0
   mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
   junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
     type: 3}
   objectPlayer: {fileID: 4272174287564726604}
+  front: {fileID: 0}
   junp: 0
   sandControl: 0
   blerTrigger: 0
@@ -106,6 +108,8 @@ MonoBehaviour:
   succesRollingJump: 0
   hd: {fileID: 0}
   joyconFlag: 0
+  handleSensitivity: 0
+  data: {fileID: 0}
 --- !u!114 &1281438874621425335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +125,7 @@ MonoBehaviour:
   _playOnStart: 0
   _cueName: 
   _cueSheet: 
+  _regionOnStart: {fileID: 0}
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
@@ -192,8 +197,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1831051, y: 0.52213544, z: 1}
-  m_Center: {x: 0.48590466, y: 0.4921875, z: -5.6207315e-15}
+  m_Size: {x: 0.629231, y: 0.52213544, z: 1}
+  m_Center: {x: 0.001079788, y: 0.4921875, z: 0.00000011895187}
 --- !u!114 &5364449070508583699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,11 +213,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   willieSpeed: 200
   willieTime: 0.5
+  williChargeTime: 0
   player: {fileID: 1281438874621425338}
   willieFlg: 0
+  willieChargeFlag: 0
   PlayerAni: {fileID: 0}
+  williOnOff: 0
   playerSound: {fileID: 0}
   hd: {fileID: 0}
+  jumpConfirm: {fileID: 0}
+  checkNowJump: 0
 --- !u!1 &5612646805004439947
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400090, guid: 9fc9043e4daa42341b0c73dcece5332d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400090, guid: 9fc9043e4daa42341b0c73dcece5332d, type: 3}
       propertyPath: m_LocalRotation.y
@@ -340,7 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400090, guid: 9fc9043e4daa42341b0c73dcece5332d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400090, guid: 9fc9043e4daa42341b0c73dcece5332d, type: 3}
       propertyPath: m_LocalRotation.w
