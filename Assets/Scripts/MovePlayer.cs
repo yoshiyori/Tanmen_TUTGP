@@ -94,7 +94,7 @@ public class MovePlayer : MonoBehaviour
 			time += Time.deltaTime;
             if (rigid.velocity.x > 0)
             {
-                PlayerAni.speed = 0;
+                //PlayerAni.speed = 0;
             }
             return;
 		}
