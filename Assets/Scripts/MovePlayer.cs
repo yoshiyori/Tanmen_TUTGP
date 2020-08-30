@@ -120,16 +120,7 @@ public class MovePlayer : MonoBehaviour
 		//ここで速度とかの制御
 
 
-		for (int i = 0; i < mud.Length; i++)
-		{
-			mudTrigger = mud[i].GetComponent<Obstacle>().triggerObsFlag;
-			if (mudTrigger == true)
-			{
-				maxSpeed = mudSpeed;
-				rigid.velocity = rigid.velocity * 0.5f;
-				break;
-			}
-		}
+	
 
 		if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
 		{
@@ -145,6 +136,20 @@ public class MovePlayer : MonoBehaviour
 			concentratedLine.Clear();
 			concentratedLineCamera.SetActive(false);
 			PlayerAni.SetBool("Dush", false);
+		}
+		else if(swingBoostFlag == false && willieFlg == false)
+		{
+			for (int i = 0; i < mud.Length; i++)
+			{
+				mudTrigger = mud[i].GetComponent<Obstacle>().triggerObsFlag;
+				if (mudTrigger == true)
+				{
+					maxSpeed = mudSpeed;
+					rigid.velocity = rigid.velocity * 0.5f;
+					break;
+				}
+			}
+
 		}
 
 		if (rigid.velocity.magnitude < maxSpeed)
