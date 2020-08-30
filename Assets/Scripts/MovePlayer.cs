@@ -139,7 +139,7 @@ public class MovePlayer : MonoBehaviour
 			concentratedLineCamera.SetActive(false);
 			PlayerAni.SetBool("Dush", false);
 		}
-		else if(swingBoostFlag == false && willieFlg == false)
+		else if(swingBoostFlag == false && willeOnOff == false)
 		{
 			for (int i = 0; i < mud.Length; i++)
 			{
