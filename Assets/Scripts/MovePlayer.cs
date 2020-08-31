@@ -17,16 +17,17 @@ public class MovePlayer : MonoBehaviour
 	public Animator PlayerAni;
 	private float TureMaxSpeed;
 	public double blerSpeed;
-	public GameObject mud;
+	public GameObject[] mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
 	public GameObject front;
-	private bool mudTrigger;
+	public bool mudTrigger;
 	public bool junp;
 	public bool sandControl;
 	public bool blerTrigger;
 	private bool willieFlg;
 	public bool turnTipe;
+	private bool willeOnOff;
 	private int count = 0;
 	public int startLook = 0;
 	private int driftCount;
@@ -105,14 +106,15 @@ public class MovePlayer : MonoBehaviour
 			startLook = 1;
 		}
 
-
-		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
+	
 		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
+		willeOnOff = objectPlayer.GetComponent<PlayerDirecting>().williOnOff;
 		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
 		cameraStop = false;
 		nowSpeed = rigid.velocity;
 		blerSpeed = Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z);
 		pos = this.gameObject.transform.localEulerAngles;
+		maxSpeed = TureMaxSpeed;
 
 
 		//ここで速度とかの制御
@@ -120,11 +122,9 @@ public class MovePlayer : MonoBehaviour
 		//ここで速度とかの制御
 
 
-		if (mudTrigger == true)
-		{
-			maxSpeed = mudSpeed;
-		}
-		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
+	
+
+		if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
 		{
 			maxSpeed = swingBoostSpeed;
 			PlayerAni.SetBool("Dush", true);
@@ -139,9 +139,19 @@ public class MovePlayer : MonoBehaviour
 			concentratedLineCamera.SetActive(false);
 			PlayerAni.SetBool("Dush", false);
 		}
-		else
+		else if(swingBoostFlag == false && willeOnOff == false)
 		{
-			maxSpeed = TureMaxSpeed;
+			for (int i = 0; i < mud.Length; i++)
+			{
+				mudTrigger = mud[i].GetComponent<Obstacle>().triggerObsFlag;
+				if (mudTrigger == true)
+				{
+					maxSpeed = mudSpeed;
+					rigid.velocity = rigid.velocity * 0.5f;
+					break;
+				}
+			}
+
 		}
 
 		if (rigid.velocity.magnitude < maxSpeed)
@@ -197,7 +207,7 @@ public class MovePlayer : MonoBehaviour
 
 		//回転
 
-		if (Input.GetKey(KeyCode.Z) && willieFlg == false)
+		if (Input.GetKey(KeyCode.Z) && willeOnOff == false)
 		{
 			turnTipe = false;
 			driftCount = 0;

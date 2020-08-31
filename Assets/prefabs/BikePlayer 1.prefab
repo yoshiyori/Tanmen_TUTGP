@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1281438874621425332}
   - component: {fileID: 1281438874621425328}
   - component: {fileID: 1281438874621425335}
-  - component: {fileID: 1281438874621425334}
+  - component: {fileID: 4110645588814462441}
   m_Layer: 0
   m_Name: BikePlayer 1
   m_TagString: player
@@ -88,10 +88,16 @@ MonoBehaviour:
   swingBoostSpeed: 0
   blerLimit: 0
   PlayerAni: {fileID: 0}
-  mud: {fileID: 5004735379669802743, guid: b1e5447664eb0bb4a9837684e28517b6, type: 3}
+  blerSpeed: 0
+  mud:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   junpFlag: {fileID: 5524917922335328464, guid: 1b382e7ef595b0e46a4dcbb727122b11,
     type: 3}
   objectPlayer: {fileID: 4272174287564726604}
+  front: {fileID: 0}
+  mudTrigger: 0
   junp: 0
   sandControl: 0
   blerTrigger: 0
@@ -102,10 +108,12 @@ MonoBehaviour:
   sjj: {fileID: 0}
   concentratedLine: {fileID: 0}
   concentratedLineCamera: {fileID: 0}
-  actionSound: {fileID: 1281438874621425334}
+  actionSound: {fileID: 0}
   succesRollingJump: 0
   hd: {fileID: 0}
   joyconFlag: 0
+  handleSensitivity: 0
+  data: {fileID: 0}
 --- !u!114 &1281438874621425335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,13 +129,14 @@ MonoBehaviour:
   _playOnStart: 0
   _cueName: 
   _cueSheet: 
+  _regionOnStart: {fileID: 0}
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
---- !u!114 &1281438874621425334
+--- !u!114 &4110645588814462441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,13 +149,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criAtomSourceList:
-  - {fileID: 0}
+  - {fileID: 1281438874621425335}
   cueManager: {fileID: 0}
   cueNameList:
-  - 
-  - 
-  - 
-  - 
+  - Turn
+  - Landing
+  - Break
+  - Running
+  - Willy
   playOnStart: 0
   playCueNameOnStart: 
   loop: 0
@@ -208,11 +218,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   willieSpeed: 200
   willieTime: 0.5
+  williChargeTime: 0
   player: {fileID: 1281438874621425338}
   willieFlg: 0
+  willieChargeFlag: 0
   PlayerAni: {fileID: 0}
+  williOnOff: 0
   playerSound: {fileID: 0}
   hd: {fileID: 0}
+  jumpConfirm: {fileID: 0}
+  checkNowJump: 0
 --- !u!1 &5612646805004439947
 GameObject:
   m_ObjectHideFlags: 0
