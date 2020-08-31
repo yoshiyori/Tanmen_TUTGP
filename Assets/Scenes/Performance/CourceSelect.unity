@@ -2205,8 +2205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hd: {fileID: 1024871943}
-  soundManager: {fileID: 1739538112}
   sceanName: main
+  soundManager: {fileID: 1739538112}
+  cueManager: {fileID: 797366520}
 --- !u!114 &310593374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8989,6 +8990,7 @@ MonoBehaviour:
   returnCanvas: {fileID: 0}
   isConnectJoycon: 0
   soundManager: {fileID: 1739538112}
+  cueManager: {fileID: 797366520}
 --- !u!4 &1477460701
 Transform:
   m_ObjectHideFlags: 0

@@ -26,6 +26,12 @@ public class CueManager : MonoBehaviour{
     //private List<CriAtomExAcb> acbs;
     //private string[] acbNames;
 
+    //ボイスプール
+    public CriAtomExStandardVoicePool voicePool;
+
+    //定数
+    static public uint TIMESTRECH_VOICEPOOL = 2;
+
 #if UNITY_EDITOR
     //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
     public CriAtom CriAtom{
@@ -528,6 +534,12 @@ public class CueManager : MonoBehaviour{
             Debug.Log("File not found.");
         }
         return fileNames;
+    }
+
+    public void AddTimeStrechVoicePool(){
+        //ボイスプール確保
+        voicePool = new CriAtomExStandardVoicePool(2, 2, 48000, false, TIMESTRECH_VOICEPOOL);
+        voicePool.AttachDspTimeStretch();
     }
 
     //CueManager初期化時のCriAtom初期化処理

@@ -10,8 +10,10 @@ public class Result : MonoBehaviour
     [SerializeField] GameObject resultTotalTimeText;
     [SerializeField] TimeManager timeManager;
     [SerializeField] Handle hd;
-    [SerializeField] private CuePlayer2D soundManager;
     int minutes, seconds, mseconds;
+
+    //サウンド追加分
+    [SerializeField] private CuePlayer2D soundManager;
 
     //Ranking関係追加分
     [SerializeField] TimeData timedata;
@@ -52,7 +54,10 @@ public class Result : MonoBehaviour
                         timedata.secTimes[timeManager.secTime.Count + i] = 0.0f;
                     }
                 }
+                //サウンド追加分
                 soundManager.Play("Decision", 1);
+                CueManager.singleton.voicePool.Dispose();
+                
                 SceneManager.LoadScene("Ranking");
             }
         }

@@ -125,7 +125,8 @@ public class SwingJumpJudge : MonoBehaviour
             UseGauge();
 
             //サウンド追加分 4/14
-            jumpSound.StopStrechLoop(1);
+            //jumpSound.StopStrechLoop(1);
+            jumpSound.loop = false;
             jumpSound.Stop(1);
         }
     }
@@ -329,7 +330,8 @@ public class SwingJumpJudge : MonoBehaviour
     {
         if(!decreasing)
         {
-            jumpSound.StopStrechLoop(1);
+            //jumpSound.StopStrechLoop(1);
+            jumpSound.loop = false;
             decreasing = true;
         }
         

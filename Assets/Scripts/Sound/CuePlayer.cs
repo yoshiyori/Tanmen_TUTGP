@@ -209,12 +209,13 @@ public class CuePlayer : MonoBehaviour{
 
         if(!loop){
             //タイムストレッチ準備
-            if(voicePool == null){
+            /*if(voicePool == null){
                 voicePool = new CriAtomExStandardVoicePool(2, 2, 48000, false, 2);
                 voicePool.AttachDspTimeStretch();
                 criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
-            }
+            }*/
 
+            criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(CueManager.TIMESTRECH_VOICEPOOL);
             loop = true;
             StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel));
         }
