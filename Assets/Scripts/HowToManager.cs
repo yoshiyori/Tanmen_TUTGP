@@ -48,7 +48,6 @@ public class HowToManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false))
         {
-            Debug.Log("LeftArrow");
             selectStopFlag = true;
             if (pageNum == 0)
             {
@@ -65,7 +64,6 @@ public class HowToManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow) || (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false))
         {
-            Debug.Log("RightArrow");
             selectStopFlag = true;
             if (pageNum == lastPageNum)
             {
