@@ -59,20 +59,21 @@ public class PlayerDirecting : MonoBehaviour
 		if ( (Input.GetKeyDown(KeyCode.Space)  || hd.GetControllerSwing() >= 8) &&willieFlg == false && checkNowJump == false && dorift == true)
 		{
 			willieFlg = true;
+			williOnOff = true;
 			willieSTime = startDetaTime;
 			this.gameObject.transform.Rotate(new Vector3(-40, 0, 0));
 			playerSound.Play("Willy");
 			PlayerAni.SetTrigger("Dush");//サウンド追加分 2/2
-			williOnOff = true;
 		}
 
 		if (startDetaTime > willieTime + willieSTime && willieFlg == true)
 		{
             if(willieChargeFlag == false)
             {
-                this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
-                PlayerAni.SetTrigger("DushEnd");
 				williOnOff = false;
+				this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
+                PlayerAni.SetTrigger("DushEnd");
+				
             }
             willieChargeFlag = true;
 		}
