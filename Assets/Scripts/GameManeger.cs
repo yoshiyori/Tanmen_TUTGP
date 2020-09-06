@@ -40,4 +40,5 @@ public class GameManeger : MonoBehaviour
             gameStartFlag = true;
         }
     }
+
 }
