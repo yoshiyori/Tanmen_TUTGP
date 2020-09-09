@@ -15,6 +15,7 @@ public class PlayerDirecting : MonoBehaviour
 	private float willieSTime;
 	public Animator PlayerAni;
 	private bool dorift;
+	public bool williOnOff;
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
 	[SerializeField] private Handle hd;                             //Joycon関係追加 5/26
@@ -58,6 +59,7 @@ public class PlayerDirecting : MonoBehaviour
 		if ( (Input.GetKeyDown(KeyCode.Space)  || hd.GetControllerSwing() >= 8) &&willieFlg == false && checkNowJump == false && dorift == true)
 		{
 			willieFlg = true;
+			williOnOff = true;
 			willieSTime = startDetaTime;
 			this.gameObject.transform.Rotate(new Vector3(-40, 0, 0));
 			playerSound.Play("Willy");
@@ -68,8 +70,10 @@ public class PlayerDirecting : MonoBehaviour
 		{
             if(willieChargeFlag == false)
             {
-                this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
+				williOnOff = false;
+				this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
                 PlayerAni.SetTrigger("DushEnd");
+				
             }
             willieChargeFlag = true;
 		}
