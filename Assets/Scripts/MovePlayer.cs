@@ -29,6 +29,7 @@ public class MovePlayer : MonoBehaviour
 	public bool turnTipe;
 	private bool willeOnOff;
 	private int count = 0;
+	private int tes = 0;
 	public int startLook = 0;
 	private int driftCount;
 	[System.NonSerialized] public Vector3 nowSpeed; //スピードゲージ追加時にpublic化（Inspector上では見えないように設定済み）
@@ -301,7 +302,7 @@ public class MovePlayer : MonoBehaviour
 	void turnPlayer()
 	{
 		bool check = false;
-
+		
 		/*if (rigid.velocity.magnitude < maxSpeed / 3)
 		{
 			
@@ -314,11 +315,18 @@ public class MovePlayer : MonoBehaviour
 			if (turnTipe == true)
 			{
 				rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+				tes = 0;
 			}
 			else
 			{
 				this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed*0.5f, 0));
 				rigid.velocity = Quaternion.Euler(0, rotaSpeed*1.5f, 0) * rigid.velocity;
+				if (tes == 0)
+				{
+					float angle = Mathf.LerpAngle(transform.rotation.y, transform.rotation.y + 60f, Time.time);
+					transform.eulerAngles = new Vector3(0, angle, 0);
+				}
+				tes++;
 			}
 			PlayerAni.SetBool("Right", true);
 		}
@@ -338,6 +346,7 @@ public class MovePlayer : MonoBehaviour
 			{
 				this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed * 0.5f, 0));
 				rigid.velocity = Quaternion.Euler(0, -rotaSpeed*1.5f, 0) * rigid.velocity;
+				PlayerAni.SetBool("LeftDrift", true);
 			}
 			PlayerAni.SetBool("Left", true);
 		}
