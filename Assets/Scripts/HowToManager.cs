@@ -69,6 +69,10 @@ public class HowToManager : MonoBehaviour
             {
                 GameManeger.gameStartFlag = true;
                 GameManeger.goalFlag = false;
+                
+                //サウンド追加分
+                CueManager.singleton.AddTimeStrechVoicePool();
+                
                 SceneManager.LoadSceneAsync(sceanName);
             }
             else
