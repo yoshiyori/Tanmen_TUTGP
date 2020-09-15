@@ -18,6 +18,7 @@ public class PlayerDirecting : MonoBehaviour
 	public bool williOnOff;
 	private bool RDrift;
 	private bool LDrift;
+	private int DCheck;
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
 	[SerializeField] private Handle hd;                             //Joycon関係追加 5/26
@@ -92,14 +93,60 @@ public class PlayerDirecting : MonoBehaviour
 		{
 			if (Input.GetKey(KeyCode.RightArrow))
 			{
-				this.gameObject.transform.Rotate(new Vector3(0, 40, 0));
+				RDrift = true;
 			}
-			if (Input.GetKey(KeyCode.LeftArrow))
+			else if (Input.GetKey(KeyCode.LeftArrow))
 			{
-				this.gameObject.transform.Rotate(new Vector3(0, -40, 0));
+				LDrift = true;
+
+			}
+			else
+			{
+				LDrift = false;
+				RDrift = false;
 			}
 		}
-		
+		else
+		{
+			
+			LDrift = false;
+			RDrift = false;
+			
+		}
+
+		if (RDrift == true)
+		{
+			if (DCheck < 40)
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, 1, 0));
+				DCheck++;
+			}
+		}
+		else if (LDrift == true)
+		{
+			if (DCheck > -40)
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, -1, 0));
+				DCheck--;
+			}
+		}
+		else
+		{
+			if (DCheck > 0)
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, -1, 0));
+				DCheck--;
+			}
+			else if (DCheck < 0)
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, 1, 0));
+				DCheck++;
+			}
+			else if (DCheck == 0)
+			{
+				DCheck = 0;
+			}
+		}
 
 	}
 	
