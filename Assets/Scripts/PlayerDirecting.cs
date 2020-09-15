@@ -16,6 +16,8 @@ public class PlayerDirecting : MonoBehaviour
 	public Animator PlayerAni;
 	private bool dorift;
 	public bool williOnOff;
+	private bool RDrift;
+	private bool LDrift;
 	[SerializeField] private CuePlayer playerSound;                 //サウンド追加分 1/2
 
 	[SerializeField] private Handle hd;                             //Joycon関係追加 5/26
@@ -84,7 +86,21 @@ public class PlayerDirecting : MonoBehaviour
             willieSTime = 0;
             willieChargeFlag = false;
         }
+
+		//ドリフト
+		if (Input.GetKey(KeyCode.Z))
+		{
+			if (Input.GetKey(KeyCode.RightArrow))
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, 40, 0));
+			}
+			if (Input.GetKey(KeyCode.LeftArrow))
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, -40, 0));
+			}
+		}
 		
+
 	}
 	
 }

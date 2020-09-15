@@ -315,18 +315,12 @@ public class MovePlayer : MonoBehaviour
 			if (turnTipe == true)
 			{
 				rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
-				tes = 0;
 			}
 			else
 			{
 				this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed*0.5f, 0));
 				rigid.velocity = Quaternion.Euler(0, rotaSpeed*1.5f, 0) * rigid.velocity;
-				if (tes == 0)
-				{
-					float angle = Mathf.LerpAngle(transform.rotation.y, transform.rotation.y + 60f, Time.time);
-					transform.eulerAngles = new Vector3(0, angle, 0);
-				}
-				tes++;
+			
 			}
 			PlayerAni.SetBool("Right", true);
 		}
@@ -345,8 +339,8 @@ public class MovePlayer : MonoBehaviour
 			else 
 			{
 				this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed * 0.5f, 0));
-				rigid.velocity = Quaternion.Euler(0, -rotaSpeed*1.5f, 0) * rigid.velocity;
-				PlayerAni.SetBool("LeftDrift", true);
+				rigid.velocity = Quaternion.Euler(0, -rotaSpeed * 1.5f, 0) * rigid.velocity;
+				//PlayerAni.SetBool("LeftDrift", true);
 			}
 			PlayerAni.SetBool("Left", true);
 		}
