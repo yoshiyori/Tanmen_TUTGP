@@ -26,8 +26,10 @@ public class MovePlayer : MonoBehaviour
 	public bool sandControl;
 	public bool blerTrigger;
 	private bool willieFlg;
+	private bool junpCheck;
 	public bool turnTipe;
 	private bool willeOnOff;
+	private int junpTime;
 	private int count = 0;
 	private int tes = 0;
 	public int startLook = 0;
@@ -475,8 +477,9 @@ public class MovePlayer : MonoBehaviour
 			actionSound.SetAisacControl("Landing", 0f, 1);
 			//サウンド追加分 7/8 終了
 			PlayerAni.SetBool("Junp", false);
+			junpCheck = false;
 		}
-
+		
 	}
 
 
@@ -485,8 +488,9 @@ public class MovePlayer : MonoBehaviour
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = false;
+			junpCheck = true;
 			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
-		}
+		}		
 		PlayerAni.SetBool("Junp", true);
 	}
 
