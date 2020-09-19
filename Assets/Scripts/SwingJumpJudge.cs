@@ -87,6 +87,7 @@ public class SwingJumpJudge : MonoBehaviour
             rigid.AddForce(0, junpSpeed, 0);
             triggerObsFlag = false;
             nowJunpFlag = true;
+            PlayerAni.SetTrigger("JMotion");
 
             //サウンド追加分 3/14
             movePlayer.junp = true;
