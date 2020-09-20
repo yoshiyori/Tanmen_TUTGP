@@ -49,9 +49,11 @@ public class Goal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManeger.goalFlag = true;
-        goalText.SetActive(true);
 
-        cueManager.PauseCueSheet("GameSE");
+            GameManeger.goalFlag = true;
+            goalText.SetActive(true);
+
+            cueManager.PauseCueSheet("GameSE");
+
     }
 }
