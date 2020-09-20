@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class test : MonoBehaviour{
-    [SerializeField] private CuePlayer cuePlayer;
+    [SerializeField] private CuePlayer2 cuePlayer;
     float value = 0f;
 
     private void Reset(){
-        //soundManager = FindObjectOfType<>();
-        //cueManager = FindObjectOfType<CueManager>();
-        //atom = FindObjectOfType<CriAtom>();
     }
 
     private void Update(){
         if(Input.GetKeyDown(KeyCode.W)){
+            cuePlayer.Play("Wind");
+        }
+        if(Input.GetKeyDown(KeyCode.A)){
             cuePlayer.Play("Increase");
+            cuePlayer.Stop("Wind");
         }
     }
 }
