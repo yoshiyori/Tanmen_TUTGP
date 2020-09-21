@@ -18,6 +18,8 @@ public class CameraMove : MonoBehaviour
     private bool stop;
     private bool speedTrigger;
     public Handle hd;
+    private float time;
+    public Animator playerAni;
 
     void Start()
     {
@@ -48,6 +50,19 @@ public class CameraMove : MonoBehaviour
     }
     void LateUpdate()
     {
+        if(GameManeger.goalFlag == true)
+        {
+            time += Time.deltaTime;
+            if(time < 0.5f)
+            {
+                cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 15.0f * Time.deltaTime);
+            }
+            if(time >= 0.5f)
+            {
+                playerAni.SetBool("Goal", true);
+            }
+            return;
+        }
         cameraVec = cameraPos.transform.position - player.transform.position;
         speedTrigger = player.GetComponent<MovePlayer>().blerTrigger;
 
@@ -101,6 +116,11 @@ public class CameraMove : MonoBehaviour
         else if (speedTrigger == true)
         {
             cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 8.0f * Time.deltaTime);
+        }
+
+        if(GameManeger.goalFlag == true)
+        {
+            //cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 10.0f * Time.deltaTime);
         }
 
     }
