@@ -35,7 +35,7 @@ public class TitleST : MonoBehaviour
 
         //サウンド追加分
         if(!soundManager.JudgeAtomSourceStatus("Playing", 1)){
-            soundManager.Play("Title", 1);
+            soundManager.Play("TitleBGM", 1);
         }
     }
 
@@ -89,7 +89,7 @@ public class TitleST : MonoBehaviour
             //サウンド追加分
             soundManager.Play("Decision");
             soundManager.Stop(1);
-            soundManager.Play("Menu", 1);
+            soundManager.Play("MenuBGM", 1);
         }
         if (isTransition == true && fc.isFadeOut == false && isGoRanking == true)
         {

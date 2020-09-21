@@ -77,7 +77,7 @@ public class carPlayer : MonoBehaviour
         TorqueOperation();
 
         //サウンド追加分 2/3
-        if((FrontWheel.Any(wheel => wheel.isGrounded) || RearWheel.Any(wheel => wheel.isGrounded)) &&
+        /*if((FrontWheel.Any(wheel => wheel.isGrounded) || RearWheel.Any(wheel => wheel.isGrounded)) &&
             playerRigid.velocity.magnitude > 0.5f && !playerSound.JudgeAtomSourceStatus("Playing", 1))
         {
             playerSound.Play("Running", 1);
@@ -85,7 +85,7 @@ public class carPlayer : MonoBehaviour
         else
         {
             playerSound.Stop(1);
-        }
+        }*/
         //サウンド追加分 2/3 終了
     }
 

@@ -180,7 +180,7 @@ public class InertiaPlayer : MonoBehaviour
 		oldSpeed = nowSpeed;
 
 		//サウンド追加分 5/6
-		if(succesRollingJump)
+		/*if(succesRollingJump)
 		{
 			actionSound.Play("Rolling");
 			succesRollingJump = false;
@@ -188,7 +188,7 @@ public class InertiaPlayer : MonoBehaviour
 		if((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			actionSound.Stop(1);
-		}
+		}*/
 		//サウンド追加分 5/6 終了
 	}
 	void turnPlayer()
@@ -221,7 +221,7 @@ public class InertiaPlayer : MonoBehaviour
 				junp = false;
 			}
 
-			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
+			if((nowSpeed.magnitude > 1f) && !actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
 			{
 				//Debug.Log("Running");
 				actionSound.Play("Running", 1);
@@ -231,10 +231,10 @@ public class InertiaPlayer : MonoBehaviour
 	
 	void OnCollisionExit(Collision other)
 	{
-		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		if((other.gameObject.tag.Equals("Road")) && actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
 		{
 			//Debug.Log("Exit");
-			actionSound.Stop(1);
+			actionSound.Stop("Running");
 		}
 	}
 }

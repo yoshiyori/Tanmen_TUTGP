@@ -167,9 +167,11 @@ MonoBehaviour:
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
   cueManager: {fileID: 1247474595}
-  cueNames:
+  cueNameList:
+  - SwingBoost
   - Wind
-  - Increase
+  cueName_PlayOnStart: 
+  loopTime: 1
 --- !u!114 &326312058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cuePlayer: {fileID: 326312057}
+  loopTime: 1
 --- !u!1 &790363557
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,8 +514,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criAtom: {fileID: 1247474596}
-  cuePlayers: []
-  cuePlayer2Ds: {fileID: 0}
+  cuePlayers:
+  - {fileID: 326312057}
+  cuePlayer2Ds: {fileID: 1247474594}
   exCueInfoList:
   - cueSheetName: GameBGM
     cueName: GameBGM
@@ -621,13 +625,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acfFile: Tanmen.acf
   cueSheets:
-  - name: MenuSE
-    acbFile: MenuSE.acb
-    awbFile: 
-    loaderStatus: 0
   - name: GameSE
     acbFile: GameSE.acb
-    awbFile: 
+    awbFile: GameSE.awb
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 1

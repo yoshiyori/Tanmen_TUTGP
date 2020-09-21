@@ -229,8 +229,8 @@ public class CueManager : MonoBehaviour{
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayer.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.cueName_PlayOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.cueName_PlayOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -299,8 +299,8 @@ public class CueManager : MonoBehaviour{
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayer.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.cueName_PlayOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.cueName_PlayOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -351,8 +351,8 @@ public class CueManager : MonoBehaviour{
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayer.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.cueName_PlayOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.cueName_PlayOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -449,10 +449,8 @@ public class CueManager : MonoBehaviour{
 
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
-                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.playCueNameOnStart.Equals(matchData.cueName)){
-                    for(int i = 0; i < cuePlayer.criAtomSourceNum; i++){
-                        cuePlayer.Pause(i);
-                    }
+                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
+                    cuePlayer.Pause(matchData.CueName);
                 }
             }
         }
@@ -482,10 +480,8 @@ public class CueManager : MonoBehaviour{
 
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
-                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.playCueNameOnStart.Equals(matchData.cueName)){
-                    for(int i = 0; i < cuePlayer.criAtomSourceNum; i++){
-                        cuePlayer.Restart(i);
-                    }
+                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
+                    cuePlayer.Restart(matchData.CueName);
                 }
             }
         }
@@ -596,28 +592,19 @@ public class CueManager : MonoBehaviour{
     [SerializeField] internal string gameVariableName;
 
 #if UNITY_EDITOR
-    //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
     public string CueSheetName{
         get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             return cueSheetName;
         }
         set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             cueSheetName = value;
         }
     }
     public string CueName{
         get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             return cueName;
         }
         set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             cueName = value;
         }
     }

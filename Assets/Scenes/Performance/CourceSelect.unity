@@ -6661,11 +6661,20 @@ MonoBehaviour:
   cuePlayers: []
   cuePlayer2Ds: {fileID: 1739538112}
   exCueInfoList:
+  - cueSheetName: Ambi_Mt
+    cueName: Leaf
+    gameVariableName: 
+  - cueSheetName: Ambi_Mt
+    cueName: Bird
+    gameVariableName: 
   - cueSheetName: GameBGM
     cueName: GameBGM
     gameVariableName: 
   - cueSheetName: GameBGM
     cueName: SwingBoostPhrase
+    gameVariableName: 
+  - cueSheetName: GameBGM
+    cueName: GameBGMP
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Turn
@@ -6683,7 +6692,13 @@ MonoBehaviour:
     cueName: JumpP
     gameVariableName: 
   - cueSheetName: GameSE
+    cueName: Pause
+    gameVariableName: 
+  - cueSheetName: GameSE
     cueName: Mud
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: BackToGame
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Corn
@@ -6721,11 +6736,29 @@ MonoBehaviour:
   - cueSheetName: GameSE
     cueName: SwingBoostAccel
     gameVariableName: 
-  - cueSheetName: MenuBGM
-    cueName: Menu
+  - cueSheetName: GameSE
+    cueName: Goal
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SwingBoostStateChange
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: WillyAvailable
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Kick
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Slide
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Drift
     gameVariableName: 
   - cueSheetName: MenuBGM
-    cueName: Title
+    cueName: MenuBGM
+    gameVariableName: 
+  - cueSheetName: MenuBGM
+    cueName: TitleBGM
     gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
@@ -6746,13 +6779,28 @@ MonoBehaviour:
     cueName: Decrease
     gameVariableName: 
   - cueSheetName: MenuSE
-    cueName: Pause
+    cueName: SwitchToGame
     gameVariableName: 
   - cueSheetName: MenuSE
-    cueName: BackToGame
+    cueName: Title
     gameVariableName: 
   - cueSheetName: Result
     cueName: DisplaySectionTime
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: DisplaySectionTime
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: SwitchRanking
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: DisplayRank
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: DisplayTime
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: RegisterScore
     gameVariableName: 
 --- !u!114 &797366521
 MonoBehaviour:
@@ -15115,8 +15163,8 @@ MonoBehaviour:
   - Select
   - Increase
   - Decrease
-  - Title
-  - Menu
+  - TitleBGM
+  - MenuBGM
   playOnStart: 0
   playCueNameOnStart: 
 --- !u!4 &1739538113
