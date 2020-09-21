@@ -463,6 +463,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = true;
 			postureControl();
+			PlayerAni.SetBool("JMotion2", false);
 			//サウンド追加分 7/8
 			//着地音
 			if (junp)
