@@ -95,11 +95,6 @@ public class MovePlayer : MonoBehaviour
 
 		if (GameManeger.goalFlag == true)
 		{
-			time += Time.deltaTime;
-            if (rigid.velocity.x > 0)
-            {
-                //PlayerAni.speed = 0;
-            }
             return;
 		}
 
