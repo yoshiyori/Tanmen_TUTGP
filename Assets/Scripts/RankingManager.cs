@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Security.Cryptography;
+using UnityEngine.SceneManagement;
 
 public class RankingManager : MonoBehaviour
 {
-    [SerializeField] SaveManager sm;
     RankingSaveData rSave;
     private int wordSelectNum;
     private int allWordPanel;
@@ -26,8 +27,14 @@ public class RankingManager : MonoBehaviour
 
     [SerializeField] private GameObject[] rankersNameBox;
     [SerializeField] private GameObject[] rankersTimeBox;
+    [SerializeField] private GameObject[] firstRankerSecTimeBox;
+    [SerializeField] private GameObject[] secondRankerSecTimeBox;
+    [SerializeField] private GameObject[] thirdRankerSecTimeBox;
     private Text[] rankersNameBoxText;
     private Text[] rankersTimeBoxText;
+    private Text[] firstRankerSecTimeBoxText;
+    private Text[] secondRankerSecTimeBoxText;
+    private Text[] thirdRankerSecTimeBoxText;
 
     private char[] thirdWordsName;
     private string userName;
@@ -40,6 +47,80 @@ public class RankingManager : MonoBehaviour
 
     private float flashTimer;
 
+    [SerializeField] private GameObject alertPanel;
+    [SerializeField] private GameObject[] selectFrames;
+
+    private int selectNum;
+    private float time = 0f;
+    private float stopTimer;
+    [SerializeField] Handle hd;
+    private bool selectStopFlag;
+    [SerializeField] private float stopTime;
+    private bool isTransition;
+    [SerializeField] private float katamukiNum;
+    private bool alertStandingFlag;
+
+    private bool alphabetSelectStopFlag;
+    private float alphabetStopTimer;
+    [SerializeField] private float alphabetStopTime;//JoyCon使用時、alphabet選ぶ際、傾けっぱなしにした場合の一文字待機時間
+
+    private float pushStopTimer;
+    [SerializeField] private bool pushStopFlag;
+    [SerializeField] private float pushStopTime;
+
+    //Save
+    string filePath;
+    RankingSaveData save;
+
+    [SerializeField] TimeData timedata;
+
+    //サウンド追加分
+    [SerializeField] private CuePlayer2D soundManager;
+
+    void Awake()
+    {
+        filePath = Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json";
+        
+        save = new RankingSaveData();
+        if (System.IO.File.Exists(filePath) == false)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                save.rankerNames[i] = "---";
+                save.goalTimes[i] = 0.0f;
+                save.arrayLengthNum = 0;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        for (int j = 0; j < 4; j++)
+                        {
+                            save.sectionTime1st[j] = 0.0f;
+                        }
+                        break;
+                    case 1:
+                        for (int j = 0; j < 4; j++)
+                        {
+                            save.sectionTime2nd[j] = 0.0f;
+                        }
+                        break;
+                    case 2:
+                        for (int j = 0; j < 4; j++)
+                        {
+                            save.sectionTime3rd[j] = 0.0f;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            Save();
+            //Debug.Log("MakeJsonFile");
+        }
+        //Save();   //コメントアウト外して実行するとJsonDataまっさら初期状態になる。
+    }
     void Start()
     {
         rSave = new RankingSaveData();
@@ -57,27 +138,161 @@ public class RankingManager : MonoBehaviour
 
         rankersNameBoxText = new Text[10];
         rankersTimeBoxText = new Text[10];
+        firstRankerSecTimeBoxText = new Text[4];
+        secondRankerSecTimeBoxText = new Text[4];
+        thirdRankerSecTimeBoxText = new Text[4];
         for (int i = 0; i < 10; i++)
         {
             rankersNameBoxText[i] = rankersNameBox[i].GetComponent<Text>();
             rankersTimeBoxText[i] = rankersTimeBox[i].GetComponent<Text>();
         }
+        for (int i = 0; i < 4; i++)
+        {
+            firstRankerSecTimeBoxText[i] = firstRankerSecTimeBox[i].GetComponent<Text>();
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            secondRankerSecTimeBoxText[i] = secondRankerSecTimeBox[i].GetComponent<Text>();
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            thirdRankerSecTimeBoxText[i] = thirdRankerSecTimeBox[i].GetComponent<Text>();
+        }
         isDisplayRanking = false;
+
+        selectNum = 0;
+        selectStopFlag = false;
+        alphabetSelectStopFlag = false;
+        pushStopFlag = false;
+        isTransition = false;
+        if (stopTime == 0) stopTime = 0.6f;
+        if (alphabetStopTime == 0) alphabetStopTime = 0.1f;
+        if (pushStopTime == 0) pushStopTime = 1.0f;
+        if (katamukiNum == 0) katamukiNum = 0.5f;
+        alertStandingFlag = false;
 
     }
 
 
     void Update()
     {
-        AlpabetMove();
+        if (pushStopFlag == true)
+        {
+            pushStopTimer += Time.deltaTime;
+            if (pushStopTimer > pushStopTime)
+            {
+                pushStopFlag = false;
+                pushStopTimer = 0.0f;
+            }
+        }
+
+        if (isfinishEnterWord == false && isDisplayRanking == false) AlpabetMove();
 
         if (isfinishEnterWord == true) SaveRankerData();
 
+        DisplayRanking();
+
         if (isDisplayRanking == true)
         {
-            DisplayRanking();
-        }
+            time += Time.deltaTime;
 
+            if (time > 0.5f)
+            {
+                time = 0.0f;
+                selectFrames[selectNum].SetActive(!selectFrames[selectNum].activeInHierarchy);
+            }
+
+            if (selectStopFlag == true)
+            {
+                stopTimer += Time.deltaTime;
+                if (stopTimer > stopTime)
+                {
+                    selectStopFlag = false;
+                    stopTimer = 0.0f;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow) ||
+            (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false) && isTransition == false
+            )
+            {
+                if (selectNum > 0)
+                {
+                    if (selectFrames[selectNum].activeInHierarchy == true) selectFrames[selectNum].SetActive(false);
+                    selectNum--;
+                    hd.JoyconRumble(1, 160, 320, 0.3f, 100);//第一引数が1で右コントローラー、他はSetRumble()の引数と同様
+
+                    //サウンド追加分
+                    soundManager.Play("Select");
+                }
+                selectStopFlag = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) ||
+                (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false) && isTransition == false
+                )
+            {
+                if ((selectNum < selectFrames.Length - 1 && selectNum >= 0))
+                {
+                    if (selectFrames[selectNum].activeInHierarchy == true) selectFrames[selectNum].SetActive(false);
+                    selectNum++;
+                    hd.JoyconRumble(0, 160, 320, 0.3f, 100);//第一引数が0で左コントローラー、他はSetRumble()の引数と同様
+
+                    //サウンド追加分
+                    soundManager.Play("Select");
+                }
+                selectStopFlag = true;
+            }
+
+            if (alertStandingFlag == false && alertPanel.activeInHierarchy == true)
+            {
+                if (Input.GetKeyUp(KeyCode.Space) || (hd.GetRightBrakeDown() == true && pushStopFlag == false))
+                {
+                    alertStandingFlag = true;
+                }
+            }
+
+            if ((hd.GetRightBrakeDown() == true && pushStopFlag == false) || Input.GetKeyDown(KeyCode.Space))
+            {
+                pushStopFlag = true;
+                if (alertStandingFlag == true && isTransition == false)
+                {
+                    isTransition = true;
+                }
+                if (alertStandingFlag == false)
+                {
+                    if (alertPanel.activeInHierarchy == false)
+                    {
+                        alertPanel.SetActive(true);
+
+                        //サウンド追加分
+                        soundManager.Play("Alart");
+                    }
+                }
+            }
+
+            
+
+
+            if (isTransition == true)
+            {
+                if (selectNum == 0)
+                {
+                    isTransition = false;
+                    selectNum = 0;
+                    GameManeger.goalFlag = false;
+                    SceneManager.LoadScene("Main");
+                }
+                else
+                {
+                    isTransition = false;
+                    selectNum = 0;
+                    GameManeger.moveTitle = true;
+                    GameManeger.goalFlag = false;
+                    SceneManager.LoadSceneAsync("CourceSelect");
+                }
+            }
+        }
     }
 
     void AlpabetMove()
@@ -88,9 +303,21 @@ public class RankingManager : MonoBehaviour
             flashTimer = 0.0f;
             selectPanel.SetActive(!selectPanel.activeInHierarchy);
         }
-       
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+
+        if (alphabetSelectStopFlag == true)
         {
+            alphabetStopTimer += Time.deltaTime;
+            if (alphabetStopTimer > stopTime)
+            {
+                alphabetSelectStopFlag = false;
+                alphabetStopTimer = 0.0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) ||
+            (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && alphabetSelectStopFlag == false))
+        {
+            alphabetSelectStopFlag = true;
             if ((allWordPanel == 0 && wordSelectNum >= 72) || 
                 allWordPanel > 0 && allWordPanel < 10
                 )
@@ -105,7 +332,6 @@ public class RankingManager : MonoBehaviour
                 allWordPanel = 0;
                 alphabetsRectTrans.localPosition += new Vector3(50.0f * 10, 0.0f, 0.0f);
                 selectPanelRectTrans.localPosition += new Vector3(-50.0f * 15, 0.0f, 0.0f);
-                
             }
             else
             {
@@ -113,11 +339,12 @@ public class RankingManager : MonoBehaviour
                 wordSelectNum++;
             }
 
-
-            
+            //サウンド追加分
+            soundManager.Play("Select");
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && alphabetSelectStopFlag == false))
         {
+            alphabetSelectStopFlag = true;
             if ((allWordPanel == 10 && wordSelectNum <= 82) ||
                  allWordPanel < 10 && allWordPanel > 0
                 )
@@ -139,11 +366,11 @@ public class RankingManager : MonoBehaviour
                 wordSelectNum--;
             }
 
-
-            
+            //サウンド追加分
+            soundManager.Play("Select");
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace) || (hd.GetLeftBrakeDown() == true))
         {
 
             if (wordRemainingTime > 0)
@@ -154,17 +381,22 @@ public class RankingManager : MonoBehaviour
                 Array.Copy(kariokiArray, thirdWordsName, wordRemainingTime - 1);
                 wordRemainingTime--;
                 userNamewordBoxText.text = new string(thirdWordsName);
+
+                //サウンド追加分
+                soundManager.Play("MenuBack");
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || (hd.GetRightBrakeDown() == true))
         {
-            //Debug.Log((char)wordSelectNum);
+            pushStopFlag = true;
             thirdWordsName[wordRemainingTime] = (char)wordSelectNum;
             userName = new string(thirdWordsName);
-            //Debug.Log(userName);
             wordRemainingTime++;
             userNamewordBoxText.text = userName;
+
+            //サウンド追加分
+            soundManager.Play("Decision");
 
             if (wordRemainingTime >= 3)
             {
@@ -176,115 +408,186 @@ public class RankingManager : MonoBehaviour
 
     void SaveRankerData()
     {
-        sm.Load();
-        rSave.arrayLengthNum = sm.AbstractionArrayLengthNum();
-        if (rSave.arrayLengthNum == 0)
+        bool isAdd = false; 
+        Load();
+        if (save.arrayLengthNum == 0)
         {
             rankingPlayerName[0] = userName;
-            rankingPlayerTime[0] = UnityEngine.Random.Range(300.0f, 600.0f);//まだタイムないので仮置き
-                                                                            //save.goalTimes[0] = Random.Range(5, 10).ToString("00") + "."
-                                                                            //    + Random.Range(0, 99).ToString("00") + "'" 
-                                                                            //    + Random.Range(1,999).ToString("000");
-                                                                            //save.rankerNames[0] = userName;
-                                                                            //save.goalTimes[0] = UnityEngine.Random.Range(300.0f, 600.0f);//まだタイムないので仮置き
-                                                                            //save.goalTimes[0] = Random.Range(5, 10).ToString("00") + "."
-                                                                            //    + Random.Range(0, 99).ToString("00") + "'" 
-                                                                            //    + Random.Range(1,999).ToString("000");
+            rankingPlayerTime[0] = timedata.goalTime;
+            for (int i = 0; i < 4; i++)
+            {
+                save.sectionTime1st[i] = timedata.secTimes[i];
+            }
             
+            save.arrayLengthNum += 1;
         }
         else
         {
-            float goalTimeKari = UnityEngine.Random.Range(300.0f, 600.0f);//本当ならここにそのときのTime入れる
-            for (int i = 0; i < rSave.arrayLengthNum; i++)
+            for (int i = 0; i < save.arrayLengthNum; i++)
             {
-                if (rankingPlayerTime[i] > goalTimeKari)
+                if (rankingPlayerTime[i] > timedata.goalTime)
                 {
-                    betweenRanksNum = i;
+                    float[] stayNums = new float[10];
+                    string[] stayNames = new string[10];
+                    float[] staySectionTimes = new float[4];
+
+                    Array.Copy(rankingPlayerName, stayNames, 10);
+                    Array.Copy(rankingPlayerTime, stayNums, 10);
+
+
+                    rankingPlayerName[i] = userName;
+                    rankingPlayerTime[i] = timedata.goalTime;
+                    if (i < 3)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                Array.Copy(save.sectionTime1st, staySectionTimes, 4);
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    save.sectionTime1st[j] = timedata.secTimes[j];
+                                    save.sectionTime2nd[j] = staySectionTimes[j];
+                                }
+                                break;
+                            case 1:
+                                Array.Copy(save.sectionTime2nd, staySectionTimes, 4);
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    save.sectionTime2nd[j] = timedata.secTimes[j];
+                                    save.sectionTime3rd[j] = staySectionTimes[j];
+                                }
+                                break;
+                            case 2:
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    save.sectionTime3rd[j] = timedata.secTimes[j];
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    Array.Copy(stayNames, i, rankingPlayerName, i + 1, 10 - (i + 1));
+                    Array.Copy(stayNums, i, rankingPlayerTime, i + 1, 10 - (i + 1));
+                    isAdd = true;
+                    if (save.arrayLengthNum < 10) save.arrayLengthNum += 1;
                     break;
                 }
-                if (betweenRanksNum > -1)
+            }
+            if (isAdd == false && save.arrayLengthNum < 10)
+            {
+                rankingPlayerName[save.arrayLengthNum] = userName;
+                rankingPlayerTime[save.arrayLengthNum] = timedata.goalTime;
+                if (save.arrayLengthNum < 3)
                 {
-                    InsertGoalTimesArray(rankingPlayerTime, goalTimeKari, betweenRanksNum);
-                    InsertRankerNamesArray(rankingPlayerName, userName, betweenRanksNum);
+                    switch (save.arrayLengthNum)
+                    {
+                        case 1:
+                            for (int j = 0; j < 4; j++)
+                            {
+                                save.sectionTime2nd[j] = timedata.secTimes[j];
+                            }
+                            break;
+                        case 2:
+                            for (int j = 0; j < 4; j++)
+                            {
+                                save.sectionTime3rd[j] = timedata.secTimes[j];
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                save.arrayLengthNum += 1;
             }
 
             
         }
-        sm.PourData(rankingPlayerName, rankingPlayerTime, 10);
-        sm.Save();
+
+        Array.Copy(rankingPlayerName, save.rankerNames, 10);
+        Array.Copy(rankingPlayerTime, save.goalTimes, 10);
+
+        Save();
         InputDataUIPanel.SetActive(!InputDataUIPanel.activeInHierarchy);
         isfinishEnterWord = false;
         isDisplayRanking = true;
     }
 
-    string[] InsertRankerNamesArray(string[] argArray, string InsertName, int insertNum)
-    {
-        string[] a = new string[argArray.Length];
 
-        for (int i = 0; i < argArray.Length; i++)
-        {
-            if (i == insertNum)
-            {
-                a[i] = InsertName;
-            }
-            else if (i > insertNum)
-            {
-                a[i] = argArray[i - 1];
-            }
-            else
-            {
-                a[i] = argArray[i];
-            }
-        }
-
-        return a;
-    }
-
-    float[] InsertGoalTimesArray(float[] argArray, float InsertTime, int insertNum)
-    {
-        float[] a = new float[10];
-
-        for (int i = 0; i < argArray.Length; i++)
-        {
-            if (i == insertNum)
-            {
-                a[i] = InsertTime;
-            }
-            else if (i > insertNum)
-            {
-                a[i] = argArray[i - 1];
-            }
-            else
-            {
-                a[i] = argArray[i];
-            }
-        }
-
-        return a;
-    }
 
     void DisplayRanking()
     {
-        sm.Load();
-        sm.AbstractionNameData().CopyTo(rSave.rankerNames, sm.AbstractionArrayLengthNum());
-        sm.AbstractionTimeData().CopyTo(rSave.goalTimes, sm.AbstractionArrayLengthNum());
-        rSave.arrayLengthNum = sm.AbstractionArrayLengthNum();
-
-        for (int i = 0; i < rSave.arrayLengthNum; i++)
+        Load();
+        for (int i = 0; i < save.arrayLengthNum; i++)
         {
-            rankersNameBoxText[i].text = rSave.rankerNames[i];
-            rankersTimeBoxText[i].text = (rSave.goalTimes[i] / 60).ToString("00") + "," + (rSave.goalTimes[i] % 60).ToString("00") + "'" + "000";
+            rankersNameBoxText[i].text = save.rankerNames[i];
+            int minutes = Mathf.FloorToInt(save.goalTimes[i] / 60f);
+            int seconds = Mathf.FloorToInt(save.goalTimes[i] % 60f);
+            int mseconds = Mathf.FloorToInt((save.goalTimes[i] % 60f - seconds) * 1000);
+            rankersTimeBoxText[i].text = string.Format("{0:00}.{1:00}'{2:000}", minutes, seconds, mseconds);
         }
-        if (rSave.rankerNames.Length < 10)
+        for (int i = 0; i < 3; i++)
         {
-            for (int i = 0; i < 10 - rSave.arrayLengthNum; i++)
+            for (int j = 0; j < 4; j++)
             {
-                rankersNameBoxText[i + rSave.arrayLengthNum].text = "---";
-                rankersTimeBoxText[i + rSave.arrayLengthNum].text = "00.00'000";
+                //int minutes = Mathf.FloorToInt(save.goalTimes[i] / 60f);
+                //int seconds;
+                int forSectionSeconds;
+                int mseconds;
+                switch (i)
+                {
+                    case 0:
+                        //seconds = Mathf.FloorToInt(save.sectionTime1st[j] % 60f);
+                        forSectionSeconds = Mathf.FloorToInt(save.sectionTime1st[j]);
+                        mseconds = Mathf.FloorToInt((save.sectionTime1st[j] - forSectionSeconds) * 1000);
+                        firstRankerSecTimeBoxText[j].text = string.Format("{2}/ {0:00}'{1:000}", forSectionSeconds, mseconds, j + 1);
+                        break;
+                    case 1:
+                        //seconds = Mathf.FloorToInt(save.sectionTime2nd[j] % 60f);
+                        forSectionSeconds = Mathf.FloorToInt(save.sectionTime2nd[j]);
+                        mseconds = Mathf.FloorToInt((save.sectionTime2nd[j] - forSectionSeconds) * 1000);
+                        secondRankerSecTimeBoxText[j].text = string.Format("{2}/ {0:00}'{1:000}", forSectionSeconds, mseconds, j + 1);
+                        break;
+                    case 2:
+                        //seconds = Mathf.FloorToInt(save.sectionTime3rd[j] % 60f);
+                        forSectionSeconds = Mathf.FloorToInt(save.sectionTime3rd[j]);
+                        mseconds = Mathf.FloorToInt((save.sectionTime3rd[j] - forSectionSeconds) * 1000);
+                        thirdRankerSecTimeBoxText[j].text = string.Format("{2}/ {0:00}'{1:000}", forSectionSeconds, mseconds, j + 1);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+
     }
 
+    public void Save()
+    {
+        string json = JsonUtility.ToJson(save);
 
+        StreamWriter streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json", false);
+        streamWriter.Write(json);
+        streamWriter.Flush();
+        streamWriter.Close();
+    }
+
+    public void Load()
+    {
+        if (File.Exists(filePath))
+        {
+            StreamReader streamReader;
+            streamReader = new StreamReader(filePath);
+            string data = streamReader.ReadToEnd();
+            streamReader.Close();
+
+            save = JsonUtility.FromJson<RankingSaveData>(data);
+
+
+            Array.Copy(save.rankerNames, rankingPlayerName, 10);
+            Array.Copy(save.goalTimes, rankingPlayerTime, 10);
+
+        }
+    }
 }

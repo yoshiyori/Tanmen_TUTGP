@@ -90,7 +90,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5004735379669802743}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -108,8 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerObsFlag: 0
-  playerObject: {fileID: 8817872341665952523, guid: b85e2f067f50d90488413664a0af0f6f,
+  playerObject: {fileID: 1281438874621425338, guid: 42d71bdc64cf5924abd8c32925db3680,
     type: 3}
+  downSpeed: 10000
   triggerTypeKakunin: 0
   mudSound: {fileID: 8314375692341163699}
 --- !u!54 &5048074581527104182
@@ -143,6 +144,7 @@ MonoBehaviour:
   _playOnStart: 0
   _cueName: 
   _cueSheet: 
+  _regionOnStart: {fileID: 0}
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
@@ -164,6 +166,9 @@ MonoBehaviour:
   criAtomSourceList:
   - {fileID: 7646787614246052140}
   cueManager: {fileID: 0}
-  cueNameList: []
+  cueNameList:
+  - Mud
   playOnStart: 0
   playCueNameOnStart: 
+  loop: 0
+  loopTime: 0

@@ -3,7 +3,18 @@ guid: d9da4f4c8734b764ea1e2bc662c3c400
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PlayerAni: {instanceID: 0}
+  - mud: {instanceID: 0}
+  - junpFlag: {instanceID: 0}
+  - objectPlayer: {instanceID: 0}
+  - front: {instanceID: 0}
+  - sjj: {instanceID: 0}
+  - concentratedLine: {instanceID: 0}
+  - concentratedLineCamera: {instanceID: 0}
+  - actionSound: {instanceID: 0}
+  - hd: {instanceID: 0}
+  - data: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

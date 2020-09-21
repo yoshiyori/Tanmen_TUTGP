@@ -107,11 +107,14 @@ public class CuePlayer : MonoBehaviour{
         Destroy(gameObject);
     }
 
-    private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
+    private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
         while(loop){
+            //多重再生防止
+            //一回の再生が終わるたびにタイムストレッチの値が適用され、次の再生が始まる
             if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
                 criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(loopTime);
-                Play(cueName, atomSourceNum, gameVariable, selectorLabel);
+                Debug.Log(loopTime);
+                Play(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel);
             }
             yield return null;
         }
@@ -145,7 +148,7 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
+    public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
         //指定された番号のAtomSourceがない場合は追加
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
@@ -159,7 +162,7 @@ public class CuePlayer : MonoBehaviour{
 
         //セレクターの設定
         if(!selectorLabel.Equals("")){
-            criAtomSourceList[atomSourceNum].player.SetSelectorLabel(cueName, selectorLabel);
+            criAtomSourceList[atomSourceNum].player.SetSelectorLabel(selectorName, selectorLabel);
         }
 
         //キューシートの設定と再生
@@ -176,8 +179,8 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
-        Play(cueName, atomSourceNum, gameVariable, selectorLabel);
+    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
+        Play(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel);
 
         //見かけ上のみオブジェクトを破壊
         if(mesh != null){
@@ -198,7 +201,7 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorLabel = ""){
+    public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
         //指定された番号のAtomSourceがない場合は追加
         if(criAtomSourceList.Count <= atomSourceNum){
             criAtomSourceList.Add(InitializeAtomSource());
@@ -213,7 +216,7 @@ public class CuePlayer : MonoBehaviour{
             }
 
             loop = true;
-            StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable, selectorLabel));
+            StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel));
         }
     }
 
@@ -281,7 +284,6 @@ public class CuePlayer : MonoBehaviour{
         }
         criAtomSourceList[atomSourceNum].Pause(true);
     }
-
 
     /**
      *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
@@ -384,10 +386,21 @@ public class CuePlayer : MonoBehaviour{
 
     //PlayOnStartの実行
     private void Start(){
+        if(cueManager == null){
+            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
+        }
+
         if(playOnStart){
             //Play(PlayCueNameOnStart);
             criAtomSourceList[0].cueSheet = cueManager.GetCueSheetName(playCueNameOnStart).cueSheetName;
             criAtomSourceList[0].Play(playCueNameOnStart);
+        }
+    }
+
+    private void Update(){
+        if(cueManager == null){
+            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
+            //Debug.Log("Sound Manager Not Found");
         }
     }
 }

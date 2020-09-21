@@ -16,18 +16,24 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] float blerLimit;//この速度からブラーをかける
 	public Animator PlayerAni;
 	private float TureMaxSpeed;
-	private double blerSpeed;
-	public GameObject mud;
+	public double blerSpeed;
+	public GameObject[] mud;
 	public GameObject junpFlag;
 	public GameObject objectPlayer;
-	private bool mudTrigger;
+	public GameObject front;
+	public bool mudTrigger;
 	public bool junp;
 	public bool sandControl;
 	public bool blerTrigger;
 	private bool willieFlg;
+	private bool junpCheck;
 	public bool turnTipe;
+	private bool willeOnOff;
+	private int junpTime;
 	private int count = 0;
+	private int tes = 0;
 	public int startLook = 0;
+	private int driftCount;
 	[System.NonSerialized] public Vector3 nowSpeed; //スピードゲージ追加時にpublic化（Inspector上では見えないように設定済み）
 	private Vector3 oldSpeed;
 	private Vector3 pos;
@@ -38,20 +44,22 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField] GameObject concentratedLineCamera; //集中線を写す専用カメラを入れる
 	private bool concentratedLineEndFlag; //集中線終了用フラグ
 
-	//サウンド追加分 1/8
+	//サウンド追加分
 	[SerializeField] private CuePlayer actionSound;
 	public bool succesRollingJump = false;
-	//サウンド追加分 1/8 終了
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
 	[SerializeField] public bool joyconFlag;//JoyCon使うかどうかのフラグ
+	[SerializeField] public float handleSensitivity;
+	[SerializeField] HdSensitivity data;
+
+	float time;//ゴール後数秒後に止まるようにするために使う（OC用）
 
 	void Awake()
 	{
 		//FPSを手動で固定
 		Application.targetFrameRate = 60;
-
 	}
 
 	private void Start()
@@ -63,36 +71,63 @@ public class MovePlayer : MonoBehaviour
 		joyconFlag = hd.isConnectHandle;
 
 		actionSound.InitializeAisacControl("Landing");                                  //サウンド追加分 2/8
+		handleSensitivity = 0.2f + data.handleSensitivity;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+
+		if (Mathf.Approximately(Time.timeScale, 0f))
+		{
+			return;
+		}
+
+		if (GameManeger.gameStartFlag == true)
+		{
+			PlayerAni.speed = 0;
+			return;
+		}
+		else if (GameManeger.gameStartFlag == false && GameManeger.goalFlag == false)
+		{
+			PlayerAni.speed = 1;
+		}
+
+		if (GameManeger.goalFlag == true)
+		{
+			time += Time.deltaTime;
+            if (rigid.velocity.x > 0)
+            {
+                //PlayerAni.speed = 0;
+            }
+            return;
+		}
+
 		if (startLook == 0)
 		{
 			PlayerAni.SetTrigger("Start");
 			startLook = 1;
 		}
 
-
-		mudTrigger = mud.GetComponent<Obstacle>().triggerObsFlag;
+	
 		//junp = junpFlag.GetComponent<JunpJudg>().nowJunpFlag;							//サウンド変更部分
+		willeOnOff = objectPlayer.GetComponent<PlayerDirecting>().williOnOff;
 		willieFlg = objectPlayer.GetComponent<PlayerDirecting>().willieFlg;
 		cameraStop = false;
 		nowSpeed = rigid.velocity;
 		blerSpeed = Math.Sqrt(nowSpeed.x * nowSpeed.x + nowSpeed.z * nowSpeed.z);
 		pos = this.gameObject.transform.localEulerAngles;
+		maxSpeed = TureMaxSpeed;
 
 
 		//ここで速度とかの制御
 
+		//ここで速度とかの制御
 
 
-		if (mudTrigger == true)
-		{
-			maxSpeed = mudSpeed;
-		}
-		else if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
+	
+
+		if (swingBoostFlag == true) //すぃんぐすぴーど実装時追加分
 		{
 			maxSpeed = swingBoostSpeed;
 			PlayerAni.SetBool("Dush", true);
@@ -107,9 +142,22 @@ public class MovePlayer : MonoBehaviour
 			concentratedLineCamera.SetActive(false);
 			PlayerAni.SetBool("Dush", false);
 		}
-		else
+		else if(swingBoostFlag == false && willeOnOff == false)
 		{
-			maxSpeed = TureMaxSpeed;
+			for (int i = 0; i < mud.Length; i++)
+			{
+				mudTrigger = mud[i].GetComponent<Obstacle>().triggerObsFlag;
+				if (mudTrigger == true)
+				{
+					maxSpeed = mudSpeed;
+					if (blerSpeed > mudSpeed)
+					{
+						rigid.velocity = rigid.velocity * 0.5f;
+					}
+					break;
+				}
+			}
+
 		}
 
 		if (rigid.velocity.magnitude < maxSpeed)
@@ -165,6 +213,21 @@ public class MovePlayer : MonoBehaviour
 
 		//回転
 
+		if (Input.GetKey(KeyCode.Z) && willeOnOff == false)
+		{
+			turnTipe = false;
+			driftCount = 0;
+		}
+		else
+		{
+			turnTipe = true;
+			if (driftCount == 0)
+			{
+			    Vector3 frontNow = front.transform.position- transform.position;
+				//rigid.velocity = Quaternion.Euler(frontNow.normalized) * rigid.velocity;
+			}
+			driftCount++;
+		}
 		turnPlayer();
 
 
@@ -193,15 +256,24 @@ public class MovePlayer : MonoBehaviour
 		}
 		//サウンド追加分 6/8 終了
 
+		handleSensitivity = 0.2f + data.handleSensitivity;
+
 		if (joyconFlag == true && junp == false)
 		{
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-3), 0));
-			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(-3), 0) * rigid.velocity;
+			if (hd.GetControlllerAccel(handleSensitivity, -2.5f) < 0)
+			{
+				PlayerAni.SetBool("Left", true);
+			}
+			else if (hd.GetControlllerAccel(handleSensitivity, -2.5f) > 0)
+			{
+				PlayerAni.SetBool("Right", true);
+			}
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0) * rigid.velocity;
 		}
-
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
 		{
@@ -211,46 +283,77 @@ public class MovePlayer : MonoBehaviour
 		}
 		oldSpeed = nowSpeed;
 
+		if (joyconFlag == true)
+		{
+			//var rot = transform.rotation.eulerAngles;
+			//rot.y = hd.GetControlllerAccel(-100);
+			//transform.rotation = Quaternion.Euler(rot);
+			//this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(0.2f, -5), 0));
+		}
 
+
+		//確認用
+		if (Input.GetKey(KeyCode.Z))
+		{
+			Debug.Log(maxSpeed);
+			Debug.Log("x : " + nowSpeed.x + "y : " + nowSpeed.y + "z : " + nowSpeed.z);
+
+		}
+		oldSpeed = nowSpeed;
 	}
+
+
 
 	void turnPlayer()
 	{
 		bool check = false;
-
-		if (rigid.velocity.magnitude < maxSpeed / 3)
+		
+		/*if (rigid.velocity.magnitude < maxSpeed / 3)
 		{
-			if (Input.GetKey(KeyCode.RightArrow))
-			{
-				check = true;
-				this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
-				if (turnTipe == true)
-				{
-					rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
-				}
-				PlayerAni.SetBool("Right", true);
-			}
-			else
-			{
-				PlayerAni.SetBool("Right", false);
-			}
-			if (Input.GetKey(KeyCode.LeftArrow))
-			{
-				check = true;
-				this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
-				if (turnTipe == true)
-				{
-					rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
-				}
-				PlayerAni.SetBool("Left", true);
-			}
-			else
-			{
-				PlayerAni.SetBool("Left", false);
-			}
+			
 
+		}*/
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			check = true;
+			this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed, 0));
+			if (turnTipe == true)
+			{
+				rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+			}
+			else
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed*0.5f, 0));
+				rigid.velocity = Quaternion.Euler(0, rotaSpeed*1.5f, 0) * rigid.velocity;
+			
+			}
+			PlayerAni.SetBool("Right", true);
 		}
-		else if (rigid.velocity.magnitude > maxSpeed / 3 && rigid.velocity.magnitude <= maxSpeed * 2 / 3)
+		else
+		{
+			PlayerAni.SetBool("Right", false);
+		}
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			check = true;
+			this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed, 0));
+			if (turnTipe == true)
+			{
+				rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
+			}
+			else 
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed * 0.5f, 0));
+				rigid.velocity = Quaternion.Euler(0, -rotaSpeed * 1.5f, 0) * rigid.velocity;
+				//PlayerAni.SetBool("LeftDrift", true);
+			}
+			PlayerAni.SetBool("Left", true);
+		}
+		else
+		{
+			PlayerAni.SetBool("Left", false);
+		}
+		/*else if (rigid.velocity.magnitude > maxSpeed / 3 && rigid.velocity.magnitude <= maxSpeed * 2 / 3)
 		{
 
 
@@ -343,7 +446,7 @@ public class MovePlayer : MonoBehaviour
 				}
 			}
 
-		}
+		}*/
 
 
 
@@ -363,6 +466,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = true;
 			postureControl();
+			PlayerAni.SetBool("JMotion2", false);
 			//サウンド追加分 7/8
 			//着地音
 			if (junp)
@@ -377,8 +481,9 @@ public class MovePlayer : MonoBehaviour
 			actionSound.SetAisacControl("Landing", 0f, 1);
 			//サウンド追加分 7/8 終了
 			PlayerAni.SetBool("Junp", false);
+			junpCheck = false;
 		}
-
+		
 	}
 
 
@@ -387,8 +492,10 @@ public class MovePlayer : MonoBehaviour
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = false;
+			junpCheck = true;
+			mudTrigger = false;
 			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
-		}
+		}		
 		PlayerAni.SetBool("Junp", true);
 	}
 

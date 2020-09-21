@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.IO;
 
 [assembly:AssemblyIsEditorAssembly]
 [CustomEditor(typeof(CueManager))]
@@ -12,6 +13,7 @@ public class CueManagerEditor : Editor{
     //パラメーター
     private bool isOpen_ExCueInfoList = true;
     private bool isOpen_CuePlayer = true;
+    private bool isChanged_ExCueInfo = true;
 
     private void OnEnable(){
         cueManager = (CueManager)base.target;
@@ -36,6 +38,12 @@ public class CueManagerEditor : Editor{
                     }
                 }
             EditorGUI.indentLevel--;
+        }
+
+        if(isChanged_ExCueInfo && !EditorApplication.isPlaying){
+            cueManager.LoadTxt();
+            Debug.Log("Load");
+            isChanged_ExCueInfo = false;
         }
 
         isOpen_ExCueInfoList = EditorGUILayout.Foldout(isOpen_ExCueInfoList, "Ex Cue Info");
@@ -68,16 +76,27 @@ public class CueManagerEditor : Editor{
         GUILayout.BeginHorizontal();
             if(GUILayout.Button("Preparation for Play")){
                 cueManager.LoadCuePlayer();
-                cueManager.SetCueSheet();
+                cueManager.SetCueSheetInternal();
             }
             if(GUILayout.Button("Get Ex Cue Info")){
                 cueManager.SetCueNameList();
+
+                //キュー情報をtxtに保存
+                var data = "";
+                foreach(var exCueInfo in cueManager.ExCueInfoList){
+                    data = data + exCueInfo.CueSheetName + "\t" + exCueInfo.CueName + "\n";
+                }
+                using(var writer = new StreamWriter(Application.dataPath + "/Temporary/CueInfo.txt", false)){
+                    writer.Write(data);
+                }
+
+                isChanged_ExCueInfo = true;
             }
         GUILayout.EndHorizontal();
 
-        if(EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData != null){
+        /*if(EditorWindow.GetWindow<CriAtomWindow>(false, "Atom Browser", false).acfInfoData != null){
             cueManager.AcbInfos = EditorWindow.GetWindow<CriAtomWindow>(false, null, false).acfInfoData.GetAcbInfoList(false, Application.streamingAssetsPath);
-        }
+        }*/
 
 		if (GUI.changed) {
 			EditorUtility.SetDirty(cueManager);

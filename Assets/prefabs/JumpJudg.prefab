@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0d0e75190fa552a4994d8dec9e92e8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   _playOnStart: 0
   _cueName: 
   _cueSheet: 
+  _regionOnStart: {fileID: 0}
   _use3dPositioning: 1
   _loop: 0
   _volume: 1
@@ -162,9 +163,11 @@ MonoBehaviour:
   - {fileID: 4075735018066651264}
   cueManager: {fileID: 0}
   cueNameList:
-  - 
+  - Jump
   playOnStart: 0
   playCueNameOnStart: 
+  loop: 0
+  loopTime: 0
 --- !u!114 &6300809663157587389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,4 +195,6 @@ MonoBehaviour:
   afterJumpingFlag: 0
   useGaugeSpeed: 30
   decreaseGaugeSpeed: 0
+  UseKeyGaugeIncreaseNum: 0
+  swingGaugeFill: {fileID: 0}
   hd: {fileID: 0}

@@ -90,7 +90,10 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             }
             else
             {
+                //サウンド追加分
                 //soundManager.PlayOnSceneSwitch("Decision");
+                soundManager.Stop(1);
+
                 SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
                 isTransition = false;
                 selectNum = 0;
@@ -98,7 +101,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) ||
-            (hd.GetControlllerAccel(1) > katamukiNum && selectStopFlag == false)
+            (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)
             )
         {
             if(selectNum > 0)
@@ -112,7 +115,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) || 
-            (hd.GetControlllerAccel(1) < -katamukiNum && selectStopFlag == false)
+            (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)
             )
         {
             if ((selectNum < 2 && selectNum >= 0))

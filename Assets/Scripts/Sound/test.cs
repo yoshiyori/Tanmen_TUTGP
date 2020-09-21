@@ -13,19 +13,9 @@ public class test : MonoBehaviour{
         //atom = FindObjectOfType<CriAtom>();
     }
 
-    private void Start(){
-        cuePlayer.Play("SwingBoost", 0, 0f, "Decrease");
-    }
-
     private void Update(){
         if(Input.GetKeyDown(KeyCode.W)){
-            value += 0.1f;
+            cuePlayer.Play("Increase");
         }
-        else if(Input.GetKeyDown(KeyCode.S)){
-            value -= 0.1f;
-        }
-
-        Debug.Log(value);
-        cuePlayer.SetAisacControl("SwingBoost", value);
     }
 }

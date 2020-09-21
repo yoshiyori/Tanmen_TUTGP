@@ -167,7 +167,7 @@ public class InertiaPlayer : MonoBehaviour
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(-5), 0));
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(0.2f, -5), 0));
 		}
 
 		//確認用

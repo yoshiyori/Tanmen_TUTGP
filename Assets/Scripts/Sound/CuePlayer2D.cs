@@ -111,6 +111,15 @@ public class CuePlayer2D : MonoBehaviour{
     }
 #endif
 
+    /**
+     * <summary>ゲームオブジェクトに付与されているCriAtomSourceの数(読み取り専用)</summary>
+     */
+    public int criAtomSourceNum{
+        get{
+            return criAtomExPlayerList.Count;
+        }
+    }
+
     //コルーチン
     private IEnumerator destroyAfterPlay;
     private IEnumerator DestroyAfterPlay(GameObject gameObject, int exPlayerNum = 0){
@@ -127,7 +136,7 @@ public class CuePlayer2D : MonoBehaviour{
      * (キューごとに異なるタイミングで再生を止めたりなどの操作をする場合はCriAtomSourceが複数必要になる。追加のCriAtomSourceは自動で適用される。)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      */
-    public void Play(string cueName, int exPlayerNum = 0, float gameVariable = 0f){
+    public CriAtomExPlayback Play(string cueName, int exPlayerNum = 0, float gameVariable = 0f){
         //指定された番号のAtomSourceがない場合は追加
         if(criAtomExPlayerList.Count <= exPlayerNum){
             criAtomExPlayerList.Add(InitializeAtomExPlayer());
@@ -141,7 +150,7 @@ public class CuePlayer2D : MonoBehaviour{
 
         //キューシートの設定と再生
         criAtomExPlayerList[exPlayerNum].SetCue(CriAtom.GetAcb(cue.cueSheetName), cue.cueName);
-        criAtomExPlayerList[exPlayerNum].Start();
+        return criAtomExPlayerList[exPlayerNum].Start();
     }
 
     /**
@@ -164,14 +173,66 @@ public class CuePlayer2D : MonoBehaviour{
     }
 
     /**
+     * <summary>指定したAISACコントロールの値を設定<summary>
+     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
+     * <params name = "value">AISACコントロールの値<params>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void SetAisacControl(string aisacControlName, float value, int atomSourceNum = 0){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+
+        criAtomExPlayerList[atomSourceNum].SetAisacControl(aisacControlName, value);
+    }
+
+    /**
+     * <summary>ランダムなAISACコントロールの値を設定<summary>
+     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
+     * <params name = "value">AISACコントロールの値<params>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void SetRandomAisacControl(string aisacControlName, int atomSourceNum = 0){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+
+        criAtomExPlayerList[atomSourceNum].SetAisacControl(aisacControlName, Random.value);
+    }
+
+    public void UpdateCuePlayer2D(CriAtomExPlayback exPlayback, int atomSourceNum = 0){
+        //指定された番号のAtomSourceがない場合は追加
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+
+        criAtomExPlayerList[atomSourceNum].Update(exPlayback);
+    }
+
+    /**
+     * <summary>指定したAtomSourceの保持するキューのセレクタラベルを変更<summary>
+     * <params name = "cueName">セレクタラベルを変更するキューの名前<params>
+     * <params name = "selectorLabel">指定するセレクタラベル<params>
+     * <param name = "atomSourceNum">指定したキューを保持するAtomSourceの番号を指定</param>
+     */
+    public void SwitchSelector(string cueName, string selectorLabel, int atomSourceNum = 0){
+        criAtomExPlayerList[atomSourceNum].SetSelectorLabel(cueName, selectorLabel);
+    }
+
+    /**
      * <summary>CriAtomSourceの再生状態を取得<summary>
      * <param name = "exPlayerNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
      * <returns>CriAtomSourceの再生状態<returns>
      */
     public CriAtomExPlayer.Status GetAtomSourceStatus(int exPlayerNum = 0){
         if(criAtomExPlayerList.Count <= exPlayerNum){
-            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            for(int i = 0; i <= exPlayerNum - criAtomExPlayerList.Count + 1; i++){
+                criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            }
         }
+        
         return criAtomExPlayerList[exPlayerNum].GetStatus();
     }
 
@@ -182,6 +243,45 @@ public class CuePlayer2D : MonoBehaviour{
      */
     public bool JudgeAtomSourceStatus(string status, int exPlayerNum = 0){
         return GetAtomSourceStatus(exPlayerNum).ToString().Equals(status);
+    }
+
+    /**
+     *<summary>再生しているキューの一時停止(CriAtomSourceごとの停止)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void Pause(int atomSourceNum = 0){
+        Debug.Log(criAtomExPlayerList.Count);
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            Debug.Log("a");
+            for(int i = 0; i < atomSourceNum - criAtomExPlayerList.Count + 1; i++){
+                Debug.Log("add");
+                criAtomExPlayerList.Add(InitializeAtomExPlayer());
+            }
+        }
+
+        criAtomExPlayerList[atomSourceNum].Pause(true);
+    }
+
+    /**
+     *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void Restart(int atomSourceNum = 0){
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+        criAtomExPlayerList[atomSourceNum].Pause(false);
+    }
+
+    /**
+     * <summary>再生しているキューの停止(CriAtomExPlayerごとの停止)<summary>
+     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
+     */
+    public void Stop(int atomSourceNum = 0){
+        if(criAtomExPlayerList.Count <= atomSourceNum){
+            criAtomExPlayerList.Add(InitializeAtomExPlayer());
+        }
+        criAtomExPlayerList[atomSourceNum].Stop();
     }
     
     //CriAtomSourceの追加
