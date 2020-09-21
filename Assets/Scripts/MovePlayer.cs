@@ -26,9 +26,12 @@ public class MovePlayer : MonoBehaviour
 	public bool sandControl;
 	public bool blerTrigger;
 	private bool willieFlg;
+	private bool junpCheck;
 	public bool turnTipe;
 	private bool willeOnOff;
+	private int junpTime;
 	private int count = 0;
+	private int tes = 0;
 	public int startLook = 0;
 	private int driftCount;
 	[System.NonSerialized] public Vector3 nowSpeed; //スピードゲージ追加時にpublic化（Inspector上では見えないように設定済み）
@@ -147,7 +150,10 @@ public class MovePlayer : MonoBehaviour
 				if (mudTrigger == true)
 				{
 					maxSpeed = mudSpeed;
-					rigid.velocity = rigid.velocity * 0.5f;
+					if (blerSpeed > mudSpeed)
+					{
+						rigid.velocity = rigid.velocity * 0.5f;
+					}
 					break;
 				}
 			}
@@ -301,7 +307,7 @@ public class MovePlayer : MonoBehaviour
 	void turnPlayer()
 	{
 		bool check = false;
-
+		
 		/*if (rigid.velocity.magnitude < maxSpeed / 3)
 		{
 			
@@ -314,6 +320,12 @@ public class MovePlayer : MonoBehaviour
 			if (turnTipe == true)
 			{
 				rigid.velocity = Quaternion.Euler(0, rotaSpeed, 0) * rigid.velocity;
+			}
+			else
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, rotaSpeed*0.5f, 0));
+				rigid.velocity = Quaternion.Euler(0, rotaSpeed*1.5f, 0) * rigid.velocity;
+			
 			}
 			PlayerAni.SetBool("Right", true);
 		}
@@ -328,6 +340,12 @@ public class MovePlayer : MonoBehaviour
 			if (turnTipe == true)
 			{
 				rigid.velocity = Quaternion.Euler(0, -rotaSpeed, 0) * rigid.velocity;
+			}
+			else 
+			{
+				this.gameObject.transform.Rotate(new Vector3(0, -rotaSpeed * 0.5f, 0));
+				rigid.velocity = Quaternion.Euler(0, -rotaSpeed * 1.5f, 0) * rigid.velocity;
+				//PlayerAni.SetBool("LeftDrift", true);
 			}
 			PlayerAni.SetBool("Left", true);
 		}
@@ -448,6 +466,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = true;
 			postureControl();
+			PlayerAni.SetBool("JMotion2", false);
 			//サウンド追加分 7/8
 			//着地音
 			if (junp)
@@ -462,8 +481,9 @@ public class MovePlayer : MonoBehaviour
 			actionSound.SetAisacControl("Landing", 0f, 1);
 			//サウンド追加分 7/8 終了
 			PlayerAni.SetBool("Junp", false);
+			junpCheck = false;
 		}
-
+		
 	}
 
 
@@ -472,8 +492,10 @@ public class MovePlayer : MonoBehaviour
 		if (other.gameObject.tag.Equals("Road"))
 		{
 			sandControl = false;
+			junpCheck = true;
+			mudTrigger = false;
 			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
-		}
+		}		
 		PlayerAni.SetBool("Junp", true);
 	}
 
