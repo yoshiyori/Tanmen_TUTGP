@@ -150,7 +150,10 @@ public class MovePlayer : MonoBehaviour
 				if (mudTrigger == true)
 				{
 					maxSpeed = mudSpeed;
-					rigid.velocity = rigid.velocity * 0.5f;
+					if (blerSpeed > mudSpeed)
+					{
+						rigid.velocity = rigid.velocity * 0.5f;
+					}
 					break;
 				}
 			}
@@ -490,6 +493,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = false;
 			junpCheck = true;
+			mudTrigger = false;
 			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
 		}		
 		PlayerAni.SetBool("Junp", true);
