@@ -150,7 +150,7 @@ public class MovePlayer : MonoBehaviour
 				if (mudTrigger == true)
 				{
 					maxSpeed = mudSpeed;
-					if (blerSpeed > mudSpeed)
+					if (blerSpeed > mudSpeed+1)
 					{
 						rigid.velocity = rigid.velocity * 0.5f;
 					}
