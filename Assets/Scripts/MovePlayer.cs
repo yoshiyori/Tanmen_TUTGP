@@ -95,11 +95,6 @@ public class MovePlayer : MonoBehaviour
 
 		if (GameManeger.goalFlag == true)
 		{
-			time += Time.deltaTime;
-            if (rigid.velocity.x > 0)
-            {
-                //PlayerAni.speed = 0;
-            }
             return;
 		}
 
@@ -150,7 +145,10 @@ public class MovePlayer : MonoBehaviour
 				if (mudTrigger == true)
 				{
 					maxSpeed = mudSpeed;
-					rigid.velocity = rigid.velocity * 0.5f;
+					if (blerSpeed > mudSpeed+1)
+					{
+						rigid.velocity = rigid.velocity * 0.5f;
+					}
 					break;
 				}
 			}
@@ -463,6 +461,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = true;
 			postureControl();
+			PlayerAni.SetBool("JMotion2", false);
 			//サウンド追加分 7/8
 			//着地音
 			if (junp)
@@ -489,6 +488,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = false;
 			junpCheck = true;
+			mudTrigger = false;
 			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
 		}		
 		PlayerAni.SetBool("Junp", true);
