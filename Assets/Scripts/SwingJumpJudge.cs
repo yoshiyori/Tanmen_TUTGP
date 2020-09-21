@@ -14,6 +14,7 @@ public class SwingJumpJudge : MonoBehaviour
     private Vector3 nowSpeed;
     private Vector3 playerPosition;
     public Animator PlayerAni;
+    private int motionRandom;
 
     //サウンド追加分 1/14
     [SerializeField] private CuePlayer jumpSound;
@@ -87,6 +88,16 @@ public class SwingJumpJudge : MonoBehaviour
             rigid.AddForce(0, junpSpeed, 0);
             triggerObsFlag = false;
             nowJunpFlag = true;
+            motionRandom = Random.Range(0, 2);
+
+            if (motionRandom == 1)
+            {
+                PlayerAni.SetTrigger("JMotion");
+            }
+            else if (motionRandom == 0)
+            {
+                PlayerAni.SetBool("JMotion2", true);
+            }
 
             //サウンド追加分 3/14
             movePlayer.junp = true;
