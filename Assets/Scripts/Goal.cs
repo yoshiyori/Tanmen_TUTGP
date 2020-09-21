@@ -9,13 +9,6 @@ public class Goal : MonoBehaviour
     [SerializeField] GameObject inGameUI;
     [SerializeField] GameObject goalText;
 
-    //OC用の仮アニメーション設定
-    [SerializeField] GameObject goalObject;
-    [SerializeField] GameObject playerObject;
-
-    //本来のゴールアニメーション用
-    //public Animator PlayerAni;
-
     float time;
     [System.NonSerialized] public static bool resultFlag;
 
@@ -33,9 +26,7 @@ public class Goal : MonoBehaviour
     private void Update()
     {
         if(GameManeger.goalFlag == true)
-        {
-            playerObject.SetActive(false);
-            goalObject.SetActive(true);
+        {   
             time += Time.deltaTime;
             if (time >= 3)
             {
