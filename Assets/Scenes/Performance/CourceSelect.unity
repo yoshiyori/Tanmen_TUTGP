@@ -9212,7 +9212,7 @@ GameObject:
   - component: {fileID: 816633298}
   - component: {fileID: 816633297}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CourseTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18073,7 +18073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1663795317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20212,7 +20212,7 @@ MonoBehaviour:
   katamukiNum: 0
   titleCanvas: {fileID: 419372691}
   rankingCanvas: {fileID: 1663795316}
-  TitleBox: {fileID: 0}
+  TitleBox: {fileID: 816633297}
 --- !u!1 &1859703198
 GameObject:
   m_ObjectHideFlags: 0
