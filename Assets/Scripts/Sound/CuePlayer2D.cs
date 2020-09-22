@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 public class CuePlayer2D : MonoBehaviour{
     //コンポーネント
     [SerializeField] private CriAtomExPlayer player;
-    [SerializeField] private CueManager cueManager;
+    //[SerializeField] private CueManager cueManager;
     //[SerializeField] private CriAtom criAtom;
     //[SerializeField] private CriWareInitializer criWareInitializer;
     //[SerializeField] private CriWareErrorHandler criWareErrorHandler;
@@ -26,6 +26,17 @@ public class CuePlayer2D : MonoBehaviour{
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    private IEnumerator StopFadeoutCore(string cueName, string aisacControlName, float fadeTime){
+        fadeTime = fadeTime < 0.1f ? 0.1f : fadeTime;
+        for(float t = 0f; t < fadeTime; t += Time.deltaTime){
+            player.SetAisacControl(aisacControlName, Mathf.Lerp(1f, 0f, Mathf.Clamp01(t / fadeTime)));
+            //UpdateCue(cueName);
+            player.UpdateAll();
+            yield return null;
+        }
+        Stop(cueName);
     }
 
     /**
@@ -61,6 +72,12 @@ public class CuePlayer2D : MonoBehaviour{
         }
     }
 
+    public void PlayWithFadeSetting(string cueName, int fadeTime, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
+        player.AttachFader();
+        player.SetFadeOutTime(fadeTime);
+        Play(cueName, gameVariable, selectorName, selectorLabel);
+    }
+
     /**
      *<summary>シーンを移動する際にキューを再生させる<summary>
      * <param name = "cueName">再生したいキューの名前</param>
@@ -70,9 +87,6 @@ public class CuePlayer2D : MonoBehaviour{
     public void PlayOnSceneSwitch(string cueName, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
         DontDestroyOnLoad(this.gameObject);
         Play(cueName, gameVariable, selectorName, selectorLabel);
-
-        //不要なコンポーネントを削除
-        Destroy(cueManager);
 
         //音の再生が終了したら破壊
         StartCoroutine(DestroyAfterPlay(this.gameObject, cueName));
@@ -106,6 +120,10 @@ public class CuePlayer2D : MonoBehaviour{
         else{
             Debug.LogWarning(cueName + " is not found.");
         }
+    }
+
+    public void UpdatePlayer(){
+        player.UpdateAll();
     }
 
     /**
@@ -191,17 +209,20 @@ public class CuePlayer2D : MonoBehaviour{
         }
     }
 
+    public void StopFadeout(){
+        //StartCoroutine(StopFadeoutCore(cueName, aisacControlName, fadeTime));
+        player.Stop(false);
+        player.DetachFader();
+    }
+
     void Reset(){
-        cueManager = GetComponent<CueManager>();
+        //cueManager = GetComponent<CueManager>();
         //criAtom = GetComponent<CriAtom>();
         //criWareErrorHandler = GetComponent<CriWareErrorHandler>();
         //criWareInitializer = GetComponent<CriWareInitializer>();
     }
 
     private void Awake(){
-        if(cueManager == null){
-            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
-        }
         player = new CriAtomExPlayer();
         criAtomExPlaybacks = new CriAtomExPlayback[cueNameList.Count];
     }

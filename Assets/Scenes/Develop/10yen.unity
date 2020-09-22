@@ -121,8 +121,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 326312056}
-  - component: {fileID: 326312057}
   - component: {fileID: 326312058}
+  - component: {fileID: 326312057}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -153,25 +153,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 326312055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc877eef2284313449b20c3e58e00d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
-  _regionOnStart: {fileID: 0}
-  _use3dPositioning: 1
-  _loop: 0
-  _volume: 1
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
-  cueManager: {fileID: 1247474595}
   cueNameList:
-  - SwingBoost
-  - Wind
-  cueName_PlayOnStart: 
-  loopTime: 1
+  - TitleBGM
+  playOnStart: 0
+  playCueNameOnStart: 
 --- !u!114 &326312058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c50b1da9075a44d8e80349b0947a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cuePlayer: {fileID: 326312057}
+  cuePlayer2D: {fileID: 326312057}
   loopTime: 1
 --- !u!1 &790363557
 GameObject:
@@ -409,7 +397,6 @@ GameObject:
   - component: {fileID: 1247474597}
   - component: {fileID: 1247474596}
   - component: {fileID: 1247474595}
-  - component: {fileID: 1247474594}
   - component: {fileID: 1247474593}
   m_Layer: 0
   m_Name: SoundManager
@@ -482,25 +469,6 @@ MonoBehaviour:
     numberOfMaxEntries: 4
   dontInitializeOnAwake: 0
   dontDestroyOnLoad: 0
---- !u!114 &1247474594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247474592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cueManager: {fileID: 1247474595}
-  criAtom: {fileID: 1247474596}
-  criWareInitializer: {fileID: 0}
-  criWareErrorHandler: {fileID: 0}
-  cueNameList: []
-  playOnStart: 0
-  playCueNameOnStart: 
 --- !u!114 &1247474595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,15 +482,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criAtom: {fileID: 1247474596}
-  cuePlayers:
-  - {fileID: 326312057}
-  cuePlayer2Ds: {fileID: 1247474594}
+  cuePlayers: []
+  cuePlayer2Ds: {fileID: 0}
   exCueInfoList:
+  - cueSheetName: Ambi_Mt
+    cueName: Leaf
+    gameVariableName: 
+  - cueSheetName: Ambi_Mt
+    cueName: Bird
+    gameVariableName: 
   - cueSheetName: GameBGM
     cueName: GameBGM
     gameVariableName: 
   - cueSheetName: GameBGM
     cueName: SwingBoostPhrase
+    gameVariableName: 
+  - cueSheetName: GameBGM
+    cueName: GameBGMP
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Turn
@@ -540,7 +516,13 @@ MonoBehaviour:
     cueName: JumpP
     gameVariableName: 
   - cueSheetName: GameSE
+    cueName: Pause
+    gameVariableName: 
+  - cueSheetName: GameSE
     cueName: Mud
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: BackToGame
     gameVariableName: 
   - cueSheetName: GameSE
     cueName: Corn
@@ -578,11 +560,29 @@ MonoBehaviour:
   - cueSheetName: GameSE
     cueName: SwingBoostAccel
     gameVariableName: 
-  - cueSheetName: MenuBGM
-    cueName: Menu
+  - cueSheetName: GameSE
+    cueName: Goal
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: SwingBoostStateChange
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: WillyAvailable
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Kick
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Slide
+    gameVariableName: 
+  - cueSheetName: GameSE
+    cueName: Drift
     gameVariableName: 
   - cueSheetName: MenuBGM
-    cueName: Title
+    cueName: MenuBGM
+    gameVariableName: 
+  - cueSheetName: MenuBGM
+    cueName: TitleBGM
     gameVariableName: 
   - cueSheetName: MenuSE
     cueName: Decision
@@ -603,13 +603,28 @@ MonoBehaviour:
     cueName: Decrease
     gameVariableName: 
   - cueSheetName: MenuSE
-    cueName: Pause
+    cueName: SwitchToGame
     gameVariableName: 
   - cueSheetName: MenuSE
-    cueName: BackToGame
+    cueName: Title
     gameVariableName: 
   - cueSheetName: Result
     cueName: DisplaySectionTime
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: DisplaySectionTime
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: SwitchRanking
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: DisplayRank
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: DisplayTime
+    gameVariableName: 
+  - cueSheetName: ResultSE
+    cueName: RegisterScore
     gameVariableName: 
 --- !u!114 &1247474596
 MonoBehaviour:
@@ -625,9 +640,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acfFile: Tanmen.acf
   cueSheets:
-  - name: GameSE
-    acbFile: GameSE.acb
-    awbFile: GameSE.awb
+  - name: MenuBGM
+    acbFile: MenuBGM.acb
+    awbFile: MenuBGM.awb
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 1
