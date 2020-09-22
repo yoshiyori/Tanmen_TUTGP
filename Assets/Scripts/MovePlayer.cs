@@ -200,13 +200,13 @@ public class MovePlayer : MonoBehaviour
 		{
 			if ((hd.GetRightBrake() == true || hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
-				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
-				actionSound.Play("Break");                                                      //サウンド追加分 4/8
+				turnTipe = false;
+				driftCount = 0;
 			}
 			if ((hd.GetRightBrake() == true && hd.GetLeftBrake() == true) && rigid.velocity.x < 0.1)
 			{
-				rigid.AddRelativeForce(brakeSpeed, 0, 0);
-				actionSound.Play("Break");                                                      //サウンド追加分 5/8
+				rigid.AddRelativeForce(brakeSpeed * 2 / 3, 0, 0);
+				actionSound.Play("Break");                                                      //サウンド追加分 4/8
 			}
 		}
 
@@ -247,7 +247,7 @@ public class MovePlayer : MonoBehaviour
 		//if ((nowSpeed.magnitude > 1f) && !actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
 		if ((nowSpeed.magnitude > 0.5f) && !running)
 		{
-			Debug.Log("Running");
+			//Debug.Log("Running");
 			actionSound.Play("Running");
 			running = true;
 		}
@@ -263,19 +263,21 @@ public class MovePlayer : MonoBehaviour
 
 		if (joyconFlag == true && junp == false)
 		{
+			//Debug.Log("joyconKakunin");
 			//var rot = transform.rotation.eulerAngles;
 			//rot.y = hd.GetControlllerAccel(-100);
 			//transform.rotation = Quaternion.Euler(rot);
-			if (hd.GetControlllerAccel(handleSensitivity, -2.5f) < 0)
+			if (hd.GetControlllerAccel(handleSensitivity, -1.5f) < 0)
 			{
 				PlayerAni.SetBool("Left", true);
 			}
-			else if (hd.GetControlllerAccel(handleSensitivity, -2.5f) > 0)
+			else if (hd.GetControlllerAccel(handleSensitivity, -1.5f) > 0)
 			{
 				PlayerAni.SetBool("Right", true);
 			}
-			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0));
-			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(handleSensitivity, -2.5f), 0) * rigid.velocity;
+			this.gameObject.transform.Rotate(new Vector3(0, hd.GetControlllerAccel(handleSensitivity, -1.5f), 0));
+			rigid.velocity = Quaternion.Euler(0, hd.GetControlllerAccel(handleSensitivity, -1.5f), 0) * rigid.velocity;
+			//Debug.Log(hd.GetControlllerAccel(handleSensitivity, -2.5f));
 		}
 		//確認用
 		if (Input.GetKey(KeyCode.Z))
