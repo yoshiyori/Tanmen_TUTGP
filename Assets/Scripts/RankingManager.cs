@@ -77,9 +77,18 @@ public class RankingManager : MonoBehaviour
     //サウンド追加分
     [SerializeField] private CuePlayer2D soundManager;
 
+    [SerializeField] private int RankingSceneNumber;
+
     void Awake()
     {
-        filePath = Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json";
+        if (RankingSceneNumber == 0)
+        {
+            filePath = Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json";
+        }
+        else
+        {
+            filePath = Application.dataPath + "/StreamingAssets/SaveData" + "/savedata2.json";
+        }
         
         save = new RankingSaveData();
         if (System.IO.File.Exists(filePath) == false)
@@ -116,7 +125,7 @@ public class RankingManager : MonoBehaviour
                         break;
                 }
             }
-            Save();
+            Save(RankingSceneNumber);
             //Debug.Log("MakeJsonFile");
         }
         //Save();   //コメントアウト外して実行するとJsonDataまっさら初期状態になる。
@@ -512,7 +521,7 @@ public class RankingManager : MonoBehaviour
         Array.Copy(rankingPlayerName, save.rankerNames, 10);
         Array.Copy(rankingPlayerTime, save.goalTimes, 10);
 
-        Save();
+        Save(RankingSceneNumber);
         InputDataUIPanel.SetActive(!InputDataUIPanel.activeInHierarchy);
         isfinishEnterWord = false;
         isDisplayRanking = true;
@@ -567,11 +576,19 @@ public class RankingManager : MonoBehaviour
 
     }
 
-    public void Save()
+    public void Save(int rankingNum)
     {
         string json = JsonUtility.ToJson(save);
-
-        StreamWriter streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json", false);
+        StreamWriter streamWriter;
+        if (rankingNum == 0)
+        {
+            streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json", false);
+        }
+        else
+        {
+            streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json", false);
+        }
+        
         streamWriter.Write(json);
         streamWriter.Flush();
         streamWriter.Close();

@@ -17,6 +17,7 @@ public class TitleST : MonoBehaviour
     [SerializeField] private GameObject titleCanvas;
     [SerializeField] private GameObject modeSelectCanvas;
     [SerializeField] private GameObject rankingCanvas;
+    [SerializeField] private GameObject finGameCanvas;
 
     [SerializeField] private CuePlayer2D soundManager;                      //サウンド追加分 1/2
 
@@ -25,6 +26,7 @@ public class TitleST : MonoBehaviour
     [SerializeField] private float stopTime;        //コントローラーを傾けっぱなしの場合、一気に端までいかないために一つ一つの選択項目に留めておく時間
     [SerializeField] private float katamukiNum;     //コントローラーをどこまで傾けたら横入力判定されるか
     private bool selectStopFlag;
+
 
 
     private void Start()
@@ -68,17 +70,24 @@ public class TitleST : MonoBehaviour
         }
 
 
-        if ( (Input.GetKeyDown(KeyCode.LeftArrow) ||
+        if ( ((Input.GetKeyDown(KeyCode.LeftArrow) ||
                 (hd.GetControlllerAccel(0.2f, 1) > katamukiNum && selectStopFlag == false)
                 ) ||
              (Input.GetKeyDown(KeyCode.RightArrow) ||
                 (hd.GetControlllerAccel(0.2f, 1) < -katamukiNum && selectStopFlag == false)
-                )
+                ))
            )
         {
             isGoRanking = true;
             isTransition = true;
         }
+        /*
+        if (Input.GetKeyDown(KeyCode.Escape) && isFinGameExist == false)
+        {
+            isFinGameExist = true;
+            finGameCanvas.SetActive(true);
+        }
+        */
 
 
         if (isTransition == true && fc.isFadeOut == false && isGoRanking == false)
