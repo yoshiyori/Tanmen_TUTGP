@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5524917922335328467}
   - component: {fileID: 5524917922335328466}
   - component: {fileID: 6300809663157587389}
-  - component: {fileID: 959067920116935136}
+  - component: {fileID: 7693249040436912630}
   m_Layer: 0
   m_Name: JumpJudg
   m_TagString: Jump
@@ -142,7 +142,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   junpSpeed: 70000000
   PlayerAni: {fileID: 0}
-  jumpSound: {fileID: 959067920116935136}
+  jumpSound: {fileID: 7693249040436912630}
   movePlayer: {fileID: 0}
   swingGaugeObject: {fileID: 0}
   swingCommandTextObject: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   UseKeyGaugeIncreaseNum: 0
   swingGaugeFill: {fileID: 0}
   hd: {fileID: 0}
---- !u!114 &959067920116935136
+--- !u!114 &7693249040436912630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5524917922335328464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc877eef2284313449b20c3e58e00d9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playOnStart: 0
@@ -179,7 +179,8 @@ MonoBehaviour:
   cueManager: {fileID: 0}
   cueNameList:
   - Jump
-  - SwingBoost
   - SwingBoostAccel
+  - SwingBoost
   cueName_PlayOnStart: 
-  loopTime: 0
+  loopTime: 1
+  isLoop: 0
