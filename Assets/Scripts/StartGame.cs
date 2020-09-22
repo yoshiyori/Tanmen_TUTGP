@@ -20,7 +20,7 @@ public class StartGame : MonoBehaviour
             || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 //サウンド追加分
-                soundManager.Stop(1);
+                soundManager.Stop("MenuBGM");
                 cueManager.AddTimeStrechVoicePool();
                 
                 GameManeger.gameStartFlag = true;

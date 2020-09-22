@@ -94,7 +94,7 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             {
                 //サウンド追加分
                 //soundManager.PlayOnSceneSwitch("Decision");
-                soundManager.Stop(1);
+                soundManager.Stop("MenuBGM");
                 cueManager.AddTimeStrechVoicePool();
 
                 SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);

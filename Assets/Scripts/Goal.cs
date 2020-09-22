@@ -43,6 +43,6 @@ public class Goal : MonoBehaviour
         GameManeger.goalFlag = true;
         goalText.SetActive(true);
 
-        cueManager.PauseCueSheet("GameSE");
+        cueManager.StopCueSheet("GameSE");
     }
 }

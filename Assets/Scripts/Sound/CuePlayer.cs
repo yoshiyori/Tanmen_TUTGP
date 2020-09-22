@@ -173,6 +173,7 @@ public class CuePlayer : CriAtomSource{
         var index = cueNameList.IndexOf(cueName);
         if(index >= 0){
             if(index < criAtomExPlaybacks.Length){
+                Debug.Log("Stop");
                 criAtomExPlaybacks[index].Stop();
             }
         }
@@ -182,9 +183,9 @@ public class CuePlayer : CriAtomSource{
     }
 
     /**
-     * <summary>CriAtomSourceの再生状態を取得<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     * <returns>CriAtomSourceの再生状態<returns>
+     * <summary>キューの再生状態を取得<summary>
+     * <param name = "cueName">再生状態を取得したいキューの名前</param>
+     * <returns>キューの再生状態<returns>
      */
     public CriAtomExPlayback.Status GetCueStatus(string cueName){
         var index = cueNameList.IndexOf(cueName);

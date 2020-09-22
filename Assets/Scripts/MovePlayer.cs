@@ -45,9 +45,9 @@ public class MovePlayer : MonoBehaviour
 	private bool concentratedLineEndFlag; //集中線終了用フラグ
 
 	//サウンド追加分
-	[SerializeField] private CuePlayer actionSound;
+	[SerializeField] public CuePlayer actionSound;
 	public bool succesRollingJump = false;
-	private bool running = false;
+	private bool running;
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -75,6 +75,7 @@ public class MovePlayer : MonoBehaviour
 		actionSound.SetAisacControl("Landing", 0f);
 
 		handleSensitivity = 0.2f + data.handleSensitivity;
+		running = false;
 	}
 
 	// Update is called once per frame
@@ -244,16 +245,15 @@ public class MovePlayer : MonoBehaviour
 
 		//自転車を漕ぐ音
 		//if ((nowSpeed.magnitude > 1f) && !actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
-		if ((nowSpeed.magnitude > 0.5f) /*&& !running*/)
+		if ((nowSpeed.magnitude > 0.5f) && !running)
 		{
-			//Debug.Log(actionSound.GetCueStatus("Running").ToString());
-			actionSound.Play("Running", 1);
+			Debug.Log("Running");
+			actionSound.Play("Running");
 			running = true;
 		}
 		//else if ((nowSpeed.magnitude < 1f) && actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
 		else if ((nowSpeed.magnitude < 0.5f) /*&& running*/)
 		{
-			Debug.Log("Stop Running");
 			actionSound.Stop("Running");
 			running = false;
 		}

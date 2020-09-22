@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class test2 : MonoBehaviour{
-    [SerializeField] private CriAtomSource cuePlayer;
+    [SerializeField] private CuePlayer cuePlayer;
     float value = 0f;
 
     private void Reset(){
@@ -12,7 +12,7 @@ public class test2 : MonoBehaviour{
 
     private void Update(){
         if(Input.GetKeyDown(KeyCode.W)){
-            cuePlayer.Play();
+            cuePlayer.Stop("Running");
         }
     }
 }
