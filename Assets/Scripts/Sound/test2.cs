@@ -4,21 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class test2 : MonoBehaviour{
-    [SerializeField] private CuePlayer cuePlayer;
+    [SerializeField] private CuePlayer2D cuePlayer;
     float value = 0f;
 
     private void Reset(){
-        //soundManager = FindObjectOfType<>();
-        //cueManager = FindObjectOfType<CueManager>();
-        //atom = FindObjectOfType<CriAtom>();
     }
 
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.W)){
-            cuePlayer.Play("Jump");
-        }
-        else if(Input.GetKeyDown(KeyCode.S)){
-            SceneManager.LoadScene("10yen");
+        if(Input.GetKeyDown(KeyCode.S)){
+            Debug.Log(CueManager.singleton.exCueInfoList[33].CueName);
+            cuePlayer.Play("Decision");
         }
     }
 }

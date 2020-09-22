@@ -281,6 +281,10 @@ public class RankingManager : MonoBehaviour
                     isTransition = false;
                     selectNum = 0;
                     GameManeger.goalFlag = false;
+
+                    //サウンド追加分
+                    CueManager.singleton.AddTimeStrechVoicePool();
+
                     SceneManager.LoadScene("Main");
                 }
                 else

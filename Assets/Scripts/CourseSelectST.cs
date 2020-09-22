@@ -24,7 +24,9 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
     [SerializeField] private bool isConnectJoycon;//Joycon接続してるならTrue、してないならFalse
     private int connectCheckIdentificationNum;
 
-    [SerializeField] private CuePlayer2D soundManager;                          //サウンド追加分1/3
+    //サウンド追加分
+    [SerializeField] private CuePlayer2D soundManager;
+    [SerializeField] private CueManager cueManager;
 
     void Start()
     {
@@ -92,7 +94,8 @@ public class CourseSelectST : MonoBehaviour         //ST == SceneTransition
             {
                 //サウンド追加分
                 //soundManager.PlayOnSceneSwitch("Decision");
-                soundManager.Stop(1);
+                soundManager.Stop("MenuBGM");
+                cueManager.AddTimeStrechVoicePool();
 
                 SceneManager.LoadScene(sceneName[selectNum], LoadSceneMode.Single);
                 isTransition = false;

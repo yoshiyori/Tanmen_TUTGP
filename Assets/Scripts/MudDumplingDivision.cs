@@ -37,7 +37,7 @@ public class MudDumplingDivision : MonoBehaviour
         {
             crayBallSound.Stop();
             //crayBallSound.Play("CrayBall", 0, 1f);
-            crayBallSound.PlayAndDestroy("CrayBall", ref crayBallMesh, ref crayBallCollider, 0, 1f);
+            //crayBallSound.PlayAndDestroy("CrayBall", ref crayBallMesh, ref crayBallCollider, 0, 1f);
             broken = true;
         }
         //サウンド追加分 2/2 終了

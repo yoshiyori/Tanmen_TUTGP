@@ -120,6 +120,10 @@ public class SwingJumpJudge : MonoBehaviour
             {
                 nowJunpFlag = false;
                 afterJumpingFlag = false;
+
+                //SwingBoost音停止
+                jumpSound.isLoop = false;
+                
                 if (swingCommandTextObject.activeInHierarchy)
                 {
                     if (swingGauge.value > 0.0f) movePlayer.succesRollingJump = true;
@@ -127,6 +131,7 @@ public class SwingJumpJudge : MonoBehaviour
                     swingCommandTextObject.SetActive(false);
 
 			        //サウンド追加分
+			        //Debug.Log("SwingBoostAccel");
 			        jumpSound.Play("SwingBoostAccel");
                 }
             }
@@ -136,8 +141,9 @@ public class SwingJumpJudge : MonoBehaviour
             UseGauge();
 
             //サウンド追加分 4/14
-            jumpSound.StopStrechLoop(1);
-            jumpSound.Stop(1);
+            //jumpSound.StopStrechLoop(1);
+            jumpSound.loop = false;
+            jumpSound.Stop("SwingBoost");
         }
     }
 
@@ -328,27 +334,28 @@ public class SwingJumpJudge : MonoBehaviour
         }*/
         if(decreasing)
         {
-            jumpSound.Stop(1);
+            jumpSound.Stop("SwingBoost");
             decreasing = false;
         }
-        jumpSound.SetAisacControl("SwingBoost", 0.5f, 1);
+        jumpSound.SetAisacControl("SwingBoost", 0.5f);
         jumpSound.loopTime = 1f - (swingGauge.value * 0.5f);            //スイングブースト ループ再生間隔制御
-        jumpSound.PlayStrechLoop("SwingBoostP", 1, 0f, "SwingBoost", "Increase");
+        jumpSound.PlayStrechLoop("SwingBoost", 0f, "SwingBoost", "Increase");
     }
     
     private void PlaySwingBoostDecreaseSound()
     {
         if(!decreasing)
         {
-            jumpSound.StopStrechLoop(1);
+            //jumpSound.StopStrechLoop(1);
+            jumpSound.loop = false;
             decreasing = true;
         }
         
-        if(swingGauge.value > 0 && time > 0.5f && !jumpSound.JudgeAtomSourceStatus("Playing", 1))
+        if(swingGauge.value > 0 && time > 0.5f && !jumpSound.JudgeCueStatus("SwingBoost", CriAtomExPlayback.Status.Playing))
         {
-            jumpSound.Play("SwingBoostP", 1, 0f, "SwingBoost", "Decrease");
+            jumpSound.Play("SwingBoost", 0f, "SwingBoost", "Decrease");
         }
-        if(swingGauge.value <= 0 && jumpSound.JudgeAtomSourceStatus("Playing", 1)) jumpSound.Stop(1);
-        jumpSound.SetAisacControl("SwingBoost", swingGauge.value * 0.5f, 1);
+        if(swingGauge.value <= 0 && jumpSound.JudgeCueStatus("SwingBoost", CriAtomExPlayback.Status.Playing)) jumpSound.Stop("SwingBoost");
+        jumpSound.SetAisacControl("SwingBoost", swingGauge.value * 0.5f);
     }
 }
