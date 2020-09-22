@@ -87,9 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5524917922335328467}
   - component: {fileID: 5524917922335328466}
-  - component: {fileID: 4075735018066651264}
-  - component: {fileID: 1004533117820851386}
   - component: {fileID: 6300809663157587389}
+  - component: {fileID: 959067920116935136}
   m_Layer: 0
   m_Name: JumpJudg
   m_TagString: Jump
@@ -125,49 +124,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4075735018066651264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5524917922335328464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _cueName: 
-  _cueSheet: 
-  _regionOnStart: {fileID: 0}
-  _use3dPositioning: 1
-  _loop: 0
-  _volume: 1
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
---- !u!114 &1004533117820851386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5524917922335328464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 4075735018066651264}
-  cueManager: {fileID: 0}
-  cueNameList:
-  - Jump
-  playOnStart: 0
-  playCueNameOnStart: 
-  loop: 0
-  loopTime: 0
 --- !u!114 &6300809663157587389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +142,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   junpSpeed: 70000000
   PlayerAni: {fileID: 0}
-  jumpSound: {fileID: 1004533117820851386}
+  jumpSound: {fileID: 959067920116935136}
   movePlayer: {fileID: 0}
   swingGaugeObject: {fileID: 0}
   swingCommandTextObject: {fileID: 0}
@@ -198,3 +154,32 @@ MonoBehaviour:
   UseKeyGaugeIncreaseNum: 0
   swingGaugeFill: {fileID: 0}
   hd: {fileID: 0}
+--- !u!114 &959067920116935136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524917922335328464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc877eef2284313449b20c3e58e00d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _cueName: 
+  _cueSheet: 
+  _regionOnStart: {fileID: 0}
+  _use3dPositioning: 1
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  cueManager: {fileID: 0}
+  cueNameList:
+  - Jump
+  - SwingBoost
+  - SwingBoostAccel
+  cueName_PlayOnStart: 
+  loopTime: 0

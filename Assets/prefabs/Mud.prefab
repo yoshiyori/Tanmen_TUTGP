@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: 7771083237031854715}
   - component: {fileID: 678140099833542550}
   - component: {fileID: 5048074581527104182}
-  - component: {fileID: 7646787614246052140}
-  - component: {fileID: 8314375692341163699}
+  - component: {fileID: 751386275627044098}
   m_Layer: 0
   m_Name: Mud
   m_TagString: Untagged
@@ -112,7 +111,7 @@ MonoBehaviour:
     type: 3}
   downSpeed: 10000
   triggerTypeKakunin: 0
-  mudSound: {fileID: 8314375692341163699}
+  mudSound: {fileID: 751386275627044098}
 --- !u!54 &5048074581527104182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,7 +128,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7646787614246052140
+--- !u!114 &751386275627044098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5004735379669802743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Script: {fileID: 11500000, guid: bc877eef2284313449b20c3e58e00d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playOnStart: 0
@@ -151,24 +150,8 @@ MonoBehaviour:
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
---- !u!114 &8314375692341163699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5004735379669802743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 7646787614246052140}
   cueManager: {fileID: 0}
   cueNameList:
   - Mud
-  playOnStart: 0
-  playCueNameOnStart: 
-  loop: 0
+  cueName_PlayOnStart: 
   loopTime: 0

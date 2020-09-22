@@ -45,8 +45,9 @@ public class MovePlayer : MonoBehaviour
 	private bool concentratedLineEndFlag; //集中線終了用フラグ
 
 	//サウンド追加分
-	[SerializeField] private CuePlayer actionSound;
+	[SerializeField] public CuePlayer actionSound;
 	public bool succesRollingJump = false;
+	private bool running;
 
 
 	public Handle hd;//JoyConから数値受け取る時とかに使う
@@ -70,8 +71,11 @@ public class MovePlayer : MonoBehaviour
 		sandControl = false;
 		joyconFlag = hd.isConnectHandle;
 
-		actionSound.InitializeAisacControl("Landing");                                  //サウンド追加分 2/8
+		//サウンド追加分 2/8
+		actionSound.SetAisacControl("Landing", 0f);
+
 		handleSensitivity = 0.2f + data.handleSensitivity;
+		running = false;
 	}
 
 	// Update is called once per frame
@@ -229,7 +233,7 @@ public class MovePlayer : MonoBehaviour
 		junpFlag.GetComponent<SwingJumpJudge>().JunpPlayer();
 
 		//サウンド追加分 6/8
-		if (succesRollingJump)
+		/*if (succesRollingJump)
 		{
 			//actionSound.Play("Rolling");
 			succesRollingJump = false;
@@ -237,17 +241,21 @@ public class MovePlayer : MonoBehaviour
 		if ((nowSpeed.magnitude <= 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
 		{
 			actionSound.Stop(1);
-		}
+		}*/
 
 		//自転車を漕ぐ音
-		if ((nowSpeed.magnitude > 1f) && !actionSound.JudgeAtomSourceStatus("Playing", 1))
+		//if ((nowSpeed.magnitude > 1f) && !actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
+		if ((nowSpeed.magnitude > 0.5f) && !running)
 		{
-			//Debug.Log("Running");
-			actionSound.Play("Running", 1);
+			Debug.Log("Running");
+			actionSound.Play("Running");
+			running = true;
 		}
-		else if ((nowSpeed.magnitude < 1f) && actionSound.JudgeAtomSourceStatus("Playing", 1))
+		//else if ((nowSpeed.magnitude < 1f) && actionSound.JudgeCueStatus("Running", CriAtomExPlayback.Status.Playing))
+		else if ((nowSpeed.magnitude < 0.5f) /*&& running*/)
 		{
-			actionSound.Stop(1);
+			actionSound.Stop("Running");
+			running = false;
 		}
 		//サウンド追加分 6/8 終了
 
@@ -473,7 +481,7 @@ public class MovePlayer : MonoBehaviour
 			}
 
 			//走行音の切り替え
-			actionSound.SetAisacControl("Landing", 0f, 1);
+			actionSound.SetAisacControl("Landing", 0f);
 			//サウンド追加分 7/8 終了
 			PlayerAni.SetBool("Junp", false);
 			junpCheck = false;
@@ -488,9 +496,9 @@ public class MovePlayer : MonoBehaviour
 		{
 			sandControl = false;
 			junpCheck = true;
-			mudTrigger = false;
-			actionSound.SetAisacControl("Landing", 1f, 1);          //サウンド追加分 8/8
-		}		
+			mudTrigger = false;		
+			actionSound.SetAisacControl("Landing", 1f);          //サウンド追加分 8/8
+		}
 		PlayerAni.SetBool("Junp", true);
 	}
 

@@ -2,139 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using System;
 
 /**
  * <summary>キューの再生を簡易化するコンポーネント</summary>
  */
-[RequireComponent(typeof(CriAtomSource)), AddComponentMenu("SoundSystem/Cue Player")]
-public class CuePlayer : MonoBehaviour{
+[AddComponentMenu("SoundSystem/Cue Player")]
+public class CuePlayer : CriAtomSource{
     //コンポーネント
-    [SerializeField] private List<CriAtomSource> criAtomSourceList = new List<CriAtomSource>();
     [SerializeField] private CueManager cueManager;
 
-    //キュー名
-    [SerializeField] internal List<string> cueNameList = new List<string>();
+    //キュー関連
+    [SerializeField] public List<string> cueNameList;
+    [SerializeField] public string cueName_PlayOnStart;
+    [SerializeField] private CriAtomExPlayback[] criAtomExPlaybacks;
 
     //パラメーター
-    [SerializeField] private bool playOnStart = false;
-    [SerializeField] internal string playCueNameOnStart = "";
-    [HideInInspector] public bool loop = false;
-    [HideInInspector] public float loopTime;
+    public float loopTime = 1f;
+    public bool isLoop = false;
 
-    //その他
-    private CriAtomExStandardVoicePool voicePool;
-
-#if UNITY_EDITOR
-    //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
-    public List<CriAtomSource> CriAtomSourceList{
-        get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            return criAtomSourceList;
-        }
-        set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            criAtomSourceList = value;
-        }
-    }
-    
-    public CueManager CueManager{
-        get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            return cueManager;
-        }
-        set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            cueManager = value;
-        }
-    }
-    
-    public List<string> CueNameList{
-        get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            return cueNameList;
-        }
-        set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            cueNameList = value;
-        }
-    }
-    public bool PlayOnStart{
-        get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            return playOnStart;
-        }
-        set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            playOnStart = value;
-        }
-    }
-    public string PlayCueNameOnStart{
-        get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            return playCueNameOnStart;
-        }
-        set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
-            playCueNameOnStart = value;
-        }
-    }
-#endif
-
-    /**
-     * <summary>ゲームオブジェクトに付与されているCriAtomSourceの数(読み取り専用)</summary>
-     */
-    public int criAtomSourceNum{
-        get{
-            return criAtomSourceList.Count;
-        }
-    }
-    
     //コルーチン
-    private IEnumerator DestroyAfterPlay(GameObject gameObject, int atomSourceNum = 0){
-        while(!JudgeAtomSourceStatus("PlayEnd", atomSourceNum)){
+    private IEnumerator DestroyAfterPlay(GameObject gameObject, string cueName){
+        while(!JudgeCueStatus(cueName, CriAtomExPlayback.Status.Playing)){
             yield return null;
         }
         Destroy(gameObject);
     }
 
-    private IEnumerator PlayStrechLoopCore(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
-        while(loop){
+    private IEnumerator PlayStrechLoopCore(string cueName, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
+        while(isLoop){
             //多重再生防止
             //一回の再生が終わるたびにタイムストレッチの値が適用され、次の再生が始まる
-            if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
-                criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(loopTime);
-                Debug.Log(loopTime);
-                Play(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel);
-            }
-            yield return null;
-        }
-    }
-
-    private IEnumerator DetachInsertionDSP(int atomSourceNum = 0){
-        while(true){
-            if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
-                voicePool.DetachDsp();
-                break;
-            }
-            yield return null;
-        }
-    }
-
-    private IEnumerator DisposeStandardVoicePoolCore(int atomSourceNum = 0){
-        while(true){
-            if(!JudgeAtomSourceStatus("Playing", atomSourceNum)){
-                voicePool.Dispose();
-                break;
+            if(!JudgeCueStatus(cueName, CriAtomExPlayback.Status.Playing)){
+                this.player.SetDspTimeStretchRatio(loopTime);
+                this.player.UpdateAll();
+                //Debug.Log(loopTime);
+                Play(cueName, gameVariable, selectorName, selectorLabel);
             }
             yield return null;
         }
@@ -143,31 +46,34 @@ public class CuePlayer : MonoBehaviour{
     /**
      * <summary>指定した名前のキューを再生</summary>
      * <param name = "cueName">再生したいキューの名前</param>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する
-     * (キューごとに異なるタイミングで再生を止めたりなどの操作をする場合はCriAtomSourceが複数必要になる。追加のCriAtomSourceは自動で適用される。)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void Play(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
-        //指定された番号のAtomSourceがない場合は追加
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-
+    public void Play(string cueName, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
         //ゲーム変数の設定
-        var cue = cueManager.GetCueSheetName(cueName);
+        var cue = CueManager.singleton.GetCueSheetName(cueName);
         if(!cue.gameVariableName.Equals("")){
             CriAtomEx.SetGameVariable(cue.gameVariableName, gameVariable);
         }
 
         //セレクターの設定
         if(!selectorLabel.Equals("")){
-            criAtomSourceList[atomSourceNum].player.SetSelectorLabel(selectorName, selectorLabel);
+            this.player.SetSelectorLabel(selectorName, selectorLabel);
         }
 
-        //キューシートの設定と再生
-        criAtomSourceList[atomSourceNum].cueSheet = cue.cueSheetName;
-        criAtomSourceList[atomSourceNum].Play(cueName);
+        //キューシートの設定
+        this.cueSheet = cue.cueSheetName;
+
+        //再生とCriAtomExPlaybackの設定
+        var index = cueNameList.IndexOf(cueName);
+        if(index >= 0){
+            if(index < criAtomExPlaybacks.Length){
+                criAtomExPlaybacks[index] = base.Play(cueName);
+            }
+        }
+        else{
+            Debug.LogWarning(cueName + " is not found.");
+        }
     }
 
     /**
@@ -175,12 +81,11 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "cueName">再生したいキューの名前</param>
      * <param name = "mesh">音源となるオブジェクトのMeshFilter</param>
      * <param name = "Collider">音源となるオブジェクトのCollider</param>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceが複数必要な場合はここで番号を指定する(追加のCriAtomSourceは自動で適用される)</param>
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
-        Play(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel);
+    public void PlayAndDestroy(string cueName, ref MeshFilter mesh, ref Collider collider, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
+        Play(cueName, gameVariable, selectorName, selectorLabel);
 
         //見かけ上のみオブジェクトを破壊
         if(mesh != null){
@@ -191,7 +96,7 @@ public class CuePlayer : MonoBehaviour{
         }
 
         //音の再生が終了してから破壊
-        StartCoroutine(DestroyAfterPlay(this.gameObject));
+        StartCoroutine(DestroyAfterPlay(this.gameObject, cueName));
     }
 
     /**
@@ -201,206 +106,109 @@ public class CuePlayer : MonoBehaviour{
      * <param name = "gameVariable">ゲーム変数による変化を設定してる場合はここで値を指定</param>
      * <param name = "selectorLabel">セレクタラベルの指定</param>
      */
-    public void PlayStrechLoop(string cueName, int atomSourceNum = 0, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
-        //指定された番号のAtomSourceがない場合は追加
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
+    public void PlayStrechLoop(string cueName, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
+        if(!isLoop){
+            this.player.SetVoicePoolIdentifier(CueManager.TIMESTRECH_VOICEPOOL);
+            isLoop = true;
+            StartCoroutine(PlayStrechLoopCore(cueName, gameVariable, selectorName, selectorLabel));
         }
-
-        if(!loop){
-            //タイムストレッチ準備
-            if(voicePool == null){
-                voicePool = new CriAtomExStandardVoicePool(2, 2, 48000, false, 2);
-                voicePool.AttachDspTimeStretch();
-                criAtomSourceList[atomSourceNum].player.SetVoicePoolIdentifier(2);
-            }
-
-            loop = true;
-            StartCoroutine(PlayStrechLoopCore(cueName, atomSourceNum, gameVariable, selectorName, selectorLabel));
-        }
-    }
-
-    /**
-     * <summary>指定したAISACコントロールの値を設定<summary>
-     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
-     * <params name = "value">AISACコントロールの値<params>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void SetAisacControl(string aisacControlName, float value, int atomSourceNum = 0){
-        //指定された番号のAtomSourceがない場合は追加
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-
-        criAtomSourceList[atomSourceNum].SetAisacControl(aisacControlName, value);
     }
 
     /**
      * <summary>ランダムなAISACコントロールの値を設定<summary>
      * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
      * <params name = "value">AISACコントロールの値<params>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
      */
     public void SetRandomAisacControl(string aisacControlName, int atomSourceNum = 0){
-        //指定された番号のAtomSourceがない場合は追加
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-
-        criAtomSourceList[atomSourceNum].SetAisacControl(aisacControlName, Random.value);
+        this.SetAisacControl(aisacControlName, UnityEngine.Random.value);
     }
 
     /**
-     * <summary>指定したAtomSourceの保持するキューのセレクタラベルを変更<summary>
-     * <params name = "cueName">セレクタラベルを変更するキューの名前<params>
-     * <params name = "selectorLabel">指定するセレクタラベル<params>
-     * <param name = "atomSourceNum">指定したキューを保持するAtomSourceの番号を指定</param>
+     *<summary>再生しているキューの一時停止<summary>
+     * <param name = "cueName">一時停止したいキューの名前</param>
      */
-    public void SwitchSelector(string cueName, string selectorLabel, int atomSourceNum = 0){
-        criAtomSourceList[atomSourceNum].player.SetSelectorLabel(cueName, selectorLabel);
-    }
-
-    /**
-     * <summary>指定したAtomSourceのインサーションDSP設定を初期化<summary>
-     * <param name = "atomSourceNum">指定したキューを保持するAtomSourceの番号を指定</param>
-     */
-    public void ResetInsertionDSP(int atomSourceNum = 0){
-        //指定された番号のAtomSourceがない場合は追加
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-
-        criAtomSourceList[atomSourceNum].player.SetDspTimeStretchRatio(1f);
-        criAtomSourceList[atomSourceNum].player.SetDspPitchShifterPitch(1f);
-    }
-
-    /**
-     *<summary>再生しているキューの一時停止(CriAtomSourceごとの停止)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void Pause(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-        criAtomSourceList[atomSourceNum].Pause(true);
-    }
-
-    /**
-     *<summary>一時停止しているキューの再開(CriAtomSourceごとの再開)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void Restart(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-        criAtomSourceList[atomSourceNum].Pause(false);
-    }
-
-    /**
-     * <summary>再生しているキューの停止(CriAtomSourceごとの停止)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void Stop(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
-        }
-        criAtomSourceList[atomSourceNum].Stop();
-    }
-
-    /**
-     * <summary>タイムストレッチを利用したループ再生の終了(CriAtomSourceごとの停止)<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     * <param name = "detachInsertionDSP">インサーション</param>
-     */
-    public void StopStrechLoop(int atomSourceNum = 0, bool detachInsertionDSP = true){
-        if(loop){
-            loop = false;
-            if(detachInsertionDSP){
-                StartCoroutine(DetachInsertionDSP(atomSourceNum));
+    public void Pause(string cueName){
+        var index = cueNameList.IndexOf(cueName);
+        if(index >= 0){
+            if(index < criAtomExPlaybacks.Length){
+                if(!criAtomExPlaybacks[index].IsPaused()){
+                    criAtomExPlaybacks[index].Pause();
+                }
+                else{
+                    Debug.Log(cueName + " is paused");
+                }
             }
         }
-    }
-
-    /**
-     * <summary>指定したAtomSourceが使用しているボイスプールを破棄<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     */
-    public void DisposeStandardVoicePool(int atomSourceNum = 0){
-        StartCoroutine(DisposeStandardVoicePoolCore(atomSourceNum));
-    }
-
-    /**
-     * <summary>CriAtomSourceの再生状態を取得<summary>
-     * <param name = "atomSourceNum">1つのオブジェクトにCriAtomSourceがある場合はここで番号を指定</param>
-     * <returns>CriAtomSourceの再生状態<returns>
-     */
-    public CriAtomSource.Status GetAtomSourceStatus(int atomSourceNum = 0){
-        if(criAtomSourceList.Count <= atomSourceNum){
-            criAtomSourceList.Add(InitializeAtomSource());
+        else{
+            Debug.LogWarning(cueName + " is not found.");
         }
-        return criAtomSourceList[atomSourceNum].status;
     }
 
     /**
-     * <summary>CriAtomSourceの再生状態を判定<summary>
+     *<summary>一時停止しているキューの再開<summary>
+     * <param name = "cueName">再開したいキューの名前</param>
+     */
+    public void Restart(string cueName){
+        var index = cueNameList.IndexOf(cueName);
+        if(index >= 0){
+            if(index < criAtomExPlaybacks.Length){
+                if(criAtomExPlaybacks[index].IsPaused()){
+                    criAtomExPlaybacks[index].Resume(CriAtomEx.ResumeMode.PausedPlayback);
+                }
+                else{
+                    Debug.Log(cueName + " is not paused");
+                }
+            }
+        }
+        else{
+            Debug.LogWarning(cueName + " is not found.");
+        }
+    }
+
+    /**
+     * <summary>再生しているキューの停止<summary>
+     * <param name = "cueName">停止したいキューの名前</param>
+     */
+    public void Stop(string cueName){
+        var index = cueNameList.IndexOf(cueName);
+        if(index >= 0){
+            if(index < criAtomExPlaybacks.Length){
+                Debug.Log("Stop");
+                criAtomExPlaybacks[index].Stop();
+            }
+        }
+        else{
+            Debug.LogWarning(cueName + " is not found.");
+        }
+    }
+
+    /**
+     * <summary>キューの再生状態を取得<summary>
+     * <param name = "cueName">再生状態を取得したいキューの名前</param>
+     * <returns>キューの再生状態<returns>
+     */
+    public CriAtomExPlayback.Status GetCueStatus(string cueName){
+        var index = cueNameList.IndexOf(cueName);
+        if(index >= 0 && index < criAtomExPlaybacks.Length){
+            return criAtomExPlaybacks[index].GetStatus();
+        }
+        else{
+            Debug.LogWarning(cueName + " is not found.");
+            return CriAtomExPlayback.Status.Removed;
+        }
+    }
+
+    /**
+     * <summary>キューの再生状態を判定<summary>
      * <params name = "status">再生状態の名称がこの引数の値と同じかどうかを判定<params>
      * <return>再生状態と引数が一致するかどうか</return>
      */
-    public bool JudgeAtomSourceStatus(string status, int atomSourceNum = 0){
-        return GetAtomSourceStatus(atomSourceNum).ToString().Equals(status);
+    public bool JudgeCueStatus(string cueName, CriAtomExPlayback.Status status){
+        return GetCueStatus(cueName).ToString().Equals(status);
     }
 
-    /**
-     * <summary>指定したAISACコントロールを初期化<summary>
-     * <params name = "aisacControlName">値を設定したいAISACコントロールの名前<params>
-     */
-    public void InitializeAisacControl(string aisacControlName){
-        foreach(CriAtomSource source in criAtomSourceList){
-            source.SetAisacControl(aisacControlName, 0f);
-        }
-    }
-    
-    //CriAtomSourceの追加
-    private CriAtomSource InitializeAtomSource(){
-        var atomSource = this.gameObject.AddComponent<CriAtomSource>();
-        atomSource.use3dPositioning = true;
-        atomSource.playOnStart = false;
-        return atomSource;
-    }
-
-    //ADX_CueBank初期化時のCriAtomSource初期化処理
-    private void Reset(){
-        criAtomSourceList.Clear();
-        criAtomSourceList.Add(GetComponent<CriAtomSource>());
-        criAtomSourceList[0].cueSheet = "";
-        criAtomSourceList[0].cueName = "";
-        criAtomSourceList[0].playOnStart = false;
-        cueManager = GameObject.FindObjectOfType<CueManager>().GetComponent<CueManager>();
-    }
-
-    private void Awake(){
-        if(cueManager == null){
-            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
-        }
-    }
-
-    //PlayOnStartの実行
-    private void Start(){
-        if(cueManager == null){
-            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
-        }
-
-        if(playOnStart){
-            //Play(PlayCueNameOnStart);
-            criAtomSourceList[0].cueSheet = cueManager.GetCueSheetName(playCueNameOnStart).cueSheetName;
-            criAtomSourceList[0].Play(playCueNameOnStart);
-        }
-    }
-
-    private void Update(){
-        if(cueManager == null){
-            cueManager = (CueManager)FindObjectOfType(typeof(CueManager));
-            //Debug.Log("Sound Manager Not Found");
-        }
+    void Awake(){
+        this.InternalInitialize();
+        criAtomExPlaybacks = new CriAtomExPlayback[cueNameList.Count];
     }
 }
