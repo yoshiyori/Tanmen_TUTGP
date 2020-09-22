@@ -12,8 +12,9 @@ public class Goal : MonoBehaviour
     float time;
     [System.NonSerialized] public static bool resultFlag;
 
-    //サウンド追加する
+    //サウンド追加分
     [SerializeField] private CueManager cueManager;
+    [SerializeField] private CuePlayer2D cuePlayer2D;
 
     private void Start()
     {
@@ -44,5 +45,6 @@ public class Goal : MonoBehaviour
         goalText.SetActive(true);
 
         cueManager.StopCueSheet("GameSE");
+        cuePlayer2D.StopFadeout();
     }
 }
