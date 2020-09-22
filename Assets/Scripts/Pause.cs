@@ -37,7 +37,7 @@ public class Pause : MonoBehaviour
 
             pauseNow = true;
             //キューシート「GameSE」に属するキューの再生を全て停止させる
-            cueManager.PauseCueSheet("GameSE");
+            CueManager.singleton.PauseCueSheet("GameSE");
         }
         else if (pauseNow == false)
         {
@@ -46,7 +46,7 @@ public class Pause : MonoBehaviour
             //キューシート「GameSE」に属するキューの再生を全て再開する
             if(recentPause != pauseNow)
             {
-                cueManager.RestartCueSheet("GameSE");
+                CueManager.singleton.RestartCueSheet("GameSE");
             }
         }
 
