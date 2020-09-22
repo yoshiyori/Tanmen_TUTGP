@@ -4,31 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class test : MonoBehaviour{
-    [SerializeField] private CuePlayer2D cuePlayer2D;
+    [SerializeField] private CuePlayer cuePlayer;
     private bool isLoop = false;
-    public float loopTime = 1f;
 
     private void Reset(){
     }
 
     private void Start(){
+        cuePlayer.loopTime = 1f;
+        CueManager.singleton.AddTimeStrechVoicePool();
     }
 
     private void Update(){
         if(Input.GetKeyDown(KeyCode.A)){
-            cuePlayer2D.PlayWithFadeSetting("TitleBGM", 5000);
+            cuePlayer.PlayStrechLoop("SwingBoost", 0f, "SwingBoost", "Increase");
         }
         if(Input.GetKeyDown(KeyCode.S)){
-            cuePlayer2D.StopFadeout();
-        }
-        if(Input.GetKeyDown(KeyCode.D)){
-            cuePlayer2D.SetAisacControl("GameBGMFade", 0f);
-            //cuePlayer2D.UpdateCue("TitleBGM");
-            cuePlayer2D.UpdatePlayer();
+            cuePlayer.loopTime -= 0.1f;
         }
         if(Input.GetKeyDown(KeyCode.W)){
-            cuePlayer2D.SetAisacControl("GameBGMFade", 0.1f);
-            cuePlayer2D.Play("TitleBGM");
+            cuePlayer.loopTime += 0.1f;
         }
+        Debug.Log(cuePlayer.loopTime);
     }
 }

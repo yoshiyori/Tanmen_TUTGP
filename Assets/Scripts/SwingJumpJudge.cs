@@ -126,13 +126,16 @@ public class SwingJumpJudge : MonoBehaviour
                 
                 if (swingCommandTextObject.activeInHierarchy)
                 {
-                    if (swingGauge.value > 0.0f) movePlayer.succesRollingJump = true;
+                    if (swingGauge.value > 0.0f)
+                    {
+                        movePlayer.succesRollingJump = true;
+			            jumpSound.Play("SwingBoostAccel");
+                    }
                     movePlayer.swingBoostFlag = true;
                     swingCommandTextObject.SetActive(false);
 
 			        //サウンド追加分
 			        //Debug.Log("SwingBoostAccel");
-			        jumpSound.Play("SwingBoostAccel");
                 }
             }
         }

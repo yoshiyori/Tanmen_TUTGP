@@ -153,13 +153,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 326312055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ab8219c56eb6146ad7a80fa778c3a9, type: 3}
+  m_Script: {fileID: 11500000, guid: bc877eef2284313449b20c3e58e00d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _cueName: 
+  _cueSheet: 
+  _regionOnStart: {fileID: 0}
+  _use3dPositioning: 1
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  cueManager: {fileID: 0}
   cueNameList:
-  - TitleBGM
-  playOnStart: 0
-  playCueNameOnStart: 
+  - SwingBoost
+  cueName_PlayOnStart: 
+  loopTime: 1
+  isLoop: 0
 --- !u!114 &326312058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c50b1da9075a44d8e80349b0947a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cuePlayer2D: {fileID: 326312057}
-  loopTime: 1
+  cuePlayer: {fileID: 326312057}
 --- !u!1 &790363557
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criAtom: {fileID: 1247474596}
-  cuePlayers: []
+  cuePlayers:
+  - {fileID: 326312057}
   cuePlayer2Ds: {fileID: 0}
   exCueInfoList:
   - cueSheetName: Ambi_Mt
@@ -640,9 +652,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acfFile: Tanmen.acf
   cueSheets:
-  - name: MenuBGM
-    acbFile: MenuBGM.acb
-    awbFile: MenuBGM.awb
+  - name: GameSE
+    acbFile: GameSE.acb
+    awbFile: 
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 1

@@ -44,7 +44,7 @@ public class Goal : MonoBehaviour
         GameManeger.goalFlag = true;
         goalText.SetActive(true);
 
-        cueManager.StopCueSheet("GameSE");
-        cuePlayer2D.StopFadeout();
+        CueManager.singleton.StopCueSheet("GameSE");
+        cuePlayer2D.StopFadeout("GameBGMP", "GameBGMFade", 3f);
     }
 }

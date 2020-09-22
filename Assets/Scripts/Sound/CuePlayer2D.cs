@@ -32,8 +32,8 @@ public class CuePlayer2D : MonoBehaviour{
         fadeTime = fadeTime < 0.1f ? 0.1f : fadeTime;
         for(float t = 0f; t < fadeTime; t += Time.deltaTime){
             player.SetAisacControl(aisacControlName, Mathf.Lerp(1f, 0f, Mathf.Clamp01(t / fadeTime)));
-            //UpdateCue(cueName);
-            player.UpdateAll();
+            UpdateCue(cueName);
+            //player.UpdateAll();
             yield return null;
         }
         Stop(cueName);
@@ -70,12 +70,6 @@ public class CuePlayer2D : MonoBehaviour{
         else{
             Debug.LogWarning(cueName + " is not found.");
         }
-    }
-
-    public void PlayWithFadeSetting(string cueName, int fadeTime, float gameVariable = 0f, string selectorName = "", string selectorLabel = ""){
-        player.AttachFader();
-        player.SetFadeOutTime(fadeTime);
-        Play(cueName, gameVariable, selectorName, selectorLabel);
     }
 
     /**
@@ -209,10 +203,10 @@ public class CuePlayer2D : MonoBehaviour{
         }
     }
 
-    public void StopFadeout(){
-        //StartCoroutine(StopFadeoutCore(cueName, aisacControlName, fadeTime));
-        player.Stop(false);
-        player.DetachFader();
+    public void StopFadeout(string cueName, string aisacControlName, float fadeTime){
+        StartCoroutine(StopFadeoutCore(cueName, aisacControlName, fadeTime));
+        //player.Stop(false);
+        //player.DetachFader();
     }
 
     void Reset(){
