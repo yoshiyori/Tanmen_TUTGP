@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1281438874621425339}
   - component: {fileID: 1281438874621425332}
   - component: {fileID: 1281438874621425328}
-  - component: {fileID: 1281438874621425335}
-  - component: {fileID: 4110645588814462441}
+  - component: {fileID: 4055859511736350105}
   m_Layer: 0
   m_Name: BikePlayer 1
   m_TagString: player
@@ -108,13 +107,13 @@ MonoBehaviour:
   sjj: {fileID: 0}
   concentratedLine: {fileID: 0}
   concentratedLineCamera: {fileID: 0}
-  actionSound: {fileID: 0}
+  actionSound: {fileID: 4055859511736350105}
   succesRollingJump: 0
   hd: {fileID: 0}
   joyconFlag: 0
   handleSensitivity: 0
   data: {fileID: 0}
---- !u!114 &1281438874621425335
+--- !u!114 &4055859511736350105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1281438874621425338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playOnStart: 0
@@ -136,31 +135,14 @@ MonoBehaviour:
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
---- !u!114 &4110645588814462441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281438874621425338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criAtomSourceList:
-  - {fileID: 1281438874621425335}
   cueManager: {fileID: 0}
   cueNameList:
-  - Turn
+  - Running
   - Landing
   - Break
-  - Running
-  - Willy
-  playOnStart: 0
-  playCueNameOnStart: 
-  loop: 0
-  loopTime: 0
+  cueName_PlayOnStart: 
+  loopTime: 1
+  isLoop: 0
 --- !u!1 &1469658012244012972
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,10 +206,38 @@ MonoBehaviour:
   willieChargeFlag: 0
   PlayerAni: {fileID: 0}
   williOnOff: 0
-  playerSound: {fileID: 0}
+  playerSound: {fileID: 7974455625096703410}
   hd: {fileID: 0}
   jumpConfirm: {fileID: 0}
   checkNowJump: 0
+--- !u!114 &7974455625096703410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272174287564726604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829cf33c9225ed408aa2f9c2ca556d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _cueName: 
+  _cueSheet: 
+  _regionOnStart: {fileID: 0}
+  _use3dPositioning: 1
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  cueManager: {fileID: 0}
+  cueNameList:
+  - Willy
+  cueName_PlayOnStart: 
+  loopTime: 1
+  isLoop: 0
 --- !u!1 &5612646805004439947
 GameObject:
   m_ObjectHideFlags: 0

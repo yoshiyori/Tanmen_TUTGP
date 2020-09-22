@@ -61,7 +61,7 @@ public class TimeManager : MonoBehaviour
 
             //サウンド追加分
             if(recentCount > countDownSeconds){
-                soundManager.Play("Start", 1);
+                soundManager.Play("Start");
                 recentCount = countDownSeconds;
             }
 
@@ -74,6 +74,7 @@ public class TimeManager : MonoBehaviour
 
                 //サウンド追加分
                 soundManager.Play("Start");
+                soundManager.Play("GameBGMP");
             }
         }
         else if (GameManeger.gameStartFlag == false)

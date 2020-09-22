@@ -19,16 +19,12 @@ public class HowToManager : MonoBehaviour
     [SerializeField] Handle hd;
     [SerializeField] string sceanName;
 
-
-
     void Start()
     {
         pageNum = 0;
         lastPageNum = pageObjects.Length - 1;
         if (stopTime == 0) stopTime = 0.6f;
-        
-        
-        
+
     }
 
     void Update()
@@ -69,6 +65,10 @@ public class HowToManager : MonoBehaviour
             {
                 GameManeger.gameStartFlag = true;
                 GameManeger.goalFlag = false;
+                
+                //サウンド追加分
+                CueManager.singleton.AddTimeStrechVoicePool();
+                
                 SceneManager.LoadSceneAsync(sceanName);
             }
             else
@@ -78,6 +78,5 @@ public class HowToManager : MonoBehaviour
                 pageNum++;
             }
         }
-
     }
 }

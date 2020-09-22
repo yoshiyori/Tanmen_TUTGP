@@ -4,21 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class test2 : MonoBehaviour{
-    [SerializeField] private CuePlayer cuePlayer;
-    float value = 0f;
+    //[SerializeField] private CuePlayer2D cuePlayer;
+    private CriAtomExPlayer player;
 
     private void Reset(){
-        //soundManager = FindObjectOfType<>();
-        //cueManager = FindObjectOfType<CueManager>();
-        //atom = FindObjectOfType<CriAtom>();
+    }
+
+    private void Start(){
+        player = new CriAtomExPlayer();
+        var cue = CueManager.singleton.GetCueSheetName("SelectBGM");
+        player.SetCue(CriAtom.GetAcb(cue.cueSheetName), cue.cueName);
     }
 
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.W)){
-            cuePlayer.Play("Jump");
+        if(Input.GetKeyDown(KeyCode.S)){
+            player.Start();
         }
-        else if(Input.GetKeyDown(KeyCode.S)){
-            SceneManager.LoadScene("10yen");
+        if(Input.GetKeyDown(KeyCode.A)){
+            //player.SetAisacControl()
         }
     }
 }
