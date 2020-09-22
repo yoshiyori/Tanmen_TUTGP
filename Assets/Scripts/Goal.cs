@@ -9,18 +9,12 @@ public class Goal : MonoBehaviour
     [SerializeField] GameObject inGameUI;
     [SerializeField] GameObject goalText;
 
-    //OC用の仮アニメーション設定
-    [SerializeField] GameObject goalObject;
-    [SerializeField] GameObject playerObject;
-
-    //本来のゴールアニメーション用
-    //public Animator PlayerAni;
-
     float time;
     [System.NonSerialized] public static bool resultFlag;
 
-    //サウンド追加する
+    //サウンド追加分
     [SerializeField] private CueManager cueManager;
+    [SerializeField] private CuePlayer2D cuePlayer2D;
 
     private void Start()
     {
@@ -33,9 +27,7 @@ public class Goal : MonoBehaviour
     private void Update()
     {
         if(GameManeger.goalFlag == true)
-        {
-            playerObject.SetActive(false);
-            goalObject.SetActive(true);
+        {   
             time += Time.deltaTime;
             if (time >= 3)
             {
@@ -50,10 +42,7 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-            GameManeger.goalFlag = true;
-            goalText.SetActive(true);
-
-            cueManager.PauseCueSheet("GameSE");
-
+        CueManager.singleton.StopCueSheet("GameSE");
+        cuePlayer2D.StopFadeout("GameBGMP", "GameBGMFade", 3f);
     }
 }

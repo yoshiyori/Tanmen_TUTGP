@@ -26,6 +26,12 @@ public class CueManager : MonoBehaviour{
     //private List<CriAtomExAcb> acbs;
     //private string[] acbNames;
 
+    //ボイスプール
+    public CriAtomExStandardVoicePool voicePool;
+
+    //定数
+    static public uint TIMESTRECH_VOICEPOOL = 2;
+
 #if UNITY_EDITOR
     //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
     public CriAtom CriAtom{
@@ -223,8 +229,8 @@ public class CueManager : MonoBehaviour{
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayer.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.cueName_PlayOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.cueName_PlayOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -293,8 +299,8 @@ public class CueManager : MonoBehaviour{
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayer.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.cueName_PlayOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.cueName_PlayOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -345,8 +351,8 @@ public class CueManager : MonoBehaviour{
                     usedCueSheetList.Add(usedCueSheet);
                 }
             }
-            if(!cuePlayer.playCueNameOnStart.Equals("")){
-                var usedCueSheet = GetCueSheetName(cuePlayer.playCueNameOnStart).cueSheetName;
+            if(!cuePlayer.cueName_PlayOnStart.Equals("")){
+                var usedCueSheet = GetCueSheetName(cuePlayer.cueName_PlayOnStart).cueSheetName;
                 if(!usedCueSheetList.Contains(usedCueSheet)){
                     usedCueSheetList.Add(usedCueSheet);
                 }
@@ -443,20 +449,15 @@ public class CueManager : MonoBehaviour{
 
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
-                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.playCueNameOnStart.Equals(matchData.cueName)){
-                    for(int i = 0; i < cuePlayer.criAtomSourceNum; i++){
-                        cuePlayer.Pause(i);
-                    }
+                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
+                    cuePlayer.Pause(matchData.CueName);
                 }
             }
         }
         //foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2Ds.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2Ds.playCueNameOnStart.Equals(matchData.cueName)){
-                    /*for(int i = 0; i < cuePlayer2D.criAtomSourceNum; i++){
-                        cuePlayer2D.Pause(i);
-                    }*/
-                    cuePlayer2Ds.Pause(0);
+                    cuePlayer2Ds.Pause(matchData.CueName);
                 }
             }
         //}
@@ -476,19 +477,42 @@ public class CueManager : MonoBehaviour{
 
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
-                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.playCueNameOnStart.Equals(matchData.cueName)){
-                    for(int i = 0; i < cuePlayer.criAtomSourceNum; i++){
-                        cuePlayer.Restart(i);
-                    }
+                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
+                    cuePlayer.Restart(matchData.CueName);
                 }
             }
         }
         //foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2Ds.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2Ds.playCueNameOnStart.Equals(matchData.cueName)){
-                    for(int i = 0; i < cuePlayer2Ds.criAtomSourceNum; i++){
-                        cuePlayer2Ds.Restart(i);
-                    }
+                    cuePlayer2Ds.Restart(matchData.CueName);
+                }
+            }
+        //}
+    }
+
+    /**
+     * <summary>指定したキューシートに属するキューの再生を全て停止する</summary>
+     * <param name = "cueSheetName">再生を一時停止したいキューシート</param>
+     */
+    public void StopCueSheet(string cueSheetName){
+        var matchDatas = exCueInfoList.Where(exCueInfo => exCueInfo.cueSheetName.Equals(cueSheetName));
+        if(matchDatas == null){
+            Debug.LogWarning(cueSheetName + " not found.");
+            return;
+        }
+
+        foreach(var cuePlayer in cuePlayers){
+            foreach(var matchData in matchDatas){
+                if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
+                    cuePlayer.Stop(matchData.CueName);
+                }
+            }
+        }
+        //foreach(var cuePlayer2D in cuePlayer2Ds){
+            foreach(var matchData in matchDatas){
+                if(cuePlayer2Ds.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2Ds.playCueNameOnStart.Equals(matchData.cueName)){
+                    cuePlayer2Ds.Stop(matchData.CueName);
                 }
             }
         //}
@@ -528,6 +552,12 @@ public class CueManager : MonoBehaviour{
             Debug.Log("File not found.");
         }
         return fileNames;
+    }
+
+    public void AddTimeStrechVoicePool(){
+        //ボイスプール確保
+        voicePool = new CriAtomExStandardVoicePool(2, 2, 48000, false, TIMESTRECH_VOICEPOOL);
+        voicePool.AttachDspTimeStretch();
     }
 
     //CueManager初期化時のCriAtom初期化処理
@@ -584,28 +614,19 @@ public class CueManager : MonoBehaviour{
     [SerializeField] internal string gameVariableName;
 
 #if UNITY_EDITOR
-    //Editor以外からフィールドにアクセスすることを防ぐプロパティたち
     public string CueSheetName{
         get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             return cueSheetName;
         }
         set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             cueSheetName = value;
         }
     }
     public string CueName{
         get{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             return cueName;
         }
         set{
-            var method = new System.Diagnostics.StackFrame(1).GetMethod();
-            Assert.IsTrue(method.DeclaringType.Assembly.IsDefined(typeof(AssemblyIsEditorAssembly), false), "Invalid acssess from " + method.DeclaringType + "::" + method.Name);
             cueName = value;
         }
     }
