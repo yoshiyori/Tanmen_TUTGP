@@ -11,12 +11,14 @@ public class Result : MonoBehaviour
     [SerializeField] TimeManager timeManager;
     [SerializeField] Handle hd;
     int minutes, seconds, mseconds;
+    
 
     //サウンド追加分
     [SerializeField] private CuePlayer2D soundManager;
 
     //Ranking関係追加分
     [SerializeField] TimeData timedata;
+    [SerializeField] private int nowSceneNumber;//mainかmain2かを識別するためのもの。0:main, 1:main2
 
     // Update is called once per frame
     void Update()
@@ -58,7 +60,14 @@ public class Result : MonoBehaviour
                 soundManager.Play("Decision", 1);
                 CueManager.singleton.voicePool.Dispose();
                 
-                SceneManager.LoadScene("Ranking");
+                if (nowSceneNumber == 0)
+                {
+                    SceneManager.LoadScene("Ranking");
+                }
+                else
+                {
+                    SceneManager.LoadScene("Ranking2");
+                }
             }
         }
     }

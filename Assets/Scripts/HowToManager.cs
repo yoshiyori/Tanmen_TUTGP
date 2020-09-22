@@ -17,16 +17,14 @@ public class HowToManager : MonoBehaviour
     private bool selectStopFlag;
 
     [SerializeField] Handle hd;
-    [SerializeField] string sceanName;
+    [SerializeField] private CuePlayer2D soundManager;
 
-    private bool lastKey;
 
     void Start()
     {
         pageNum = 0;
         lastPageNum = pageObjects.Length - 1;
         if (stopTime == 0) stopTime = 0.6f;
-        lastKey = false;
     }
 
     void Update()
@@ -51,12 +49,14 @@ public class HowToManager : MonoBehaviour
             {
                 beforeCanvas.SetActive(true);
                 howToCanvas.SetActive(false);
+                soundManager.Play("Select", 1);
             }
             else
             {
                 pageObjects[pageNum - 1].SetActive(true);
                 pageObjects[pageNum].SetActive(false);
                 pageNum--;
+                soundManager.Play("Select", 1);
             }
         }
 
@@ -65,23 +65,19 @@ public class HowToManager : MonoBehaviour
             selectStopFlag = true;
             if (pageNum == lastPageNum)
             {
-                if(lastKey == false)
-                {
-                    lastKey = true;
-                    GameManeger.gameStartFlag = true;
-                    GameManeger.goalFlag = false;
-
-                    //サウンド追加分
-                    CueManager.singleton.AddTimeStrechVoicePool();
-
-                    SceneManager.LoadSceneAsync(sceanName);
-                }
+                beforeCanvas.SetActive(true);
+                pageObjects[lastPageNum].SetActive(false);
+                pageObjects[0].SetActive(true);
+                pageNum = 0;
+                howToCanvas.SetActive(false);
+                soundManager.Play("Decision");
             }
             else
             {
                 pageObjects[pageNum].SetActive(false);
                 pageObjects[pageNum + 1].SetActive(true);
                 pageNum++;
+                soundManager.Play("Select", 1);
             }
         }
     }
