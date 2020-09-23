@@ -450,14 +450,14 @@ public class CueManager : MonoBehaviour{
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
                 if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
-                    cuePlayer.Pause(matchData.CueName);
+                    //cuePlayer.Pause(matchData.CueName);
                 }
             }
         }
         //foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2Ds.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2Ds.playCueNameOnStart.Equals(matchData.cueName)){
-                    cuePlayer2Ds.Pause(matchData.CueName);
+                  //  cuePlayer2Ds.Pause(matchData.CueName);
                 }
             }
         //}
@@ -478,14 +478,14 @@ public class CueManager : MonoBehaviour{
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
                 if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
-                    cuePlayer.Restart(matchData.CueName);
+                   // cuePlayer.Restart(matchData.CueName);
                 }
             }
         }
         //foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2Ds.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2Ds.playCueNameOnStart.Equals(matchData.cueName)){
-                    cuePlayer2Ds.Restart(matchData.CueName);
+                    //cuePlayer2Ds.Restart(matchData.CueName);
                 }
             }
         //}
@@ -505,14 +505,14 @@ public class CueManager : MonoBehaviour{
         foreach(var cuePlayer in cuePlayers){
             foreach(var matchData in matchDatas){
                 if(cuePlayer.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer.cueName_PlayOnStart.Equals(matchData.cueName)){
-                    cuePlayer.Stop(matchData.CueName);
+                    //cuePlayer.Stop(matchData.CueName);
                 }
             }
         }
         //foreach(var cuePlayer2D in cuePlayer2Ds){
             foreach(var matchData in matchDatas){
                 if(cuePlayer2Ds.cueNameList.Exists(cueName => cueName.Equals(matchData.cueName)) || cuePlayer2Ds.playCueNameOnStart.Equals(matchData.cueName)){
-                    cuePlayer2Ds.Stop(matchData.CueName);
+                   // cuePlayer2Ds.Stop(matchData.CueName);
                 }
             }
         //}
@@ -594,10 +594,10 @@ public class CueManager : MonoBehaviour{
 
     void OnSceneLoaded( Scene scene, LoadSceneMode mode ){
         Debug.Log ( scene.name + " scene loaded");
-        this.UnloadCueSheet();
-        this.LoadCuePlayer();
-        this.SetCueSheet();
-        this.SetGameVariableName();
+        //this.UnloadCueSheet();
+        //this.LoadCuePlayer();
+        //this.SetCueSheet();
+        //this.SetGameVariableName();
     }
 }
 

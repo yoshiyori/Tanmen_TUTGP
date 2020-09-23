@@ -58,7 +58,7 @@ public class Result : MonoBehaviour
                 }
                 //サウンド追加分
                 soundManager.Play("Decision", 1);
-                CueManager.singleton.voicePool.Dispose();
+             //   CueManager.singleton.voicePool.Dispose();
                 
                 if (nowSceneNumber == 0)
                 {
