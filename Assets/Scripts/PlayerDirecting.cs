@@ -71,22 +71,29 @@ public class PlayerDirecting : MonoBehaviour
 
 		if (startDetaTime > willieTime + willieSTime && willieFlg == true)
 		{
-            if(willieChargeFlag == false)
+            williOnOff = false;
+            this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
+            PlayerAni.SetTrigger("DushEnd");
+            willieFlg = false;
+
+            //旧仕様
+            /*if(willieChargeFlag == false)
             {
 				williOnOff = false;
 				this.gameObject.transform.Rotate(new Vector3(40, 0, 0));
                 PlayerAni.SetTrigger("DushEnd");
 				
             }
-            willieChargeFlag = true;
-		}
+            willieChargeFlag = true;*/
+        }
 
-        if (startDetaTime > williChargeTime + willieTime + willieSTime && willieChargeFlag == true)
+        //旧仕様
+        /*if (startDetaTime > williChargeTime + willieTime + willieSTime && willieChargeFlag == true)
         {
             willieFlg = false;
             willieSTime = 0;
             willieChargeFlag = false;
-        }
+        }*/
 
 		//ドリフト
 		if (Input.GetKey(KeyCode.Z))
