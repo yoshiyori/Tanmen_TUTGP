@@ -22,6 +22,10 @@ public class GameManeger : MonoBehaviour
     [System.NonSerialized] public static bool moveCorceSelect;
 
     [SerializeField] bool inGameTestFlag; //制作中、タイトル画面を介さずいきなりゲーム本編をテストするときに使う
+    private void Start()
+    {
+        goalFlag = false;
+    }
 
     void Awake()
     {
