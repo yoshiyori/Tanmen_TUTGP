@@ -248,6 +248,7 @@ public class TitleRankingManager : MonoBehaviour
     {
         for (int i = 0; i < save.arrayLengthNum; i++)
         {
+            Debug.Log(save.rankerNames[i]);
             rankersNameBoxText[i].text = save.rankerNames[i];
             int minutes = Mathf.FloorToInt(save.goalTimes[i] / 60f);
             int seconds = Mathf.FloorToInt(save.goalTimes[i] % 60f);
@@ -361,7 +362,7 @@ public class TitleRankingManager : MonoBehaviour
         if (File.Exists(filePath))
         {
             StreamReader streamReader;
-            streamReader = new StreamReader(filePath);
+            streamReader = new StreamReader(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json");
             string data = streamReader.ReadToEnd();
             streamReader.Close();
 
@@ -379,11 +380,11 @@ public class TitleRankingManager : MonoBehaviour
         if (File.Exists(filePath2))
         {
             StreamReader streamReader;
-            streamReader = new StreamReader(filePath2);
+            streamReader = new StreamReader(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata2.json");
             string data = streamReader.ReadToEnd();
             streamReader.Close();
 
-            save = JsonUtility.FromJson<RankingSaveData>(data);
+            save2 = JsonUtility.FromJson<RankingSaveData>(data);
 
 
             Array.Copy(save2.rankerNames, rankingPlayerName2, 10);

@@ -293,8 +293,14 @@ public class RankingManager : MonoBehaviour
 
                     //サウンド追加分
                     CueManager.singleton.AddTimeStrechVoicePool();
-
-                    SceneManager.LoadScene("Main");
+                    if (RankingSceneNumber == 0)
+                    {
+                        SceneManager.LoadScene("Main");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("Main2");
+                    }
                 }
                 else
                 {
@@ -456,6 +462,7 @@ public class RankingManager : MonoBehaviour
                         {
                             case 0:
                                 Array.Copy(save.sectionTime1st, staySectionTimes, 4);
+                                
                                 for (int j = 0; j < 4; j++)
                                 {
                                     save.sectionTime1st[j] = timedata.secTimes[j];
@@ -586,7 +593,7 @@ public class RankingManager : MonoBehaviour
         }
         else
         {
-            streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata.json", false);
+            streamWriter = new StreamWriter(Application.dataPath + "/StreamingAssets/SaveData" + "/savedata2.json", false);
         }
         
         streamWriter.Write(json);
